@@ -15,7 +15,7 @@ public class Skill : MonoBehaviour
     public string skillName;    // 스킬 이름
     public Transform prefab;    //이펙트 오브젝트
     public float distance;      // 거리
-    public int damageCount;   //대미지 배열 초기화
+    public int n_damageCount;   //대미지 배열 초기화
     public float[] damage;      //대미지
     public SkillType type;      // 스킬 타입
     public Skillability ability;// 상태효과
@@ -31,31 +31,22 @@ public class Skill : MonoBehaviour
     public bool isCollision;    // 범위 안 물체 확인
     public float range;         //범위
     public LayerMask layerMask; //타켓 마스크(적)
-    Vector3 target;             //타켓의 위치
-    Color color = Color.blue;                //Gizmo용 컬러
+    public Vector3 target;             //타켓의 위치
+    Color color = Color.blue;   //Gizmo용 컬러
 
     //타겟형
     public Transform targeting; //타켓이 누가 잡혔는지에 대한 확인용
 
     //MEZ 효과
     public bool electricShock;  //감전
-    public bool freezing;        //빙결
+    public bool freezing;       //빙결
 
-    public RaycastHit _hit;     //RaycastHit
-
-    private int count = 0;
+    private int n_count = 0;
     private List<Monster> monsters; //자료형 몬스터 스크립트로 바꿀 것 (데미지를 줘야됨)
-    private Transform player; // 플레이어를 찾게 할까?
 
     void Start()
     {
         monsters = new List<Monster>();
-        player = GameObject.Find("Player").transform;
-    }
-
-    void Update()
-    {
-        ShowRange();
     }
 
     //차징용 함수
@@ -67,23 +58,17 @@ public class Skill : MonoBehaviour
                 Vector3 leftBoundary = BoundaryAngle(-viewAngle * .5f);
                 Vector3 rightBounday = BoundaryAngle(viewAngle * .5f);
 
-                Debug.DrawRay(player.position, leftBoundary * distance, Color.red);
-                Debug.DrawRay(player.position, rightBounday * distance, Color.red);
+                Debug.DrawRay(transform.position, leftBoundary * distance, Color.red);
+                Debug.DrawRay(transform.position, rightBounday * distance, Color.red);
                 break;
             case SkillType.POINT:
-                Vector3 _distance = player.forward * distance;
-                Debug.DrawRay(player.position, _distance, Color.red);
+                Vector3 _distance = transform.forward * distance;
+                Debug.DrawRay(transform.position, _distance, Color.red);
                 break;
             case SkillType.TARGET:
-                Debug.DrawRay(player.position, player.forward * distance, Color.red);
+                Debug.DrawRay(transform.position, transform.forward * distance, Color.red);
                 break;
         }
-    }
-
-    //발사용 함수
-    public void Shoot()
-    {
-        DoDamage();
     }
 
     //애니메이션 이벤트용 데미지 함수
@@ -97,34 +82,33 @@ public class Skill : MonoBehaviour
                 break;
             case SkillType.POINT:
                 AreaOfEffect();
-                //target
                 break;
             case SkillType.TARGET:
                 Targeting();
                 //targeting
                 break;
-        }    //실시간으로 범위 체크할까?
+        }
 
         for (int i = 0; i < monsters.Count; i++)
         {
             monsters[i].GetDamage();
         }
+
+        if (n_count == n_damageCount)
+            n_count = 0;
+    }
+
+    //애니메이션 이벤트용 함수
+    public void DestroyObj()
+    {
+        Destroy(this.gameObject);
     }
 
     //타겟형 함수들
 
     public void Targeting()
     {
-        //Debug.DrawRay(player.position, transform.forward * distance, Color.red);
-        if (Physics.Raycast(player.position, player.forward, out _hit, distance, layerMask)) //레이어를 몬스터로 설정
-        {
-            targeting = _hit.transform;
-            monsters.Add(targeting.GetComponent<Monster>());
-        }
-        else
-        {
-            targeting = null;
-        }
+        
     }
 
 
@@ -132,27 +116,20 @@ public class Skill : MonoBehaviour
 
     public void AreaOfEffect()
     {
-        //Vector3 _distance = transform.forward * distance;
-
-        //Debug.DrawRay(player.position,_distance, Color.red);
-        if (Physics.Raycast(player.position, player.forward, out _hit, distance, layerMask)) //레이어를 Ground로 설정
+        Collider[] coll = Physics.OverlapSphere(target, range);
+        if (!isCollision)
         {
-            target = _hit.point;
-            Collider[] coll = Physics.OverlapSphere(target, range);
-            if (!isCollision)
+            for (int i = 0; i < coll.Length; i++)
             {
-                for (int i = 0; i < coll.Length; i++)
+                if (coll[i].gameObject.layer == LayerMask.NameToLayer("Water")) //레이어로 바꿀 것
                 {
-                    if (coll[i].gameObject.layer == LayerMask.NameToLayer("Water")) //레이어로 바꿀 것
-                    {
-                        monsters.Add(coll[i].GetComponent<Monster>());
-                    }
+                    monsters.Add(coll[i].GetComponent<Monster>());
                 }
             }
-            else
-            {
-                CollisionEnter();
-            }
+        }
+        else
+        {
+            CollisionEnter();
         }
     }
 
@@ -184,7 +161,7 @@ public class Skill : MonoBehaviour
 
     private void View()
     {
-        Vector3 playerPosition = player.position;
+        Vector3 playerPosition = target;
 
         Collider[] _target = Physics.OverlapSphere(playerPosition, distance, layerMask); //레이어를 몬스터로 설정
 
@@ -218,7 +195,7 @@ public class Skill : MonoBehaviour
         {
             case SkillType.RADIAL : 
                 Gizmos.color = Color.blue;
-                Gizmos.DrawWireSphere(player.position, distance);
+                Gizmos.DrawWireSphere(transform.position, distance);
                 break;
             case SkillType.POINT :
                 Gizmos.color = color;

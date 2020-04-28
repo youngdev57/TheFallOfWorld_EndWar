@@ -20,6 +20,8 @@ public class SKillEditor : Editor
 
     public override void OnInspectorGUI()
     {
+        _editor.ShowRange();
+
         int mask = InternalEditorUtility.LayerMaskToConcatenatedLayersMask(_editor.layerMask);
         string[] displayOption = InternalEditorUtility.layers;
 
@@ -30,15 +32,15 @@ public class SKillEditor : Editor
         skillTypeTab = GUILayout.Toolbar((int)_editor.type, new string[] { "RADIAL", "AOE", "TARGETING" });
         _editor.type = (SkillType)skillTypeTab;
 
-        _editor.damageCount = EditorGUILayout.IntField(new GUIContent("Damage Count", "피해 횟수를 설정합니다."), _editor.damageCount);
-        if (_editor.damageCount < 0)
+        _editor.n_damageCount = EditorGUILayout.IntField(new GUIContent("Damage Count", "피해 횟수를 설정합니다."), _editor.n_damageCount);
+        if (_editor.n_damageCount < 0)
         {
-            _editor.damageCount = 0;
+            _editor.n_damageCount = 0;
         }
 
-        _editor.damage = new float[_editor.damageCount];
+        _editor.damage = new float[_editor.n_damageCount];
 
-        if (_editor.damageCount > 0)
+        if (_editor.n_damageCount > 0)
         {
             EditorGUI.indentLevel += 2;
             show_Damage = EditorGUILayout.Foldout(show_Damage, "Damage");
@@ -69,7 +71,7 @@ public class SKillEditor : Editor
                                                                             "\n충돌이 없을때 false, 공격용"), _editor.isCollision);
                 break;
             case 2:
-                _editor.targeting = (Transform) EditorGUILayout.ObjectField(new GUIContent("Targeting", "지정당한 대상입니다."), _editor._hit.transform, typeof(Transform), true);
+                //_editor.targeting = (Transform) EditorGUILayout.ObjectField(new GUIContent("Targeting", "지정당한 대상입니다."), _editor._hit.transform, typeof(Transform), true);
                 break;
         }
         EditorGUILayout.Space(5);
