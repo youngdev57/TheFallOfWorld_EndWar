@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class SkillManager : MonoBehaviour
+public class SkillManager : MonoBehaviourPun
 {
 
     public Skill skill;
@@ -65,6 +66,9 @@ public class SkillManager : MonoBehaviour
 
     void Update()
     {
+        if (!photonView.IsMine)
+            return;
+
         if (Input.GetKey(KeyCode.A))
         {
             RangeOn();

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
+using Photon.Pun;
 
 //스킬 타입
 public enum SkillType {RADIAL, POINT, TARGET }
@@ -9,7 +9,7 @@ public enum SkillType {RADIAL, POINT, TARGET }
 //스킬의 효과
 public enum Skillability {NONE, AIRBORNE, STUN, DOT, SLOW, MEZ }
 
-public class Skill : MonoBehaviour
+public class Skill : MonoBehaviourPun
 {
     //공용
     public string skillName;    // 스킬 이름
@@ -77,7 +77,7 @@ public class Skill : MonoBehaviour
 
         for (int i = 0; i < monsters.Count; i++)
         {
-            monsters[i].GetDamage();   
+            monsters[i].GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.Others, null);
         }
 
         if (n_count == n_damageCount)
