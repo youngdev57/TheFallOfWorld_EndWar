@@ -13,6 +13,7 @@ public class SkillManager : MonoBehaviourPun
     RaycastHit _hit;
 
     //범위 표시 오브젝트를 끄고 키는 함수를 만들것
+    [PunRPC]
     public void RangeOn()
     {
         switch (skill.type)
@@ -29,6 +30,8 @@ public class SkillManager : MonoBehaviourPun
         }
     }
 
+    //오브젝트 끄기
+    [PunRPC]
     public void RangeOff()
     {
         skillProjector.enabled = false;
@@ -38,6 +41,7 @@ public class SkillManager : MonoBehaviourPun
 
 
     //스킬 준비(범위, 조준을 보여줌)
+    [PunRPC]
     public void ShowRange()
     {
         if(skill.type == SkillType.RADIAL)
@@ -59,6 +63,7 @@ public class SkillManager : MonoBehaviourPun
     }
 
     //준비된 스킬을 사용
+    [PunRPC]
     public void Shoot()
     {
         Instantiate(skill.gameObject, skill.target, Quaternion.identity);
@@ -71,13 +76,17 @@ public class SkillManager : MonoBehaviourPun
 
         if (Input.GetKey(KeyCode.A))
         {
+            photonView.RPC("RangeOn",RpcTarget.Others, null);
             RangeOn();
+            photonView.RPC("ShowRange", RpcTarget.Others, null);
             ShowRange();
         }
 
         if (Input.GetKeyUp(KeyCode.A))
         {
+            photonView.RPC("RangeOff", RpcTarget.Others, null);
             RangeOff();
+            photonView.RPC("Shoot", RpcTarget.Others, null);
             Shoot();
         }
     }

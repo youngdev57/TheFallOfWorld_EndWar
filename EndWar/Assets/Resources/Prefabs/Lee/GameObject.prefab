@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 110015230820021273}
   - component: {fileID: 8449115121479970954}
   - component: {fileID: 5153543869807657164}
-  - component: {fileID: 7295468078010106320}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -81,7 +80,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 16
-  target: {x: 355.8137, y: 1.237773, z: 466.39038}
+  target: {x: 363.40356, y: 1.3158872, z: 440.91797}
   targeting: {fileID: 0}
   electricShock: 0
   freezing: 0
@@ -107,21 +106,6 @@ MonoBehaviour:
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &7295468078010106320
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 110015230820021272}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 0
 --- !u!1001 &110015231615469032
 PrefabInstance:
   m_ObjectHideFlags: 0
