@@ -109,7 +109,7 @@ public class Skill : MonoBehaviour
             {
                 if (coll[i].gameObject.layer == LayerMask.NameToLayer("Water")) //레이어로 바꿀 것
                 {
-                    monsters.Add(coll[i].GetComponent<Monster>());
+                    monsters.Add(coll[i].GetComponent<PlayerCtrl>());  //몬스터로 바꿀것
                 }
             }
         }
@@ -166,7 +166,7 @@ public class Skill : MonoBehaviour
                     {
                         if (_hit.transform.gameObject.layer == LayerMask.NameToLayer("Water")) // 레이어로 바꿀 것
                         {
-                            monsters.Add(_hit.transform.GetComponent<Monster>());
+                            monsters.Add(_hit.transform.GetComponent<PlayerCtrl>());  //몬스터로 바꿀것
                         }
                     }
                 }
