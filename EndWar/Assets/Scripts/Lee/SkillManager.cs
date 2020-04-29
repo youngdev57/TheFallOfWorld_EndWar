@@ -76,17 +76,17 @@ public class SkillManager : MonoBehaviourPun
 
         if (Input.GetKey(KeyCode.A))
         {
-            photonView.RPC("RangeOn",RpcTarget.Others, null);
+            photonView.RPC("RangeOn",RpcTarget.AllViaServer, null);
             RangeOn();
-            photonView.RPC("ShowRange", RpcTarget.Others, null);
+            photonView.RPC("ShowRange", RpcTarget.AllViaServer, null);
             ShowRange();
         }
 
         if (Input.GetKeyUp(KeyCode.A))
         {
-            photonView.RPC("RangeOff", RpcTarget.Others, null);
+            photonView.RPC("RangeOff", RpcTarget.AllViaServer, null);
             RangeOff();
-            photonView.RPC("Shoot", RpcTarget.Others, null);
+            photonView.RPC("Shoot", RpcTarget.AllViaServer, null);
             Shoot();
         }
     }
