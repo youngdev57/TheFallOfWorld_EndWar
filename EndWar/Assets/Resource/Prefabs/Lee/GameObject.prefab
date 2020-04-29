@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 110015230820021272}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.013618469, y: 0.16749525, z: -0.0069696903}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 110015231615633914}
@@ -66,19 +66,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: 
   prefab: {fileID: 0}
-  distance: 0
+  distance: 5
   n_damageCount: 0
   damage: []
   type: 0
   ability: 0
   abilityTime: 0
   slowing: 0
-  viewAngle: 0
+  viewAngle: 70
   isCollision: 0
   range: 0
   layerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 16
   target: {x: 0, y: 0, z: 0}
   targeting: {fileID: 0}
   electricShock: 0

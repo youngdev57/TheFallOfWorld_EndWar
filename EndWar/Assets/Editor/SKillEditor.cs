@@ -16,6 +16,7 @@ public class SKillEditor : Editor
     void OnEnable()
     {
         _editor = target as Skill;
+
     }
 
     public override void OnInspectorGUI()

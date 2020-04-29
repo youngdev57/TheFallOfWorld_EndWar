@@ -11,35 +11,49 @@ public class SkillManager : MonoBehaviour
 
     RaycastHit _hit;
 
+    //범위 표시 오브젝트를 끄고 키는 함수를 만들것
+    public void RangeOn()
+    {
+        switch (skill.type)
+        {
+            case SkillType.RADIAL:
+                skillProjector.enabled = true;
+                break;
+            case SkillType.POINT:
+                pointObj.SetActive(true);
+                break;
+            case SkillType.TARGET:
+
+                break;
+        }
+    }
+
+    public void RangeOff()
+    {
+        skillProjector.enabled = false;
+        pointObj.SetActive(false);
+        //targetObj Off
+    }
+
+
     //스킬 준비(범위, 조준을 보여줌)
-    public void Charge()
+    public void ShowRange()
     {
         if(skill.type == SkillType.RADIAL)
         {
             //범위 표시
-            skillProjector.enabled = true;
             skillProjector.fieldOfView = skill.viewAngle;
             skillProjector.farClipPlane = skill.distance - 1f;
 
             skill.target = transform.position;
         }
-        else
-        {
-            skillProjector.enabled = false;
-        }
-
         if (skill.type == SkillType.POINT)
         {
             if (Physics.Raycast(transform.position, transform.forward, out _hit, skill.distance, skill.layerMask)) //레이어를 Ground로 설정
             {
-                pointObj.SetActive(true);
                 pointObj.transform.position = _hit.point;
                 skill.target = _hit.point;
             }
-        }
-        else
-        {
-            pointObj.SetActive(false);
         }
     }
 
@@ -51,14 +65,16 @@ public class SkillManager : MonoBehaviour
 
     void Update()
     {
-        Vector3 _distance = transform.forward * skill.distance;
-        Debug.DrawRay(transform.position, _distance, Color.red);
-
         if (Input.GetKey(KeyCode.A))
         {
-            Charge();
+            RangeOn();
+            ShowRange();
         }
+
         if (Input.GetKeyUp(KeyCode.A))
+        {
+            RangeOff();
             Shoot();
+        }
     }
 }

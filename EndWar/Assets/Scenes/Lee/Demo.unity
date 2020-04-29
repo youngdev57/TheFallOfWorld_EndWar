@@ -349,7 +349,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &391590477
 Transform:
   m_ObjectHideFlags: 0
@@ -371,7 +371,7 @@ Projector:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 391590476}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_NearClipPlane: 0.01
   m_FarClipPlane: 5.39

@@ -41,34 +41,21 @@ public class Skill : MonoBehaviour
     public bool electricShock;  //감전
     public bool freezing;       //빙결
 
-    private int n_count = 0;
-    private List<Monster> monsters; //자료형 몬스터 스크립트로 바꿀 것 (데미지를 줘야됨)
+    int n_count = 0;
+    List<Monster> monsters; //자료형 몬스터 스크립트로 바꿀 것 (데미지를 줘야됨)
+
+    Transform thisTr;       //본인의 Transform 을 가질 변수
 
     void Start()
     {
         monsters = new List<Monster>();
+        thisTr = GetComponent<Transform>();
     }
 
-    //차징용 함수
+    //차징용 함수 필요없음
     public void ShowRange()
     {
-        switch (type)
-        {
-            case SkillType.RADIAL:
-                Vector3 leftBoundary = BoundaryAngle(-viewAngle * .5f);
-                Vector3 rightBounday = BoundaryAngle(viewAngle * .5f);
-
-                Debug.DrawRay(transform.position, leftBoundary * distance, Color.red);
-                Debug.DrawRay(transform.position, rightBounday * distance, Color.red);
-                break;
-            case SkillType.POINT:
-                Vector3 _distance = transform.forward * distance;
-                Debug.DrawRay(transform.position, _distance, Color.red);
-                break;
-            case SkillType.TARGET:
-                Debug.DrawRay(transform.position, transform.forward * distance, Color.red);
-                break;
-        }
+        thisTr = GetComponent<Transform>();
     }
 
     //애니메이션 이벤트용 데미지 함수
@@ -85,7 +72,6 @@ public class Skill : MonoBehaviour
                 break;
             case SkillType.TARGET:
                 Targeting();
-                //targeting
                 break;
         }
 
@@ -154,7 +140,7 @@ public class Skill : MonoBehaviour
 
     private Vector3 BoundaryAngle(float _angle)
     {
-        _angle += transform.eulerAngles.y;
+        _angle += thisTr.eulerAngles.y;
 
         return new Vector3(Mathf.Sin(_angle * Mathf.Deg2Rad), 0f, Mathf.Cos(_angle * Mathf.Deg2Rad));
     }
@@ -171,7 +157,7 @@ public class Skill : MonoBehaviour
             if(_targetTf.gameObject.layer == LayerMask.NameToLayer("Water")) //레이어
             {
                 Vector3 _direction = (_targetTf.position - playerPosition).normalized;
-                float _angle = Vector3.Angle(_direction, transform.forward);
+                float _angle = Vector3.Angle(_direction, thisTr.forward);
 
                 if (_angle < viewAngle * 0.5)
                 {
@@ -191,18 +177,28 @@ public class Skill : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        Vector3 leftBoundary = BoundaryAngle(-viewAngle * .5f);
+        Vector3 rightBounday = BoundaryAngle(viewAngle * .5f);
+        Vector3 _distance = thisTr.forward * distance;
+
         switch (type)
         {
             case SkillType.RADIAL : 
                 Gizmos.color = Color.blue;
-                Gizmos.DrawWireSphere(transform.position, distance);
+                Gizmos.DrawWireSphere(thisTr.position, distance);
+                Gizmos.color = Color.red;
+                Gizmos.DrawRay(thisTr.position, leftBoundary * distance);
+                Gizmos.DrawRay(thisTr.position, rightBounday * distance);
                 break;
             case SkillType.POINT :
                 Gizmos.color = color;
                 Gizmos.DrawWireSphere(target,range);
+                Gizmos.color = Color.red;
+                Gizmos.DrawRay(thisTr.position, _distance);
                 break;
             case SkillType.TARGET :
-
+                Gizmos.color = Color.red;
+                Gizmos.DrawRay(thisTr.position, _distance);
                 break;
         }
     }
