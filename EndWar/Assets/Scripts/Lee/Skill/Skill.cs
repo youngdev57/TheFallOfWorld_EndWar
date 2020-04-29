@@ -77,8 +77,7 @@ public class Skill : MonoBehaviourPun
 
         for (int i = 0; i < monsters.Count; i++)
         {
-            monsters[i].GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.AllViaServer, null);
-            monsters[i].GetDamage();
+            monsters[i].GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.AllBuffered, null);
         }
 
         if (n_count == n_damageCount)
