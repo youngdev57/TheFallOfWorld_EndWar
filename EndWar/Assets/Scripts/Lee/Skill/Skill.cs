@@ -42,13 +42,13 @@ public class Skill : MonoBehaviour
     public bool freezing;       //빙결
 
     int n_count = 0;
-    List<Monster> monsters; //자료형 몬스터 스크립트로 바꿀 것 (데미지를 줘야됨)
+    List<PlayerCtrl> monsters; //자료형 몬스터 스크립트로 바꿀 것 (데미지를 줘야됨)  //나중에 바꿀것 몬스터로!!
 
     Transform thisTr;       //본인의 Transform 을 가질 변수
 
     void Start()
     {
-        monsters = new List<Monster>();
+        monsters = new List<PlayerCtrl>();
         thisTr = GetComponent<Transform>();
     }
 
@@ -77,7 +77,7 @@ public class Skill : MonoBehaviour
 
         for (int i = 0; i < monsters.Count; i++)
         {
-            monsters[i].GetDamage();
+            monsters[i].GetDamage();   
         }
 
         if (n_count == n_damageCount)
