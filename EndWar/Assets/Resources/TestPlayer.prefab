@@ -217,6 +217,7 @@ GameObject:
   - component: {fileID: 713205510914026408}
   - component: {fileID: 3171410940421850392}
   - component: {fileID: 1955326428442681495}
+  - component: {fileID: -3181463386452791464}
   m_Layer: 0
   m_Name: TestPlayer
   m_TagString: Untagged
@@ -399,6 +400,18 @@ MonoBehaviour:
   skill: {fileID: 8449115121479970954, guid: 8c7b18c6d9fd37c4e8af77cb00fba400, type: 3}
   skillProjector: {fileID: 1955326427312400815}
   pointObj: {fileID: 1900603640811571547}
+--- !u!114 &-3181463386452791464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4336512571799388660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57c8fe9402ac96e4e9c3cad54cc40b19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4336512572542447296
 GameObject:
   m_ObjectHideFlags: 0
