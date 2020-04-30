@@ -30,28 +30,7 @@ MonoBehaviour:
   EnableSupportLogger: 0
   RunInBackground: 1
   StartInOfflineMode: 0
-<<<<<<< HEAD
-  RpcList:
-  - ClickRpc
-  - DestroyRpc
-  - DestroySpaceship
-  - Fire
-  - RespawnSpaceship
-  - GetDamage
-  - RangeOn
-  - RangeOff
-  - ShowRange
-  - Shoot
-  - AreaOfEffect
-  - BoundaryAngle
-  - CollisionEnter
-  - DestroyObj
-  - DoDamage
-  - Targeting
-  - View
-=======
   RpcList: []
->>>>>>> 222ac6c7c94cc7ba45e7549ae2b5cae19b419c51
-  DisableAutoOpenWizard: 1
+  DisableAutoOpenWizard: 0
   ShowSettings: 0
   DevRegionSetOnce: 0
