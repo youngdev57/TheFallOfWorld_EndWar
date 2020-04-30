@@ -37,6 +37,17 @@ MonoBehaviour:
   - Fire
   - RespawnSpaceship
   - GetDamage
+  - RangeOn
+  - RangeOff
+  - ShowRange
+  - Shoot
+  - AreaOfEffect
+  - BoundaryAngle
+  - CollisionEnter
+  - DestroyObj
+  - DoDamage
+  - Targeting
+  - View
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

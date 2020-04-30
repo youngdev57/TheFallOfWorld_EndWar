@@ -41,7 +41,6 @@ public class SkillManager : MonoBehaviourPun
 
 
     //스킬 준비(범위, 조준을 보여줌)
-    [PunRPC]
     public void ShowRange()
     {
         if(skill.type == SkillType.RADIAL)
@@ -63,10 +62,9 @@ public class SkillManager : MonoBehaviourPun
     }
 
     //준비된 스킬을 사용
-    [PunRPC]
     public void Shoot()
     {
-        Instantiate(skill.gameObject, skill.target, Quaternion.identity);
+        PhotonNetwork.Instantiate(skill.gameObject.name, skill.target, Quaternion.identity);
     }
 
     void Update()
@@ -76,14 +74,14 @@ public class SkillManager : MonoBehaviourPun
 
         if (Input.GetKey(KeyCode.A))
         {
-            photonView.RPC("RangeOn",RpcTarget.AllBuffered, null);
-            photonView.RPC("ShowRange", RpcTarget.AllBuffered, null);
+            photonView.RPC("RangeOn", RpcTarget.All, null);
+            ShowRange();
         }
 
         if (Input.GetKeyUp(KeyCode.A))
         {
-            photonView.RPC("RangeOff", RpcTarget.AllBuffered, null);
-            photonView.RPC("Shoot", RpcTarget.AllBuffered, null);
+            photonView.RPC("RangeOff", RpcTarget.All, null);
+            Shoot();
         }
     }
 }

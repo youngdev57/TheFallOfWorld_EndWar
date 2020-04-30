@@ -53,33 +53,31 @@ public class Skill : MonoBehaviourPun
     }
 
     //차징용 함수 필요없음
-    [PunRPC]
     public void ShowRange()
     {
         thisTr = GetComponent<Transform>();
     }
 
     //애니메이션 이벤트용 데미지 함수
-    [PunRPC]
     public void DoDamage()
     {
         monsters.Clear();
         switch (type)
         {
             case SkillType.RADIAL:
-                photonView.RPC("View", RpcTarget.AllBuffered, null);
+                View();
                 break;
             case SkillType.POINT:
-                photonView.RPC("AreaOfEffect", RpcTarget.AllBuffered, null);
+                AreaOfEffect();
                 break;
             case SkillType.TARGET:
-                photonView.RPC("Targeting", RpcTarget.AllBuffered, null);
+                Targeting();
                 break;
         }
 
         for (int i = 0; i < monsters.Count; i++)
         {
-            monsters[i].GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.AllBuffered, null);
+            monsters[i].GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, null);
         }
 
         if (n_count == n_damageCount)
@@ -87,14 +85,12 @@ public class Skill : MonoBehaviourPun
     }
 
     //애니메이션 이벤트용 함수
-    [PunRPC]
     public void DestroyObj()
     {
         Destroy(this.gameObject);
     }
 
     //타겟형 함수들
-    [PunRPC]
     public void Targeting()
     {
         
@@ -102,7 +98,6 @@ public class Skill : MonoBehaviourPun
 
 
     //범위형 함수들
-    [PunRPC]
     public void AreaOfEffect()
     {
         Collider[] coll = Physics.OverlapSphere(target, range);
@@ -118,12 +113,11 @@ public class Skill : MonoBehaviourPun
         }
         else
         {
-            photonView.RPC("CollisionEnter", RpcTarget.AllBuffered, null);
+            CollisionEnter();
         }
     }
 
     //범위 안 충돌체크 함수
-    [PunRPC]
     public bool CollisionEnter() // 공격용이 아님
     {
         Collider[] isColl = Physics.OverlapSphere(target, range, ~layerMask);
@@ -141,7 +135,6 @@ public class Skill : MonoBehaviourPun
 
 
     //원뿔형 함수들
-    [PunRPC]
     private Vector3 BoundaryAngle(float _angle)
     {
         _angle += thisTr.eulerAngles.y;
@@ -149,7 +142,6 @@ public class Skill : MonoBehaviourPun
         return new Vector3(Mathf.Sin(_angle * Mathf.Deg2Rad), 0f, Mathf.Cos(_angle * Mathf.Deg2Rad));
     }
 
-    [PunRPC]
     private void View()
     {
         Vector3 playerPosition = target;
