@@ -39,7 +39,7 @@ public class SKillEditor : Editor
             _editor.n_damageCount = 0;
         }
 
-        if (_editor.damage == null)
+        if (_editor.damage == null || _editor.damage.Length == 0)
             _editor.damage = new float[_editor.n_damageCount];
 
         _editor.damage = _editor.damage;
@@ -56,8 +56,9 @@ public class SKillEditor : Editor
                     _editor.damage[i] = EditorGUILayout.FloatField(new GUIContent("Damage " + i, "피해량을 설정합니다."), _editor.damage[i]);
                     //SerializedProperty property = _editor.damage;
                 }
-                EditorGUI.indentLevel -= 4;
+                EditorGUI.indentLevel -= 2;
             }
+            EditorGUI.indentLevel -= 2;
         }
 
         EditorGUILayout.Space(5);
