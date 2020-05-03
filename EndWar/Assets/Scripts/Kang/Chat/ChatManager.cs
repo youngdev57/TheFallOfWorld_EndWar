@@ -55,7 +55,7 @@ public class ChatManager : MonoBehaviourPunCallbacks, IChatClientListener
 
         if (chatClient != null)  //채팅 클라이언트가 접속해 있을 때
         {
-            chatClient.Service();   //채팅 서비스를 지속적으로 불러 채팅 목록을 갱신함
+            chatClient.Service();   //☆☆ 채팅 서비스를 지속적으로 불러 채팅 목록을 갱신함 ☆☆ (중요)
         }
     }
 
@@ -67,7 +67,7 @@ public class ChatManager : MonoBehaviourPunCallbacks, IChatClientListener
 
     public void Chat(string text)  //채팅 함수
     {
-        chatClient.PublishMessage(currentChannelName, text);  //공개 메시지로 현재 채팅 채널에 전달
+        chatClient.PublishMessage(currentChannelName, text);  //☆☆ 공개 메시지로 현재 채팅 채널에 전달 ☆☆ (중요)
     }
 
     public void DebugReturn(ExitGames.Client.Photon.DebugLevel level, string message)  //오류 떴을 때 Debug.Log에 출력하는 부분 (중요하지않음)
@@ -95,7 +95,7 @@ public class ChatManager : MonoBehaviourPunCallbacks, IChatClientListener
     {
         //연결 시
         
-        chatClient.Subscribe(new string[] { currentChannelName, "Channel 002" }, 10);
+        chatClient.Subscribe(new string[] { currentChannelName, "Channel 002" }, 10);  // ☆☆ 채널 구독 ☆☆ (중요)
 
         chatClient.SetOnlineStatus(ChatUserStatus.Online);
 
@@ -118,8 +118,8 @@ public class ChatManager : MonoBehaviourPunCallbacks, IChatClientListener
     {
         //메시지를 수신했을 때
         ChatChannel channel = null;  //아래의 TryGetChannel이 channel을 반환함
-        bool found = chatClient.TryGetChannel(currentChannelName, out channel);
-        chatBox.text = channel.ToStringMessages(); //받은 채널의 채팅 내역을 받아와 텍스트 GUI에 표시함
+        bool found = chatClient.TryGetChannel(currentChannelName, out channel); // ☆☆ 채널 얻어오기 ☆☆ (중요)
+        chatBox.text = channel.ToStringMessages(); // ☆☆ 받은 채널의 채팅 내역을 받아와 텍스트 GUI에 표시함 ☆☆ (중요)
     }
 
     public void OnPrivateMessage(string sender, object message, string channelName)
