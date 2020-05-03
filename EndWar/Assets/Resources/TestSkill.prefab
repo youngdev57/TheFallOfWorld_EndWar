@@ -83,7 +83,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 32
-  target: {x: 294.79788, y: 0.2643851, z: 476.39804}
+  target: {x: 0, y: 0, z: 0}
   targeting: {fileID: 0}
   electricShock: 0
   freezing: 0
@@ -130,7 +130,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 494610, guid: a0040bf7072bc2f4e82d887d50a9c5e2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 494610, guid: a0040bf7072bc2f4e82d887d50a9c5e2, type: 3}
       propertyPath: m_LocalPosition.z

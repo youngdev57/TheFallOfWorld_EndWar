@@ -63,16 +63,10 @@ public class SkillManager : MonoBehaviourPun
 
             if (Physics.Raycast(camRay.position, camRay.forward, out _hit, skill.distance, skill.layerMask)) //레이어를 Ground로 설정
             {
-<<<<<<< HEAD
                 Vector3 point = _hit.point;
                 point.y += .2f;
                 pointObj.transform.position = point;
                 skill.target = point;
-
-=======
-                pointObj.transform.position = _hit.point;
-                skill.target = _hit.point;
->>>>>>> e37c55d3a6509aa68d37935ce6951ea41df14597
             }
         }
     }
