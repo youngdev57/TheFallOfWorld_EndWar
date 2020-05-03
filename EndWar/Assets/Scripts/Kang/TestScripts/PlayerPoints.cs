@@ -12,12 +12,29 @@ public class PlayerPoints : MonoBehaviourPunCallbacks
         return instance;
     }
 
-    [SerializeField]
-    internal Transform[] icePoints;
+    internal PhotonTest photonManager;
 
-    void Start()
+    [SerializeField]
+    internal Transform[] points;
+
+    public GameObject outGate;
+
+    void Awake()
     {
         instance = this;
         PhotonNetwork.IsMessageQueueRunning = true;
+    }
+
+    public void LoadScene(int destination)
+    {
+        switch(destination)
+        {
+            case 0:
+                photonManager.LoadBaseScene();
+                break;
+            case 1:
+                photonManager.LoadIceScene();
+                break;
+        }
     }
 }
