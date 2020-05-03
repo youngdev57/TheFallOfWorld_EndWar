@@ -497,6 +497,7 @@ GameObject:
   - component: {fileID: 3171410940421850392}
   - component: {fileID: 1955326428442681495}
   - component: {fileID: -3181463386452791464}
+  - component: {fileID: 7481320224342903083}
   m_Layer: 4
   m_Name: TestPlayer
   m_TagString: Untagged
@@ -692,7 +693,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52061a0d5b0ccb46a7056e9ce7e86ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skill: {fileID: 8449115121479970954, guid: 8c7b18c6d9fd37c4e8af77cb00fba400, type: 3}
+  skill: {fileID: 1432404692707565742, guid: 1967c552eb3b50a4b86b527bf3f54036, type: 3}
   skillProjector: {fileID: 1955326427312400815}
   pointObj: {fileID: 1900603640811571547}
 --- !u!114 &-3181463386452791464
@@ -707,6 +708,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57c8fe9402ac96e4e9c3cad54cc40b19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &7481320224342903083
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4336512571799388660}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4336512572542447296
 GameObject:
   m_ObjectHideFlags: 0
