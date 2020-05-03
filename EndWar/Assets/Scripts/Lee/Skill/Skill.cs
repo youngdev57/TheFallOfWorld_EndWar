@@ -52,10 +52,11 @@ public class Skill : MonoBehaviourPun
         thisTr = GetComponent<Transform>();
     }
 
-    //차징용 함수 필요없음
+    //에디터용 필요없음
     public void ShowRange()
     {
         thisTr = GetComponent<Transform>();
+        target = transform.position;
     }
 
     //애니메이션 이벤트용 데미지 함수
@@ -77,7 +78,7 @@ public class Skill : MonoBehaviourPun
 
         for (int i = 0; i < monsters.Count; i++)
         {
-            monsters[i].GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, null);
+            monsters[i].GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.AllBuffered, damage);
         }
 
         if (n_count == n_damageCount)
@@ -189,7 +190,7 @@ public class Skill : MonoBehaviourPun
                 break;
             case SkillType.POINT :
                 Gizmos.color = color;
-                Gizmos.DrawWireSphere(target,range);
+                Gizmos.DrawWireSphere(target, range);
                 Gizmos.color = Color.red;
                 Gizmos.DrawRay(thisTr.position, _distance);
                 break;

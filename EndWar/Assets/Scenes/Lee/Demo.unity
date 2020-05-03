@@ -823,8 +823,28 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 713205510914026408, guid: c4d5b6a5e1bf5054db681c6ec08bef45,
         type: 3}
+      propertyPath: ObservedComponents.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 713205510914026408, guid: c4d5b6a5e1bf5054db681c6ec08bef45,
+        type: 3}
       propertyPath: viewIdField
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 713205510914026408, guid: c4d5b6a5e1bf5054db681c6ec08bef45,
+        type: 3}
+      propertyPath: ObservedComponents.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1900603640811571547, guid: c4d5b6a5e1bf5054db681c6ec08bef45,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1900603642391320301, guid: c4d5b6a5e1bf5054db681c6ec08bef45,
+        type: 3}
+      propertyPath: ShapeModule.enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4336512571799100880, guid: c4d5b6a5e1bf5054db681c6ec08bef45,
         type: 3}
@@ -885,6 +905,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TestPlayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 4449634104256072268, guid: c4d5b6a5e1bf5054db681c6ec08bef45,
+        type: 3}
+      propertyPath: viewIdField
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9096109696784768169, guid: c4d5b6a5e1bf5054db681c6ec08bef45,
+        type: 3}
+      propertyPath: viewIdField
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c4d5b6a5e1bf5054db681c6ec08bef45, type: 3}

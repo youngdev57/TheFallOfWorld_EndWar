@@ -67,20 +67,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: 
   prefab: {fileID: 0}
-  distance: 5
+  distance: 7
   n_damageCount: 0
   damage: []
-  type: 0
+  type: 1
   ability: 0
   abilityTime: 0
   slowing: 0
   viewAngle: 70
   isCollision: 0
-  range: 0
+  range: -0.43
   layerMask:
     serializedVersion: 2
-    m_Bits: 16
-  target: {x: 250.59282, y: 0.8, z: 420.20276}
+    m_Bits: 32
+  target: {x: 247.78949, y: 0.8000001, z: 421.9289}
   targeting: {fileID: 0}
   electricShock: 0
   freezing: 0

@@ -11,6 +11,12 @@ public class SkillManager : MonoBehaviourPun
     public GameObject pointObj;
 
     RaycastHit _hit;
+    PhotonView myPv;
+
+    void Start()
+    {
+        myPv = GetComponent<PhotonView>();
+    }
 
     //범위 표시 오브젝트를 끄고 키는 함수를 만들것
     [PunRPC]
@@ -53,7 +59,9 @@ public class SkillManager : MonoBehaviourPun
         }
         if (skill.type == SkillType.POINT)
         {
-            if (Physics.Raycast(transform.position, transform.forward, out _hit, skill.distance, skill.layerMask)) //레이어를 Ground로 설정
+            Transform camRay = Camera.main.transform;
+
+            if (Physics.Raycast(camRay.position, camRay.forward, out _hit, skill.distance, skill.layerMask)) //레이어를 Ground로 설정
             {
                 pointObj.transform.position = _hit.point;
                 skill.target = _hit.point;
@@ -69,18 +77,18 @@ public class SkillManager : MonoBehaviourPun
 
     void Update()
     {
-        if (!photonView.IsMine)
+        if (!myPv.IsMine)
             return;
 
         if (Input.GetKey(KeyCode.E))
         {
-            photonView.RPC("RangeOn", RpcTarget.All, null);
+            myPv.RPC("RangeOn", RpcTarget.AllBuffered, null);
             ShowRange();
         }
 
         if (Input.GetKeyUp(KeyCode.E))
         {
-            photonView.RPC("RangeOff", RpcTarget.All, null);
+            myPv.RPC("RangeOff", RpcTarget.AllBuffered, null);
             Shoot();
         }
     }

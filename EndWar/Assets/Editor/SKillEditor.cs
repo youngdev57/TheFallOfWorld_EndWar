@@ -39,7 +39,10 @@ public class SKillEditor : Editor
             _editor.n_damageCount = 0;
         }
 
-        _editor.damage = new float[_editor.n_damageCount];
+        if (_editor.damage == null)
+            _editor.damage = new float[_editor.n_damageCount];
+
+        _editor.damage = _editor.damage;
 
         if (_editor.n_damageCount > 0)
         {
