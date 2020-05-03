@@ -11106,7 +11106,7 @@ Transform:
   - {fileID: 2127741597}
   - {fileID: 1895375786}
   m_Father: {fileID: 1612219740}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: -30, z: 0}
 --- !u!1001 &712598161
 PrefabInstance:
@@ -28646,9 +28646,9 @@ Transform:
   - {fileID: 1385087998}
   - {fileID: 2122384191}
   - {fileID: 114664354}
+  - {fileID: 708587316}
   - {fileID: 1579609119}
   - {fileID: 967192425}
-  - {fileID: 708587316}
   m_Father: {fileID: 998636877}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -31533,7 +31533,7 @@ GameObject:
   - component: {fileID: 1750455953}
   - component: {fileID: 1750455955}
   - component: {fileID: 1750455954}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Terrain3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
