@@ -13,12 +13,8 @@ MonoBehaviour:
   m_Name: PhotonServerSettings
   m_EditorClassIdentifier: 
   AppSettings:
-    AppIdRealtime: 4decb687-3d7a-4d09-a1b3-cb15e04b2f79
-<<<<<<< HEAD
+    AppIdRealtime: 
     AppIdChat: 
-=======
-    AppIdChat: feef8c13-8f07-4053-a672-4ce74ea27fb0
->>>>>>> 928d20a2d468f35d883acd98e13e4f241b6f6e6f
     AppIdVoice: 
     AppVersion: 
     UseNameServer: 1
@@ -28,35 +24,13 @@ MonoBehaviour:
     Protocol: 0
     AuthMode: 0
     EnableLobbyStatistics: 0
-<<<<<<< HEAD
     NetworkLogging: 1
-  DevRegion: kr
+  DevRegion: 
   PunLogging: 0
-=======
-    NetworkLogging: 5
-  DevRegion: kr
-  PunLogging: 2
->>>>>>> 928d20a2d468f35d883acd98e13e4f241b6f6e6f
   EnableSupportLogger: 0
   RunInBackground: 1
   StartInOfflineMode: 0
-  RpcList:
-  - ClickRpc
-  - DestroyRpc
-  - DestroySpaceship
-  - Fire
-  - GetDamage
-  - RangeOff
-  - RangeOn
-  - RespawnSpaceship
-<<<<<<< HEAD
-  DisableAutoOpenWizard: 1
+  RpcList: []
+  DisableAutoOpenWizard: 0
   ShowSettings: 0
-=======
-  - SendToServer
-  - Chat
-  - ChatToServer
-  DisableAutoOpenWizard: 1
-  ShowSettings: 1
->>>>>>> 928d20a2d468f35d883acd98e13e4f241b6f6e6f
-  DevRegionSetOnce: 1
+  DevRegionSetOnce: 0
