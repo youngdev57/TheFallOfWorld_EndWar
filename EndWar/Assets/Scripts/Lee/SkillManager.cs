@@ -67,6 +67,7 @@ public class SkillManager : MonoBehaviourPun
                 point.y += .2f;
                 pointObj.transform.position = point;
                 skill.target = point;
+
             }
         }
     }
