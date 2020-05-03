@@ -69,6 +69,16 @@ public class SkillManager : MonoBehaviourPun
                 skill.target = point;
             }
         }
+        if(skill.type == SkillType.TARGET)
+        {
+            Transform camRay = Camera.main.transform;
+
+            if (Physics.Raycast(camRay.position, camRay.forward, out _hit, skill.distance, skill.layerMask)) //레이어를 Ground로 설정
+            {
+                skill.targeting = _hit.transform;
+                skill.target = skill.targeting.position;
+            }
+        }
     }
 
     //준비된 스킬을 사용
