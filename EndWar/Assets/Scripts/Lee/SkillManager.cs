@@ -78,6 +78,10 @@ public class SkillManager : MonoBehaviourPun
                 skill.targeting = _hit.transform;
                 skill.target = skill.targeting.position;
             }
+            else
+            {
+                skill.targeting = null;
+            }
         }
     }
 

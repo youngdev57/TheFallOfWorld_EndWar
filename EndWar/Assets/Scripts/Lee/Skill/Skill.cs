@@ -95,7 +95,8 @@ public class Skill : MonoBehaviourPun
     //타겟형 함수들
     public void Targeting()
     {
-        monsters.Add(targeting.GetComponent<PlayerCtrl>());
+        if(targeting != null)
+            monsters.Add(targeting.GetComponent<PlayerCtrl>());
     }
 
 
