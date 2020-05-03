@@ -52,6 +52,14 @@ public class Skill : MonoBehaviourPun
         thisTr = GetComponent<Transform>();
     }
 
+    public void Use()
+    {
+        if (targeting == null && type == SkillType.TARGET)
+            return; 
+
+        PhotonNetwork.Instantiate(gameObject.name, target, Quaternion.identity);
+    }
+
     //에디터용 필요없음
     public void ShowRange()
     {

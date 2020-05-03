@@ -88,7 +88,7 @@ public class SkillManager : MonoBehaviourPun
     //준비된 스킬을 사용
     public void Shoot()
     {
-        PhotonNetwork.Instantiate(skill.gameObject.name, skill.target, Quaternion.identity);
+        skill.Use();
     }
 
     void Update()
