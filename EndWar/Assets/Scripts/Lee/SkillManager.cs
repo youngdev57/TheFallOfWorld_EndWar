@@ -1,17 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Valve.VR;
 using Photon.Pun;
 
 public class SkillManager : MonoBehaviourPun
 {
-
+    public SteamVR_Input_Sources handType;
+    public SteamVR_Behaviour_Pose controllerPose;   //컨트롤러 정보
+    public SteamVR_Action_Boolean grabAction;       //그랩 액션
+    [Space(5)]
     public Skill skill;
     public Projector skillProjector;
     public GameObject pointObj;
 
     RaycastHit _hit;
-    PhotonView myPv;
+    public PhotonView myPv;
 
     void Start()
     {
@@ -59,7 +63,7 @@ public class SkillManager : MonoBehaviourPun
         }
         if (skill.type == SkillType.POINT)
         {
-            Transform camRay = Camera.main.transform;
+            Transform camRay = this.transform;
 
             if (Physics.Raycast(camRay.position, camRay.forward, out _hit, skill.distance, skill.layerMask)) //레이어를 Ground로 설정
             {
@@ -71,7 +75,7 @@ public class SkillManager : MonoBehaviourPun
         }
         if(skill.type == SkillType.TARGET)
         {
-            Transform camRay = Camera.main.transform;
+            Transform camRay = this.transform;
 
             if (Physics.Raycast(camRay.position, camRay.forward, out _hit, skill.distance, skill.layerMask)) //레이어를 Ground로 설정
             {
@@ -96,6 +100,21 @@ public class SkillManager : MonoBehaviourPun
         if (!myPv.IsMine)
             return;
 
+
+        if (grabAction.GetLastState(handType))
+        {
+
+            myPv.RPC("RangeOn", RpcTarget.AllBuffered, null);
+            ShowRange();
+        }
+        //잡는 버튼을 땔때
+        if (grabAction.GetLastStateUp(handType))
+        {
+
+            myPv.RPC("RangeOff", RpcTarget.AllBuffered, null);
+            Shoot();
+
+        }
         if (Input.GetKey(KeyCode.E))
         {
             myPv.RPC("RangeOn", RpcTarget.AllBuffered, null);

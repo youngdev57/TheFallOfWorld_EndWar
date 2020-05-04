@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 using Valve.VR;
 
 public class ControllerGrabObj : MonoBehaviour
@@ -15,7 +16,7 @@ public class ControllerGrabObj : MonoBehaviour
     void Update()
     {
         //잡는 버튼을 누를떄
-        if (grabAction.GetLastStateDown(handType))
+        if (grabAction.GetLastState(handType))
         {
             if (collidingObj)
             {
