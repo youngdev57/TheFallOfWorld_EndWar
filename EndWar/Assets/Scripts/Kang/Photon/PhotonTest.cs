@@ -14,9 +14,12 @@ public class PhotonTest : MonoBehaviourPunCallbacks
 
     PlayerPoints pointsObj;
     public Transform[] playerSpawnPoints;
+    public Transform basePoint;
 
     public Text nameInput;
     public Button loginButton;
+
+    public int destination;
 
     private void Awake()
     {
@@ -59,11 +62,15 @@ public class PhotonTest : MonoBehaviourPunCallbacks
         userId = nameInput.text;
         PhotonNetwork.NickName = nameInput.text;
         PhotonNetwork.JoinRandomRoom();  //성공 시 OnJoinedRoom 호출 - 실패 시 OnJoinRandomFailed 호출
+
+        destination = 1;
     }
 
-    void LoadIceScene()
+    //아이스맵 씬 로드
+    public void LoadIceScene()
     {
-        StartCoroutine(IceSceneLoading());
+        if(destination == 1)
+            StartCoroutine(IceSceneLoading());
     }
 
     IEnumerator IceSceneLoading()
@@ -82,17 +89,69 @@ public class PhotonTest : MonoBehaviourPunCallbacks
 
         //대기 후 위치에 플레이어 생성
         pointsObj = PlayerPoints.GetInstance();
+        pointsObj.photonManager = this;
         Debug.Log(pointsObj.name);
-        playerSpawnPoints = pointsObj.icePoints;
-        CreatePlayer();  //생성
+        playerSpawnPoints = pointsObj.points;
+        CreatePlayer(destination);  //생성  1=아이스맵 생성용
     }
 
-    void CreatePlayer()  //플레이어 프리팹 생성
+    //기지맵 씬 로드
+    public void LoadBaseScene()
     {
-        int idx = Random.Range(1, playerSpawnPoints.Length);
-        //포톤에서 프리팹을 소환하려면 최상위 루트의 Resources 폴더 안에 프리팹을 둬야만 함
-        //그리고 프리팹의 이름을 문자열로 호출하여 Instantiate 함
-        PhotonNetwork.Instantiate("TestPlayer", playerSpawnPoints[idx].position, Quaternion.identity, 0);
-        Debug.Log("소환됨");
+        if (destination == 0)
+            StartCoroutine(BaseSceneLoading());
+    }
+
+    IEnumerator BaseSceneLoading()
+    {
+        PhotonNetwork.IsMessageQueueRunning = false;
+
+        AsyncOperation operation = SceneManager.LoadSceneAsync("Temp_Base");
+
+        operation.allowSceneActivation = true;
+
+        while (!operation.isDone)
+        {
+            //비동기 씬 로드 완료 시 까지 대기
+            yield return null;
+        }
+
+        //대기 후 위치에 플레이어 생성
+        pointsObj = PlayerPoints.GetInstance();
+        pointsObj.photonManager = this;
+        Debug.Log(pointsObj.name);
+        playerSpawnPoints = pointsObj.points;
+        CreatePlayer(destination);  //생성  0=기지에 플레이어 생성용
+    }
+
+    void CreatePlayer(int destination)  //플레이어 프리팹 생성  destination (0 = 기지, 1 = 아이스맵, 2 = 사막맵 ...)
+    {
+        int idx;  //도착 위치 배열의 인덱스
+
+        switch (destination)
+        {
+            case 0:
+                idx = 0; //기지 소환 위치 하나뿐이라서 그냥 0
+                PhotonNetwork.Instantiate("TestPlayer", playerSpawnPoints[idx].position, Quaternion.identity, 0);
+                Debug.Log("아이스맵에 소환됨");
+                break;
+
+            case 1:
+                idx = Random.Range(1, playerSpawnPoints.Length);
+                //포톤에서 프리팹을 소환하려면 최상위 루트의 Resources 폴더 안에 프리팹을 둬야만 함
+                //그리고 프리팹의 이름을 문자열로 호출하여 Instantiate 함
+                PhotonNetwork.Instantiate("TestPlayer", playerSpawnPoints[idx].position, Quaternion.identity, 0);
+                Debug.Log("아이스맵에 소환됨");
+                break;
+        }
+        
+    }
+
+    public void SetDestination(int num)
+    {
+        if(photonView.IsMine)
+        {
+            destination = num;
+        }
     }
 }
