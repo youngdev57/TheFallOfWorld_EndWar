@@ -2935,7 +2935,8 @@ namespace Photon.Pun
         /// You should make sure you don't fire RPCs before you load another scene (which doesn't contain
         /// the same GameObjects and PhotonViews).
         ///
-        /// LoadLevel uses SceneManager.LoadSceneAsync().
+        /// LoadLevel
+        /// uses SceneManager.LoadSceneAsync().
         ///
         /// Check the progress of the LevelLoading using PhotonNetwork.LevelLoadingProgress.
         ///
