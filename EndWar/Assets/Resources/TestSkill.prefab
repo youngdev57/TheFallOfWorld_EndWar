@@ -73,7 +73,7 @@ MonoBehaviour:
   - 10
   - 20
   - 30
-  type: 2
+  type: 1
   ability: 0
   abilityTime: 0
   slowing: 0
@@ -82,8 +82,8 @@ MonoBehaviour:
   range: 1
   layerMask:
     serializedVersion: 2
-    m_Bits: 16
-  target: {x: 468.59497, y: 0.89229065, z: 485.07343}
+    m_Bits: 32
+  target: {x: 268.57227, y: 0.19999988, z: 382.10916}
   targeting: {fileID: 0}
   electricShock: 0
   freezing: 0

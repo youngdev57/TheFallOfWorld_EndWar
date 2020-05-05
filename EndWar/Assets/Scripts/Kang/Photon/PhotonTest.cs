@@ -132,7 +132,7 @@ public class PhotonTest : MonoBehaviourPunCallbacks
         {
             case 0:
                 idx = 0; //기지 소환 위치 하나뿐이라서 그냥 0
-                PhotonNetwork.Instantiate("TestPlayer", playerSpawnPoints[idx].position, Quaternion.identity, 0);
+                PhotonNetwork.Instantiate("Player", playerSpawnPoints[idx].position, Quaternion.identity, 0);
                 Debug.Log("아이스맵에 소환됨");
                 break;
 
@@ -140,7 +140,7 @@ public class PhotonTest : MonoBehaviourPunCallbacks
                 idx = Random.Range(1, playerSpawnPoints.Length);
                 //포톤에서 프리팹을 소환하려면 최상위 루트의 Resources 폴더 안에 프리팹을 둬야만 함
                 //그리고 프리팹의 이름을 문자열로 호출하여 Instantiate 함
-                PhotonNetwork.Instantiate("TestPlayer", playerSpawnPoints[idx].position, Quaternion.identity, 0);
+                PhotonNetwork.Instantiate("Player", playerSpawnPoints[idx].position, Quaternion.identity, 0);
                 Debug.Log("아이스맵에 소환됨");
                 break;
         }

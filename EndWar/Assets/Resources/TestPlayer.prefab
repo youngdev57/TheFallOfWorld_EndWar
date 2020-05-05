@@ -584,7 +584,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nickname: {fileID: 4336512571306005212}
-  photonManager: {fileID: 0}
 --- !u!114 &4242917628086458790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -694,9 +693,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b52061a0d5b0ccb46a7056e9ce7e86ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handType: 0
+  controllerPose: {fileID: 0}
+  grabAction:
+    actionPath: 
+    needsReinit: 0
   skill: {fileID: 1432404692707565742, guid: 1967c552eb3b50a4b86b527bf3f54036, type: 3}
   skillProjector: {fileID: 1955326427312400815}
   pointObj: {fileID: 1900603640811571547}
+  myPv: {fileID: 0}
 --- !u!114 &-3181463386452791464
 MonoBehaviour:
   m_ObjectHideFlags: 0
