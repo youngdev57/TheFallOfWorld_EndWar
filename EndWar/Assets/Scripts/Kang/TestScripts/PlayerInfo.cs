@@ -5,12 +5,20 @@ using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class PlayerName : MonoBehaviourPunCallbacks
+public class PlayerInfo : MonoBehaviourPunCallbacks
 {
     public Text nickname;
+
+    [SerializeField]
+    internal PhotonTest photonManager;
 
     void Start()
     {
         nickname.text = photonView.Owner.NickName;
+    }
+
+    void LeaveRoom()
+    {
+        photonManager.LeaveRoom();
     }
 }
