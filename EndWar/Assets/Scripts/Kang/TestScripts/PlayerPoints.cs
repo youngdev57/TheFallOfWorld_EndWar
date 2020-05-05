@@ -12,8 +12,6 @@ public class PlayerPoints : MonoBehaviourPunCallbacks
         return instance;
     }
 
-    internal PhotonTest photonManager;
-
     [SerializeField]
     internal Transform[] points;
 
@@ -23,18 +21,5 @@ public class PlayerPoints : MonoBehaviourPunCallbacks
     {
         instance = this;
         PhotonNetwork.IsMessageQueueRunning = true;
-    }
-
-    public void LoadScene(int destination)
-    {
-        switch(destination)
-        {
-            case 0:
-                photonManager.LoadBaseScene();
-                break;
-            case 1:
-                photonManager.LoadIceScene();
-                break;
-        }
     }
 }

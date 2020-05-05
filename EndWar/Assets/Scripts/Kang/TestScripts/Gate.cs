@@ -21,8 +21,11 @@ public class Gate : MonoBehaviour
         {
             if(other.gameObject.GetComponent<PhotonView>().IsMine)
             {
-                pointManager.photonManager.SetDestination(destination);
-                pointManager.SendMessage("LoadScene", destination);
+                PhotonTest myPhoton = other.gameObject.GetComponent<PlayerInfo>().photonManager;
+
+                myPhoton.destination = destination;
+                Debug.Log("어디로 가는가 : " + myPhoton.destination);
+                myPhoton.SendMessage("LeaveRoom");
             }
         }
     }

@@ -522,7 +522,7 @@ Transform:
   - {fileID: 5202317249930832597}
   - {fileID: 4695962725181665053}
   - {fileID: 1955326427312400812}
-  - {fileID: 1955326428036475856}
+  - {fileID: 1900603640811571548}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -584,6 +584,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nickname: {fileID: 4336512571306005212}
+  photonManager: {fileID: 0}
 --- !u!114 &4242917628086458790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -695,7 +696,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skill: {fileID: 1432404692707565742, guid: 1967c552eb3b50a4b86b527bf3f54036, type: 3}
   skillProjector: {fileID: 1955326427312400815}
-  pointObj: {fileID: 1955326428036475523}
+  pointObj: {fileID: 1900603640811571547}
 --- !u!114 &-3181463386452791464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1996,13 +1997,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6456820d43910d4fa4545848f35dbb5, type: 3}
---- !u!1 &1955326428036475523 stripped
+--- !u!1 &1900603640811571547 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 90911984239731459, guid: c6456820d43910d4fa4545848f35dbb5,
     type: 3}
   m_PrefabInstance: {fileID: 1955326428036475480}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1955326428036475856 stripped
+--- !u!4 &1900603640811571548 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 90911984239731460, guid: c6456820d43910d4fa4545848f35dbb5,
     type: 3}
