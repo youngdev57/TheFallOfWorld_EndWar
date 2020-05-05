@@ -55,7 +55,8 @@
     },
     {
       "name": "/actions/default/in/TouchPosition",
-      "type": "vector2"
+      "type": "vector2",
+      "requirement": "mandatory"
     },
     {
       "name": "/actions/default/out/Haptic",

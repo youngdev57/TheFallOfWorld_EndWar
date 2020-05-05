@@ -925,7 +925,7 @@ namespace Valve.VR
                     onTransformChangedEvent.Invoke(this, inputSource);
             }
 
-            this.transform.position = skeletonPosition;
+            this.transform.position = skeletonPosition * 0f;
             this.transform.rotation = skeletonRotation;
 
             if (onTransformUpdated != null)

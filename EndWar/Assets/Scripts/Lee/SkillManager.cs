@@ -65,6 +65,8 @@ public class SkillManager : MonoBehaviourPun
         {
             Transform camRay = this.transform;
 
+            Debug.DrawRay(camRay.position, camRay.forward);
+
             if (Physics.Raycast(camRay.position, camRay.forward, out _hit, skill.distance, skill.layerMask)) //레이어를 Ground로 설정
             {
                 Vector3 point = _hit.point;

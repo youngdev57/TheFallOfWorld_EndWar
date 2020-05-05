@@ -16,7 +16,7 @@ public class ControllerGrabObj : MonoBehaviour
     void Update()
     {
         //잡는 버튼을 누를떄
-        if (grabAction.GetLastState(handType))
+        if (grabAction.GetLastStateDown(handType))
         {
             if (collidingObj)
             {
@@ -35,11 +35,13 @@ public class ControllerGrabObj : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        SetCollidingObj(other);
+        if (other.gameObject.layer == LayerMask.NameToLayer("Water"))
+            SetCollidingObj(other);
     }
     public void OnTriggerStay(Collider other)
     {
-        SetCollidingObj(other);
+        if (other.gameObject.layer == LayerMask.NameToLayer("Water"))
+            SetCollidingObj(other);
     }
     public void OnTriggerExit(Collider other)
     {
@@ -64,6 +66,7 @@ public class ControllerGrabObj : MonoBehaviour
         objectInHand = collidingObj; //잡은 객체로 설정
         collidingObj = null; //충돌 객체 해제
 
+        objectInHand.GetComponent<BoxCollider>().isTrigger = true;
         var joint = AddFixedJoint();
         joint.connectedBody = objectInHand.GetComponent<Rigidbody>();
     }
@@ -91,6 +94,7 @@ public class ControllerGrabObj : MonoBehaviour
             objectInHand.GetComponent<Rigidbody>().angularVelocity = 
                 controllerPose.GetAngularVelocity();
         }
+        objectInHand.GetComponent<BoxCollider>().isTrigger = false;
         objectInHand = null;
     }
 }
