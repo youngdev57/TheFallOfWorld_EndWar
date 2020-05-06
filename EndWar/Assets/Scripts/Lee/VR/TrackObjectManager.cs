@@ -14,5 +14,12 @@ public class TrackObjectManager : MonoBehaviourPun
 
         myTrack = GetComponent<SteamVR_TrackedObject>();
         myTrack.enabled = false;
+
+        if (GetComponent<Camera>())
+            GetComponent<Camera>().enabled = false;
+
+        if (GetComponent<SteamVR_Behaviour_Pose>())
+            GetComponent<SteamVR_Behaviour_Pose>().enabled = false;
+
     }
 }
