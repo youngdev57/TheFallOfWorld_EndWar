@@ -23,7 +23,9 @@ public class ControllerMovement : MonoBehaviourPun
 
     void Update()
     {
-        if(myPv.IsMine)
+        if (!myPv.IsMine)
+            return;
+
         transform.rotation = Quaternion.Euler(new Vector3(0, cameraTr.eulerAngles.y, 0));
         CalculateMovement();
     }
