@@ -142,6 +142,7 @@ namespace Valve.VR
                 onTransformChanged.Invoke(this, fromSource);
             if (onTransformChangedEvent != null)
                 onTransformChangedEvent.Invoke(this, fromSource);
+
         }
 
         protected virtual void OnDeviceConnectedChanged(SteamVR_Action_Pose changedAction, SteamVR_Input_Sources changedSource, bool connected)
