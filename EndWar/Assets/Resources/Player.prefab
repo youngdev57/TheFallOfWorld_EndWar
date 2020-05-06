@@ -325,9 +325,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8086690084909585908}
   - component: {fileID: 240957110934542903}
-  - component: {fileID: 2854009194334784928}
-  - component: {fileID: 1670488254305624296}
-  - component: {fileID: 2129663441041473814}
+  - component: {fileID: 573175860408949593}
+  - component: {fileID: 8257729993143865336}
   m_Layer: 0
   m_Name: Camera (eye)
   m_TagString: MainCamera
@@ -392,19 +391,7 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!114 &2854009194334784928
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2949835804186626267}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4de8b4273b9b284488aa02d1c27dd82d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1670488254305624296
+--- !u!114 &573175860408949593
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -418,7 +405,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   origin: {fileID: 0}
---- !u!114 &2129663441041473814
+--- !u!114 &8257729993143865336
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -540,7 +527,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 7742042506570294182}
-  - {fileID: 1866587314099485057}
+  - {fileID: 1867101279342923086}
   - {fileID: 3949218004493646251}
   m_Father: {fileID: 5400422316089826909}
   m_RootOrder: 2
@@ -715,7 +702,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3949218002927542270
 Transform:
   m_ObjectHideFlags: 0
@@ -803,7 +790,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3949218003367287005
 Transform:
   m_ObjectHideFlags: 0
@@ -902,7 +889,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3949218003532150262
 Transform:
   m_ObjectHideFlags: 0
@@ -971,7 +958,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3949218004493646251
 Transform:
   m_ObjectHideFlags: 0
@@ -1060,7 +1047,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4522847837391437426}
-  - {fileID: 1084491190390301546}
+  - {fileID: 1081663256752200201}
   - {fileID: 3949218003367287005}
   m_Father: {fileID: 5400422316089826909}
   m_RootOrder: 1
@@ -1423,6 +1410,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5702729651945906431}
   - component: {fileID: 4321326913292028155}
+  - component: {fileID: 7628882372782260134}
   m_Layer: 0
   m_Name: Camera (head)
   m_TagString: MainCamera
@@ -1462,6 +1450,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   origin: {fileID: 0}
+--- !u!114 &7628882372782260134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5670289737717942587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4de8b4273b9b284488aa02d1c27dd82d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6709439812364901952
 GameObject:
   m_ObjectHideFlags: 0
@@ -1658,7 +1658,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 638779290bce1af49b356f33dcc6fccf, type: 3}
---- !u!4 &1084491190390301546 stripped
+--- !u!4 &1081663256752200201 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4000013303659494, guid: 638779290bce1af49b356f33dcc6fccf,
     type: 3}
@@ -1743,7 +1743,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6def53d002137b747aec0b29551e0e25, type: 3}
---- !u!4 &1866587314099485057 stripped
+--- !u!4 &1867101279342923086 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4000012125075130, guid: 6def53d002137b747aec0b29551e0e25,
     type: 3}

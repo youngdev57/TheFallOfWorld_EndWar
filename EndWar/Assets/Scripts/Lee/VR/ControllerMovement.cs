@@ -18,7 +18,7 @@ public class ControllerMovement : MonoBehaviourPun
     void Start()
     {
         cameraTr = SteamVR_Render.Top().head;
-        myPv = transform.parent.GetComponent<PhotonView>();
+        myPv = GetComponent<PhotonView>();
     }
 
     void Update()
