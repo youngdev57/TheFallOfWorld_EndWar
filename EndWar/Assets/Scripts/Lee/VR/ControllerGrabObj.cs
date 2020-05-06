@@ -24,8 +24,8 @@ public class ControllerGrabObj : MonoBehaviourPun
         if (!myPv.IsMine)
             return;
 
-            //잡는 버튼을 누를떄
-            if (grabAction.GetLastStateDown(handType))
+        //잡는 버튼을 누를떄
+        if (grabAction.GetLastStateDown(handType))
         {
             if (collidingObj)
             {

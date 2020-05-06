@@ -83,7 +83,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 32
-  target: {x: 250.31168, y: 0.2, z: 419.4921}
+  target: {x: 269.05542, y: 0.2, z: 379.12195}
   targeting: {fileID: 0}
   electricShock: 0
   freezing: 0

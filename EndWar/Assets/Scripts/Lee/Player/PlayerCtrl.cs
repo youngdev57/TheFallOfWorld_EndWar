@@ -5,6 +5,8 @@ using Photon.Pun;
 
 public class PlayerCtrl : MonoBehaviour
 {
+
+
     [PunRPC]
     public void GetDamage(float damage)
     {
