@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class ViveManager : MonoBehaviour
+public class ViveManager : MonoBehaviourPun
 {
     public GameObject head;
     public GameObject leftHand;
@@ -12,8 +13,10 @@ public class ViveManager : MonoBehaviour
 
     void Awake()
     {
-        if (Instance == null)
+        if (Instance == null && photonView.IsMine)
             Instance = this;
+        else
+            Destroy(this);
     }
 
     private void OnDestroy()
