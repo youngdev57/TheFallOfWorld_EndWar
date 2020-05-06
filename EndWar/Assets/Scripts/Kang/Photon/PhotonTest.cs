@@ -111,7 +111,7 @@ public class PhotonTest : MonoBehaviourPunCallbacks
         userId = nameInput.text;
         PhotonNetwork.NickName = nameInput.text;
 
-        destination = 0;
+        destination = 1;
 
         LeaveRoom();
         ChangeRoom(destination);

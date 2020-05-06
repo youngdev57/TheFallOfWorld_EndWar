@@ -4,7 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using Valve.VR;
 
-public class ControllerGrabObj : MonoBehaviour
+public class ControllerGrabObj : MonoBehaviourPun
 {
     public SteamVR_Input_Sources handType;
     public SteamVR_Behaviour_Pose controllerPose;   //컨트롤러 정보
@@ -12,11 +12,20 @@ public class ControllerGrabObj : MonoBehaviour
 
     GameObject collidingObj; //현재 충돌중인 객체
     GameObject objectInHand; //플레이어가 잡은 객체
+    PhotonView myPv;
+
+    void Start()
+    {
+        myPv = transform.parent.GetComponent<PhotonView>();
+    }
 
     void Update()
     {
-        //잡는 버튼을 누를떄
-        if (grabAction.GetLastStateDown(handType))
+        if (!myPv.IsMine)
+            return;
+
+            //잡는 버튼을 누를떄
+            if (grabAction.GetLastStateDown(handType))
         {
             if (collidingObj)
             {

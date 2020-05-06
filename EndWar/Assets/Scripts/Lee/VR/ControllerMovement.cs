@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 using Valve.VR;
 
-public class ControllerMovement : MonoBehaviour
+public class ControllerMovement : MonoBehaviourPun
 {
     public float sensitivity = .1f;
     public float maxSpeed = 1f;
@@ -13,14 +14,16 @@ public class ControllerMovement : MonoBehaviour
 
     float speed = 0f;
     public Transform cameraTr;
+    PhotonView myPv;
     void Start()
     {
         cameraTr = SteamVR_Render.Top().head;
+        myPv = transform.parent.GetComponent<PhotonView>();
     }
 
     void Update()
     {
-
+        if(myPv.IsMine)
         transform.rotation = Quaternion.Euler(new Vector3(0, cameraTr.eulerAngles.y, 0));
         CalculateMovement();
     }

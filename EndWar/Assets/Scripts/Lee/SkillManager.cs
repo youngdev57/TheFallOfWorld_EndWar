@@ -19,7 +19,7 @@ public class SkillManager : MonoBehaviourPun
 
     void Start()
     {
-        myPv = GetComponent<PhotonView>();
+        myPv = transform.GetComponent<PhotonView>();
     }
 
     //범위 표시 오브젝트를 끄고 키는 함수를 만들것
@@ -105,7 +105,6 @@ public class SkillManager : MonoBehaviourPun
 
         if (grabAction.GetLastState(handType))
         {
-
             myPv.RPC("RangeOn", RpcTarget.AllBuffered, null);
             ShowRange();
         }
