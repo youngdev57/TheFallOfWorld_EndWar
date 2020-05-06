@@ -11,6 +11,9 @@ public class PhotonPlayerSpawn : MonoBehaviourPun
 
     void Awake()
     {
+        if (!photonView.IsMine)
+            return;
+
         Transform _head = PhotonNetwork.Instantiate(head.name,ViveManager.Instance.head.transform.position, ViveManager.Instance.head.transform.rotation, 0).transform;
         Transform _leftHand = PhotonNetwork.Instantiate(leftHand.name, ViveManager.Instance.leftHand.transform.position, ViveManager.Instance.leftHand.transform.rotation, 0).transform;
         Transform _rightHand = PhotonNetwork.Instantiate(rightHand.name, ViveManager.Instance.rightHand.transform.position, ViveManager.Instance.rightHand.transform.rotation, 0).transform;
