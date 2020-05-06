@@ -7,9 +7,11 @@ public class ControllerPosition : MonoBehaviourPun
 {
     public int index = 1;
 
+    ViveManager viveManager;
     void Awake()
     {
         photonView.RPC("GetParent", RpcTarget.AllBuffered, null);
+        viveManager = transform.parent.GetComponent<ViveManager>();
     }
 
     void Update()
@@ -17,19 +19,20 @@ public class ControllerPosition : MonoBehaviourPun
         if (!photonView.IsMine)
             return;
 
+
         switch (index)
         {
             case 1:
-                transform.position = ViveManager.Instance.head.transform.position;
-                transform.rotation = ViveManager.Instance.head.transform.rotation;
+                transform.position = viveManager.head.transform.position;
+                transform.rotation = viveManager.head.transform.rotation;
                 break;
             case 2:
-                transform.position = ViveManager.Instance.leftHand.transform.position;
-                transform.rotation = ViveManager.Instance.leftHand.transform.rotation;
+                transform.position = viveManager.leftHand.transform.position;
+                transform.rotation = viveManager.leftHand.transform.rotation;
                 break;
             case 3:
-                transform.position = ViveManager.Instance.rightHand.transform.position;
-                transform.rotation = ViveManager.Instance.rightHand.transform.rotation;
+                transform.position = viveManager.rightHand.transform.position;
+                transform.rotation = viveManager.rightHand.transform.rotation;
                 break;
         }
     }
@@ -40,8 +43,9 @@ public class ControllerPosition : MonoBehaviourPun
         PhotonView[] p = GameObject.FindObjectsOfType<PhotonView>();
         for (int i = 0; i < p.Length; i++)
         {
-            if (p[i].gameObject.name == "Player" && p[i].IsMine)
-                transform.parent = p[i].transform;
+            if (p[i].gameObject.name == "Player")
+                if(!p[i].transform.FindChild(gameObject.name))
+                    transform.parent = p[i].transform;
         }
     }
 }

@@ -158,6 +158,7 @@ GameObject:
   - component: {fileID: 1822249494225716797}
   - component: {fileID: 3120558355644085482}
   - component: {fileID: 6804493022596652262}
+  - component: {fileID: 215794614246041550}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -285,6 +286,21 @@ MonoBehaviour:
   leftHand: {fileID: 382456602440129849, guid: f65b878c300fe944fbc7bc204e718924, type: 3}
   rightHand: {fileID: 3428598005198285500, guid: 5892f8c70c0f1e74aaf717f87ffc47c9,
     type: 3}
+--- !u!114 &215794614246041550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5273428900511855559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 362c9e16f6c7e0b489d78ea785c05655, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  head: {fileID: 6910328070535154251}
+  leftHand: {fileID: 5847967698149145443}
+  rightHand: {fileID: 5847967698148979013}
 --- !u!1 &5847967698148945489
 GameObject:
   m_ObjectHideFlags: 0
@@ -395,7 +411,6 @@ GameObject:
   - component: {fileID: 5847967698146904211}
   - component: {fileID: 5847967698147936535}
   - component: {fileID: 5847967698156114039}
-  - component: {fileID: 5847967698149089251}
   - component: {fileID: 883977133778665036}
   - component: {fileID: 8085895501370297782}
   - component: {fileID: 140221734705376696}
@@ -499,21 +514,6 @@ MonoBehaviour:
   - {x: -1.65, y: 0.01, z: -1.275}
   - {x: -1.65, y: 0.01, z: 1.275}
   - {x: 1.65, y: 0.01, z: 1.275}
---- !u!114 &5847967698149089251
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5847967698148958773}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 362c9e16f6c7e0b489d78ea785c05655, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  head: {fileID: 6910328070535154251}
-  leftHand: {fileID: 5847967698149145443}
-  rightHand: {fileID: 5847967698148979013}
 --- !u!54 &883977133778665036
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -14,8 +14,9 @@ public class PhotonPlayerSpawn : MonoBehaviourPun
         if (!photonView.IsMine)
             return;
 
-        PhotonNetwork.Instantiate(head.name, ViveManager.Instance.head.transform.position, ViveManager.Instance.head.transform.rotation, 0);
-        PhotonNetwork.Instantiate(leftHand.name, ViveManager.Instance.leftHand.transform.position, ViveManager.Instance.leftHand.transform.rotation, 0);
-        PhotonNetwork.Instantiate(rightHand.name, ViveManager.Instance.rightHand.transform.position, ViveManager.Instance.rightHand.transform.rotation, 0);
+        ViveManager viveManager = GetComponent<ViveManager>();
+        PhotonNetwork.Instantiate(head.name, viveManager.head.transform.position, viveManager.head.transform.rotation, 0);
+        PhotonNetwork.Instantiate(leftHand.name, viveManager.leftHand.transform.position, viveManager.leftHand.transform.rotation, 0);
+        PhotonNetwork.Instantiate(rightHand.name, viveManager.rightHand.transform.position, viveManager.rightHand.transform.rotation, 0);
     }
 }
