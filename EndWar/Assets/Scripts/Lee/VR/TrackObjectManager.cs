@@ -6,24 +6,17 @@ using Photon.Pun;
 
 public class TrackObjectManager : MonoBehaviourPun
 {
-    SteamVR_TrackedObject myTrack;
+    public PhotonView myPv;
+
     void Awake()
     {
-        if (transform.parent.GetComponent<PhotonView>().IsMine)
+        if (myPv.IsMine)
             return;
-
-        myTrack = GetComponent<SteamVR_TrackedObject>();
-        myTrack.enabled = false;
 
         if (GetComponent<Camera>())
         {
             GetComponent<Camera>().enabled = false;
             gameObject.SetActive(false);
-        }
-
-        if (GetComponent<SteamVR_Behaviour_Pose>())
-        {
-            GetComponent<SteamVR_Behaviour_Pose>().enabled = false;
         }
     }
 }
