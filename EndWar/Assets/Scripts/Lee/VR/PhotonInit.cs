@@ -6,23 +6,17 @@ using Photon.Realtime;
 
 public class PhotonInit : MonoBehaviourPunCallbacks
 {
-    public string gmaeVersion = "1.0";
-    public string nickName = "Y";
     public GameObject player;
 
-    public override void OnJoinedRoom()
+    void Start()
     {
-        Invoke("CharacterInit", .5f);
+        CharacterInit();
     }
 
     void CharacterInit()
     {
-        GameObject player = Instantiate(this.player);
-        player.name = "Player";
-        player.transform.position = Vector3.zero;
-
         GameObject punObj = PhotonNetwork.Instantiate("PunObject", Vector3.zero, Quaternion.identity);
-        punObj.transform.parent = GameObject.Find("Player").transform;
+        punObj.transform.parent = this.transform;
 
         punObj.transform.Find("Head").transform.parent =
             player.transform.Find("Camera (eye)").transform;
@@ -32,5 +26,6 @@ public class PhotonInit : MonoBehaviourPunCallbacks
 
         punObj.transform.Find("RightHand").transform.parent =
             player.transform.Find("Controller (right)").transform;
+        Debug.Log("asdsadsa");
     }
 }
