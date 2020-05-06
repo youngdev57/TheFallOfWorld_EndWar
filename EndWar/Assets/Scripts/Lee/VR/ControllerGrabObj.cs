@@ -17,6 +17,7 @@ public class ControllerGrabObj : MonoBehaviourPun
     void Start()
     {
         myPv = transform.parent.GetComponent<PhotonView>();
+        controllerPose = SteamVR_Render.Top().origin.Find("Controller (right)").GetComponent<SteamVR_Behaviour_Pose>();
     }
 
     void Update()
