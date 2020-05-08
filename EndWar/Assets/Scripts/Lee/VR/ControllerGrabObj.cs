@@ -46,12 +46,12 @@ public class ControllerGrabObj : MonoBehaviourPun
     public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Water")) //아이템 레이어로 바꿀것
-            photonView.RPC("ReleaseObj", RpcTarget.AllBuffered, other);
+            photonView.RPC("SetCollidingObj", RpcTarget.AllBuffered, other);
     }
     public void OnTriggerStay(Collider other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Water")) //아이템 레이어로 바꿀것
-            photonView.RPC("ReleaseObj", RpcTarget.AllBuffered, other);
+            photonView.RPC("SetCollidingObj", RpcTarget.AllBuffered, other);
     }
     public void OnTriggerExit(Collider other)
     {
