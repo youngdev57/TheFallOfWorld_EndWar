@@ -20,6 +20,8 @@ public class SkillManager : MonoBehaviourPun
     void Start()
     {
         myPv = transform.GetComponent<PhotonView>();
+        skillProjector = transform.parent.FindChild("Range").GetComponent<Projector>();
+        pointObj = transform.parent.FindChild("Fx_Point").gameObject;
     }
 
     //범위 표시 오브젝트를 끄고 키는 함수를 만들것

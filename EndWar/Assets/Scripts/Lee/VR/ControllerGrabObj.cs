@@ -17,6 +17,7 @@ public class ControllerGrabObj : MonoBehaviourPun
     void Start()
     {
         myPv = transform.parent.GetComponent<PhotonView>();
+        controllerPose = SteamVR_Render.Top().origin.Find("Controller (right)").GetComponent<SteamVR_Behaviour_Pose>();
     }
 
     void Update()
@@ -44,12 +45,12 @@ public class ControllerGrabObj : MonoBehaviourPun
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Water"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Water")) //아이템 레이어로 바꿀것
             SetCollidingObj(other);
     }
     public void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Water"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Water")) //아이템 레이어로 바꿀것
             SetCollidingObj(other);
     }
     public void OnTriggerExit(Collider other)
@@ -76,6 +77,8 @@ public class ControllerGrabObj : MonoBehaviourPun
         collidingObj = null; //충돌 객체 해제
 
         objectInHand.GetComponent<BoxCollider>().isTrigger = true;
+        objectInHand.GetComponent<Rigidbody>().useGravity = false;
+
         var joint = AddFixedJoint();
         joint.connectedBody = objectInHand.GetComponent<Rigidbody>();
     }
@@ -104,6 +107,7 @@ public class ControllerGrabObj : MonoBehaviourPun
                 controllerPose.GetAngularVelocity();
         }
         objectInHand.GetComponent<BoxCollider>().isTrigger = false;
+        objectInHand.GetComponent<Rigidbody>().useGravity = true;
         objectInHand = null;
     }
 }
