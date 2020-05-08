@@ -38,7 +38,7 @@ public class ControllerGrabObj : MonoBehaviourPun
         {
             if (objectInHand)
             {
-                photonView.RPC("GrabObj", RpcTarget.AllBuffered, null);
+                photonView.RPC("ReleaseObj", RpcTarget.AllBuffered, null);
             }
         }
     }
