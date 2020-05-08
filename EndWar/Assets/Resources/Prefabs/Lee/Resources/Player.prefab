@@ -283,8 +283,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   head: {fileID: 1074170897990178472, guid: 6dd0752998d961d498212c77a515f204, type: 3}
-  leftHand: {fileID: 382456602440129849, guid: f65b878c300fe944fbc7bc204e718924, type: 3}
-  rightHand: {fileID: 3428598005198285500, guid: 5892f8c70c0f1e74aaf717f87ffc47c9,
+  leftHand: {fileID: 382456602440129849, guid: 4c028c5531ff25448affab45eb134b0a, type: 3}
+  rightHand: {fileID: 3428598005198285500, guid: d4d44c232dada224da5d0c3cc1d4f0b4,
     type: 3}
 --- !u!114 &215794614246041550
 MonoBehaviour:
