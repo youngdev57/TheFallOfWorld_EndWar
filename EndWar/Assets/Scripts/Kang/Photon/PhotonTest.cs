@@ -182,7 +182,7 @@ public class PhotonTest : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.IsMessageQueueRunning = false;
 
-        AsyncOperation operation = SceneManager.LoadSceneAsync("Temp_Base");
+        AsyncOperation operation = SceneManager.LoadSceneAsync("Basement");
 
         operation.allowSceneActivation = true;
 
