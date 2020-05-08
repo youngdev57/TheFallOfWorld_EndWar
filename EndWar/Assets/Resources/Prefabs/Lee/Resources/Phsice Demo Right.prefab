@@ -567,7 +567,7 @@ GameObject:
   - component: {fileID: 1928617318251213808}
   - component: {fileID: 912550499980158416}
   m_Layer: 9
-  m_Name: RightHand
+  m_Name: Phsice Demo Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -734,8 +734,7 @@ ConfigurableJoint:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3428598005198285500}
-  m_ConnectedBody: {fileID: 883977133778665036, guid: 37abe564cabc4594491977c62ef6bf55,
-    type: 3}
+  m_ConnectedBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
