@@ -46,12 +46,12 @@ public class ControllerGrabObj : MonoBehaviourPun
     public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Water")) //아이템 레이어로 바꿀것
-            photonView.RPC("SetCollidingObj", RpcTarget.AllBuffered, other);
+            SetCollidingObj(other);
     }
     public void OnTriggerStay(Collider other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Water")) //아이템 레이어로 바꿀것
-            photonView.RPC("SetCollidingObj", RpcTarget.AllBuffered, other);
+            SetCollidingObj(other);
     }
     public void OnTriggerExit(Collider other)
     {
@@ -62,7 +62,6 @@ public class ControllerGrabObj : MonoBehaviourPun
     }
 
     //충돌중인 객체로 설정
-    [PunRPC]
     void SetCollidingObj(Collider col)
     {
         if (collidingObj || !col.GetComponent<Rigidbody>())
