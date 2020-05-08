@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Kang/SnowMountains.unity
     guid: 80a7b5808b43ae245bc2c97ce3cfc017
   - enabled: 1
-    path: Assets/Scenes/Kang/Temp_Base.unity
-    guid: c2d0d9be56a32754d91f22854d23b2e4
+    path: Assets/Scenes/Kang/Basement.unity
+    guid: 12365aead2ff4774383f5aa5d4ea4761
   m_configObjects: {}
