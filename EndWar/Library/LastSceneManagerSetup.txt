@@ -1,1 +1,5 @@
-sceneSetups: []
+sceneSetups:
+- path: Assets/Scenes/Kang/SnowMountains.unity
+  isLoaded: 1
+  isActive: 1
+  isSubScene: 0
