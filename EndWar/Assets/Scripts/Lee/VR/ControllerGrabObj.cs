@@ -30,7 +30,7 @@ public class ControllerGrabObj : MonoBehaviourPun
         {
             if (collidingObj)
             {
-                GrabObj();
+                myPv.RPC("GrabObj", RpcTarget.AllBuffered, null);
             }
         }
         //잡는 버튼을 땔때
@@ -38,7 +38,7 @@ public class ControllerGrabObj : MonoBehaviourPun
         {
             if (objectInHand)
             {
-                ReleaseObj();
+                myPv.RPC("GrabObj", RpcTarget.AllBuffered, null);
             }
         }
     }
@@ -71,6 +71,7 @@ public class ControllerGrabObj : MonoBehaviourPun
     }
 
     //객체를 잡음
+    [PunRPC]
     void GrabObj()
     {
         objectInHand = collidingObj; //잡은 객체로 설정
@@ -93,7 +94,8 @@ public class ControllerGrabObj : MonoBehaviourPun
         fx.breakTorque = 20000;
         return fx;
     }
-    
+
+    [PunRPC]
     void ReleaseObj()
     {
         if (GetComponent<FixedJoint>())
