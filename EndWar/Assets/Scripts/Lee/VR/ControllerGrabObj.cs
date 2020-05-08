@@ -62,6 +62,7 @@ public class ControllerGrabObj : MonoBehaviourPun
     }
 
     //충돌중인 객체로 설정
+
     void SetCollidingObj(Collider col)
     {
         if (collidingObj || !col.GetComponent<Rigidbody>())
@@ -108,8 +109,8 @@ public class ControllerGrabObj : MonoBehaviourPun
             objectInHand.GetComponent<Rigidbody>().angularVelocity = 
                 controllerPose.GetAngularVelocity();
         }
-        objectInHand.GetComponent<BoxCollider>().isTrigger = false;
-        objectInHand.GetComponent<Rigidbody>().useGravity = true;
+        objectInHand.GetPhotonView().GetComponent<BoxCollider>().isTrigger = false;
+        objectInHand.GetPhotonView().GetComponent<Rigidbody>().useGravity = true;
         objectInHand = null;
     }
 }
