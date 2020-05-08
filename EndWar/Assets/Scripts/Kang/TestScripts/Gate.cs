@@ -5,6 +5,9 @@ using Photon.Pun;
 
 public class Gate : MonoBehaviour
 {
+    [SerializeField]
+    PlayerPoints pointManager;
+
     public int destination;
 
     private void Start()
