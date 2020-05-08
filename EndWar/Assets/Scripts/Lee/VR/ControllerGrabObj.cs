@@ -30,7 +30,7 @@ public class ControllerGrabObj : MonoBehaviourPun
         {
             if (collidingObj)
             {
-                myPv.RPC("GrabObj", RpcTarget.AllBuffered, null);
+                photonView.RPC("GrabObj", RpcTarget.AllBuffered, null);
             }
         }
         //잡는 버튼을 땔때
@@ -38,7 +38,7 @@ public class ControllerGrabObj : MonoBehaviourPun
         {
             if (objectInHand)
             {
-                myPv.RPC("GrabObj", RpcTarget.AllBuffered, null);
+                photonView.RPC("GrabObj", RpcTarget.AllBuffered, null);
             }
         }
     }
