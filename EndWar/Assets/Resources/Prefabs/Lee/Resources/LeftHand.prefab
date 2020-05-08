@@ -1251,7 +1251,7 @@ GameObject:
   - component: {fileID: 5172573939864860834}
   - component: {fileID: -2439157042140153858}
   m_Layer: 0
-  m_Name: LeftHand Backup
+  m_Name: LeftHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
