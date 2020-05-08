@@ -5,9 +5,6 @@ using Photon.Pun;
 
 public class Gate : MonoBehaviour
 {
-    [SerializeField]
-    PlayerPoints pointManager;
-
     public int destination;
 
     private void Start()
@@ -17,7 +14,7 @@ public class Gate : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.name.Equals("TestPlayer(Clone)"))
+        if(other.gameObject.name.Equals("Player(Clone)"))
         {
             if(other.gameObject.GetComponent<PhotonView>().IsMine)
             {

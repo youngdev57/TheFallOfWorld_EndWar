@@ -1,0 +1,185 @@
+fileFormatVersion: 2
+guid: 4dab9aaa56b6f9c4eb65348015ebff0d
+timeCreated: 1488393330
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Floor_1A1
+    100002: Floor_1A1_Half
+    100004: Floor_1A2
+    100006: Floor_Broken_1A1
+    100008: Floor_Broken_1A2
+    100010: //RootNode
+    100012: Pillar_1A1
+    100014: Pillar_1A1_Half
+    100016: Pillar_Broken_1A1
+    100018: Pillar_Broken_1A2
+    100020: Pillar_Broken_1A3
+    100022: Pillar_Broken_1A4
+    100024: Pillar_Broken_1A5
+    100026: Wall_1A1
+    100028: Wall_1A2
+    100030: Wall_Broken_1A1
+    100032: Wall_Broken_1A2
+    100034: Wall_Door_1A1
+    100036: Wall_Door_Broken_1A1
+    400000: Floor_1A1
+    400002: Floor_1A1_Half
+    400004: Floor_1A2
+    400006: Floor_Broken_1A1
+    400008: Floor_Broken_1A2
+    400010: //RootNode
+    400012: Pillar_1A1
+    400014: Pillar_1A1_Half
+    400016: Pillar_Broken_1A1
+    400018: Pillar_Broken_1A2
+    400020: Pillar_Broken_1A3
+    400022: Pillar_Broken_1A4
+    400024: Pillar_Broken_1A5
+    400026: Wall_1A1
+    400028: Wall_1A2
+    400030: Wall_Broken_1A1
+    400032: Wall_Broken_1A2
+    400034: Wall_Door_1A1
+    400036: Wall_Door_Broken_1A1
+    2300000: Floor_1A1
+    2300002: Floor_1A1_Half
+    2300004: Floor_1A2
+    2300006: Floor_Broken_1A1
+    2300008: Floor_Broken_1A2
+    2300010: Pillar_1A1
+    2300012: Pillar_1A1_Half
+    2300014: Pillar_Broken_1A1
+    2300016: Pillar_Broken_1A2
+    2300018: Pillar_Broken_1A3
+    2300020: Pillar_Broken_1A4
+    2300022: Pillar_Broken_1A5
+    2300024: Wall_1A1
+    2300026: Wall_1A2
+    2300028: Wall_Broken_1A1
+    2300030: Wall_Broken_1A2
+    2300032: Wall_Door_1A1
+    2300034: Wall_Door_Broken_1A1
+    3300000: Floor_1A1
+    3300002: Floor_1A1_Half
+    3300004: Floor_1A2
+    3300006: Floor_Broken_1A1
+    3300008: Floor_Broken_1A2
+    3300010: Pillar_1A1
+    3300012: Pillar_1A1_Half
+    3300014: Pillar_Broken_1A1
+    3300016: Pillar_Broken_1A2
+    3300018: Pillar_Broken_1A3
+    3300020: Pillar_Broken_1A4
+    3300022: Pillar_Broken_1A5
+    3300024: Wall_1A1
+    3300026: Wall_1A2
+    3300028: Wall_Broken_1A1
+    3300030: Wall_Broken_1A2
+    3300032: Wall_Door_1A1
+    3300034: Wall_Door_Broken_1A1
+    4300000: Floor_Broken_1A1
+    4300002: Floor_Broken_1A2
+    4300004: Pillar_Broken_1A1
+    4300006: Wall_Broken_1A2
+    4300008: Wall_Broken_1A1
+    4300010: Wall_1A2
+    4300012: Pillar_1A1_Half
+    4300014: Pillar_Broken_1A3
+    4300016: Wall_Door_Broken_1A1
+    4300018: Wall_Door_1A1
+    4300020: Wall_1A1
+    4300022: Pillar_Broken_1A5
+    4300024: Pillar_Broken_1A4
+    4300026: Pillar_Broken_1A2
+    4300028: Pillar_1A1
+    4300030: Floor_1A1_Half
+    4300032: Floor_1A2
+    4300034: Floor_1A1
+    6400000: Floor_1A1
+    6400002: Floor_1A1_Half
+    6400004: Floor_1A2
+    6400006: Floor_Broken_1A1
+    6400008: Floor_Broken_1A2
+    6400010: Pillar_1A1
+    6400012: Pillar_1A1_Half
+    6400014: Pillar_Broken_1A1
+    6400016: Pillar_Broken_1A2
+    6400018: Pillar_Broken_1A3
+    6400020: Pillar_Broken_1A4
+    6400022: Pillar_Broken_1A5
+    6400024: Wall_1A1
+    6400026: Wall_1A2
+    6400028: Wall_Broken_1A1
+    6400030: Wall_Broken_1A2
+    6400032: Wall_Door_1A1
+    6400034: Wall_Door_Broken_1A1
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 1
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

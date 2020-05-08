@@ -44,7 +44,7 @@ public class ControllerPosition : MonoBehaviourPun
         for (int i = 0; i < p.Length; i++)
         {
             if (p[i].gameObject.name == "Player")
-                if(!p[i].transform.FindChild(gameObject.name))
+                if(!p[i].transform.Find(gameObject.name))
                     transform.parent = p[i].transform;
         }
     }

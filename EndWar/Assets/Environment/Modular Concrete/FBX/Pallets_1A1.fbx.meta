@@ -1,0 +1,143 @@
+fileFormatVersion: 2
+guid: 78633d585c515c042a0dd7a56c854c42
+timeCreated: 1495846158
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Pallet_Stack_1A1
+    100002: Pallet_Stack_1A2
+    100004: Pallet_Stack_1A3
+    100006: Pallet_Stack_1B1
+    100008: Pallet_Stack_1B2
+    100010: Pallet_Stack_1B3
+    100012: //RootNode
+    100014: Wooden_Plank_1A1
+    100016: Wooden_Plank_1A2
+    100018: Wooden_Plank_1A3
+    100020: Wooden_Plank_1B1
+    100022: Wooden_Plank_1B2
+    400000: Pallet_Stack_1A1
+    400002: Pallet_Stack_1A2
+    400004: Pallet_Stack_1A3
+    400006: Pallet_Stack_1B1
+    400008: Pallet_Stack_1B2
+    400010: Pallet_Stack_1B3
+    400012: //RootNode
+    400014: Wooden_Plank_1A1
+    400016: Wooden_Plank_1A2
+    400018: Wooden_Plank_1A3
+    400020: Wooden_Plank_1B1
+    400022: Wooden_Plank_1B2
+    2300000: Pallet_Stack_1A1
+    2300002: Pallet_Stack_1A2
+    2300004: Pallet_Stack_1A3
+    2300006: Pallet_Stack_1B1
+    2300008: Pallet_Stack_1B2
+    2300010: Pallet_Stack_1B3
+    2300012: Wooden_Plank_1A1
+    2300014: Wooden_Plank_1A2
+    2300016: Wooden_Plank_1A3
+    2300018: Wooden_Plank_1B1
+    2300020: Wooden_Plank_1B2
+    3300000: Pallet_Stack_1A1
+    3300002: Pallet_Stack_1A2
+    3300004: Pallet_Stack_1A3
+    3300006: Pallet_Stack_1B1
+    3300008: Pallet_Stack_1B2
+    3300010: Pallet_Stack_1B3
+    3300012: Wooden_Plank_1A1
+    3300014: Wooden_Plank_1A2
+    3300016: Wooden_Plank_1A3
+    3300018: Wooden_Plank_1B1
+    3300020: Wooden_Plank_1B2
+    4300000: Pallet_Stack_1B3
+    4300002: Pallet_Stack_1A3
+    4300004: Pallet_Stack_1A2
+    4300006: Pallet_Stack_1B2
+    4300008: Wooden_Plank_1B2
+    4300010: Wooden_Plank_1B1
+    4300012: Wooden_Plank_1A3
+    4300014: Wooden_Plank_1A2
+    4300016: Pallet_Stack_1B1
+    4300018: Wooden_Plank_1A1
+    4300020: Pallet_Stack_1A1
+    6400000: Pallet_Stack_1A1
+    6400002: Pallet_Stack_1A2
+    6400004: Pallet_Stack_1A3
+    6400006: Pallet_Stack_1B1
+    6400008: Pallet_Stack_1B2
+    6400010: Pallet_Stack_1B3
+    6400012: Wooden_Plank_1A1
+    6400014: Wooden_Plank_1A2
+    6400016: Wooden_Plank_1A3
+    6400018: Wooden_Plank_1B1
+    6400020: Wooden_Plank_1B2
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 1
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
