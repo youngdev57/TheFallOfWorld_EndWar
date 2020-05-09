@@ -18,5 +18,8 @@ public class TrackObjectManager : MonoBehaviourPun
             GetComponent<Camera>().enabled = false;
             gameObject.SetActive(false);
         }
+
+        if (GetComponent<SteamVR_Behaviour_Skeleton>())
+            GetComponent<SteamVR_Behaviour_Skeleton>().enabled = false;
     }
 }

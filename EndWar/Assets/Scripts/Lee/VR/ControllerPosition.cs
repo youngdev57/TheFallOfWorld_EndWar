@@ -19,7 +19,6 @@ public class ControllerPosition : MonoBehaviourPun
         if (!photonView.IsMine)
             return;
 
-
         switch (index)
         {
             case 1:
@@ -40,7 +39,7 @@ public class ControllerPosition : MonoBehaviourPun
     [PunRPC]
     public void GetParent()
     {
-        PhotonView[] p = GameObject.FindObjectsOfType<PhotonView>();
+        PhotonView[] p = FindObjectsOfType<PhotonView>();
         for (int i = 0; i < p.Length; i++)
         {
             if (p[i].gameObject.name == "Player")
