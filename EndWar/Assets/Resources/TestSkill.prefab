@@ -65,7 +65,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45db19b7db9b30c47904449cdc1ebff6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillName: 
+  skillName: "\uBC84\uBE14\uD30C\uC774\uD130 \uAC13\uAC9C;; \uB2E4\uB4E4 \uD574\uBCF4\uC138\uC694!"
   prefab: {fileID: 0}
   distance: 20
   n_damageCount: 3
@@ -73,17 +73,17 @@ MonoBehaviour:
   - 10
   - 20
   - 30
-  type: 1
-  ability: 0
+  type: 0
+  ability: 4
   abilityTime: 0
   slowing: 0
-  viewAngle: 0
+  viewAngle: 70
   isCollision: 0
   range: 1
   layerMask:
     serializedVersion: 2
     m_Bits: 32
-  target: {x: 390.13736, y: 1.0781518, z: 340.50375}
+  target: {x: 0, y: 0, z: 0}
   targeting: {fileID: 0}
   electricShock: 0
   freezing: 0
