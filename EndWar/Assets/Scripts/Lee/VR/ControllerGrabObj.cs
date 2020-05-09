@@ -78,9 +78,7 @@ public class ControllerGrabObj : MonoBehaviourPun
         objectInHand = collidingObj; //잡은 객체로 설정
         collidingObj = null; //충돌 객체 해제
 
-        objectInHand.GetPhotonView().GetComponent<BoxCollider>().isTrigger = true;
-        objectInHand.GetPhotonView().GetComponent<Rigidbody>().useGravity = false;
-
+        objectInHand.GetComponent<ItemTrigger>().GetComponent<PhotonView>().RPC("OnGrab", RpcTarget.AllBuffered, true);
         var joint = AddFixedJoint();
         joint.connectedBody = objectInHand.GetComponent<Rigidbody>();
     }
@@ -108,9 +106,9 @@ public class ControllerGrabObj : MonoBehaviourPun
                 controllerPose.GetVelocity();
             objectInHand.GetComponent<Rigidbody>().angularVelocity = 
                 controllerPose.GetAngularVelocity();
+
+            objectInHand.GetComponent<ItemTrigger>().GetComponent<PhotonView>().RPC("OnGrab", RpcTarget.AllBuffered, false);
         }
-        objectInHand.GetPhotonView().GetComponent<BoxCollider>().isTrigger = false;
-        objectInHand.GetPhotonView().GetComponent<Rigidbody>().useGravity = true;
         objectInHand = null;
     }
 }
