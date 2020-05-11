@@ -10,10 +10,14 @@ public class ControllerMovement : MonoBehaviourPun
     public float maxSpeed = 1f;
 
     public SteamVR_Action_Boolean movePress;
+    public SteamVR_Action_Boolean openUI;
     public SteamVR_Action_Vector2 moveValue;
+    [Space(5)]
+    public GameObject uiCanvas;
+    public Transform cameraTr;
+
 
     float speed = 0f;
-    public Transform cameraTr;
     PhotonView myPv;
     void Start()
     {
@@ -25,6 +29,13 @@ public class ControllerMovement : MonoBehaviourPun
     {
         if (!myPv.IsMine)
             return;
+
+        if (openUI.GetStateDown(SteamVR_Input_Sources.LeftHand))
+        {
+            uiCanvas.SetActive(true);
+            gameObject.SetActive(false);
+        }
+
 
         transform.rotation = Quaternion.Euler(new Vector3(0, cameraTr.eulerAngles.y, 0));
         CalculateMovement();

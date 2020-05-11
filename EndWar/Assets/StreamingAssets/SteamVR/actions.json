@@ -40,7 +40,11 @@
       "type": "boolean"
     },
     {
-      "name": "/actions/default/in/UIButton",
+      "name": "/actions/default/in/Selecet",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/default/in/OpenUI",
       "type": "boolean"
     },
     {

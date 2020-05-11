@@ -8,6 +8,6 @@ public class UILookAt : MonoBehaviour
 
     void Update()
     {
-        transform.LookAt(camera.transform);
+        transform.LookAt(camera.transform.position);
     }
 }
