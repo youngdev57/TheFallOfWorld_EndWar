@@ -12,8 +12,17 @@ public class GunTest : MonoBehaviourPunCallbacks
     private SteamVR_Action_Boolean grapAction;
 
     public Transform muzzleTr;
+    public GameObject muzzleEffect;
+    public GameObject bulletEffect;
+
+    public AudioSource audioSource;
+    public AudioClip[] sfxArray;
 
     float delay = 0.5f;
+    float timer = 0f;
+
+    bool isFire = false;
+    bool canFire = true;
     
 
     void Start()
@@ -24,8 +33,13 @@ public class GunTest : MonoBehaviourPunCallbacks
 
     void Fire()
     {
+        if (!isFire)
+            return;
+
         RaycastHit hit = new RaycastHit();
         Ray ray = new Ray(muzzleTr.position, muzzleTr.forward);
+
+        StartCoroutine(FireEffect());
 
         if(Physics.Raycast(ray, out hit, 5000f))
         {
@@ -34,6 +48,26 @@ public class GunTest : MonoBehaviourPunCallbacks
                 Debug.Log("Hit : " + hit.collider.gameObject.name);
             }
         }
+
+        
+    }
+
+    IEnumerator FireEffect()
+    {
+        bulletEffect.transform.localPosition = muzzleTr.localPosition;
+        bulletEffect.SetActive(true);
+        muzzleEffect.SetActive(true);
+        bulletEffect.GetComponent<Rigidbody>().AddForce(muzzleTr.right * 8000f);
+        audioSource.PlayOneShot(sfxArray[Random.Range(0, sfxArray.Length)]);
+
+        yield return new WaitForSeconds(0.15f);
+
+        muzzleEffect.SetActive(false);
+
+        yield return new WaitForSeconds(0.15f);
+
+        bulletEffect.SetActive(false);
+        bulletEffect.GetComponent<Rigidbody>().velocity = Vector3.zero;
     }
     
     void Update()
@@ -41,9 +75,24 @@ public class GunTest : MonoBehaviourPunCallbacks
         if (!photonView.IsMine)
             return;
 
-        if(grapAction.GetLastState(handType))
+        timer += Time.deltaTime;
+
+        if(timer >= delay)
         {
+            canFire = true;
+            timer -= delay;
+        }
+
+        if(grapAction.GetLastState(handType) && canFire)
+        {
+            canFire = false;
             Fire();
+            isFire = true;
+        }
+
+        if(grapAction.GetLastStateUp(handType))
+        {
+            isFire = false;
         }
     }
 }
