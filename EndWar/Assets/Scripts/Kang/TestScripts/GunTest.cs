@@ -12,6 +12,8 @@ public class GunTest : MonoBehaviourPunCallbacks
     private SteamVR_Action_Boolean grapAction;
 
     public Transform muzzleTr;
+    public GameObject muzzleEffect;
+    public GameObject bulletEffect;
 
     float delay = 0.5f;
     
@@ -27,6 +29,8 @@ public class GunTest : MonoBehaviourPunCallbacks
         RaycastHit hit = new RaycastHit();
         Ray ray = new Ray(muzzleTr.position, muzzleTr.forward);
 
+        StartCoroutine(FireEffect());
+
         if(Physics.Raycast(ray, out hit, 5000f))
         {
             if(hit.collider.attachedRigidbody)
@@ -34,6 +38,25 @@ public class GunTest : MonoBehaviourPunCallbacks
                 Debug.Log("Hit : " + hit.collider.gameObject.name);
             }
         }
+
+        
+    }
+
+    IEnumerator FireEffect()
+    {
+        bulletEffect.transform.localPosition = muzzleTr.localPosition;
+        bulletEffect.SetActive(true);
+        muzzleEffect.SetActive(true);
+        bulletEffect.GetComponent<Rigidbody>().AddForce(muzzleTr.forward * 100f);
+
+        yield return new WaitForSeconds(0.15f);
+
+        muzzleEffect.SetActive(false);
+
+        yield return new WaitForSeconds(0.15f);
+
+        bulletEffect.SetActive(false);
+        bulletEffect.GetComponent<Rigidbody>().velocity = Vector3.zero;
     }
     
     void Update()
