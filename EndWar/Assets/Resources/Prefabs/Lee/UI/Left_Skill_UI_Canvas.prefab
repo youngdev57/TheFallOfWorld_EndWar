@@ -214,13 +214,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5394920453698639970}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5394920453164811820}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -282,7 +282,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5394920453698639970}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 50, y: 50, z: 1}
@@ -456,7 +456,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   choose:
-    actionPath: /actions/default/in/Grap
+    actionPath: /actions/default/in/SkillTrigger
+    needsReinit: 0
+  closeUi:
+    actionPath: /actions/default/in/OpenUI
     needsReinit: 0
   touchPress:
     actionPath: /actions/default/in/Selecet
@@ -464,8 +467,8 @@ MonoBehaviour:
   touchValue:
     actionPath: /actions/default/in/TouchPosition
     needsReinit: 0
-  movementObj: {fileID: 0}
   uiCanvas: {fileID: 0}
+  movementObj: {fileID: 0}
   select: 1
   iconSize: 150
   spacing: 30
@@ -655,6 +658,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5394920454351498680}
     m_Modifications:
+    - target: {fileID: 2868133753387242014, guid: 02a6f61566163754984051872ec21ef8,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3958064089767762975, guid: 02a6f61566163754984051872ec21ef8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -780,6 +788,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5394920454351498680}
     m_Modifications:
+    - target: {fileID: 2868133753387242014, guid: 02a6f61566163754984051872ec21ef8,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3958064089767762975, guid: 02a6f61566163754984051872ec21ef8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -905,6 +918,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5394920454351498680}
     m_Modifications:
+    - target: {fileID: 2868133753387242014, guid: 02a6f61566163754984051872ec21ef8,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3958064089767762975, guid: 02a6f61566163754984051872ec21ef8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1030,6 +1048,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5394920454351498680}
     m_Modifications:
+    - target: {fileID: 2868133753387242014, guid: 02a6f61566163754984051872ec21ef8,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3958064089767762975, guid: 02a6f61566163754984051872ec21ef8,
         type: 3}
       propertyPath: m_LocalPosition.x

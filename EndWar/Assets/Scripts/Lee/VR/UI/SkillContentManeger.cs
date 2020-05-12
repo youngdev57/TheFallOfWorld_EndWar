@@ -9,12 +9,14 @@ using System;
 public class SkillContentManeger : MonoBehaviourPun
 {
     public SteamVR_Action_Boolean choose;
+    public SteamVR_Action_Boolean closeUi;
     public SteamVR_Action_Boolean touchPress;
     public SteamVR_Action_Vector2 touchValue;
 
     [Space(5)]
-    public GameObject movementObj;
     public GameObject uiCanvas;
+    public GameObject movementObj;
+    SkillManager skillmanager;
 
     [Space(5)]
     public int select = 1;
@@ -24,36 +26,43 @@ public class SkillContentManeger : MonoBehaviourPun
 
     List<Transform> contents;
     RectTransform rectTr;
-    SkillManager skillmanager;
     Button button;
     Color color;
-
-    void Start()
-    {
-        skillmanager = SteamVR_Render.Top().origin.FindChild("Player").FindChild("LeftHand(Clone)").GetComponent<SkillManager>();
-        button = GetComponent<Button>();
-    }
+    int chooseSkill = 1;
 
     void OnEnable()
     {
+        Init();
+        SetSize();
+    }
+
+    private void Init()
+    {
+        SkillManager[] _skill = FindObjectsOfType<SkillManager>();
+        for (int i = 0; i < _skill.Length; i++)
+        {
+            if (_skill[i].GetComponent<PhotonView>().IsMine)
+            {
+                skillmanager = _skill[i];
+                break;
+            }
+        }
         contents = new List<Transform>();
         rectTr = GetComponent<RectTransform>();
-
-        if (choose.GetStateDown(SteamVR_Input_Sources.LeftHand))
-        {
-            PressedDown();
-        }
-
-        if (choose.GetStateUp(SteamVR_Input_Sources.LeftHand))
-        {
-            PressedUp();
-        }
-
-        SetSize();
+        skillmanager.enabled = false;
     }
 
     void Update()
     {
+        if (closeUi.GetStateDown(SteamVR_Input_Sources.LeftHand))
+            OnObjActive();
+
+        if (choose.GetStateDown(SteamVR_Input_Sources.LeftHand))
+            PressedDown();
+
+        if (choose.GetStateUp(SteamVR_Input_Sources.LeftHand))
+            PressedUp();
+
         if (touchPress.GetStateDown(SteamVR_Input_Sources.LeftHand))
         {
             select += touchValue.axis.y > 0 ? -1 : 1;
@@ -77,15 +86,23 @@ public class SkillContentManeger : MonoBehaviourPun
     {
         ColorBlock n_color = button.colors;
         n_color.normalColor = color;
+        chooseSkill = select;
 
         skillmanager.skill = contents[select].GetComponent<AddPrefabs>().GetSkill();
+        OnObjActive();
+    }
+
+    void OnObjActive()
+    {
+        skillmanager.enabled = true;
         movementObj.SetActive(true);
         uiCanvas.SetActive(false);
     }
 
     void SelectedSkill()
     {
-        Vector3 obj = new Vector3(0f, contents[select].localPosition.y, 0f);
+        Vector3 obj = new Vector3(0f, contents[chooseSkill].localPosition.y, 0f);
+        button = contents[select].GetComponent<Button>();
         obj.y -= contents[1].localPosition.y;
 
         float dixY = Mathf.Lerp(transform.localPosition.y, -obj.y, speed);
@@ -94,12 +111,11 @@ public class SkillContentManeger : MonoBehaviourPun
     }
     void SetSize()
     {
-        transform.localPosition = new Vector2(-320f, 0f);
+        transform.localPosition = new Vector2(0f, 0f);
         for (int i = 0; i < transform.childCount; i++)
         {
             if (transform.GetChild(i).gameObject.activeSelf)
                 contents.Add(transform.GetChild(i));
-            Debug.Log(i);
         }
 
         int size = (iconSize + spacing) * contents.Count - spacing;

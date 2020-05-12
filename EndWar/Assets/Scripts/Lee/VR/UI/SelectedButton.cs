@@ -15,7 +15,10 @@ public class SelectedButton : MonoBehaviour
             float position = Mathf.Abs(Vector3.Distance(selectedBtn.position, transform.position));
             position = 1f - Mathf.Clamp((position + 0.025f) * 10, 0f, 1f);
 
-            hit.transform.localScale = Vector3.one * (1f + (.3f * position));
+            if (position < .3f)
+                position = 0;
+
+            hit.transform.localScale = Vector3.one * (1f + (.5f * position));
         }
     }
 }
