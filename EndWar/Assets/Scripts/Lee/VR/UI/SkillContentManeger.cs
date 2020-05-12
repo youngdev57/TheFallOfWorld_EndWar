@@ -27,7 +27,6 @@ public class SkillContentManeger : MonoBehaviourPun
     List<Transform> contents;
     RectTransform rectTr;
     Button button;
-    Color color;
     int chooseSkill = 1;
 
     void OnEnable()
@@ -79,14 +78,16 @@ public class SkillContentManeger : MonoBehaviourPun
     void PressedDown()
     {
         ColorBlock n_color = button.colors;
-        color = n_color.normalColor;
         n_color.normalColor = new Color(214 / 255f, 214 / 255f, 214 / 255f);
+        button.colors = n_color;
     }
 
     void PressedUp()
     {
         ColorBlock n_color = button.colors;
-        n_color.normalColor = color;
+        n_color.normalColor = Color.white;
+        button.colors = n_color;
+
         chooseSkill = select;
 
         skillmanager.skill = contents[select].GetComponent<AddPrefabs>().GetSkill();
