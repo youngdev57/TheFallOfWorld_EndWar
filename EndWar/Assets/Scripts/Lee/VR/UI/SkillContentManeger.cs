@@ -50,6 +50,7 @@ public class SkillContentManeger : MonoBehaviourPun
         contents = new List<Transform>();
         rectTr = GetComponent<RectTransform>();
         skillmanager.enabled = false;
+        select = chooseSkill;
     }
 
     void Update()
@@ -101,7 +102,7 @@ public class SkillContentManeger : MonoBehaviourPun
 
     void SelectedSkill()
     {
-        Vector3 obj = new Vector3(0f, contents[chooseSkill].localPosition.y, 0f);
+        Vector3 obj = new Vector3(0f, contents[select].localPosition.y, 0f);
         button = contents[select].GetComponent<Button>();
         obj.y -= contents[1].localPosition.y;
 
