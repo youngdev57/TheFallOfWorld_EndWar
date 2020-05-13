@@ -2458,6 +2458,11 @@ PrefabInstance:
       propertyPath: rightHand
       value: 
       objectReference: {fileID: 3428598005198285500}
+    - target: {fileID: 841777407101190399, guid: 34542551522a9d844813c94c39b3b312,
+        type: 3}
+      propertyPath: gun
+      value: 
+      objectReference: {fileID: 7437573172656785466}
     - target: {fileID: 3832703582600944448, guid: 34542551522a9d844813c94c39b3b312,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2546,3 +2551,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7469592066930157619}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7437573172656785466 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 44687510233440265, guid: 34542551522a9d844813c94c39b3b312,
+    type: 3}
+  m_PrefabInstance: {fileID: 7469592066930157619}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 295b6d05d6e1b0b4f91902e5702569e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -29,6 +29,8 @@ public class GunTest : MonoBehaviourPunCallbacks
     {
         handType = SteamVR_Input_Sources.RightHand;
         grapAction = SteamVR_Actions.default_Grap;
+
+        Restore();
     }
 
     void Fire()
@@ -54,7 +56,6 @@ public class GunTest : MonoBehaviourPunCallbacks
 
     IEnumerator FireEffect()
     {
-        bulletEffect.transform.localPosition = muzzleTr.localPosition;
         bulletEffect.SetActive(true);
         muzzleEffect.SetActive(true);
         bulletEffect.GetComponent<Rigidbody>().AddForce(muzzleTr.right * 8000f);
@@ -66,8 +67,14 @@ public class GunTest : MonoBehaviourPunCallbacks
 
         yield return new WaitForSeconds(0.15f);
 
+        Restore();
+    }
+
+    public void Restore()
+    {
         bulletEffect.SetActive(false);
         bulletEffect.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        bulletEffect.transform.localPosition = muzzleTr.localPosition;
     }
     
     void Update()
@@ -86,8 +93,8 @@ public class GunTest : MonoBehaviourPunCallbacks
         if(grapAction.GetLastState(handType) && canFire)
         {
             canFire = false;
-            Fire();
             isFire = true;
+            Fire();
         }
 
         if(grapAction.GetLastStateUp(handType))

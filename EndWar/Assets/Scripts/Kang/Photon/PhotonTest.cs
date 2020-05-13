@@ -70,6 +70,9 @@ public class PhotonTest : MonoBehaviourPunCallbacks
             case 2: //사막맵 씬 전용 룸
                 PhotonNetwork.CreateRoom("Desert", new RoomOptions { MaxPlayers = this.maxPlayer });
                 break;
+            case 99: //사격연습장
+                PhotonNetwork.CreateRoom("AimTest", new RoomOptions { MaxPlayers = this.maxPlayer });
+                break;
         }
     }
 
@@ -101,6 +104,9 @@ public class PhotonTest : MonoBehaviourPunCallbacks
                 break;
 
             case 2: //사막맵 씬 로드
+                break;
+            case 99:
+                LoadAimScene();
                 break;
         }
     }
@@ -140,6 +146,9 @@ public class PhotonTest : MonoBehaviourPunCallbacks
                 PhotonNetwork.JoinRoom("Ice");
                 break;
             case 2:  //사막맵 룸 입장 시도
+                break;
+            case 99:
+                PhotonNetwork.JoinRoom("AimTest");
                 break;
         }
     }
@@ -197,6 +206,44 @@ public class PhotonTest : MonoBehaviourPunCallbacks
         playerSpawnPoints = pointsObj.points;
         CreatePlayer(destination);  //생성  0=기지에 플레이어 생성용
     }
+
+    //사격연습장 씬 로드  
+    public void LoadAimScene()
+    {
+        if (destination == 99)
+            StartCoroutine(AimSceneLoading());
+    }
+
+    IEnumerator AimSceneLoading()
+    {
+        PhotonNetwork.IsMessageQueueRunning = false;
+
+        AsyncOperation operation = SceneManager.LoadSceneAsync("AimTest");
+
+        operation.allowSceneActivation = true;
+
+        while (!operation.isDone)
+        {
+            //비동기 씬 로드 완료 시 까지 대기
+            yield return null;
+        }
+
+        //대기 후 위치에 플레이어 생성
+        pointsObj = PlayerPoints.GetInstance();
+        playerSpawnPoints = pointsObj.points;
+        CreatePlayer(destination);  //플레이어 생성
+    }
+
+
+
+
+
+
+
+    /** 아래는 생성이나 설정 함수들 **/
+
+
+    //플레이어 생성
 
     void CreatePlayer(int destination)  //플레이어 프리팹 생성  destination (0 = 기지, 1 = 아이스맵, 2 = 사막맵 ...)
     {
