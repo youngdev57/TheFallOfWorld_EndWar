@@ -4,7 +4,7 @@ using UnityEngine;
 using Valve.VR;
 using Photon.Pun;
 
-public class GunTest : MonoBehaviourPunCallbacks
+public class GunTest : MonoBehaviourPunCallbacks, IPunPrefabPool
 {
     public GameObject rightHand;
 
@@ -13,45 +13,54 @@ public class GunTest : MonoBehaviourPunCallbacks
 
     public Transform muzzleTr;
     public GameObject muzzleEffect;
-    public GameObject bulletEffect;
+
+    private GameObject bulletEffect;
 
     public AudioSource audioSource;
     public AudioClip[] sfxArray;
 
-    float delay = 0.5f;
+    float delay = 0.75f;
     float timer = 0f;
 
     bool isFire = false;
     bool canFire = true;
+    bool isRestore = true;
     
 
     void Start()
     {
+        bulletEffect = PhotonNetwork.Instantiate("BulletTrailer", muzzleTr.position, Quaternion.identity);
+        bulletEffect.SetActive(false);
+
+        if (!photonView.IsMine)
+            return;
+
         handType = SteamVR_Input_Sources.RightHand;
         grapAction = SteamVR_Actions.default_Grap;
 
-        Restore();
+        bulletEffect.GetComponent<Bullet>().gun = this;
     }
 
+    [PunRPC]
     void Fire()
     {
-        if (!isFire)
+        if (!isFire || !canFire)
             return;
 
-        RaycastHit hit = new RaycastHit();
-        Ray ray = new Ray(muzzleTr.position, muzzleTr.forward);
+        RaycastHit hit;
 
+        isRestore = false;
         StartCoroutine(FireEffect());
 
-        if(Physics.Raycast(ray, out hit, 5000f))
+        if(Physics.Raycast(muzzleTr.position, muzzleTr.right, out hit, 5000f))
         {
             if(hit.collider.attachedRigidbody)
             {
                 Debug.Log("Hit : " + hit.collider.gameObject.name);
             }
         }
-
         
+        canFire = false;
     }
 
     IEnumerator FireEffect()
@@ -65,16 +74,19 @@ public class GunTest : MonoBehaviourPunCallbacks
 
         muzzleEffect.SetActive(false);
 
-        yield return new WaitForSeconds(0.15f);
+        yield return new WaitForSeconds(0.55f);
 
-        Restore();
+        photonView.RPC("Restore", RpcTarget.AllViaServer);
+        //Restore();
     }
 
+    [PunRPC]
     public void Restore()
     {
+        isRestore = true;
+        bulletEffect.transform.position = muzzleTr.position;
         bulletEffect.SetActive(false);
         bulletEffect.GetComponent<Rigidbody>().velocity = Vector3.zero;
-        bulletEffect.transform.localPosition = muzzleTr.localPosition;
     }
     
     void Update()
@@ -90,16 +102,29 @@ public class GunTest : MonoBehaviourPunCallbacks
             timer -= delay;
         }
 
-        if(grapAction.GetLastState(handType) && canFire)
+        if (isRestore)
+            bulletEffect.transform.position = muzzleTr.position;
+
+        if (grapAction.GetLastState(handType) && canFire)
         {
-            canFire = false;
             isFire = true;
-            Fire();
+            //Fire();
+            photonView.RPC("Fire", RpcTarget.AllViaServer);
         }
 
         if(grapAction.GetLastStateUp(handType))
         {
             isFire = false;
         }
+    }
+
+    public new GameObject Instantiate(string prefabId, Vector3 position, Quaternion rotation)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void Destroy(GameObject gameObject)
+    {
+        throw new System.NotImplementedException();
     }
 }

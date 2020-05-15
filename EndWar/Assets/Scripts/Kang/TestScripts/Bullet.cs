@@ -8,9 +8,18 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (!gun.photonView.IsMine)
+            return;
+
         if(other.attachedRigidbody)
         {
-            gun.Restore();
+            if(other.gameObject.name.Contains("Target"))
+            {
+                gun.photonView.RPC("Restore", Photon.Pun.RpcTarget.AllViaServer);
+                Debug.Log("Restored!! " + other.gameObject.name);
+                other.GetComponent<MeshRenderer>().material.color = Color.blue;
+                other.GetComponent<MeshRenderer>().material.DisableKeyword("_EMISSION");
+            }
         }
     }
 }

@@ -270,6 +270,13 @@ public class PhotonTest : MonoBehaviourPunCallbacks
                 tempObj.GetComponent<PlayerInfo>().photonManager = this;
                 Debug.Log("아이스맵에 소환됨");
                 break;
+
+            case 99:
+                idx = 0; //소환 위치 하나뿐이라서 그냥 0
+                tempObj = PhotonNetwork.Instantiate("Player", playerSpawnPoints[idx].position, Quaternion.identity, 0);
+                tempObj.GetComponent<PlayerInfo>().photonManager = this;
+                Debug.Log("사격연습장에 소환됨");
+                break;
         }
     }
 
