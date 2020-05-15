@@ -20,10 +20,14 @@ public class TrackObjectManager : MonoBehaviourPun
             return;
         }
 
-        if (photonView.IsMine)
+        if (GetComponent<SteamVR_Behaviour_Pose>())
+            GetComponent<SteamVR_Behaviour_Pose>().enabled = false;
+
+        if (SteamVR_Render.Top().origin.GetComponent<PhotonView>().IsMine)
             return;
 
         if (GetComponent<SteamVR_Behaviour_Skeleton>())
             GetComponent<SteamVR_Behaviour_Skeleton>().enabled = false;
+
     }
 }

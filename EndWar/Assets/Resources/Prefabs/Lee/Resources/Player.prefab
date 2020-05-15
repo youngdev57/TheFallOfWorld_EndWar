@@ -612,6 +612,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5847967698149227491}
   - component: {fileID: 5817847819543072049}
+  - component: {fileID: 3210998168405900771}
   m_Layer: 0
   m_Name: Controller (right)
   m_TagString: Untagged
@@ -667,6 +668,19 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   broadcastDeviceChanges: 1
+--- !u!114 &3210998168405900771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5847967698148979013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4de8b4273b9b284488aa02d1c27dd82d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myPv: {fileID: 140221734705376696}
 --- !u!1 &5847967698149145443
 GameObject:
   m_ObjectHideFlags: 0
@@ -677,6 +691,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5847967698149285695}
   - component: {fileID: 5817847820909171385}
+  - component: {fileID: 775936196950244264}
   m_Layer: 0
   m_Name: Controller (left)
   m_TagString: Untagged
@@ -733,6 +748,19 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   broadcastDeviceChanges: 1
+--- !u!114 &775936196950244264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5847967698149145443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4de8b4273b9b284488aa02d1c27dd82d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myPv: {fileID: 140221734705376696}
 --- !u!1 &5912196106636537461
 GameObject:
   m_ObjectHideFlags: 0
