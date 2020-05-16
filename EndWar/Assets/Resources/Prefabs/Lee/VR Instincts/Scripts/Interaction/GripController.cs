@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 using Valve.VR;
 
-public class GripController : MonoBehaviour
+public class GripController : MonoBehaviourPun
 {
     public SteamVR_Input_Sources Hand;
     public SteamVR_Action_Boolean ToggleGripButton;
@@ -122,7 +123,7 @@ public class GripController : MonoBehaviour
                 HandSkeleton.BlendToPoser(OffsetObject.GetComponent<SteamVR_Skeleton_Poser>(), 0f);
             }
 
-
+            ConnectedObject.GetComponent<PhotonView>().RPC("OnGrab",RpcTarget.AllBuffered, true);
         }
     }
     private void Release()
@@ -153,6 +154,7 @@ public class GripController : MonoBehaviour
             HandSkeleton.BlendToSkeleton();
         }
         OffsetObject.GetComponent<GrabPoint>().Gripped = false;
+        ConnectedObject.GetComponent<PhotonView>().RPC("OnGrab", RpcTarget.AllBuffered, false);
         OffsetObject = null;
     }
     
