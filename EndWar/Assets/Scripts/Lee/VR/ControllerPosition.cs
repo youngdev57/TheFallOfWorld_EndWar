@@ -10,7 +10,6 @@ public class ControllerPosition : MonoBehaviourPun
     ViveManager viveManager;
     void Awake()
     {
-        photonView.RPC("GetParent", RpcTarget.AllBuffered, null);
         viveManager = transform.parent.GetComponent<ViveManager>();
     }
 
