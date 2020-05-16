@@ -15,21 +15,15 @@ public class TrackObjectManager : MonoBehaviourPun
 
         if (GetComponent<Camera>())
         {
-            GetComponent<Camera>().enabled = false;
+            gameObject.tag = "Untagged";
             return;
         }
 
         if (GetComponent<SteamVR_Behaviour_Pose>())
             GetComponent<SteamVR_Behaviour_Pose>().enabled = false;
 
-        if (SteamVR_Render.Top().origin.GetComponent<PhotonView>().IsMine)
-            return;
-
         if (GetComponent<SteamVR_Behaviour_Skeleton>())
             GetComponent<SteamVR_Behaviour_Skeleton>().enabled = false;
-
-        if (GetComponent<SteamVR_Behaviour_Pose>())
-            GetComponent<SteamVR_Behaviour_Pose>().enabled = false;
 
     }
 }
