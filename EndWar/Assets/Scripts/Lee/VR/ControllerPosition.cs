@@ -11,6 +11,7 @@ public class ControllerPosition : MonoBehaviourPun
     ViveManager viveManager;
     void Awake()
     {
+        FindParent();
         viveManager = transform.parent.GetComponent<ViveManager>();
         myPv = transform.parent.GetComponent<PhotonView>();
         transform.parent.FindChild("Tracked Robot Kyle").GetComponent<BodyTracking>().Head = this.gameObject;
@@ -35,6 +36,16 @@ public class ControllerPosition : MonoBehaviourPun
                 transform.position = viveManager.rightHand.transform.position;
                 transform.rotation = viveManager.rightHand.transform.rotation;
                 break;
+        }
+    }
+
+    public void FindParent()
+    {
+        VR_Player[] obj = FindObjectsOfType<VR_Player>();
+        for (int i = 0; i < obj.Length; i++)
+        {
+            if (obj[i].GetComponent<PhotonView>().IsMine)
+                transform.parent = obj[i].transform;
         }
     }
 }
