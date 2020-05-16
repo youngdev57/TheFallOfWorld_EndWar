@@ -6,16 +6,17 @@ using Photon.Pun;
 public class ControllerPosition : MonoBehaviourPun
 {
     public int index = 1;
+    public PhotonView myPv;
 
     ViveManager viveManager;
     void Awake()
     {
-        viveManager = transform.parent.GetComponent<ViveManager>();
+        viveManager = GetComponent<ViveManager>();
     }
 
     void Update()
     {
-        if (!photonView.IsMine)
+        if (!myPv.IsMine)
             return;
 
         switch (index)
@@ -32,18 +33,6 @@ public class ControllerPosition : MonoBehaviourPun
                 transform.position = viveManager.rightHand.transform.position;
                 transform.rotation = viveManager.rightHand.transform.rotation;
                 break;
-        }
-    }
-
-    [PunRPC]
-    public void GetParent()
-    {
-        PhotonView[] p = FindObjectsOfType<PhotonView>();
-        for (int i = 0; i < p.Length; i++)
-        {
-            if (p[i].gameObject.name == "Player")
-                if(!p[i].transform.Find(gameObject.name))
-                    transform.parent = p[i].transform;
         }
     }
 }
