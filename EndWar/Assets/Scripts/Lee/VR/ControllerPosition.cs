@@ -11,7 +11,9 @@ public class ControllerPosition : MonoBehaviourPun
     ViveManager viveManager;
     void Awake()
     {
-        viveManager = GetComponent<ViveManager>();
+        viveManager = transform.parent.GetComponent<ViveManager>();
+        myPv = transform.parent.GetComponent<PhotonView>();
+        transform.parent.FindChild("Tracked Robot Kyle").GetComponent<BodyTracking>().Head = this.gameObject;
     }
 
     void Update()
