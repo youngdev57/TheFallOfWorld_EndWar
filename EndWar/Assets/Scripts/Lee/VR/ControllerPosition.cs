@@ -44,7 +44,7 @@ public class ControllerPosition : MonoBehaviourPun
         VR_Player[] obj = FindObjectsOfType<VR_Player>();
         for (int i = 0; i < obj.Length; i++)
         {
-            if (obj[i].GetComponent<PhotonView>().IsMine)
+            if (!obj[i].transform.Find(gameObject.name))
                 transform.parent = obj[i].transform;
         }
     }
