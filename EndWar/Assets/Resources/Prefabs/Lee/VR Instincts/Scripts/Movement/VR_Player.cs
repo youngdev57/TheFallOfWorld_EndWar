@@ -9,10 +9,14 @@ public class VR_Player : MonoBehaviour
     private Vector3 moveDirection;
     private CapsuleCollider CapCollider;
     private Rigidbody RBody;
+    private bool isGround;
 
     public SteamVR_Input_Sources MovementHand;//Set Hand To Get Input From
     public SteamVR_Action_Vector2 TrackpadAction;
     public SteamVR_Action_Boolean JumpAction;
+    public SteamVR_Action_Boolean openUI;
+
+    [Space(5)]
     public float jumpHeight;
     public float MovementSpeed;
     public float Deadzone;//the Deadzone of the trackpad. used to prevent unwanted walking.
@@ -21,6 +25,7 @@ public class VR_Player : MonoBehaviour
     public PhysicMaterial NoFrictionMaterial;
     public PhysicMaterial FrictionMaterial;
     public bool TouchingGround;
+    public GameObject skillUICanvas;
 
     private void Start()
     {
@@ -43,25 +48,25 @@ public class VR_Player : MonoBehaviour
             if (TouchingGround) {
                 if (JumpAction.GetStateDown(MovementHand))
                 {
-
                     float jumpSpeed = Mathf.Sqrt(2 * jumpHeight * 9.81f);
                     RBody.AddForce(0, jumpSpeed, 0, ForceMode.VelocityChange);
                     //RBody.AddForce(moveDirection.x * MovementSpeed - RBody.velocity.x, 0, moveDirection.z * MovementSpeed - RBody.velocity.z, ForceMode.VelocityChange);
                 }
                 RBody.AddForce(moveDirection.x * MovementSpeed-RBody.velocity.x, 0, moveDirection.z * MovementSpeed-RBody.velocity.z, ForceMode.VelocityChange);
-
-                Debug.Log("Velocity" + moveDirection);
-                Debug.Log("Movement Direction:" + moveDirection);
             }
             else
             {
-                Debug.Log((moveDirection.x * MovementSpeed / (Mathf.Sqrt(2 * jumpHeight * 9.81f) / (9.81f))*Time.fixedDeltaTime, 0, moveDirection.z * MovementSpeed / (Mathf.Sqrt(2 * jumpHeight * 9.81f) / (9.81f)) * Time.fixedDeltaTime));
                 RBody.AddForce(moveDirection.x*MovementSpeed/( Mathf.Sqrt(2 * jumpHeight * 9.81f)/(9.81f)) * Time.fixedDeltaTime, 0, moveDirection.z *MovementSpeed/ (Mathf.Sqrt(2 * jumpHeight * 9.81f) / (9.81f)) * Time.fixedDeltaTime, ForceMode.VelocityChange);
             }
         }
         else
         {
             CapCollider.material = FrictionMaterial;
+        }
+
+        if (openUI.GetStateDown(SteamVR_Input_Sources.LeftHand))
+        {
+            OpenUI();
         }
     }
     public void CheckGround()
@@ -98,6 +103,25 @@ public class VR_Player : MonoBehaviour
     private void updateInput()
     {
         if(TrackpadAction.GetActive(MovementHand)) trackpad = TrackpadAction.GetAxis(MovementHand);
+        if (isGround && TrackpadAction.GetAxis(MovementHand) == Vector2.zero)
+            RBody.velocity = Vector3.zero;
     }
-    
+
+    void OpenUI()
+    {
+        skillUICanvas.SetActive(true);
+        this.enabled = false;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+            isGround = true;
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+            isGround = false;
+    }
 }

@@ -19,9 +19,8 @@ public class SkillManager : MonoBehaviourPun
 
     void Start()
     {
-        myPv = transform.GetComponent<PhotonView>();
-        skillProjector = transform.parent.Find("Range").GetComponent<Projector>();
-        pointObj = transform.parent.Find("Fx_Point").gameObject;
+        //skillProjector = transform.parent.Find("Range").GetComponent<Projector>();
+        //pointObj = transform.parent.Find("Fx_Point").gameObject;
     }
 
     //범위 표시 오브젝트를 끄고 키는 함수를 만들것
@@ -104,7 +103,6 @@ public class SkillManager : MonoBehaviourPun
         if (!myPv.IsMine)
             return;
 
-
         if (grabAction.GetLastState(handType))
         {
             myPv.RPC("RangeOn", RpcTarget.AllBuffered, null);
@@ -117,17 +115,6 @@ public class SkillManager : MonoBehaviourPun
             myPv.RPC("RangeOff", RpcTarget.AllBuffered, null);
             Shoot();
 
-        }
-        if (Input.GetKey(KeyCode.E))
-        {
-            myPv.RPC("RangeOn", RpcTarget.AllBuffered, null);
-            ShowRange();
-        }
-
-        if (Input.GetKeyUp(KeyCode.E))
-        {
-            myPv.RPC("RangeOff", RpcTarget.AllBuffered, null);
-            Shoot();
         }
     }
 }

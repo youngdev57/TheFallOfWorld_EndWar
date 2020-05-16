@@ -9,7 +9,7 @@ public class UILookAt : MonoBehaviour
 
     void Start()
     {
-        camera = SteamVR_Render.Top().camera;
+        //camera = SteamVR_Render.Top().camera;
     }
 
     void Update()

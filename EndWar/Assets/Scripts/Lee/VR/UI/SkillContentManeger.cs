@@ -15,8 +15,8 @@ public class SkillContentManeger : MonoBehaviourPun
 
     [Space(5)]
     public GameObject uiCanvas;
-    public GameObject movementObj;
-    SkillManager skillmanager;
+    public VR_Player movementObj;
+    public SkillManager skillmanager;
 
     [Space(5)]
     public int select = 1;
@@ -37,15 +37,6 @@ public class SkillContentManeger : MonoBehaviourPun
 
     private void Init()
     {
-        SkillManager[] _skill = FindObjectsOfType<SkillManager>();
-        for (int i = 0; i < _skill.Length; i++)
-        {
-            if (_skill[i].GetComponent<PhotonView>().IsMine)
-            {
-                skillmanager = _skill[i];
-                break;
-            }
-        }
         contents = new List<Transform>();
         rectTr = GetComponent<RectTransform>();
         skillmanager.enabled = false;
@@ -97,8 +88,9 @@ public class SkillContentManeger : MonoBehaviourPun
     void OnObjActive()
     {
         skillmanager.enabled = true;
-        movementObj.SetActive(true);
+        movementObj.enabled = true;
         uiCanvas.SetActive(false);
+        Debug.Log("aa");
     }
 
     void SelectedSkill()
