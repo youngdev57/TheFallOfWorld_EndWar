@@ -15,7 +15,7 @@ public class TrackObjectManager : MonoBehaviourPun
 
         if (GetComponent<Camera>())
         {
-            GetComponent<Camera>().depth = 0;
+            GetComponent<Camera>().enabled = false;
             return;
         }
 
