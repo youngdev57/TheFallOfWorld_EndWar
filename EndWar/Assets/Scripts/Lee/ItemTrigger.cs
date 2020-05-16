@@ -5,10 +5,12 @@ using Photon.Pun;
 
 public class ItemTrigger : MonoBehaviourPun
 {
+    public Collider coll;
+
     [PunRPC]
     public void OnGrab(bool isGrab)
     {
-        GetComponent<BoxCollider>().isTrigger = isGrab;
+        coll.isTrigger = isGrab;
         GetComponent<Rigidbody>().useGravity = !isGrab;
     }
 }
