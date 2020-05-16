@@ -15,7 +15,7 @@ public class TrackObjectManager : MonoBehaviourPun
 
         if (GetComponent<Camera>())
         {
-            gameObject.tag = "Untagged";
+            GetComponent<Camera>().depth = 0;
             return;
         }
 
