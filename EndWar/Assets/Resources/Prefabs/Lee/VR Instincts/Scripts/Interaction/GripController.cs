@@ -146,7 +146,7 @@ public class GripController : MonoBehaviourPun
         {
             ConnectedObject.GetComponent<Interactable>().SecondGripped = false;
         }
-        
+        ConnectedObject.GetComponent<PhotonView>().RPC("OnGrab", RpcTarget.AllBuffered, false);
         ConnectedObject = null;
         if (OffsetObject.GetComponent<SteamVR_Skeleton_Poser>() && HandSkeleton)
         {
@@ -154,7 +154,6 @@ public class GripController : MonoBehaviourPun
             HandSkeleton.BlendToSkeleton();
         }
         OffsetObject.GetComponent<GrabPoint>().Gripped = false;
-        ConnectedObject.GetComponent<PhotonView>().RPC("OnGrab", RpcTarget.AllBuffered, false);
         OffsetObject = null;
     }
     
