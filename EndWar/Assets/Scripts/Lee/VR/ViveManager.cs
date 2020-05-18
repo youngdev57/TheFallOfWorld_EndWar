@@ -8,4 +8,16 @@ public class ViveManager : MonoBehaviourPun
     public GameObject head;
     public GameObject leftHand;
     public GameObject rightHand;
+
+    [Space(10)]
+    public BodyTracking myBody;
+
+    [Space(10)]
+    public IK leftIK;
+    public IK rightIK;
+
+    [Space(10)]
+    public GripController leftGrip;
+    public GripController rightGrip;
+
 }

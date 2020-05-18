@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4374386279997033513}
   - component: {fileID: 9156213346918453071}
   - component: {fileID: 505806861106527339}
+  - component: {fileID: -3784375577248235718}
   m_Layer: 0
   m_Name: Head
   m_TagString: Untagged
@@ -84,3 +85,17 @@ MonoBehaviour:
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
+--- !u!114 &-3784375577248235718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1074170897990178472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e82965e95b0c88468092ad049a244de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hand: 0
+  wrist: {fileID: 0}

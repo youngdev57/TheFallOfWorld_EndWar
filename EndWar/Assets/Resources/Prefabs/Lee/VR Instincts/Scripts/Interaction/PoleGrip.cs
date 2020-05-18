@@ -27,8 +27,6 @@ public class PoleGrip : MonoBehaviour
                 LeftHandGrip.transform.parent.rotation = Quaternion.LookRotation(-((LeftHand.position) - LeftHandGrip.transform.parent.position), transform.up);
 
                 LeftHandGrip.UpdateOffset();
-                Debug.Log("set new pose");
-
             }
             else if (!LeftHandGrip.Gripped && newpose.magnitude > GetComponent<CapsuleCollider>().height / 2)
             {
@@ -44,8 +42,6 @@ public class PoleGrip : MonoBehaviour
                 RightHandGrip.transform.parent.rotation = Quaternion.LookRotation(-((RightHand.position) - RightHandGrip.transform.parent.position), transform.up);
 
                 RightHandGrip.UpdateOffset();
-                Debug.Log("set new pose");
-
             }
             else if (!RightHandGrip.Gripped&& newpose.magnitude > GetComponent<CapsuleCollider>().height / 2)
             {
@@ -66,7 +62,6 @@ public class PoleGrip : MonoBehaviour
             {
                 RightHand = other.transform;
             }
-            Debug.Log("found a grabber!");
         }
     }
     private void OnTriggerExit(Collider other)
