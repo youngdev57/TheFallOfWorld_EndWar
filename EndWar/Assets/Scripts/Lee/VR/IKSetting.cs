@@ -23,11 +23,13 @@ public class IKSetting : MonoBehaviour
         {
             vive.leftIK.Target = wrist;
             vive.leftGrip.HandSkeleton = GetComponent<SteamVR_Behaviour_Skeleton>();
+            GetComponent<SteamVR_TrackedObject>().SetDeviceIndex((int)vive.leftHand.GetComponent<SteamVR_TrackedObject>().index);
         }
         if (hand == WHATHAND.RIGHT)
         {
             vive.rightIK.Target = wrist;
             vive.rightGrip.HandSkeleton = GetComponent<SteamVR_Behaviour_Skeleton>();
+            GetComponent<SteamVR_TrackedObject>().SetDeviceIndex((int)vive.rightHand.GetComponent<SteamVR_TrackedObject>().index);
         }
     }  
 }

@@ -847,6 +847,8 @@ GameObject:
   - component: {fileID: 1853691832256074298}
   - component: {fileID: 783721289657918756}
   - component: {fileID: 3293048904518683182}
+  - component: {fileID: 5781766696436803012}
+  - component: {fileID: 7375037333769993324}
   m_Layer: 0
   m_Name: vr_glove_right_model_slim
   m_TagString: Untagged
@@ -977,6 +979,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 3
   myPv: {fileID: 0}
+--- !u!114 &5781766696436803012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3551576260070157752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d37c2cf88f7c59f4c8cf5d3812568143, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 0
+  origin: {fileID: 0}
+--- !u!114 &7375037333769993324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3551576260070157752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4de8b4273b9b284488aa02d1c27dd82d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myPv: {fileID: 4531250785739032239}
 --- !u!1 &3551576260345026394
 GameObject:
   m_ObjectHideFlags: 0
