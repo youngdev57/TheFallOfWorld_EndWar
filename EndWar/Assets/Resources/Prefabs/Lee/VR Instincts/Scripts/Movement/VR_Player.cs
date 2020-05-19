@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR;
-
-public class VR_Player : MonoBehaviour
+using Photon.Pun;
+public class VR_Player : MonoBehaviourPun
 {
     private Vector2 trackpad;
     private Vector3 moveDirection;
@@ -35,6 +35,9 @@ public class VR_Player : MonoBehaviour
 
     void Update()
     {
+        if (!photonView.IsMine)
+            return;
+
         Rigidbody RBody = GetComponent<Rigidbody>();
         moveDirection = Quaternion.AngleAxis(Angle(trackpad) + AxisHand.transform.localRotation.eulerAngles.y, Vector3.up) * Vector3.forward* trackpad.magnitude;//get the angle of the touch and correct it for the rotation of the controller
         updateInput();

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using Valve.VR;
 
 public class ControllerPosition : MonoBehaviourPun
 {
@@ -12,7 +13,7 @@ public class ControllerPosition : MonoBehaviourPun
     void Awake()
     {
         FindParent();
-        viveManager = transform.parent.GetComponent<ViveManager>();
+        viveManager = SteamVR_Render.Top().origin.GetComponent<ViveManager>();
         myPv = transform.parent.GetComponent<PhotonView>();
     }
 
@@ -40,7 +41,7 @@ public class ControllerPosition : MonoBehaviourPun
 
     public void FindParent()
     {
-        VR_Player[] obj = FindObjectsOfType<VR_Player>();
+        ControllerMovement[] obj = FindObjectsOfType<ControllerMovement>();
         for (int i = 0; i < obj.Length; i++)
         {
             if (!obj[i].transform.Find(gameObject.name))

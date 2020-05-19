@@ -30,11 +30,11 @@ public class ControllerMovement : MonoBehaviourPun
         if (!myPv.IsMine)
             return;
 
-        if (openUI.GetStateDown(SteamVR_Input_Sources.LeftHand))
+        /*if (openUI.GetStateDown(SteamVR_Input_Sources.LeftHand))
         {
             uiCanvas.SetActive(true);
             gameObject.SetActive(false);
-        }
+        }*/
 
 
         transform.rotation = Quaternion.Euler(new Vector3(0, cameraTr.eulerAngles.y, 0));
@@ -62,6 +62,6 @@ public class ControllerMovement : MonoBehaviourPun
 
             movement += orientation * (speed * transform.right) * Time.deltaTime;
         }
-        transform.parent.position += movement;
+        SteamVR_Render.Top().origin.transform.position += movement;
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using Valve.VR;
 
 public class PhotonPlayerSpawn : MonoBehaviourPun
 {
@@ -14,7 +15,7 @@ public class PhotonPlayerSpawn : MonoBehaviourPun
         if (!photonView.IsMine)
             return;
 
-        ViveManager viveManager = GetComponent<ViveManager>();
+        ViveManager viveManager = SteamVR_Render.Top().origin.GetComponent<ViveManager>();
         PhotonNetwork.Instantiate(head.name, viveManager.head.transform.position, viveManager.head.transform.rotation, 0);
         PhotonNetwork.Instantiate(leftHand.name, viveManager.leftHand.transform.position, viveManager.leftHand.transform.rotation, 0);
         PhotonNetwork.Instantiate(rightHand.name, viveManager.rightHand.transform.position, viveManager.rightHand.transform.rotation, 0);
