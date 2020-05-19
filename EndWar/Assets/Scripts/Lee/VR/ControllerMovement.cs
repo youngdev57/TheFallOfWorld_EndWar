@@ -37,7 +37,7 @@ public class ControllerMovement : MonoBehaviourPun
         }*/
 
 
-        transform.rotation = Quaternion.Euler(new Vector3(0, cameraTr.eulerAngles.y, 0));
+        //transform.rotation = Quaternion.Euler(new Vector3(0, cameraTr.eulerAngles.y, 0));
         CalculateMovement();
     }
 
