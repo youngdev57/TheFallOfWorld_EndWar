@@ -8,7 +8,9 @@ public class ControllerMovement : MonoBehaviourPun
 {
     public float sensitivity = .1f;
     public float maxSpeed = 1f;
+    public GameObject camera;
 
+    [Space(5)]
     public SteamVR_Action_Boolean movePress;
     public SteamVR_Action_Boolean openUI;
     public SteamVR_Action_Vector2 moveValue;
@@ -23,6 +25,8 @@ public class ControllerMovement : MonoBehaviourPun
     {
         cameraTr = SteamVR_Render.Top().head;
         myPv = GetComponent<PhotonView>();
+        if (myPv.IsMine)
+            camera.SetActive(true);
     }
 
     void Update()

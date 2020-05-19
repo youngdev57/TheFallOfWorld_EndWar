@@ -22,8 +22,8 @@ public class TrackObjectManager : MonoBehaviourPun
         if (GetComponent<SteamVR_Behaviour_Pose>())
             GetComponent<SteamVR_Behaviour_Pose>().enabled = false;
 
-/*        if (GetComponent<SteamVR_Behaviour_Skeleton>())
-            GetComponent<SteamVR_Behaviour_Skeleton>().enabled = false;*/
+        if (GetComponent<SteamVR_Behaviour_Skeleton>())
+            GetComponent<SteamVR_Behaviour_Skeleton>().enabled = false;
 
     }
 }
