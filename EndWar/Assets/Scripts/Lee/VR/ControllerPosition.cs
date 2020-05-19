@@ -24,6 +24,10 @@ public class ControllerPosition : MonoBehaviourPun
 
         switch (index)
         {
+            case 0:
+                transform.position = viveManager.origin.transform.position;
+                transform.rotation = viveManager.head.transform.rotation;
+                break;
             case 1:
                 transform.position = viveManager.head.transform.position;
                 transform.rotation = viveManager.head.transform.rotation;

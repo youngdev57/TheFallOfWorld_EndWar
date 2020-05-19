@@ -5,6 +5,7 @@ using Photon.Pun;
 
 public class ViveManager : MonoBehaviourPun
 {
+    public GameObject origin;
     public GameObject head;
     public GameObject leftHand;
     public GameObject rightHand;
