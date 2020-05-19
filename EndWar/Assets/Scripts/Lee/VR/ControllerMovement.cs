@@ -21,12 +21,17 @@ public class ControllerMovement : MonoBehaviourPun
 
     float speed = 0f;
     PhotonView myPv;
-    void Start()
+
+    private void Awake()
     {
-        cameraTr = SteamVR_Render.Top().head;
         myPv = GetComponent<PhotonView>();
         if (myPv.IsMine)
             camera.SetActive(true);
+    }
+
+    void Start()
+    {
+        cameraTr = SteamVR_Render.Top().head;
     }
 
     void Update()
