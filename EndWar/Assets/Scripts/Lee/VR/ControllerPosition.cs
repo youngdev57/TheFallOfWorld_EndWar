@@ -14,7 +14,7 @@ public class ControllerPosition : MonoBehaviourPun
     {
         FindParent();
         viveManager = SteamVR_Render.Top().origin.GetComponent<ViveManager>();
-        myPv = transform.parent.GetComponent<PhotonView>();
+        myPv = GetComponent<PhotonView>();
     }
 
     void Update()
@@ -26,7 +26,7 @@ public class ControllerPosition : MonoBehaviourPun
         {
             case 0:
                 transform.position = viveManager.origin.transform.position;
-                transform.rotation = viveManager.head.transform.rotation;
+                transform.rotation = viveManager.origin.transform.rotation;
                 break;
             case 1:
                 transform.position = viveManager.head.transform.position;
@@ -48,7 +48,7 @@ public class ControllerPosition : MonoBehaviourPun
         ControllerMovement[] obj = FindObjectsOfType<ControllerMovement>();
         for (int i = 0; i < obj.Length; i++)
         {
-            if (!obj[i].transform.Find(gameObject.name))
+            if (!obj[i].transform.Find(gameObject.name) && index != 0)
                 transform.parent = obj[i].transform;
         }
     }
