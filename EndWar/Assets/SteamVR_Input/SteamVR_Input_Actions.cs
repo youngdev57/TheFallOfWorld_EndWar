@@ -35,7 +35,9 @@ namespace Valve.VR
         
         private static SteamVR_Action_Boolean p_default_SkillTrigger;
         
-        private static SteamVR_Action_Boolean p_default_UIButton;
+        private static SteamVR_Action_Boolean p_default_Selecet;
+        
+        private static SteamVR_Action_Boolean p_default_OpenUI;
         
         private static SteamVR_Action_Vibration p_default_Haptic;
         
@@ -121,11 +123,19 @@ namespace Valve.VR
             }
         }
         
-        public static SteamVR_Action_Boolean default_UIButton
+        public static SteamVR_Action_Boolean default_Selecet
         {
             get
             {
-                return SteamVR_Actions.p_default_UIButton.GetCopy<SteamVR_Action_Boolean>();
+                return SteamVR_Actions.p_default_Selecet.GetCopy<SteamVR_Action_Boolean>();
+            }
+        }
+        
+        public static SteamVR_Action_Boolean default_OpenUI
+        {
+            get
+            {
+                return SteamVR_Actions.p_default_OpenUI.GetCopy<SteamVR_Action_Boolean>();
             }
         }
         
@@ -189,7 +199,8 @@ namespace Valve.VR
                     SteamVR_Actions.default_TouchPad,
                     SteamVR_Actions.default_TouchPosition,
                     SteamVR_Actions.default_SkillTrigger,
-                    SteamVR_Actions.default_UIButton,
+                    SteamVR_Actions.default_Selecet,
+                    SteamVR_Actions.default_OpenUI,
                     SteamVR_Actions.default_Haptic,
                     SteamVR_Actions.buggy_Steering,
                     SteamVR_Actions.buggy_Throttle,
@@ -206,7 +217,8 @@ namespace Valve.VR
                     SteamVR_Actions.default_TouchPad,
                     SteamVR_Actions.default_TouchPosition,
                     SteamVR_Actions.default_SkillTrigger,
-                    SteamVR_Actions.default_UIButton,
+                    SteamVR_Actions.default_Selecet,
+                    SteamVR_Actions.default_OpenUI,
                     SteamVR_Actions.buggy_Steering,
                     SteamVR_Actions.buggy_Throttle,
                     SteamVR_Actions.buggy_Brake,
@@ -225,7 +237,8 @@ namespace Valve.VR
                     SteamVR_Actions.default_Grap,
                     SteamVR_Actions.default_TouchPad,
                     SteamVR_Actions.default_SkillTrigger,
-                    SteamVR_Actions.default_UIButton,
+                    SteamVR_Actions.default_Selecet,
+                    SteamVR_Actions.default_OpenUI,
                     SteamVR_Actions.buggy_Brake,
                     SteamVR_Actions.buggy_Reset};
             Valve.VR.SteamVR_Input.actionsSingle = new Valve.VR.SteamVR_Action_Single[] {
@@ -244,7 +257,8 @@ namespace Valve.VR
                     SteamVR_Actions.default_TouchPad,
                     SteamVR_Actions.default_TouchPosition,
                     SteamVR_Actions.default_SkillTrigger,
-                    SteamVR_Actions.default_UIButton,
+                    SteamVR_Actions.default_Selecet,
+                    SteamVR_Actions.default_OpenUI,
                     SteamVR_Actions.buggy_Steering,
                     SteamVR_Actions.buggy_Throttle,
                     SteamVR_Actions.buggy_Brake,
@@ -262,7 +276,8 @@ namespace Valve.VR
             SteamVR_Actions.p_default_TouchPad = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/TouchPad")));
             SteamVR_Actions.p_default_TouchPosition = ((SteamVR_Action_Vector2)(SteamVR_Action.Create<SteamVR_Action_Vector2>("/actions/default/in/TouchPosition")));
             SteamVR_Actions.p_default_SkillTrigger = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/SkillTrigger")));
-            SteamVR_Actions.p_default_UIButton = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/UIButton")));
+            SteamVR_Actions.p_default_Selecet = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/Selecet")));
+            SteamVR_Actions.p_default_OpenUI = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/default/in/OpenUI")));
             SteamVR_Actions.p_default_Haptic = ((SteamVR_Action_Vibration)(SteamVR_Action.Create<SteamVR_Action_Vibration>("/actions/default/out/Haptic")));
             SteamVR_Actions.p_buggy_Steering = ((SteamVR_Action_Vector2)(SteamVR_Action.Create<SteamVR_Action_Vector2>("/actions/buggy/in/Steering")));
             SteamVR_Actions.p_buggy_Throttle = ((SteamVR_Action_Single)(SteamVR_Action.Create<SteamVR_Action_Single>("/actions/buggy/in/Throttle")));

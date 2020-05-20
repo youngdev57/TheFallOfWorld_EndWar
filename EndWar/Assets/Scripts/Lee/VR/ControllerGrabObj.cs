@@ -30,7 +30,7 @@ public class ControllerGrabObj : MonoBehaviourPun
         {
             if (collidingObj)
             {
-                GrabObj();
+                photonView.RPC("GrabObj", RpcTarget.AllBuffered, null);
             }
         }
         //잡는 버튼을 땔때
@@ -38,7 +38,7 @@ public class ControllerGrabObj : MonoBehaviourPun
         {
             if (objectInHand)
             {
-                ReleaseObj();
+                photonView.RPC("ReleaseObj", RpcTarget.AllBuffered, null);
             }
         }
     }
@@ -62,6 +62,7 @@ public class ControllerGrabObj : MonoBehaviourPun
     }
 
     //충돌중인 객체로 설정
+
     void SetCollidingObj(Collider col)
     {
         if (collidingObj || !col.GetComponent<Rigidbody>())
@@ -71,14 +72,13 @@ public class ControllerGrabObj : MonoBehaviourPun
     }
 
     //객체를 잡음
+    [PunRPC]
     void GrabObj()
     {
         objectInHand = collidingObj; //잡은 객체로 설정
         collidingObj = null; //충돌 객체 해제
 
-        objectInHand.GetComponent<BoxCollider>().isTrigger = true;
-        objectInHand.GetComponent<Rigidbody>().useGravity = false;
-
+        objectInHand.GetComponent<ItemTrigger>().GetComponent<PhotonView>().RPC("OnGrab", RpcTarget.AllBuffered, true);
         var joint = AddFixedJoint();
         joint.connectedBody = objectInHand.GetComponent<Rigidbody>();
     }
@@ -93,7 +93,8 @@ public class ControllerGrabObj : MonoBehaviourPun
         fx.breakTorque = 20000;
         return fx;
     }
-    
+
+    [PunRPC]
     void ReleaseObj()
     {
         if (GetComponent<FixedJoint>())
@@ -105,9 +106,9 @@ public class ControllerGrabObj : MonoBehaviourPun
                 controllerPose.GetVelocity();
             objectInHand.GetComponent<Rigidbody>().angularVelocity = 
                 controllerPose.GetAngularVelocity();
+
+            objectInHand.GetComponent<ItemTrigger>().GetComponent<PhotonView>().RPC("OnGrab", RpcTarget.AllBuffered, false);
         }
-        objectInHand.GetComponent<BoxCollider>().isTrigger = false;
-        objectInHand.GetComponent<Rigidbody>().useGravity = true;
         objectInHand = null;
     }
 }

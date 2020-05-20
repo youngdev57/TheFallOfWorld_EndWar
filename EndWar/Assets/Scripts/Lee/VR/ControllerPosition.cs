@@ -2,26 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using Valve.VR;
 
 public class ControllerPosition : MonoBehaviourPun
 {
     public int index = 1;
+    public PhotonView myPv;
 
     ViveManager viveManager;
     void Awake()
     {
-        photonView.RPC("GetParent", RpcTarget.AllBuffered, null);
-        viveManager = transform.parent.GetComponent<ViveManager>();
+        FindParent();
+        viveManager = SteamVR_Render.Top().origin.GetComponent<ViveManager>();
+        myPv = GetComponent<PhotonView>();
     }
 
     void Update()
     {
-        if (!photonView.IsMine)
+        if (!myPv.IsMine)
             return;
-
 
         switch (index)
         {
+            case 0:
+                transform.position = viveManager.origin.transform.position;
+                transform.rotation = viveManager.origin.transform.rotation;
+                break;
             case 1:
                 transform.position = viveManager.head.transform.position;
                 transform.rotation = viveManager.head.transform.rotation;
@@ -37,15 +43,13 @@ public class ControllerPosition : MonoBehaviourPun
         }
     }
 
-    [PunRPC]
-    public void GetParent()
+    public void FindParent()
     {
-        PhotonView[] p = GameObject.FindObjectsOfType<PhotonView>();
-        for (int i = 0; i < p.Length; i++)
+        ControllerMovement[] obj = FindObjectsOfType<ControllerMovement>();
+        for (int i = 0; i < obj.Length; i++)
         {
-            if (p[i].gameObject.name == "Player")
-                if(!p[i].transform.Find(gameObject.name))
-                    transform.parent = p[i].transform;
+            if (!obj[i].transform.Find(gameObject.name) && index != 0)
+                transform.parent = obj[i].transform;
         }
     }
 }

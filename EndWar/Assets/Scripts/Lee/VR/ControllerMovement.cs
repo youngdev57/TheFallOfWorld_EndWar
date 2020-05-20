@@ -8,17 +8,30 @@ public class ControllerMovement : MonoBehaviourPun
 {
     public float sensitivity = .1f;
     public float maxSpeed = 1f;
+    public GameObject camera;
 
+    [Space(5)]
     public SteamVR_Action_Boolean movePress;
+    public SteamVR_Action_Boolean openUI;
     public SteamVR_Action_Vector2 moveValue;
+    [Space(5)]
+    public GameObject uiCanvas;
+    public Transform cameraTr;
+
 
     float speed = 0f;
-    public Transform cameraTr;
     PhotonView myPv;
+
+    private void Awake()
+    {
+        myPv = GetComponent<PhotonView>();
+        if (myPv.IsMine)
+            camera.SetActive(true);
+    }
+
     void Start()
     {
         cameraTr = SteamVR_Render.Top().head;
-        myPv = GetComponent<PhotonView>();
     }
 
     void Update()
@@ -26,7 +39,14 @@ public class ControllerMovement : MonoBehaviourPun
         if (!myPv.IsMine)
             return;
 
-        transform.rotation = Quaternion.Euler(new Vector3(0, cameraTr.eulerAngles.y, 0));
+        /*if (openUI.GetStateDown(SteamVR_Input_Sources.LeftHand))
+        {
+            uiCanvas.SetActive(true);
+            gameObject.SetActive(false);
+        }*/
+
+
+        //transform.rotation = Quaternion.Euler(new Vector3(0, cameraTr.eulerAngles.y, 0));
         CalculateMovement();
     }
 
@@ -51,6 +71,6 @@ public class ControllerMovement : MonoBehaviourPun
 
             movement += orientation * (speed * transform.right) * Time.deltaTime;
         }
-        transform.parent.position += movement;
+        SteamVR_Render.Top().origin.transform.position += movement;
     }
 }

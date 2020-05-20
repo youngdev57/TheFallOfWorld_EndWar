@@ -4,8 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
+<<<<<<< HEAD
   - projectile
   - FxTemporaire
+=======
+  - Grabbable
+>>>>>>> 8a890ef410a6df1e4d3e9b42cea3cc996c7cd769
   layers:
   - Default
   - TransparentFX
@@ -17,7 +21,7 @@ TagManager:
   - 
   - Player
   - Hand
-  - 
+  - Ground
   - 
   - 
   - 

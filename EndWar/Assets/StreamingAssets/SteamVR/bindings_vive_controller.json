@@ -106,6 +106,9 @@
          "sources" : [
             {
                "inputs" : {
+                  "click" : {
+                     "output" : "/actions/default/in/selecet"
+                  },
                   "position" : {
                      "output" : "/actions/default/in/touchposition"
                   },
@@ -142,6 +145,30 @@
                },
                "mode" : "button",
                "path" : "/user/hand/left/input/trigger"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/default/in/openui"
+                  }
+               },
+               "mode" : "button",
+               "path" : "/user/hand/left/input/grip"
+            },
+            {
+               "inputs" : {},
+               "mode" : "none",
+               "path" : "/user/hand/left/input/skeleton/left"
+            },
+            {
+               "inputs" : {},
+               "mode" : "none",
+               "path" : "/user/hand/right/input/skeleton/left"
+            },
+            {
+               "inputs" : {},
+               "mode" : "none",
+               "path" : "/user/hand/right/input/skeleton/right"
             }
          ]
       },

@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/Kang/SnowMountains.unity
+- path: Assets/Scenes/Song/MonsterTest.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

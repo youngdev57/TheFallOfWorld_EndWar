@@ -89,11 +89,19 @@ namespace Valve.VR
             }
         }
         
-        public virtual SteamVR_Action_Boolean UIButton
+        public virtual SteamVR_Action_Boolean Selecet
         {
             get
             {
-                return SteamVR_Actions.default_UIButton;
+                return SteamVR_Actions.default_Selecet;
+            }
+        }
+        
+        public virtual SteamVR_Action_Boolean OpenUI
+        {
+            get
+            {
+                return SteamVR_Actions.default_OpenUI;
             }
         }
         
