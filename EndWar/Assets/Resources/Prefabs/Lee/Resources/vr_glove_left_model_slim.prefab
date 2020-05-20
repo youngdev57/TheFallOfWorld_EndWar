@@ -910,7 +910,7 @@ MonoBehaviour:
   rangeOfMotion: 1
   skeletonRoot: {fileID: 2103427087548016203}
   origin: {fileID: 0}
-  updatePose: 1
+  updatePose: 0
   onlySetRotations: 0
   skeletonBlend: 1
   onBoneTransformsUpdated:
