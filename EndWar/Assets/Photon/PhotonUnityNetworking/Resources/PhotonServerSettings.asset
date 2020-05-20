@@ -46,6 +46,12 @@ MonoBehaviour:
   - SetCollidingObj
   - OnGrab
   - Restore
+  - C_Awake
+  - C_FixedUpdate
+  - C_LateUpdate
+  - C_OnDisable
+  - C_OnEnable
+  - C_Update
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1
