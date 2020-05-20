@@ -863,13 +863,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2103427084949412527}
-  - component: {fileID: 2066000352368832151}
+  - component: {fileID: 3968052267501738926}
   - component: {fileID: 7621750305195119810}
   - component: {fileID: 3546379655989028652}
   - component: {fileID: 8299187324226059361}
   - component: {fileID: 2274425100850613639}
-  - component: {fileID: 3237335492031747698}
-  - component: {fileID: -8853229882830030270}
   m_Layer: 0
   m_Name: vr_glove_left_model_slim
   m_TagString: Untagged
@@ -893,7 +891,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2066000352368832151
+--- !u!114 &3968052267501738926
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -902,7 +900,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2106954234162214251}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00f6c0d7b5a00aa4a8d38a09a0480032, type: 3}
+  m_Script: {fileID: 11500000, guid: 48b83cbef98de3445903d74642a7dc26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   skeletonAction:
@@ -912,7 +910,7 @@ MonoBehaviour:
   rangeOfMotion: 1
   skeletonRoot: {fileID: 2103427087548016203}
   origin: {fileID: 0}
-  updatePose: 0
+  updatePose: 1
   onlySetRotations: 0
   skeletonBlend: 1
   onBoneTransformsUpdated:
@@ -933,7 +931,7 @@ MonoBehaviour:
   mirroring: 2
   fallbackPoser: {fileID: 2066000351224326861}
   fallbackCurlAction:
-    actionPath: /actions/default/in/Squeeze
+    actionPath: 
     needsReinit: 0
 --- !u!114 &7621750305195119810
 MonoBehaviour:
@@ -1000,33 +998,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 2
   myPv: {fileID: 0}
---- !u!114 &3237335492031747698
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2106954234162214251}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4de8b4273b9b284488aa02d1c27dd82d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myPv: {fileID: 7621750305195119810}
---- !u!114 &-8853229882830030270
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2106954234162214251}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d37c2cf88f7c59f4c8cf5d3812568143, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  index: 3
-  origin: {fileID: 0}
 --- !u!1 &2106954234176798019
 GameObject:
   m_ObjectHideFlags: 0

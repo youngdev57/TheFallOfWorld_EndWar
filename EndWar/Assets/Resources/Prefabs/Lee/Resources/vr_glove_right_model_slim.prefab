@@ -842,13 +842,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3549966490536940840}
-  - component: {fileID: 3521590761702151868}
+  - component: {fileID: 2026491933012933009}
   - component: {fileID: 4531250785739032239}
   - component: {fileID: 1853691832256074298}
   - component: {fileID: 783721289657918756}
   - component: {fileID: 3293048904518683182}
-  - component: {fileID: 7375037333769993324}
-  - component: {fileID: -1700111238172903988}
   m_Layer: 0
   m_Name: vr_glove_right_model_slim
   m_TagString: Untagged
@@ -872,7 +870,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3521590761702151868
+--- !u!114 &2026491933012933009
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -881,7 +879,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3551576260070157752}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00f6c0d7b5a00aa4a8d38a09a0480032, type: 3}
+  m_Script: {fileID: 11500000, guid: 48b83cbef98de3445903d74642a7dc26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   skeletonAction:
@@ -912,7 +910,7 @@ MonoBehaviour:
   mirroring: 0
   fallbackPoser: {fileID: 3521590761893412102}
   fallbackCurlAction:
-    actionPath: /actions/default/in/Squeeze
+    actionPath: 
     needsReinit: 0
 --- !u!114 &4531250785739032239
 MonoBehaviour:
@@ -979,33 +977,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 3
   myPv: {fileID: 0}
---- !u!114 &7375037333769993324
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3551576260070157752}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4de8b4273b9b284488aa02d1c27dd82d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myPv: {fileID: 4531250785739032239}
---- !u!114 &-1700111238172903988
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3551576260070157752}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d37c2cf88f7c59f4c8cf5d3812568143, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  index: 4
-  origin: {fileID: 0}
 --- !u!1 &3551576260345026394
 GameObject:
   m_ObjectHideFlags: 0
