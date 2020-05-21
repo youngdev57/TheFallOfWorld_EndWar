@@ -736,7 +736,7 @@ MonoBehaviour:
   head: {fileID: 1074170897990178472, guid: 6dd0752998d961d498212c77a515f204, type: 3}
   leftHand: {fileID: 2106954234162214251, guid: b7260d784a22ec14dabd99db402cfac6,
     type: 3}
-  rightHand: {fileID: 3551576260070157752, guid: 4bb5faa46e5bc7646a63da3c0b65a49f,
+  rightHand: {fileID: 4044835983584005188, guid: d4508d19d15c37f4599ee30541fa9b87,
     type: 3}
 --- !u!1 &1295449927624107593
 GameObject:
