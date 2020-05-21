@@ -4,26 +4,47 @@ using UnityEngine;
 using Photon.Pun;
 using Valve.VR;
 
-public class CustomHandSeleton : SteamVR_Behaviour_Skeleton
+public class CustomHandSeleton : MonoBehaviourPun
 {
-    PhotonView myPv;
-  
-    new void Awake()
+    public SteamVR_Action_Single gripAction;
+    public SteamVR_Action_Boolean goodAction;
+    [Space(10)]
+    public Animator anim;
+    public WHATHAND hand;
+
+    SteamVR_Behaviour_Pose pose;
+
+    void Awake()
     {
-        myPv = GetComponent<PhotonView>();
-        if (myPv.IsMine)
-            base.Awake();
+        if (hand == WHATHAND.LEFT)
+             transform.parent = transform.parent.GetComponent<ViveManager>().leftHand.transform;
+        if(hand == WHATHAND.RIGHT)
+            transform.parent = transform.parent.GetComponent<ViveManager>().rightHand.transform;
+
+        pose = GetComponentInParent<SteamVR_Behaviour_Pose>();
+
+        gripAction[pose.inputSource].onChange += Grip;
+        goodAction[pose.inputSource].onChange += Good;
     }
 
-    new void OnEnable()
+    void OnDestroy()
     {
-        if (myPv.IsMine)
-            base.OnEnable();
+        gripAction[pose.inputSource].onChange -= Grip;
+        goodAction[pose.inputSource].onActiveChange -= Good;
     }
 
-    new void OnDisable()
+    void Grip(SteamVR_Action_Single action, SteamVR_Input_Sources source, float axis, float delta)
     {
-        if (myPv.IsMine)
-            base.OnDisable();
+        anim.SetFloat("GripBlend", axis);
     }
+
+    void Good(SteamVR_Action_Boolean action, SteamVR_Input_Sources source, bool active )
+    {
+        float axis = 0;
+        if (active)
+            axis = Mathf.Lerp(0f, 1f, 0.5f);
+
+        anim.SetFloat("GoodBlend", axis);
+    }
+
 }

@@ -36,7 +36,7 @@ public class GunTest : MonoBehaviourPunCallbacks, IPunPrefabPool
             return;
 
         handType = SteamVR_Input_Sources.RightHand;
-        grapAction = SteamVR_Actions.default_Grap;
+        grapAction = SteamVR_Actions.default_Grip;
 
         bulletEffect.GetComponent<Bullet>().gun = this;
     }

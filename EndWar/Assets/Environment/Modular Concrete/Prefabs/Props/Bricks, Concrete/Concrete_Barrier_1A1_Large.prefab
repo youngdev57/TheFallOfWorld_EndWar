@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4941629291648480}
   - component: {fileID: 33071496827279294}
   - component: {fileID: 23080839755194584}
-  - component: {fileID: 64098203312088050}
+  - component: {fileID: 3619248648447288435}
   m_Layer: 0
   m_Name: Concrete_Barrier_1A1_Large
   m_TagString: Untagged
@@ -80,8 +80,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &64098203312088050
-MeshCollider:
+--- !u!65 &3619248648447288435
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -90,7 +90,6 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: a80e0f7992bcfda4380c14fbd32f2302, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 0.68930227, y: 0.8548303, z: 2}
+  m_Center: {x: 0, y: 0.0874702, z: 0}
