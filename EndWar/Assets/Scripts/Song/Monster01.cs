@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Photon.Pun;
 
 public enum Staus
 {
@@ -45,8 +46,13 @@ public class Monster01 : Monster
         ACT = 5;
         actSpeed = 2.5f;
     }
+
     void Update()
     {
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            return;
+        }
         PlayAnimation();
         OnMove();
         TargetPosition();
@@ -192,6 +198,10 @@ public class Monster01 : Monster
     // 플레이어 인식
     private void OnTriggerEnter(Collider other)
     {
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            return;
+        }
         if (!canAttack && other.gameObject.tag == "Player")
         {
             target = other.gameObject.transform;
@@ -203,6 +213,10 @@ public class Monster01 : Monster
     }
     private void OnTriggerExit(Collider other)
     {
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            return;
+        }
         if (!attackMode && canAttack && other.gameObject.tag == "Player")
         {
             mNav.stoppingDistance = 0;
@@ -217,6 +231,10 @@ public class Monster01 : Monster
     // 피격
     private void OnCollisionEnter(Collision collision)
     {
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            return;
+        }
         if (collision.gameObject.tag == "Bullet")
         {
             HP -= 10;
