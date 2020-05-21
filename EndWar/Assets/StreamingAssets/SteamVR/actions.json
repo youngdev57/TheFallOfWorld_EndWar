@@ -9,7 +9,7 @@
       "type": "boolean"
     },
     {
-      "name": "/actions/default/in/Grap",
+      "name": "/actions/default/in/Grip",
       "type": "boolean"
     },
     {
@@ -46,6 +46,10 @@
     {
       "name": "/actions/default/in/OpenUI",
       "type": "boolean"
+    },
+    {
+      "name": "/actions/default/in/Action_Grip",
+      "type": "vector1"
     },
     {
       "name": "/actions/default/out/Haptic",

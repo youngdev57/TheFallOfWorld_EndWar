@@ -33,11 +33,11 @@ namespace Valve.VR
             }
         }
         
-        public virtual SteamVR_Action_Boolean Grap
+        public virtual SteamVR_Action_Boolean Grip
         {
             get
             {
-                return SteamVR_Actions.default_Grap;
+                return SteamVR_Actions.default_Grip;
             }
         }
         
@@ -102,6 +102,14 @@ namespace Valve.VR
             get
             {
                 return SteamVR_Actions.default_OpenUI;
+            }
+        }
+        
+        public virtual SteamVR_Action_Single Action_Grip
+        {
+            get
+            {
+                return SteamVR_Actions.default_Action_Grip;
             }
         }
         

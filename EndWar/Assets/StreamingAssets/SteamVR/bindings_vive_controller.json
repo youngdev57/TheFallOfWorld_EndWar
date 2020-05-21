@@ -131,15 +131,6 @@
             {
                "inputs" : {
                   "click" : {
-                     "output" : "/actions/default/in/grap"
-                  }
-               },
-               "mode" : "button",
-               "path" : "/user/hand/right/input/trigger"
-            },
-            {
-               "inputs" : {
-                  "click" : {
                      "output" : "/actions/default/in/skilltrigger"
                   }
                },
@@ -161,14 +152,69 @@
                "path" : "/user/hand/left/input/skeleton/left"
             },
             {
+               "inputs" : {
+                  "pull" : {
+                     "output" : "/actions/default/in/action_grip"
+                  }
+               },
+               "mode" : "trigger",
+               "path" : "/user/hand/left/input/trigger"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/default/in/openui"
+                  }
+               },
+               "mode" : "button",
+               "path" : "/user/hand/right/input/grip"
+            },
+            {
                "inputs" : {},
                "mode" : "none",
                "path" : "/user/hand/right/input/skeleton/left"
             },
             {
-               "inputs" : {},
-               "mode" : "none",
-               "path" : "/user/hand/right/input/skeleton/right"
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/default/in/selecet"
+                  },
+                  "position" : {
+                     "output" : "/actions/default/in/touchposition"
+                  },
+                  "touch" : {
+                     "output" : "/actions/default/in/teleport"
+                  }
+               },
+               "mode" : "trackpad",
+               "path" : "/user/hand/right/input/trackpad"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/default/in/teleport"
+                  }
+               },
+               "mode" : "button",
+               "path" : "/user/hand/right/input/trackpad"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/default/in/skilltrigger"
+                  }
+               },
+               "mode" : "button",
+               "path" : "/user/hand/right/input/trigger"
+            },
+            {
+               "inputs" : {
+                  "pull" : {
+                     "output" : "/actions/default/in/action_grip"
+                  }
+               },
+               "mode" : "trigger",
+               "path" : "/user/hand/right/input/trigger"
             }
          ]
       },
