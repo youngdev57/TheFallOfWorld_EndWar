@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AppSettings:
     AppIdRealtime: 4decb687-3d7a-4d09-a1b3-cb15e04b2f79
-    AppIdChat: 
+    AppIdChat: feef8c13-8f07-4053-a672-4ce74ea27fb0
     AppIdVoice: 
     AppVersion: 
     UseNameServer: 1
@@ -25,27 +25,31 @@ MonoBehaviour:
     AuthMode: 0
     EnableLobbyStatistics: 0
     NetworkLogging: 1
-  DevRegion: kr
+  DevRegion: 
   PunLogging: 0
   EnableSupportLogger: 0
   RunInBackground: 1
   StartInOfflineMode: 0
   RpcList:
+  - C_Awake
+  - C_FixedUpdate
+  - C_LateUpdate
+  - C_OnDisable
+  - C_OnEnable
+  - C_Update
   - ClickRpc
   - DestroyRpc
   - DestroySpaceship
   - Fire
   - GetDamage
+  - GrabObj
+  - OnGrab
   - RangeOff
   - RangeOn
-  - RespawnSpaceship
-  - GetParent
-  - GrabObj
   - ReleaseObj
-  - CalculateMovement
-  - SetCollidingObj
-  - OnGrab
+  - RespawnSpaceship
   - Restore
+<<<<<<< HEAD
   - C_Awake
   - C_FixedUpdate
   - C_LateUpdate
@@ -54,6 +58,8 @@ MonoBehaviour:
   - C_Update
   - C_GetBonePositions
   - C_GetBoneRotations
+=======
+>>>>>>> 0424ece204f3ac40f44fbfa7e8dd954960be9a39
   DisableAutoOpenWizard: 1
-  ShowSettings: 0
-  DevRegionSetOnce: 1
+  ShowSettings: 1
+  DevRegionSetOnce: 0
