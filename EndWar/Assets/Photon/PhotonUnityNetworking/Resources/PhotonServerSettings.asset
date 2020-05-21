@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: PhotonServerSettings
   m_EditorClassIdentifier: 
   AppSettings:
-    AppIdRealtime: 4decb687-3d7a-4d09-a1b3-cb15e04b2f79
-    AppIdChat: feef8c13-8f07-4053-a672-4ce74ea27fb0
+    AppIdRealtime: 
+    AppIdChat: 
     AppIdVoice: 
     AppVersion: 
     UseNameServer: 1
@@ -30,36 +30,7 @@ MonoBehaviour:
   EnableSupportLogger: 0
   RunInBackground: 1
   StartInOfflineMode: 0
-  RpcList:
-  - C_Awake
-  - C_FixedUpdate
-  - C_LateUpdate
-  - C_OnDisable
-  - C_OnEnable
-  - C_Update
-  - ClickRpc
-  - DestroyRpc
-  - DestroySpaceship
-  - Fire
-  - GetDamage
-  - GrabObj
-  - OnGrab
-  - RangeOff
-  - RangeOn
-  - ReleaseObj
-  - RespawnSpaceship
-  - Restore
-<<<<<<< HEAD
-  - C_Awake
-  - C_FixedUpdate
-  - C_LateUpdate
-  - C_OnDisable
-  - C_OnEnable
-  - C_Update
-  - C_GetBonePositions
-  - C_GetBoneRotations
-=======
->>>>>>> 0424ece204f3ac40f44fbfa7e8dd954960be9a39
-  DisableAutoOpenWizard: 1
-  ShowSettings: 1
+  RpcList: []
+  DisableAutoOpenWizard: 0
+  ShowSettings: 0
   DevRegionSetOnce: 0
