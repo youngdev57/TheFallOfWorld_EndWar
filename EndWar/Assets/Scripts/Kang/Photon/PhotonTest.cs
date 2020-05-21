@@ -5,6 +5,9 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Photon.Pun;
 using Photon.Realtime;
+using System.Text.RegularExpressions;
+using WebSocketSharp;
+using System.Text;
 
 public class PhotonTest : MonoBehaviourPunCallbacks
 {
@@ -16,13 +19,153 @@ public class PhotonTest : MonoBehaviourPunCallbacks
     public Transform[] playerSpawnPoints;
     public Transform basePoint;
 
-    public Text nameInput;
+    //로그인 UI
+    public InputField emailInput;
+    public InputField passInput;
     public Button loginButton;
+    //닉네임 설정 UI
+    public GameObject gidBox;
+    public InputField gidInput;
+    public Button gidButton;
+    //닉네임 설정 UI Alert창
+    public GameObject alertBox;
+    public Text alertText;
+    public Button alertButton;
+
 
     public int destination;
 
     //최초 입장인지 판단
     bool isFirstConnection = true;
+
+    /** 웹서버 통한 로그인 작업 **/
+    IEnumerator LoginCheck() {
+        WWWForm form = new WWWForm();
+
+        form.AddField("email", emailInput.text);
+        form.AddField("pwd", passInput.text);
+
+        Debug.Log(emailInput.text + " 메일주소");
+        Debug.Log(passInput.text + " 비번");
+
+        WWW www = new WWW("http://ec2-15-165-174-206.ap-northeast-2.compute.amazonaws.com:8080/_EndWar/gameAccess.do", form);
+
+        yield return www;
+
+        StartCoroutine(WaitForLogin(www));    
+    }
+
+    IEnumerator WaitForLogin(WWW www)
+    {
+        yield return www;
+
+        string[] result = www.text.Split(',');
+
+        Debug.Log(result + " 로그인 결과!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+
+        switch(result[0])
+        {
+            case "-1":
+                ShowAlert("회원 없음");
+                break;
+            case "0":
+                ShowAlert("비밀번호 틀림");
+                break;
+            case "1":   // GID 없음
+                userId = emailInput.text;
+                ShowGid();
+                break;
+            case "2":   // GID 있음
+                //게임 접속 진행
+                userId = result[1];
+                WebLogin();
+                break;
+        }
+    }
+
+    IEnumerator GidCheck()
+    {
+        WWWForm form = new WWWForm();
+
+        form.AddField("email", userId);
+        form.AddField("gid", gidInput.text);
+
+        WWW www = new WWW("http://ec2-15-165-174-206.ap-northeast-2.compute.amazonaws.com:8080/_EndWar/createGid.do", form);
+
+        yield return www;
+
+        StartCoroutine(WaitForGid(www));
+    }
+
+    IEnumerator WaitForGid(WWW www)
+    {
+        yield return www;
+
+        string[] text = www.text.Split(',');
+
+        if(text[0] == "-1")
+        {
+            ShowAlert("이미 존재하는 아이디입니다.");
+        } else
+        {
+            ShowAlert("생성 완료!");
+            gidBox.SetActive(false);
+            userId = text[1];
+            WebLogin();
+        }
+    }
+
+    void ShowGid()
+    {
+        gidBox.SetActive(true);
+    }
+
+    void ShowAlert(string txt)
+    {
+        alertText.text = txt;
+        alertBox.SetActive(true);
+    }
+
+    public void OnClickGidButton()
+    {
+        if(CheckVaild(gidInput.text))
+        {
+            byte[] txtArr = Encoding.UTF8.GetBytes(gidInput.text);
+
+            if(txtArr.Length > 18 || txtArr.Length < 4)
+            {
+                ShowAlert("게임 아이디가 너무 짧거나 깁니다.");
+            } 
+            else
+            {
+                //닉네임 만들기
+                StartCoroutine(GidCheck());
+            }
+
+            Debug.Log("유효성 검사 완료, 바이트 수 : " + txtArr.Length);
+        } else
+        {
+            ShowAlert("잘못된 게임 아이디입니다.\n특수문자, 공백 불가");
+        }
+    }
+
+    public void OnClickAlertButton()
+    {
+        alertBox.SetActive(false);
+    }
+
+    public bool CheckVaild(string txt)
+    {
+        bool isMatch = false;
+        Regex rx;
+
+        rx = new Regex(@"^[a-zA-Z0-9가-힣]*$", RegexOptions.None);
+
+        isMatch = (string.IsNullOrEmpty(txt)) ? false : rx.IsMatch(txt);
+
+        return isMatch;
+    }
+    /** 로그인 작업 문단 끝 **/
 
     private void Awake()
     {
@@ -111,11 +254,28 @@ public class PhotonTest : MonoBehaviourPunCallbacks
         }
     }
 
+    public void OnClickLogin()
+    {
+        StartCoroutine(LoginCheck());
+    }
+
+    public void WebLogin()
+    {
+        loginButton.interactable = false;  //로그인 버튼 여러번 누르는 것 방지
+        PhotonNetwork.NickName = userId;
+
+        destination = 1;
+
+        LeaveRoom();
+        ChangeRoom(destination);
+        isFirstConnection = false;
+    }
+
     public void Login()
     {
         loginButton.interactable = false;  //로그인 버튼 여러번 누르는 것 방지
-        userId = nameInput.text;
-        PhotonNetwork.NickName = nameInput.text;
+        userId = emailInput.text;
+        PhotonNetwork.NickName = emailInput.text;
 
         destination = 1;
 
