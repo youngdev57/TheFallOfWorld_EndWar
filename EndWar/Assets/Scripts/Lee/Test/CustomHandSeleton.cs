@@ -11,11 +11,18 @@ public class CustomHandSeleton : MonoBehaviourPun
     [Space(10)]
     public Animator anim;
     public WHATHAND hand;
+    public PhotonView myPv;
 
     SteamVR_Behaviour_Pose pose;
 
     void Awake()
     {
+        if (myPv == null)
+            myPv = GetComponent<PhotonView>();
+
+        if (!myPv.IsMine)
+            return;
+
         if (hand == WHATHAND.LEFT)
              transform.parent = transform.parent.GetComponent<ViveManager>().leftHand.transform;
         if(hand == WHATHAND.RIGHT)
@@ -40,11 +47,10 @@ public class CustomHandSeleton : MonoBehaviourPun
 
     void Good(SteamVR_Action_Boolean action, SteamVR_Input_Sources source, bool active )
     {
-        float axis = 0;
         if (active)
-            axis = Mathf.Lerp(0f, 1f, 0.5f);
-
-        anim.SetFloat("GoodBlend", axis);
+            anim.SetFloat("TriggerBlend", 1f);
+        else
+            anim.SetFloat("TriggerBlend", 0.9f);
     }
 
 }
