@@ -376,6 +376,11 @@ PrefabInstance:
       propertyPath: loginButton
       value: 
       objectReference: {fileID: 1238912945}
+    - target: {fileID: 4082013007286795518, guid: f8d573ed1371915468b8a86734360b8f,
+        type: 3}
+      propertyPath: emailInput
+      value: 
+      objectReference: {fileID: 406509654}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8d573ed1371915468b8a86734360b8f, type: 3}
 --- !u!114 &154255787 stripped
