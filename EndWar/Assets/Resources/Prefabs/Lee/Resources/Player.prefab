@@ -534,7 +534,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Hand: 2
   ToggleGripButton:
-    actionPath: /actions/default/in/Grip
+    actionPath: /actions/default/in/SkillTrigger
     needsReinit: 0
   position:
     actionPath: /actions/default/in/Pose
@@ -1772,22 +1772,22 @@ PrefabInstance:
     - target: {fileID: 855395735350190143, guid: 8549519f646750f4b98c867e9aa63046,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.12718216
+      value: -0.12718208
       objectReference: {fileID: 0}
     - target: {fileID: 855395735350190143, guid: 8549519f646750f4b98c867e9aa63046,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.13463382
+      value: -0.13463373
       objectReference: {fileID: 0}
     - target: {fileID: 855395735350190143, guid: 8549519f646750f4b98c867e9aa63046,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.62891877
+      value: -0.62891865
       objectReference: {fileID: 0}
     - target: {fileID: 855395735350190143, guid: 8549519f646750f4b98c867e9aa63046,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7550892
+      value: 0.75508934
       objectReference: {fileID: 0}
     - target: {fileID: 855395735350190143, guid: 8549519f646750f4b98c867e9aa63046,
         type: 3}
@@ -1822,22 +1822,22 @@ PrefabInstance:
     - target: {fileID: 1147971906160174401, guid: 8549519f646750f4b98c867e9aa63046,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.14096488
+      value: -0.1409649
       objectReference: {fileID: 0}
     - target: {fileID: 1147971906160174401, guid: 8549519f646750f4b98c867e9aa63046,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.09313087
+      value: 0.0931309
       objectReference: {fileID: 0}
     - target: {fileID: 1147971906160174401, guid: 8549519f646750f4b98c867e9aa63046,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.027040627
+      value: -0.027040571
       objectReference: {fileID: 0}
     - target: {fileID: 1147971906160174401, guid: 8549519f646750f4b98c867e9aa63046,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.98525345
+      value: -0.9852535
       objectReference: {fileID: 0}
     - target: {fileID: 1562023642246111084, guid: 8549519f646750f4b98c867e9aa63046,
         type: 3}
@@ -1972,17 +1972,17 @@ PrefabInstance:
     - target: {fileID: 2964283423943156230, guid: 8549519f646750f4b98c867e9aa63046,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.016748888
+      value: -0.016749013
       objectReference: {fileID: 0}
     - target: {fileID: 2964283423943156230, guid: 8549519f646750f4b98c867e9aa63046,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.34225637
+      value: -0.34225655
       objectReference: {fileID: 0}
     - target: {fileID: 2964283423943156230, guid: 8549519f646750f4b98c867e9aa63046,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.93760264
+      value: 0.9376025
       objectReference: {fileID: 0}
     - target: {fileID: 3185091047407652643, guid: 8549519f646750f4b98c867e9aa63046,
         type: 3}
@@ -2494,6 +2494,12 @@ PrefabInstance:
       propertyPath: m_LocalRotation.w
       value: 0.6833865
       objectReference: {fileID: 0}
+    - target: {fileID: 8405057841083664396, guid: 8549519f646750f4b98c867e9aa63046,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: -3248716571764886803, guid: 320b1c2af77554f99a1658df4a6d3d5c,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8549519f646750f4b98c867e9aa63046, type: 3}
 --- !u!4 &103085696650355397 stripped
