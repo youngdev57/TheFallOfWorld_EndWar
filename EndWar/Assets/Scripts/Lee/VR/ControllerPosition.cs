@@ -12,9 +12,7 @@ public class ControllerPosition : MonoBehaviourPun
     ViveManager viveManager;
     void Awake()
     {
-        if (SteamVR_Render.Top())
-            viveManager = SteamVR_Render.Top().origin.GetComponent<ViveManager>();
-
+        FindVive();
         FindParent();
         myPv = GetComponent<PhotonView>();
     }
@@ -42,6 +40,19 @@ public class ControllerPosition : MonoBehaviourPun
                 transform.position = viveManager.rightHand.transform.position;
                 transform.rotation = viveManager.rightHand.transform.rotation;
                 break;
+        }
+    }
+
+    public void FindVive()
+    {
+        ViveManager[] vive = FindObjectsOfType<ViveManager>(); 
+        for (int i = 0; i < vive.Length; i++)
+        {
+            if (!vive[i].transform.FindChild("Head"))
+            {
+                viveManager = vive[i];
+                return;
+            }
         }
     }
 

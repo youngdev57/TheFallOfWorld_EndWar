@@ -36,8 +36,11 @@ public class CustomHandSeleton : MonoBehaviourPun
 
     void OnDisable()
     {
-        gripAction[pose.inputSource].onChange -= Grip;
-        goodAction[pose.inputSource].onActiveChange -= Good;
+        if (myPv.IsMine)
+        { 
+            gripAction[pose.inputSource].onChange -= Grip;
+            goodAction[pose.inputSource].onActiveChange -= Good;
+        }
     }
 
     [PunRPC]

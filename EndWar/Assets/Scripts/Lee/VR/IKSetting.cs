@@ -13,25 +13,22 @@ public class IKSetting : MonoBehaviour
 
     void Start()
     {
-        vive = SteamVR_Render.Top().origin.GetComponent<ViveManager>();
-
         if (hand == WHATHAND.HEAD)
         {
+            vive = transform.parent.GetComponent<ViveManager>();
             vive.myBody.Head = gameObject;
         }
         if (hand == WHATHAND.LEFT)
         {
+            vive = transform.parent.parent.GetComponent<ViveManager>();
             vive.leftIK.Target = wrist;
             vive.leftGrip.HandSkeleton = GetComponent<CustomHandSeleton>();
-            //vive.leftGrip.HandSkeleton = GetComponent<SteamVR_Behaviour_Skeleton>();
-            //GetComponent<SteamVR_TrackedObject>().SetDeviceIndex((int)vive.leftHand.GetComponent<SteamVR_TrackedObject>().index);
         }
         if (hand == WHATHAND.RIGHT)
         {
+            vive = transform.parent.parent.GetComponent<ViveManager>();
             vive.rightIK.Target = wrist;
             vive.rightGrip.HandSkeleton = GetComponent<CustomHandSeleton>();
-            //vive.rightGrip.HandSkeleton = GetComponent<SteamVR_Behaviour_Skeleton>();
-            //GetComponent<SteamVR_TrackedObject>().SetDeviceIndex((int)vive.rightHand.GetComponent<SteamVR_TrackedObject>().index);
         }
     }  
 }
