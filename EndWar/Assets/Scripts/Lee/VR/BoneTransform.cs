@@ -17,4 +17,16 @@ public class BoneTransform : MonoBehaviour
     {
         return boneTransform;
     }
+
+    public void GetBone()
+    {
+        for (int i = 0; i < boneTr.Length; i++)
+        {
+            if (boneTr[i].GetChild(0))
+            {
+                
+
+            }
+        }
+    }
 }

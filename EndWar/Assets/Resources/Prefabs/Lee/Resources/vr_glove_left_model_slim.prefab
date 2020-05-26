@@ -916,6 +916,7 @@ GameObject:
   - component: {fileID: 7621750305195119810}
   - component: {fileID: 3546379655989028652}
   - component: {fileID: 8299187324226059361}
+  - component: {fileID: 712987635787031114}
   m_Layer: 0
   m_Name: vr_glove_left_model_slim
   m_TagString: Untagged
@@ -1026,6 +1027,43 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hand: 1
   wrist: {fileID: 2103427090312104201}
+--- !u!114 &712987635787031114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2106954234162214251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 355b17eff2b68e449b6be78eb337e827, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boneTr:
+  - {fileID: 2103427088373192455}
+  - {fileID: 2103427086984912017}
+  - {fileID: 2103427087252247449}
+  - {fileID: 2103427090317808195}
+  - {fileID: 2103427084780403753}
+  - {fileID: 2103427086561313327}
+  - {fileID: 2103427088830513885}
+  - {fileID: 2103427086570195969}
+  - {fileID: 2103427087322481043}
+  - {fileID: 2103427086986717543}
+  - {fileID: 2103427087802211467}
+  - {fileID: 2103427084987091287}
+  - {fileID: 2103427087731767631}
+  - {fileID: 2103427085033360033}
+  - {fileID: 2103427085248679185}
+  - {fileID: 2103427086141071921}
+  - {fileID: 2103427090300735265}
+  - {fileID: 2103427084832120761}
+  - {fileID: 2103427090322871229}
+  - {fileID: 2103427086930999493}
+  - {fileID: 2103427088874784007}
+  - {fileID: 2103427088162577385}
+  - {fileID: 2103427087581029467}
+  - {fileID: 2103427088110825153}
 --- !u!1 &2106954234176798019
 GameObject:
   m_ObjectHideFlags: 0
