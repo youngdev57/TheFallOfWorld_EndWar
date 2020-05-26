@@ -50,6 +50,9 @@ public class ControllerPosition : MonoBehaviourPun
         Transform obj = null;
         switch (index)
         {
+            case 1:
+                obj = viveManager.origin.transform;
+                break;
             case 2:
                 obj = viveManager.leftHand.transform;
                 break;
