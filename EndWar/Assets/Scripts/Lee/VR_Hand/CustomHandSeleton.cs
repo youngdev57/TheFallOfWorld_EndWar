@@ -10,7 +10,6 @@ public class CustomHandSeleton : MonoBehaviourPun
     public SteamVR_Action_Boolean goodAction;
     [Space(10)]
     public Animator anim;
-    public WHATHAND hand;
     public PhotonView myPv;
 
     SteamVR_Behaviour_Pose pose;
@@ -23,11 +22,6 @@ public class CustomHandSeleton : MonoBehaviourPun
 
         if (!myPv.IsMine)
             return;
-
-        if (hand == WHATHAND.LEFT)
-             transform.parent = transform.parent.GetComponent<ViveManager>().leftHand.transform;
-        if (hand == WHATHAND.RIGHT)
-            transform.parent = transform.parent.GetComponent<ViveManager>().rightHand.transform;
 
         pose = GetComponentInParent<SteamVR_Behaviour_Pose>();
 
