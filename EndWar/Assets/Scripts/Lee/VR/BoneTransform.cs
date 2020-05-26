@@ -4,29 +4,36 @@ using UnityEngine;
 
 public class BoneTransform : MonoBehaviour
 {
-    public Transform[] boneTr;
+    public Transform wrist;
 
-    public static Transform[] boneTransform;
+    List<Transform> boneTr;
 
     void Start()
     {
-        boneTransform = boneTr;
+        boneTr = new List<Transform>();
+        boneTr.Add(wrist);
+        Init();
     }
 
-    public Transform[] GetBoneTr()
+    void Init()
     {
-        return boneTransform;
-    }
-
-    public void GetBone()
-    {
-        for (int i = 0; i < boneTr.Length; i++)
+        for (int i = 0; i < wrist.childCount; i++)
         {
-            if (boneTr[i].GetChild(0))
-            {
-                
+            Transform temp = wrist.GetChild(i);
 
+            for (int j = 0; true; j++)
+            {
+                boneTr.Add(temp);
+                if (temp.childCount != 0)
+                    temp = temp.GetChild(0);
+                else
+                    break;
             }
         }
+    }
+
+    public List<Transform> GetBone()
+    {
+        return boneTr;
     }
 }

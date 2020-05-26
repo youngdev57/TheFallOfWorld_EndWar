@@ -8,9 +8,8 @@ public class GripController : MonoBehaviourPun
 {
     public SteamVR_Input_Sources Hand;
     public SteamVR_Action_Boolean ToggleGripButton;
-    public SteamVR_Action_Pose position;
-    public SteamVR_Behaviour_Skeleton HandSkeleton;
-    //public CustomHandSeleton HandSkeleton;
+    public SteamVR_Action_Pose position;    
+    public CustomHandSeleton HandSkeleton;
     public SteamVR_Behaviour_Skeleton PreviewSkeleton;
     public Grabber grabber;
 
@@ -121,6 +120,7 @@ public class GripController : MonoBehaviourPun
             if (OffsetObject.GetComponent<SteamVR_Skeleton_Poser>()&&HandSkeleton)
             {
                 HandSkeleton.transform.SetParent(OffsetObject, false);
+                HandSkeleton.SetBone(PreviewSkeleton.GetComponent<BoneTransform>(), 1);
                 //HandSkeleton.BlendToPoser(OffsetObject.GetComponent<SteamVR_Skeleton_Poser>(), 0f);
             }
 
@@ -152,7 +152,8 @@ public class GripController : MonoBehaviourPun
         if (OffsetObject.GetComponent<SteamVR_Skeleton_Poser>() && HandSkeleton)
         {
             HandSkeleton.transform.SetParent(transform, false);
-            HandSkeleton.BlendToSkeleton();
+            HandSkeleton.SetBone(PreviewSkeleton.GetComponent<BoneTransform>(), 0);
+            //HandSkeleton.BlendToSkeleton();
         }
         OffsetObject.GetComponent<GrabPoint>().Gripped = false;
         OffsetObject = null;

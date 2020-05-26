@@ -14,6 +14,7 @@ public class CustomHandSeleton : MonoBehaviourPun
     public PhotonView myPv;
 
     SteamVR_Behaviour_Pose pose;
+    BoneTransform boneTransform;
 
     void Awake()
     {
@@ -34,10 +35,37 @@ public class CustomHandSeleton : MonoBehaviourPun
         goodAction[pose.inputSource].onChange += Good;
     }
 
+    void Start()
+    {
+        boneTransform = GetComponent<BoneTransform>();
+    }
+
     void OnDisable()
     {
         gripAction[pose.inputSource].onChange -= Grip;
         goodAction[pose.inputSource].onActiveChange -= Good;
+    }
+
+    [PunRPC]
+    public void SetBone(BoneTransform bone, int index)
+    {
+        if (index == 0)
+        {
+            anim.enabled = true;
+        }
+        else if (index == 1)
+        {
+            anim.enabled = false;
+
+            List<Transform> temp = bone.GetBone();
+            List<Transform> myBone = boneTransform.GetBone();
+
+            for (int i = 0; i < temp.Count; i++)
+            {
+                myBone[i].position = temp[i].position;
+                myBone[i].rotation = temp[i].rotation;
+            }
+        }
     }
 
     void Grip(SteamVR_Action_Single action, SteamVR_Input_Sources source, float axis, float delta)
