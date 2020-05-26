@@ -25,7 +25,7 @@ public class CustomHandSeleton : MonoBehaviourPun
 
         if (hand == WHATHAND.LEFT)
              transform.parent = transform.parent.GetComponent<ViveManager>().leftHand.transform;
-        if(hand == WHATHAND.RIGHT)
+        if (hand == WHATHAND.RIGHT)
             transform.parent = transform.parent.GetComponent<ViveManager>().rightHand.transform;
 
         pose = GetComponentInParent<SteamVR_Behaviour_Pose>();
@@ -34,7 +34,7 @@ public class CustomHandSeleton : MonoBehaviourPun
         goodAction[pose.inputSource].onChange += Good;
     }
 
-    void OnDestroy()
+    void OnDisable()
     {
         gripAction[pose.inputSource].onChange -= Grip;
         goodAction[pose.inputSource].onActiveChange -= Good;
@@ -52,5 +52,4 @@ public class CustomHandSeleton : MonoBehaviourPun
         else
             anim.SetFloat("TriggerBlend", 0.9f);
     }
-
 }

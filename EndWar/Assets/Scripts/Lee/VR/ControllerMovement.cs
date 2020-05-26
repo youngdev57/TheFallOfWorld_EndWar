@@ -31,7 +31,8 @@ public class ControllerMovement : MonoBehaviourPun
 
     void Start()
     {
-        cameraTr = SteamVR_Render.Top().head;
+        if (SteamVR_Render.Top())
+            cameraTr = SteamVR_Render.Top().head;
     }
 
     void Update()
@@ -39,11 +40,11 @@ public class ControllerMovement : MonoBehaviourPun
         if (!myPv.IsMine)
             return;
 
-        /*if (openUI.GetStateDown(SteamVR_Input_Sources.LeftHand))
+        if (openUI.GetStateDown(SteamVR_Input_Sources.LeftHand))
         {
             uiCanvas.SetActive(true);
             gameObject.SetActive(false);
-        }*/
+        }
 
 
         //transform.rotation = Quaternion.Euler(new Vector3(0, cameraTr.eulerAngles.y, 0));

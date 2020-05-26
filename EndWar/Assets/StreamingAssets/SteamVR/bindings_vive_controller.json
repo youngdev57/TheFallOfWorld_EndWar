@@ -201,7 +201,7 @@
             {
                "inputs" : {
                   "click" : {
-                     "output" : "/actions/default/in/skilltrigger"
+                     "output" : "/actions/default/in/grip"
                   }
                },
                "mode" : "button",

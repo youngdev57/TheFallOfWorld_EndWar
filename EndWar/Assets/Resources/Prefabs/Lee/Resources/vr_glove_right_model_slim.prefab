@@ -877,6 +877,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48b83cbef98de3445903d74642a7dc26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skeletonAction:
+    actionPath: 
+    needsReinit: 0
+  inputSource: 0
+  rangeOfMotion: 1
+  skeletonRoot: {fileID: 0}
+  origin: {fileID: 0}
+  updatePose: 0
+  onlySetRotations: 0
+  skeletonBlend: 1
+  onBoneTransformsUpdated:
+    m_PersistentCalls:
+      m_Calls: []
+  onTransformUpdated:
+    m_PersistentCalls:
+      m_Calls: []
+  onTransformChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  onConnectedChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  onTrackingChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  mirroring: 0
+  fallbackPoser: {fileID: 0}
+  fallbackCurlAction:
+    actionPath: 
+    needsReinit: 0
   gripAction:
     actionPath: /actions/default/in/Action_Grip
     needsReinit: 0
@@ -886,6 +916,7 @@ MonoBehaviour:
   anim: {fileID: 4138855771496503110}
   hand: 2
   myPv: {fileID: 4739809230717535197}
+  skeletonBlend: 1
 --- !u!114 &4739809230717535197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -931,13 +962,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4044835983584005188}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9e82965e95b0c88468092ad049a244de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hand: 2
-  wrist: {fileID: 0}
+  wrist: {fileID: 4048626768717637858}
 --- !u!1 &4044835983793998812
 GameObject:
   m_ObjectHideFlags: 0

@@ -52,7 +52,6 @@ public class BodyTracking : MonoBehaviour
         if ((BodyRoot.transform.position - PastPos).magnitude > .005f)
         {
             FeetRoot.GetComponent<FootMovment>().HeightMultiplyer += .01f;
-            Debug.Log("Angle is: "+Quaternion.Angle(FeetRoot.rotation, Quaternion.Euler(0, BodyRoot.transform.rotation.eulerAngles.y, 0)));
             if (Quaternion.Angle(Quaternion.LookRotation(BodyRoot.transform.position - PastPos), Quaternion.Euler(0, Head.transform.rotation.eulerAngles.y, 0)) < 100)
             {
                 Hips.transform.rotation =Quaternion.RotateTowards(Hips.transform.rotation, Quaternion.Euler(0, Quaternion.LookRotation(BodyRoot.transform.position - PastPos).eulerAngles.y, 0) * HipOffsetRot,3);
