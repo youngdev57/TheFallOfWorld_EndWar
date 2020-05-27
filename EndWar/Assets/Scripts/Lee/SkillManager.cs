@@ -13,6 +13,7 @@ public class SkillManager : MonoBehaviourPun
     public Skill skill;
     public Projector skillProjector;
     public GameObject pointObj;
+    public Transform pivot;
 
     RaycastHit _hit;
     public PhotonView myPv;
@@ -54,7 +55,7 @@ public class SkillManager : MonoBehaviourPun
     //스킬 준비(범위, 조준을 보여줌)
     public void ShowRange()
     {
-        if(skill.type == SkillType.RADIAL)
+        if (skill.type == SkillType.RADIAL)
         {
             //범위 표시
             skillProjector.fieldOfView = skill.viewAngle;
@@ -64,11 +65,9 @@ public class SkillManager : MonoBehaviourPun
         }
         if (skill.type == SkillType.POINT)
         {
-            Transform camRay = this.transform;
+            Debug.DrawRay(pivot.position, pivot.forward);
 
-            Debug.DrawRay(camRay.position, camRay.forward);
-
-            if (Physics.Raycast(camRay.position, camRay.forward, out _hit, skill.distance, skill.layerMask)) //레이어를 Ground로 설정
+            if (Physics.Raycast(pivot.position, pivot.forward, out _hit, skill.distance, skill.layerMask)) //레이어를 Ground로 설정
             {
                 Vector3 point = _hit.point;
                 point.y += .2f;
@@ -78,9 +77,7 @@ public class SkillManager : MonoBehaviourPun
         }
         if(skill.type == SkillType.TARGET)
         {
-            Transform camRay = this.transform;
-
-            if (Physics.Raycast(camRay.position, camRay.forward, out _hit, skill.distance, skill.layerMask)) //레이어를 Ground로 설정
+            if (Physics.Raycast(pivot.position, pivot.forward, out _hit, skill.distance, skill.layerMask)) //레이어를 Ground로 설정
             {
                 skill.targeting = _hit.transform;
                 skill.target = skill.targeting.position;
@@ -114,7 +111,6 @@ public class SkillManager : MonoBehaviourPun
 
             myPv.RPC("RangeOff", RpcTarget.AllBuffered, null);
             Shoot();
-
         }
     }
 }
