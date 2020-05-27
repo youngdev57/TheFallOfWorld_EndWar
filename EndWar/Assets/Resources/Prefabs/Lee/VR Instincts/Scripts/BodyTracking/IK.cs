@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 [ExecuteInEditMode]
-public class IK : MonoBehaviour
+public class IK : MonoBehaviourPun
 {
     public Transform Upper;
     public Transform Lower;
@@ -22,10 +23,12 @@ public class IK : MonoBehaviour
     private Vector3 en;
     public bool CantReach;
 
+    public PhotonView myPv;
     // Update is called once per frame
     void Update()
     {
-        UpdateIK();
+        if(myPv.IsMine)
+            UpdateIK();
     }
     public void UpdateIK()
     {

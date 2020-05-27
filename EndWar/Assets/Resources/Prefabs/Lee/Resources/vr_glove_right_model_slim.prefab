@@ -885,7 +885,6 @@ MonoBehaviour:
     actionPath: /actions/default/in/OpenUI
     needsReinit: 0
   anim: {fileID: 4138855771496503110}
-  hand: 2
   myPv: {fileID: 4739809230717535197}
 --- !u!114 &4739809230717535197
 MonoBehaviour:
