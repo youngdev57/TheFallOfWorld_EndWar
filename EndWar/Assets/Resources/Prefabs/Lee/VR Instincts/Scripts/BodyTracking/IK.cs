@@ -25,7 +25,7 @@ public class IK : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
-         UpdateIK();
+        photonView.RPC("UpdateIK", RpcTarget.AllBuffered, null);
     }
 
     [PunRPC]
@@ -57,6 +57,7 @@ public class IK : MonoBehaviourPun
             CantReach = false;
         }
     }
+
     float CosAngle(float a, float b, float c) {
         if ( !float.IsNaN(Mathf.Acos((-(c * c) + (a * a) + (b * b)) / (-2 * a * b)) * Mathf.Rad2Deg))
         {
