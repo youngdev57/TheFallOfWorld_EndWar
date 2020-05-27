@@ -53,6 +53,7 @@ public class SkillManager : MonoBehaviourPun
 
 
     //스킬 준비(범위, 조준을 보여줌)
+    [PunRPC]
     public void ShowRange()
     {
         if (skill.type == SkillType.RADIAL)
@@ -103,7 +104,7 @@ public class SkillManager : MonoBehaviourPun
         if (grabAction.GetLastState(handType))
         {
             myPv.RPC("RangeOn", RpcTarget.AllBuffered, null);
-            ShowRange();
+            myPv.RPC("ShowRange", RpcTarget.AllBuffered, null);
         }
         //잡는 버튼을 땔때
         if (grabAction.GetLastStateUp(handType))

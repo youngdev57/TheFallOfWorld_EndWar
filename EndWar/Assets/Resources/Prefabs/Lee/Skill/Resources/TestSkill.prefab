@@ -67,7 +67,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: "\uBC84\uBE14\uD30C\uC774\uD130 \uAC13\uAC9C;; \uB2E4\uB4E4 \uD574\uBCF4\uC138\uC694!"
   prefab: {fileID: 0}
-  distance: 20
+  distance: 10
   n_damageCount: 3
   damage:
   - 10
@@ -83,7 +83,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 32
-  target: {x: 354.51028, y: 1.859451, z: 494.54462}
+  target: {x: 0, y: 0, z: 0}
   targeting: {fileID: 0}
   electricShock: 0
   freezing: 0
