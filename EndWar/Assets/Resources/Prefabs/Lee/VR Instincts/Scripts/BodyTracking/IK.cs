@@ -27,6 +27,8 @@ public class IK : MonoBehaviourPun
     {
          UpdateIK();
     }
+
+    [PunRPC]
     public void UpdateIK()
     {
         a = (Lower.position - Upper.position).magnitude;

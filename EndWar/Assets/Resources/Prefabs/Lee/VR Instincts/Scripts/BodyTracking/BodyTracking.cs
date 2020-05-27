@@ -50,17 +50,20 @@ public class BodyTracking : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
-        if (!myPv.IsMine)
-            return;
+        photonView.RPC("UpdateBody", RpcTarget.AllBuffered, null);
+    }
 
+    [PunRPC]
+    public void UpdateBody()
+    {
         BodyRoot.transform.position = new Vector3(Head.transform.position.x, CameraRig.transform.position.y, Head.transform.position.z);
         if ((BodyRoot.transform.position - PastPos).magnitude > .005f)
         {
             FeetRoot.GetComponent<FootMovment>().HeightMultiplyer += .01f;
             if (Quaternion.Angle(Quaternion.LookRotation(BodyRoot.transform.position - PastPos), Quaternion.Euler(0, Head.transform.rotation.eulerAngles.y, 0)) < 100)
             {
-                Hips.transform.rotation =Quaternion.RotateTowards(Hips.transform.rotation, Quaternion.Euler(0, Quaternion.LookRotation(BodyRoot.transform.position - PastPos).eulerAngles.y, 0) * HipOffsetRot,3);
-                FeetRoot.rotation = Quaternion.RotateTowards(FeetRoot.rotation, Quaternion.Euler(0, Quaternion.LookRotation(BodyRoot.transform.position - PastPos).eulerAngles.y, 0), 3) ;
+                Hips.transform.rotation = Quaternion.RotateTowards(Hips.transform.rotation, Quaternion.Euler(0, Quaternion.LookRotation(BodyRoot.transform.position - PastPos).eulerAngles.y, 0) * HipOffsetRot, 3);
+                FeetRoot.rotation = Quaternion.RotateTowards(FeetRoot.rotation, Quaternion.Euler(0, Quaternion.LookRotation(BodyRoot.transform.position - PastPos).eulerAngles.y, 0), 3);
                 if (CameraRig.GetComponent<VR_Player>().TouchingGround)
                 {
                     FeetRoot.GetComponent<FootMovment>().WalkM((BodyRoot.transform.position - PastPos).magnitude);
@@ -68,8 +71,8 @@ public class BodyTracking : MonoBehaviourPun
             }
             else
             {
-                Hips.transform.rotation = Quaternion.RotateTowards(Hips.transform.rotation, Quaternion.Euler(0, Quaternion.LookRotation(-(BodyRoot.transform.position - PastPos)).eulerAngles.y, 0) * HipOffsetRot,3);
-                FeetRoot.rotation = Quaternion.RotateTowards(FeetRoot.rotation, Quaternion.Euler(0, Quaternion.LookRotation(-(BodyRoot.transform.position - PastPos)).eulerAngles.y, 0),3);
+                Hips.transform.rotation = Quaternion.RotateTowards(Hips.transform.rotation, Quaternion.Euler(0, Quaternion.LookRotation(-(BodyRoot.transform.position - PastPos)).eulerAngles.y, 0) * HipOffsetRot, 3);
+                FeetRoot.rotation = Quaternion.RotateTowards(FeetRoot.rotation, Quaternion.Euler(0, Quaternion.LookRotation(-(BodyRoot.transform.position - PastPos)).eulerAngles.y, 0), 3);
                 if (CameraRig.GetComponent<VR_Player>().TouchingGround)
                 {
                     FeetRoot.GetComponent<FootMovment>().WalkM(-(BodyRoot.transform.position - PastPos).magnitude);
@@ -78,8 +81,8 @@ public class BodyTracking : MonoBehaviourPun
         }
         else
         {
-            Hips.transform.rotation =  Quaternion.RotateTowards(Hips.transform.rotation, Quaternion.Euler(0, BodyRoot.transform.rotation.eulerAngles.y, 0) * HipOffsetRot, 2.5f) ;
-            FeetRoot.rotation = Quaternion.RotateTowards(FeetRoot.rotation, Quaternion.Euler(0, BodyRoot.transform.rotation.eulerAngles.y, 0), 2) ;
+            Hips.transform.rotation = Quaternion.RotateTowards(Hips.transform.rotation, Quaternion.Euler(0, BodyRoot.transform.rotation.eulerAngles.y, 0) * HipOffsetRot, 2.5f);
+            FeetRoot.rotation = Quaternion.RotateTowards(FeetRoot.rotation, Quaternion.Euler(0, BodyRoot.transform.rotation.eulerAngles.y, 0), 2);
 
             FeetRoot.GetComponent<FootMovment>().HeightMultiplyer -= .01f;
         }
@@ -100,25 +103,26 @@ public class BodyTracking : MonoBehaviourPun
                     BodyRoot.transform.rotation = Quaternion.RotateTowards(BodyRoot.transform.rotation, Quaternion.Euler(0, 90, 0) * Quaternion.Euler(0, Quaternion.FromToRotation(Vector3.forward, LeftArm.Target.position - BodyRoot.transform.position).eulerAngles.y, 0) * TorsoRotation, 3);
                 }
             }
-            RightArm.UpdateIK();
-            LeftArm.UpdateIK();
+            RightArm.GetComponent<PhotonView>().RPC("UpdateIK", RpcTarget.AllBuffered, null);
+            LeftArm.GetComponent<PhotonView>().RPC("UpdateIK", RpcTarget.AllBuffered, null);
         }
-        
-        Torso.transform.position= BodyRoot.transform.rotation * Quaternion.Euler((1-Head.transform.localPosition.y/DefaultHeight)*rotationWhenCrouched,0,0) * (TorsoOffset+HeadOffset)+Head.transform.position-(Quaternion.Euler(0, Head.transform.rotation.eulerAngles.y, 0) * TorsoRotation*Vector3.forward  *(0.3f)* (FixEuler(Head.transform.rotation.eulerAngles.x)/ 180));
-        Hips.transform.position= BodyRoot.transform.rotation * Quaternion.Euler((1 - Head.transform.localPosition.y / DefaultHeight) * rotationWhenCrouched, 0, 0) * (HipOffset + HeadOffset) + Head.transform.position - (Quaternion.Euler(0, Head.transform.rotation.eulerAngles.y, 0) * TorsoRotation * Vector3.forward * (0.3f) * (FixEuler(Head.transform.rotation.eulerAngles.x) / 180));
+
+        Torso.transform.position = BodyRoot.transform.rotation * Quaternion.Euler((1 - Head.transform.localPosition.y / DefaultHeight) * rotationWhenCrouched, 0, 0) * (TorsoOffset + HeadOffset) + Head.transform.position - (Quaternion.Euler(0, Head.transform.rotation.eulerAngles.y, 0) * TorsoRotation * Vector3.forward * (0.3f) * (FixEuler(Head.transform.rotation.eulerAngles.x) / 180));
+        Hips.transform.position = BodyRoot.transform.rotation * Quaternion.Euler((1 - Head.transform.localPosition.y / DefaultHeight) * rotationWhenCrouched, 0, 0) * (HipOffset + HeadOffset) + Head.transform.position - (Quaternion.Euler(0, Head.transform.rotation.eulerAngles.y, 0) * TorsoRotation * Vector3.forward * (0.3f) * (FixEuler(Head.transform.rotation.eulerAngles.x) / 180));
         Torso.transform.rotation = BodyRoot.transform.rotation * Quaternion.Euler((1 - Head.transform.localPosition.y / DefaultHeight) * rotationWhenCrouched, 0, 0) * TorsoOffsetRotation;
         //Debug.Log(FixEuler(Head.transform.rotation.eulerAngles.x) + 90);
-        HeadRoot.transform.position = Head.transform.position+ ( Head.transform.rotation * HeadOffset);
-        HeadRoot.transform.rotation = Head.transform.rotation* HeadRotation;
-        FeetRoot.position = new Vector3(Torso.transform.position.x,CameraRig.transform.position.y,Torso.transform.position.z);
+        HeadRoot.transform.position = Head.transform.position + (Head.transform.rotation * HeadOffset);
+        HeadRoot.transform.rotation = Head.transform.rotation * HeadRotation;
+        FeetRoot.position = new Vector3(Torso.transform.position.x, CameraRig.transform.position.y, Torso.transform.position.z);
 
-        
-        
+
+
         PastPos = BodyRoot.transform.position;
-        RightArm.UpdateIK();
-        LeftArm.UpdateIK();
+        RightArm.GetComponent<PhotonView>().RPC("UpdateIK", RpcTarget.AllBuffered, null);
+        LeftArm.GetComponent<PhotonView>().RPC("UpdateIK", RpcTarget.AllBuffered, null);
 
     }
+
     float FixEuler(float angle)
     {
         if(angle < 180)
