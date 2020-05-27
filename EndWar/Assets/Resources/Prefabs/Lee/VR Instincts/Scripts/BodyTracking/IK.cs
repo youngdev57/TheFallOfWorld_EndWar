@@ -22,13 +22,10 @@ public class IK : MonoBehaviourPun
     private float c;
     private Vector3 en;
     public bool CantReach;
-
-    public PhotonView myPv;
     // Update is called once per frame
     void Update()
     {
-        if(myPv.IsMine)
-            UpdateIK();
+         UpdateIK();
     }
     public void UpdateIK()
     {

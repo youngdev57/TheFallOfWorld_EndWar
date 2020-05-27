@@ -39,7 +39,7 @@ public class PoleGrip : MonoBehaviour
             if (newpose.magnitude < GetComponent<CapsuleCollider>().height / 2 && !RightHandGrip.Gripped)
             {
                 RightHandGrip.transform.parent.position = newpose + transform.position;
-                RightHandGrip.transform.parent.rotation = Quaternion.LookRotation(-((RightHand.position) - RightHandGrip.transform.parent.position), transform.up);
+                //RightHandGrip.transform.parent.rotation = Quaternion.LookRotation(-((RightHand.position) - RightHandGrip.transform.parent.position), transform.up);
 
                 RightHandGrip.UpdateOffset();
             }

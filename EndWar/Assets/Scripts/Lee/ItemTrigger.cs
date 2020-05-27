@@ -7,10 +7,26 @@ public class ItemTrigger : MonoBehaviourPun
 {
     public Collider coll;
 
+    int index = 0;
+
     [PunRPC]
     public void OnGrab(bool isGrab)
     {
-        coll.isTrigger = isGrab;
-        GetComponent<Rigidbody>().useGravity = !isGrab;
+        if (isGrab)
+        {
+            index++;
+            coll.isTrigger = isGrab;
+            GetComponent<Rigidbody>().useGravity = !isGrab;
+        }
+        else
+        {
+            index--;
+
+            if (index == 0)
+            {
+                coll.isTrigger = isGrab;
+                GetComponent<Rigidbody>().useGravity = !isGrab;
+            }
+        }
     }
 }

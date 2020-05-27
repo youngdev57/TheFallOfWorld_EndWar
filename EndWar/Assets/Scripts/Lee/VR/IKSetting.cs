@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR;
+using Photon.Pun;
 
 public enum WHATHAND { HEAD, LEFT, RIGHT}
-public class IKSetting : MonoBehaviour
+public class IKSetting : MonoBehaviourPun
 {
     public WHATHAND hand;
     public Transform wrist;
@@ -13,20 +14,26 @@ public class IKSetting : MonoBehaviour
 
     void Start()
     {
+        vive = transform.parent.GetComponent<ViveManager>();
+
         if (hand == WHATHAND.HEAD)
         {
-            vive = transform.parent.GetComponent<ViveManager>();
+            vive = transform.parent.parent.GetComponent<ViveManager>();
             vive.myBody.Head = gameObject;
         }
         if (hand == WHATHAND.LEFT)
         {
-            vive = transform.parent.parent.GetComponent<ViveManager>();
-            vive.leftIK.Target = wrist;
+            if(photonView.IsMine)
+                vive = transform.parent.parent.GetComponent<ViveManager>();
+
             vive.leftGrip.HandSkeleton = GetComponent<CustomHandSeleton>();
+            vive.leftIK.Target = wrist;
         }
         if (hand == WHATHAND.RIGHT)
         {
-            vive = transform.parent.parent.GetComponent<ViveManager>();
+            if (photonView.IsMine)
+                vive = transform.parent.parent.GetComponent<ViveManager>();
+
             vive.rightIK.Target = wrist;
             vive.rightGrip.HandSkeleton = GetComponent<CustomHandSeleton>();
         }

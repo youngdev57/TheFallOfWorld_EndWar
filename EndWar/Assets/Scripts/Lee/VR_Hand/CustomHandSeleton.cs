@@ -11,6 +11,7 @@ public class CustomHandSeleton : MonoBehaviourPun
     [Space(10)]
     public Animator anim;
     public PhotonView myPv;
+    public WHATHAND hand;
 
     SteamVR_Behaviour_Pose pose;
     BoneTransform boneTransform;

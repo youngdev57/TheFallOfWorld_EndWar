@@ -60,21 +60,23 @@ public class ControllerPosition : MonoBehaviourPun
 
     public void FindParent()
     {
-        Transform obj = null;
-        switch (index)
-        {
-            case 1:
-                obj = viveManager.origin.transform;
-                break;
-            case 2:
-                obj = viveManager.leftHand.transform;
-                break;
-            case 3:
-                obj = viveManager.rightHand.transform;
-                break;
-        }
+        Transform obj = viveManager.origin.transform;
 
-        if (obj != null && !obj.Find(gameObject.name))
+        if(index == 1)
+            obj = viveManager.myBody.transform;
+
+        if (photonView.IsMine)
+            switch (index)
+            {
+                case 2:
+                    obj = viveManager.leftHand.transform;
+                    break;
+                case 3:
+                    obj = viveManager.rightHand.transform;
+                    break;
+            }
+
+        if (obj != null && !obj.Find(gameObject.name) && index != 0)
             transform.parent = obj;
     }
 }

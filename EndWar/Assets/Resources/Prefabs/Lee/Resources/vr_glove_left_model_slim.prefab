@@ -975,6 +975,7 @@ MonoBehaviour:
     needsReinit: 0
   anim: {fileID: 2048970935872870455}
   myPv: {fileID: 7621750305195119810}
+  hand: 1
 --- !u!114 &7621750305195119810
 MonoBehaviour:
   m_ObjectHideFlags: 0

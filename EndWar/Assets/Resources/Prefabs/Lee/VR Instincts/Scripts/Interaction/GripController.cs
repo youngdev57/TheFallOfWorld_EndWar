@@ -152,6 +152,7 @@ public class GripController : MonoBehaviourPun
         if (OffsetObject.GetComponent<SteamVR_Skeleton_Poser>() && HandSkeleton)
         {
             HandSkeleton.transform.SetParent(transform, false);
+            HandSkeleton.GetComponent<ControllerPosition>().FindParent();
             HandSkeleton.SetBone(PreviewSkeleton.GetComponent<BoneTransform>(), 0);
             //HandSkeleton.BlendToSkeleton();
         }
