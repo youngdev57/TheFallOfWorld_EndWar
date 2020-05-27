@@ -621,7 +621,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Hand: 2
   ToggleGripButton:
-    actionPath: /actions/default/in/Grip
+    actionPath: /actions/default/in/SkillTrigger
     needsReinit: 0
   position:
     actionPath: /actions/default/in/Pose
