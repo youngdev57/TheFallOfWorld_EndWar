@@ -354,6 +354,7 @@ SkinnedMeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -365,6 +366,7 @@ SkinnedMeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -381,7 +383,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 4300000, guid: 320b1c2af77554f99a1658df4a6d3d5c, type: 3}
+  m_Mesh: {fileID: -3248716571764886803, guid: 320b1c2af77554f99a1658df4a6d3d5c, type: 3}
   m_Bones:
   - {fileID: 2909156676376007793}
   - {fileID: 7728580790160892033}
@@ -726,6 +728,7 @@ MonoBehaviour:
   SetRotation: 1
   OffsetEndRotation: {x: 0, y: 90, z: 37}
   CantReach: 0
+  myPv: {fileID: 0}
 --- !u!1 &3558582793453388888
 GameObject:
   m_ObjectHideFlags: 0
@@ -1124,6 +1127,7 @@ MonoBehaviour:
   SetRotation: 1
   OffsetEndRotation: {x: 90, y: -90, z: 0}
   CantReach: 0
+  myPv: {fileID: 0}
 --- !u!1 &5000799329728080105
 GameObject:
   m_ObjectHideFlags: 0
@@ -1179,6 +1183,7 @@ MonoBehaviour:
   SetRotation: 1
   OffsetEndRotation: {x: 0, y: 90, z: -143.2}
   CantReach: 0
+  myPv: {fileID: 0}
 --- !u!1 &5464122875820098039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1326,6 +1331,7 @@ MonoBehaviour:
   SetRotation: 1
   OffsetEndRotation: {x: -90, y: 90, z: 0}
   CantReach: 0
+  myPv: {fileID: 0}
 --- !u!1 &6589338529129654398
 GameObject:
   m_ObjectHideFlags: 0
@@ -1645,7 +1651,7 @@ GameObject:
   - component: {fileID: 3247740936213619951}
   - component: {fileID: 7969649621432331110}
   m_Layer: 0
-  m_Name: Robot Kyle
+  m_Name: Tracked Robot Kyle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
