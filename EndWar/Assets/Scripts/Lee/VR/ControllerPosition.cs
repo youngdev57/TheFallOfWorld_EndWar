@@ -9,6 +9,8 @@ public class ControllerPosition : MonoBehaviourPun
     public int index = 1;
     public PhotonView myPv;
 
+    public GameObject Head;
+
     ViveManager viveManager;
     void Awake()
     {
@@ -48,7 +50,7 @@ public class ControllerPosition : MonoBehaviourPun
         ViveManager[] vive = FindObjectsOfType<ViveManager>(); 
         for (int i = 0; i < vive.Length; i++)
         {
-            if (!vive[i].transform.FindChild("Head"))
+            if (!vive[i].transform.FindChild(Head.name))
             {
                 viveManager = vive[i];
                 return;
