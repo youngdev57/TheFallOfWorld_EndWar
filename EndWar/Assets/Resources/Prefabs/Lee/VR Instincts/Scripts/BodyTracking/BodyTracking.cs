@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class BodyTracking : MonoBehaviourPun, IPunObservable
+public class BodyTracking : MonoBehaviourPun
 {
     public float DefaultHeight;// = 1.62 is the normal height of a human;
     public float rotationWhenCrouched;
@@ -132,10 +132,5 @@ public class BodyTracking : MonoBehaviourPun, IPunObservable
         {
             return angle - 360;
         }
-    }
-
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-        throw new System.NotImplementedException();
     }
 }
