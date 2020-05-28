@@ -23,6 +23,14 @@ public class IK : MonoBehaviourPun
     private Vector3 en;
     public bool CantReach;
     // Update is called once per frame
+
+    PhotonView myPv;
+
+    void Start()
+    {
+        myPv = GetComponent<PhotonView>();
+    }
+
     void Update()
     {
         photonView.RPC("UpdateIK", RpcTarget.AllBuffered, null);

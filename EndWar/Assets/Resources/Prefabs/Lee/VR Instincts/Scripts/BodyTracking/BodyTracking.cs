@@ -44,13 +44,13 @@ public class BodyTracking : MonoBehaviourPun
         HipOffsetRot = Hips.transform.rotation;
         TorsoOffsetRotation = Torso.transform.rotation;
         HipOffsetRotation = Torso.transform.rotation;
-        myPv = transform.parent.GetComponent<PhotonView>();
+        myPv = GetComponent<PhotonView>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        photonView.RPC("UpdateBody", RpcTarget.AllBuffered, null);
+        myPv.RPC("UpdateBody", RpcTarget.AllBuffered, null);
     }
 
     [PunRPC]
