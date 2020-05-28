@@ -49,7 +49,8 @@ public class BodyTracking : MonoBehaviourPun
 
     void Update()
     {
-        UpdateBody();
+        if(myPv.IsMine)
+            UpdateBody();
     }
 
     public void UpdateBody()
@@ -101,8 +102,8 @@ public class BodyTracking : MonoBehaviourPun
                     BodyRoot.transform.rotation = Quaternion.RotateTowards(BodyRoot.transform.rotation, Quaternion.Euler(0, 90, 0) * Quaternion.Euler(0, Quaternion.FromToRotation(Vector3.forward, LeftArm.Target.position - BodyRoot.transform.position).eulerAngles.y, 0) * TorsoRotation, 3);
                 }
             }
-            RightArm.GetComponent<PhotonView>().RPC("UpdateIK", RpcTarget.AllBuffered, null);
-            LeftArm.GetComponent<PhotonView>().RPC("UpdateIK", RpcTarget.AllBuffered, null);
+            RightArm.UpdateIK();
+            LeftArm.UpdateIK();
         }
 
         Torso.transform.position = BodyRoot.transform.rotation * Quaternion.Euler((1 - Head.transform.localPosition.y / DefaultHeight) * rotationWhenCrouched, 0, 0) * (TorsoOffset + HeadOffset) + Head.transform.position - (Quaternion.Euler(0, Head.transform.rotation.eulerAngles.y, 0) * TorsoRotation * Vector3.forward * (0.3f) * (FixEuler(Head.transform.rotation.eulerAngles.x) / 180));
@@ -116,8 +117,8 @@ public class BodyTracking : MonoBehaviourPun
 
 
         PastPos = BodyRoot.transform.position;
-        RightArm.GetComponent<PhotonView>().RPC("UpdateIK", RpcTarget.AllBuffered, null);
-        LeftArm.GetComponent<PhotonView>().RPC("UpdateIK", RpcTarget.AllBuffered, null);
+        RightArm.UpdateIK();
+        LeftArm.UpdateIK();
 
     }
 

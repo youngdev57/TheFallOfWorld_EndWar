@@ -33,10 +33,10 @@ public class IK : MonoBehaviourPun
 
     void Update()
     {
-        UpdateIK();
+        if (myPv.IsMine)
+            UpdateIK();
     }
 
-    [PunRPC]
     public void UpdateIK()
     {
         a = (Lower.position - Upper.position).magnitude;
