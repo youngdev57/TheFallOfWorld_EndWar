@@ -937,6 +937,7 @@ Transform:
   m_Children:
   - {fileID: 2103427086974927529}
   - {fileID: 2103427088108546173}
+  - {fileID: 6134764313969961966}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1028,6 +1029,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hand: 1
   wrist: {fileID: 2103427090312104201}
+  pole: {fileID: 6134764313969961966}
 --- !u!114 &712987635787031114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1460,3 +1462,33 @@ Transform:
   m_Father: {fileID: 2103427087731767631}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0.0000024545989, y: 0.0000026146813, z: -0.000004695754}
+--- !u!1 &4341924129719966792
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6134764313969961966}
+  m_Layer: 0
+  m_Name: Left Arm IK Pole
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6134764313969961966
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4341924129719966792}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.154, z: -0.537}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2103427084949412527}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

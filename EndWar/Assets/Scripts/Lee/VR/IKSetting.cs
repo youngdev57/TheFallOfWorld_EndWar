@@ -9,6 +9,7 @@ public class IKSetting : MonoBehaviourPun
 {
     public WHATHAND hand;
     public Transform wrist;
+    public Transform pole;
 
     ViveManager vive;
 
@@ -29,7 +30,7 @@ public class IKSetting : MonoBehaviourPun
             vive.leftGrip.HandSkeleton = GetComponent<CustomHandSeleton>();
 
             vive.leftIK.Target = wrist;
-            vive.leftIK.Pole = transform;
+            vive.leftIK.Pole = pole;
         }
         if (hand == WHATHAND.RIGHT)
         {
@@ -39,7 +40,7 @@ public class IKSetting : MonoBehaviourPun
             vive.rightGrip.HandSkeleton = GetComponent<CustomHandSeleton>();
 
             vive.rightIK.Target = wrist;
-            vive.rightIK.Pole = transform;
+            vive.rightIK.Pole = pole;
         }
     }  
 }

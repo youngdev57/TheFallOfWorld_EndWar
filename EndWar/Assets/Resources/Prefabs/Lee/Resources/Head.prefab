@@ -63,6 +63,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hand: 0
   wrist: {fileID: 0}
+  pole: {fileID: 0}
 --- !u!114 &-4448164472874812825
 MonoBehaviour:
   m_ObjectHideFlags: 0
