@@ -47,13 +47,11 @@ public class BodyTracking : MonoBehaviourPun
         myPv = GetComponent<PhotonView>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        myPv.RPC("UpdateBody", RpcTarget.AllBuffered, null);
+        UpdateBody();
     }
 
-    [PunRPC]
     public void UpdateBody()
     {
         BodyRoot.transform.position = new Vector3(Head.transform.position.x, CameraRig.transform.position.y, Head.transform.position.z);

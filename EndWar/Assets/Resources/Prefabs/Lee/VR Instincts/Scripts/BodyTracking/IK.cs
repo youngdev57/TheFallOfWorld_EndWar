@@ -33,7 +33,7 @@ public class IK : MonoBehaviourPun
 
     void Update()
     {
-        photonView.RPC("UpdateIK", RpcTarget.AllBuffered, null);
+        UpdateIK();
     }
 
     [PunRPC]
