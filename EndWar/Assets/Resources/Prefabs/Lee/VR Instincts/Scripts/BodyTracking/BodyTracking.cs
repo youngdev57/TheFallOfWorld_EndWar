@@ -44,13 +44,11 @@ public class BodyTracking : MonoBehaviourPun
         HipOffsetRot = Hips.transform.rotation;
         TorsoOffsetRotation = Torso.transform.rotation;
         HipOffsetRotation = Torso.transform.rotation;
-        myPv = GetComponent<PhotonView>();
     }
 
     void Update()
     {
-        if(myPv.IsMine)
-            UpdateBody();
+        UpdateBody();
     }
 
     public void UpdateBody()
