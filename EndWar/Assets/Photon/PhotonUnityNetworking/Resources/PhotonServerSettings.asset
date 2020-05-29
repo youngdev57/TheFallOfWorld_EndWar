@@ -47,6 +47,8 @@ MonoBehaviour:
   - ShowRange
   - UpdateBody
   - UpdateIK
+  - Release
+  - Grip
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

@@ -15,7 +15,6 @@ public class CustomHandSeleton : MonoBehaviourPun
 
     SteamVR_Behaviour_Pose pose;
     BoneTransform boneTransform;
-    BoneTransform tempBone;
 
     void Awake()
     {
@@ -56,30 +55,6 @@ public class CustomHandSeleton : MonoBehaviourPun
             anim.enabled = false;
 
             List<Transform> temp = bone.GetBone();
-            List<Transform> myBone = boneTransform.GetBone();
-
-            for (int i = 0; i < temp.Count; i++)
-            {
-                myBone[i].position = temp[i].position;
-                myBone[i].rotation = temp[i].rotation;
-            }
-        }
-        //tempBone = bone;
-        //myPv.RPC("RPCSetBone", RpcTarget.AllBuffered, index);
-    }
-
-    [PunRPC]
-    void RPCSetBone(int index)
-    {
-        if (index == 0)
-        {
-            anim.enabled = true;
-        }
-        else if (index == 1)
-        {
-            anim.enabled = false;
-
-            List<Transform> temp = tempBone.GetBone();
             List<Transform> myBone = boneTransform.GetBone();
 
             for (int i = 0; i < temp.Count; i++)
