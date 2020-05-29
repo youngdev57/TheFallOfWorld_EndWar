@@ -55,7 +55,8 @@ public class GripController : MonoBehaviourPun
             }
             if (ToggleGripButton.GetStateUp(Hand))
             {
-                Release();
+                photonView.RPC("Release", RpcTarget.AllBuffered, null);
+                //Release();
             }
             if(PreviewSkeleton)
                 PreviewSkeleton.transform.gameObject.SetActive(false);
@@ -81,10 +82,13 @@ public class GripController : MonoBehaviourPun
             }
             if (ToggleGripButton.GetStateDown(Hand))
             {
-                Grip();
+                photonView.RPC("Grip", RpcTarget.AllBuffered, null);
+                //Grip();
             }
         }
     }
+
+    [PunRPC]
     private void Grip()
     {
         GameObject NewObject = grabber.ClosestGrabbable();
@@ -127,6 +131,8 @@ public class GripController : MonoBehaviourPun
             ConnectedObject.GetComponent<PhotonView>().RPC("OnGrab",RpcTarget.AllBuffered, true);
         }
     }
+
+    [PunRPC]
     private void Release()
     {
         grabber.FixedJoint.connectedBody = null;

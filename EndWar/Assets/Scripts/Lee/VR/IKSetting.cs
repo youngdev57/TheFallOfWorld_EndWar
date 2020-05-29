@@ -15,18 +15,14 @@ public class IKSetting : MonoBehaviourPun
 
     void Start()
     {
-        vive = transform.parent.GetComponent<ViveManager>();
+        vive = transform.parent.parent.GetComponent<ViveManager>();
 
         if (hand == WHATHAND.HEAD)
         {
-            vive = transform.parent.parent.GetComponent<ViveManager>();
             vive.myBody.Head = gameObject;
         }
         if (hand == WHATHAND.LEFT)
         {
-            if(photonView.IsMine)
-                vive = transform.parent.parent.GetComponent<ViveManager>();
-
             vive.leftGrip.HandSkeleton = GetComponent<CustomHandSeleton>();
 
             vive.leftIK.Target = wrist;
@@ -34,9 +30,6 @@ public class IKSetting : MonoBehaviourPun
         }
         if (hand == WHATHAND.RIGHT)
         {
-            if (photonView.IsMine)
-                vive = transform.parent.parent.GetComponent<ViveManager>();
-
             vive.rightGrip.HandSkeleton = GetComponent<CustomHandSeleton>();
 
             vive.rightIK.Target = wrist;

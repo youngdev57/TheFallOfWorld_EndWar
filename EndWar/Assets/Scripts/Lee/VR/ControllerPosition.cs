@@ -60,10 +60,7 @@ public class ControllerPosition : MonoBehaviourPun
 
     public void FindParent()
     {
-        Transform obj = viveManager.origin.transform;
-
-        if(index == 1)
-            obj = viveManager.myBody.transform;
+        Transform obj = viveManager.myBody.transform;
 
         if (photonView.IsMine)
             switch (index)
