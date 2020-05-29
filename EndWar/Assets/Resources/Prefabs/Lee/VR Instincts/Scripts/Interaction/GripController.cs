@@ -23,8 +23,6 @@ public class GripController : MonoBehaviourPun
         {
             if (DomanantGrip || !ConnectedObject.GetComponent<Interactable>().SecondGripped)
             {
-
-
                 if (ConnectedObject.GetComponent<Interactable>().touchCount == 0&& !ConnectedObject.GetComponent<Interactable>().SecondGripped)
                 {
                     grabber.FixedJoint.connectedBody = null;

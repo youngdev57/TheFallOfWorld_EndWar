@@ -36,20 +36,36 @@ public class CustomHandSeleton : MonoBehaviourPun
         boneTransform = GetComponent<BoneTransform>();
     }
 
-    void OnDisable()
+    /*void OnDisable()
     {
         if (myPv.IsMine)
         { 
             gripAction[pose.inputSource].onChange -= Grip;
             goodAction[pose.inputSource].onActiveChange -= Good;
         }
-    }
+    }*/
 
-    [PunRPC]
     public void SetBone(BoneTransform bone, int index)
     {
-        tempBone = bone;
-        myPv.RPC("RPCSetBone", RpcTarget.AllBuffered, index);
+        if (index == 0)
+        {
+            anim.enabled = true;
+        }
+        else if (index == 1)
+        {
+            anim.enabled = false;
+
+            List<Transform> temp = bone.GetBone();
+            List<Transform> myBone = boneTransform.GetBone();
+
+            for (int i = 0; i < temp.Count; i++)
+            {
+                myBone[i].position = temp[i].position;
+                myBone[i].rotation = temp[i].rotation;
+            }
+        }
+        //tempBone = bone;
+        //myPv.RPC("RPCSetBone", RpcTarget.AllBuffered, index);
     }
 
     [PunRPC]
