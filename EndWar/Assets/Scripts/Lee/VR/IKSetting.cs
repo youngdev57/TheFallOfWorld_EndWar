@@ -9,6 +9,7 @@ public class IKSetting : MonoBehaviourPun
 {
     public WHATHAND hand;
     public Transform wrist;
+    public Transform pole;
 
     ViveManager vive;
 
@@ -27,15 +28,19 @@ public class IKSetting : MonoBehaviourPun
                 vive = transform.parent.parent.GetComponent<ViveManager>();
 
             vive.leftGrip.HandSkeleton = GetComponent<CustomHandSeleton>();
+
             vive.leftIK.Target = wrist;
+            vive.leftIK.Pole = pole;
         }
         if (hand == WHATHAND.RIGHT)
         {
             if (photonView.IsMine)
                 vive = transform.parent.parent.GetComponent<ViveManager>();
 
-            vive.rightIK.Target = wrist;
             vive.rightGrip.HandSkeleton = GetComponent<CustomHandSeleton>();
+
+            vive.rightIK.Target = wrist;
+            vive.rightIK.Pole = pole;
         }
     }  
 }
