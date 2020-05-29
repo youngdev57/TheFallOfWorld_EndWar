@@ -121,27 +121,27 @@ public class CustomFPSController : MonoBehaviourPunCallbacks
 
     private void Start()
     {
-        if (photonView.IsMine)
-        {
+        //if (photonView.IsMine)
+        //{
             cam = GetComponentInChildren<Camera>();
             m_RigidBody = GetComponent<Rigidbody>();
             m_Capsule = GetComponent<CapsuleCollider>();
             mouseLook.Init(transform, cam.transform);
-            GetComponentInChildren<MeshRenderer>().enabled = false;
-        }
+            //GetComponentInChildren<MeshRenderer>().enabled = false;
+        //}
          
-        if (!photonView.IsMine)
-        {
-            GetComponentInChildren<Camera>().enabled = false;
-            GetComponentInChildren<AudioListener>().enabled = false;
-        }
+        //if (!photonView.IsMine)
+        //{
+        //    GetComponentInChildren<Camera>().enabled = false;
+        //    GetComponentInChildren<AudioListener>().enabled = false;
+        //}
     }
 
 
     private void Update()
     {
-        if (!photonView.IsMine)
-            return;
+        //if (!photonView.IsMine)
+        //    return;
 
         RotateView();
 
@@ -154,8 +154,8 @@ public class CustomFPSController : MonoBehaviourPunCallbacks
 
     private void FixedUpdate()
     {
-        if (!photonView.IsMine)
-            return;
+        //if (!photonView.IsMine)
+        //    return;
 
         GroundCheck();
         Vector2 input = GetInput();
