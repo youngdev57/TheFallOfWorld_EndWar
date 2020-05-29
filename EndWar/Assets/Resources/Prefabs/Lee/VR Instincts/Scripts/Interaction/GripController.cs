@@ -25,12 +25,13 @@ public class GripController : MonoBehaviourPun
             {
                 if (ConnectedObject.GetComponent<Interactable>().touchCount == 0&& !ConnectedObject.GetComponent<Interactable>().SecondGripped)
                 {
-                    grabber.FixedJoint.connectedBody = null;
+                    photonView.RPC("Test", RpcTarget.AllBuffered, null);
+                    /*grabber.FixedJoint.connectedBody = null;
                     grabber.StrongGrip.connectedBody = null;
 
                     ConnectedObject.transform.position = Vector3.MoveTowards(ConnectedObject.transform.position, transform.position - ConnectedObject.transform.rotation * OffsetObject.GetComponent<GrabPoint>().Offset, .25f);
                     ConnectedObject.transform.rotation = Quaternion.RotateTowards(ConnectedObject.transform.rotation, transform.rotation*Quaternion.Inverse( OffsetObject.GetComponent<GrabPoint>().RotationOffset), 10);
-                    grabber.FixedJoint.connectedBody = ConnectedObject.GetComponent<Rigidbody>();
+                    grabber.FixedJoint.connectedBody = ConnectedObject.GetComponent<Rigidbody>();*/
                 }
                 else if (ConnectedObject.GetComponent<Interactable>().touchCount > 0|| ConnectedObject.GetComponent<Interactable>().SecondGripped)
                 {
@@ -85,6 +86,17 @@ public class GripController : MonoBehaviourPun
             }
         }
     }
+    [PunRPC]
+    void Test()
+    {
+        grabber.FixedJoint.connectedBody = null;
+        grabber.StrongGrip.connectedBody = null;
+
+        ConnectedObject.transform.position = Vector3.MoveTowards(ConnectedObject.transform.position, transform.position - ConnectedObject.transform.rotation * OffsetObject.GetComponent<GrabPoint>().Offset, .25f);
+        ConnectedObject.transform.rotation = Quaternion.RotateTowards(ConnectedObject.transform.rotation, transform.rotation * Quaternion.Inverse(OffsetObject.GetComponent<GrabPoint>().RotationOffset), 10);
+        grabber.FixedJoint.connectedBody = ConnectedObject.GetComponent<Rigidbody>();
+    }
+
 
     [PunRPC]
     private void Grip()
