@@ -858,7 +858,6 @@ GameObject:
   - component: {fileID: 4739809230717535197}
   - component: {fileID: 4213094776476978376}
   - component: {fileID: 1661112387668532751}
-  - component: {fileID: 3502687606884194112}
   m_Layer: 0
   m_Name: vr_glove_right_model_slim
   m_TagString: Untagged
@@ -972,19 +971,6 @@ MonoBehaviour:
   hand: 2
   wrist: {fileID: 4048626768717637858}
   pole: {fileID: 3488125766287947127}
---- !u!114 &3502687606884194112
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4044835983584005188}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 355b17eff2b68e449b6be78eb337e827, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wrist: {fileID: 4048626768717637858}
 --- !u!1 &4044835983793998812
 GameObject:
   m_ObjectHideFlags: 0

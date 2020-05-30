@@ -49,6 +49,7 @@ MonoBehaviour:
   - UpdateIK
   - Release
   - Grip
+  - Test
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

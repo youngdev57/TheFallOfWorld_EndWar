@@ -23,15 +23,11 @@ public class IKSetting : MonoBehaviourPun
         }
         if (hand == WHATHAND.LEFT)
         {
-            vive.leftGrip.HandSkeleton = GetComponent<CustomHandSeleton>();
-
             vive.leftIK.Target = wrist;
             vive.leftIK.Pole = pole;
         }
         if (hand == WHATHAND.RIGHT)
         {
-            vive.rightGrip.HandSkeleton = GetComponent<CustomHandSeleton>();
-
             vive.rightIK.Target = wrist;
             vive.rightIK.Pole = pole;
         }
