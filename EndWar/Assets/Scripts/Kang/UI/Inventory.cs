@@ -19,9 +19,6 @@ public class Inventory : MonoBehaviour
     {
         itemList = new LinkedList<Item>();
 
-        itemList.AddLast(new Item("그냥 권총", 1, 0));
-        itemList.AddLast(new Item("쎈 권총", 1, 1));
-
         foreach(GameObject slot in slots)
         {
             GameObject ins = Instantiate(itemPrefab);
@@ -37,9 +34,9 @@ public class Inventory : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Q))
+        if(Input.GetKeyDown(KeyCode.Y))
         {
-            AddItem();
+            AddItem(0, 0, "LSJ-25 피스톨");
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha0))
@@ -106,9 +103,9 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void AddItem()
+    public void AddItem(int itemId, int itemType, string itemName)
     {
-        Item tempItem = new Item("임시템", 0, 1);
+        Item tempItem = new Item(itemName, itemType, itemId);
         if(itemList.Count == 28)
         {
             Debug.Log("인벤토리 꽉 참");
