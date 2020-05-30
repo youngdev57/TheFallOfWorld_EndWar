@@ -5,15 +5,19 @@ using UnityEngine.UI;
 
 public class Craft : MonoBehaviour
 {
+    //연결된 인벤토리 UI
     public Inventory inven;
 
+    //제작대 UI 게임오브젝트
     public GameObject craftPanel;
 
-    public Text emeraldText;
-    public Text opalText;
-    public Text topazText;
-    public Text orichalcumText;
-    public Text obsidianText;
+    //제작대 UI 상단에 있는 보유 재료 개수 표시하는 텍스트들
+    public Text crystalText;
+    public Text ironText;
+    public Text mineralText;
+    public Text coreText;
+    public Text soulgemText;
+    public Text redstoneText;
 
     public Text craftItem_Name;
     public Image craftItem_Image;
@@ -22,9 +26,19 @@ public class Craft : MonoBehaviour
     public Image[] requireImages;
     public Text[] requireTexts;
  
-    //Ores
+    //Enum 모음집
+    public enum Gem     //재료(보석) 종류
+    {
+        Crystal,    //인덱스 0
+        Iron,       //1
+        Mineral,    //2
+        Core,       //3
+        SoulGem,    //4
+        RedStone    //5
+    }
 
-    public int[] oreCnts = {0, 0, 0, 0, 0}; //emerald, opal, topaz, orichalcum, obsidian
+    //가지고 있는 재료 개수 저장
+    public int[] oreCnts = {0, 0, 0, 0, 0, 0}; //가지고 있는 재료 개수 배열 (종류 총 6가지 - 크리스탈, 철, 미네랄, 코어, 소울젬, 레드스톤)
 
     //제작법 이미지 리스트
     public List<Sprite> weaponSprs;
@@ -41,18 +55,20 @@ public class Craft : MonoBehaviour
 
     void Start()
     {
-        oreCnts[0] = 60; //emerald
-        oreCnts[1] = 30; //opal
-        oreCnts[2] = 40; //topaz
-        oreCnts[3] = 50; //orichalcum
-        oreCnts[4] = 40; //obsidian
+        //테스트용 초기 값
+        oreCnts[(int)Gem.Crystal] = 60;     //크리스탈
+        oreCnts[(int)Gem.Iron] = 30;        //철
+        oreCnts[(int)Gem.Mineral] = 40;     //미네랄
+        oreCnts[(int)Gem.Core] = 50;        //코어
+        oreCnts[(int)Gem.SoulGem] = 40;     //소울젬
+        oreCnts[(int)Gem.RedStone] = 20;    //레드스톤
 
         craftList = new List<CraftSet>();
-        craftList.Add(new CraftSet("LSJ 피스톨", 1, 0, 0, 3));    //제작법 등록 (재료 종류 수, 완성품 아이템 코드, 재료번호1, 재료1 개수, 재료번호2 ... 재료4 개수)
-        craftList.Add(new CraftSet("CMY-0507 피스톨",2, 1, 0, 4, 1, 2));
+        craftList.Add(new CraftSet("LSJ 피스톨", 1, 0, (int)Gem.Crystal, 3));    //제작법 등록 (재료 종류 수, 완성품 아이템 코드, 재료이름1, 재료1 개수, 재료이름2 ... 재료4 개수)
+        craftList.Add(new CraftSet("CMY-0507 피스톨",2, 1, (int)Gem.Crystal, 4, (int)Gem.Iron, 2));
 
         RefreshOreTexts();
-        RefreshCraftImages();
+        RefreshCraftInfo();
     }
     
     void Update()
@@ -73,12 +89,8 @@ public class Craft : MonoBehaviour
         }
     }
 
-    void ShowCraftUI()
-    {
-        craftPanel.SetActive(!craftPanel.activeSelf);
-    }
-
-    void HideRequirements()
+    /** 요구 재료 이미지, 텍스트 전부 SetActive(false) 하는 함수 **/
+    void HideRequirements()     
     {
         foreach(Image img in requireImages)
         {
@@ -91,91 +103,123 @@ public class Craft : MonoBehaviour
         }
     }
 
-    void RefreshOreTexts()  //제작대 UI 상단 재료 갯수 갱신
+    /** 제작대 UI 상단 재료 갯수 갱신 함수 **/
+    void RefreshOreTexts()  
     {
-        emeraldText.text = oreCnts[0].ToString();
-        opalText.text = oreCnts[1].ToString();
-        orichalcumText.text = oreCnts[2].ToString();
-        topazText.text = oreCnts[3].ToString();
-        obsidianText.text = oreCnts[4].ToString();
+        crystalText.text = GetCrystal().ToString();
+        ironText.text = GetIron().ToString();
+        coreText.text = GetCore().ToString();
+        mineralText.text = GetMineral().ToString();
+        soulgemText.text = GetSoulGem().ToString();
+       redstoneText.text = GetRedStone().ToString();
     }
 
-    void RefreshCraftImages()
+    /** 현재 제작 아이템의 이미지, 이름, 요구 재료 등을 화면에 갱신하는 함수 **/
+    void RefreshCraftInfo()     
     {
-        HideRequirements();
+        HideRequirements();     //요구 재료 초기화
 
-        CraftSet nowItem = craftList[viewIndex];
-        int code = nowItem.itemCode;
+        CraftSet nowItem = craftList[viewIndex];    //현재 보고 있는 제작법 인덱스의 제작아이템 정보 불러와서 nowItem에 저장
+        int code = nowItem.itemCode;                //현재 제작아이템의 아이템 코드
 
-        craftItem_Image.sprite = weaponSprs[code];
-        craftItem_Name.text = nowItem.itemName;
+        craftItem_Image.sprite = weaponSprs[code];  //제작할 아이템의 표시 이미지를 아이템 코드를 인덱스로 하여 이미지배열에서 불러옴
+        craftItem_Name.text = nowItem.itemName;     //제작할 아이템의 표시 이름을 nowItem에서 불러옴
 
-        for(int i=0; i<nowItem.requireOre.Length; i++)
+        for(int i=0; i<nowItem.requireOre.Length; i++)      //제작할 아이템의 요구 재료 종류만큼 for문 돌림.
         {
-            requireImages[i].gameObject.SetActive(true);
-            requireTexts[i].gameObject.SetActive(true);
+            requireImages[i].gameObject.SetActive(true);    // i번째 요구 재료 이미지 표시
+            requireTexts[i].gameObject.SetActive(true);     // i번째 요구 재료 개수 텍스트 표시
 
-            requireImages[i].sprite = oreSprs[nowItem.requireOre[i]];
-            requireTexts[i].text = oreCnts[i] + " / " + nowItem.requireCnt[i];
+            requireImages[i].sprite = oreSprs[nowItem.requireOre[i]];           // 요구 재료 이미지를 nowItem의 정보를 토대로 가져옴
+            requireTexts[i].text = oreCnts[nowItem.requireOre[i]] + " / " + nowItem.requireCnt[i];  // 요구 재료 개수 텍스트를 표시함 (해당 광물 가진 재료 수 / 요구 재료 수)
         }
     }
 
-    void LoadNextCraft()
+    /** 다음 버튼 콜백 함수 **/
+    public void LoadNextCraft()     
     {
         if (viewIndex + 1 == craftList.Count)
         {
-            viewIndex = 0;
+            viewIndex = 0;      // 마지막 인덱스면 첫번째(0) 제작법을 불러옴
         } else
         {
             viewIndex++;
         }
         
 
-        RefreshCraftImages();
+        RefreshCraftInfo();     //제작 아이템 정보 화면에 갱신
     }
 
-    void LoadPrevCraft()
+    /** 이전 버튼 콜백 함수 **/
+    public void LoadPrevCraft()     
     {
         if (viewIndex == 0)
         {
-            viewIndex = craftList.Count - 1;
+            viewIndex = craftList.Count - 1;    // 인덱스가 0이면 맨 마지막 제작법을 불러옴
         } else
         {
             viewIndex--;
         }
 
-        RefreshCraftImages();
+        RefreshCraftInfo();     //제작 아이템 정보 화면에 갱신
     }
 
-    void CraftItem()
+    /** 아이템 제작 버튼 콜백 함수 **/
+    public void CraftItem()        
     {
-        int applyCraft = 0;
+        int applyCraft = 0;     //재료 개수 조건 충족시 마다 ++하여 마지막에 모든 조건 충족했는지 확인 할 것임
 
-        CraftSet nowItem = craftList[viewIndex];
-        int reqNum = nowItem.requireOre.Length;
+        CraftSet nowItem = craftList[viewIndex];    //제작법 리스트에서 현재 인덱스의 아이템 불러옴
+        int reqNum = nowItem.requireOre.Length;     //제작하려는 아이템의 요구 재료 종류 수
 
-        for (int i=0; i< reqNum; i++)
+        for (int i=0; i< reqNum; i++)   //요구 재료 종류만큼 포문 돌아감
         {
-            if(nowItem.requireCnt[i] <= oreCnts[nowItem.requireOre[i]])
+            if(nowItem.requireCnt[i] <= oreCnts[nowItem.requireOre[i]])     //요구 재료 수가 같거나 큼 (충족 시)
             {
-                applyCraft++;
+                applyCraft++;   //충족 카운트 증가
             }
         }
 
-        if(applyCraft == reqNum)
+        if(applyCraft == reqNum)            //원하는 모든 재료가 있는지 검사
         {
-            for(int i=0; i<reqNum; i++)
+            for(int i=0; i<reqNum; i++)     //요구 재료 종류만큼 포문 돌아감
             {
-                oreCnts[nowItem.requireOre[i]] -= nowItem.requireCnt[i];
+                oreCnts[nowItem.requireOre[i]] -= nowItem.requireCnt[i];    //재료 요구 수만큼 현재 보유 수에서 뺌
             }
         } else
         {
-            return;
+            return;     //요구 재료가 없다면 함수 종료 ★★★★★★★★
         }
 
-        inven.AddItem(nowItem.itemCode, 0, nowItem.itemName);
+        inven.AddItem(nowItem.itemCode, 0, nowItem.itemName);   //제작한 아이템을 인벤토리에 추가
 
-        RefreshOreTexts();
-        RefreshCraftImages();
+        RefreshOreTexts();      //UI 상단 보유 재료개수 텍스트 갱신
+        RefreshCraftInfo();     //보고 있는 제작법 정보 갱신
+    }
+
+    /** 보석 개수 리턴 함수들 **/
+    int GetCrystal()    //크리스탈 개수 리턴
+    {
+        return oreCnts[(int)Gem.Crystal];
+    }
+    int GetIron()       //철 개수 리턴
+    {
+        return oreCnts[(int)Gem.Iron];
+    }
+    int GetMineral()    //미네랄 개수 리턴
+    {
+        return oreCnts[(int)Gem.Mineral];
+    }
+    int GetCore()       //코어 개수 리턴
+    {
+        return oreCnts[(int)Gem.Core];
+    }
+    int GetSoulGem()    //소울젬 개수 리턴
+    {
+        return oreCnts[(int)Gem.SoulGem];
+    }
+    int GetRedStone()   //레드스톤 개수 리턴
+    {
+        return oreCnts[(int)Gem.RedStone];
     }
 }
