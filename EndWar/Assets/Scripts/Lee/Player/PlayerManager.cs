@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class PlayerCtrl : MonoBehaviour
+public class PlayerManager : MonoBehaviour
 {
+    public int p_HP;    
+    public int p_MP;
+    public int p_DEF;
+
 
 
     [PunRPC]

@@ -101,15 +101,14 @@ public class SkillManager : MonoBehaviourPun
         if (!myPv.IsMine)
             return;
 
-        if (grabAction.GetLastState(handType))
+        if (grabAction.GetState(handType))
         {
             myPv.RPC("RangeOn", RpcTarget.AllBuffered, null);
             myPv.RPC("ShowRange", RpcTarget.AllBuffered, null);
         }
         //잡는 버튼을 땔때
-        if (grabAction.GetLastStateUp(handType))
+        if (grabAction.GetStateUp(handType))
         {
-
             myPv.RPC("RangeOff", RpcTarget.AllBuffered, null);
             Shoot();
         }

@@ -134,11 +134,9 @@ public class GripController : MonoBehaviourPun
             if (OffsetObject.GetComponent<SteamVR_Skeleton_Poser>()&&HandSkeleton)
             {
                 HandSkeleton.transform.SetParent(OffsetObject, false);
-                HandSkeleton.SetBone(PreviewSkeleton.GetComponent<BoneTransform>(), 1);
                 //HandSkeleton.BlendToPoser(OffsetObject.GetComponent<SteamVR_Skeleton_Poser>(), 0f);
             }
             ObjGrap(ConnectedObject, true);
-            //ConnectedObject.GetComponent<PhotonView>().RPC("OnGrab",RpcTarget.AllBuffered, true);
         }
     }
 
@@ -168,8 +166,6 @@ public class GripController : MonoBehaviourPun
         if (OffsetObject.GetComponent<SteamVR_Skeleton_Poser>() && HandSkeleton)
         {
             HandSkeleton.transform.SetParent(transform, false);
-            HandSkeleton.GetComponent<ControllerPosition>().FindParent();
-            HandSkeleton.SetBone(PreviewSkeleton.GetComponent<BoneTransform>(), 0);
             //HandSkeleton.BlendToSkeleton();
         }
         OffsetObject.GetComponent<GrabPoint>().Gripped = false;

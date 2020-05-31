@@ -90,7 +90,6 @@ public class SkillContentManeger : MonoBehaviourPun
         skillmanager.enabled = true;
         movementObj.enabled = true;
         uiCanvas.SetActive(false);
-        Debug.Log("aa");
     }
 
     void SelectedSkill()

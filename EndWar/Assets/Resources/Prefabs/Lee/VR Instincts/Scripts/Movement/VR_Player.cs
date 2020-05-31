@@ -9,7 +9,6 @@ public class VR_Player : MonoBehaviourPun
     private Vector3 moveDirection;
     private CapsuleCollider CapCollider;
     private Rigidbody RBody;
-    private bool isGround;
 
     public SteamVR_Input_Sources MovementHand;//Set Hand To Get Input From
     public SteamVR_Action_Vector2 TrackpadAction;
@@ -74,7 +73,7 @@ public class VR_Player : MonoBehaviourPun
     }
     public void CheckGround()
     {
-        int layerMask = 1 << 9;
+        int layerMask = 1 << 10;
         layerMask = ~layerMask;
         RaycastHit Hit;
         if (Physics.Raycast(transform.position + Vector3.up* Head.transform.localPosition.y, Vector3.down, out Hit, Head.transform.localPosition.y+.2f, layerMask))
@@ -106,7 +105,7 @@ public class VR_Player : MonoBehaviourPun
     private void updateInput()
     {
         if(TrackpadAction.GetActive(MovementHand)) trackpad = TrackpadAction.GetAxis(MovementHand);
-        if (isGround && TrackpadAction.GetAxis(MovementHand) == Vector2.zero)
+        if (TouchingGround && TrackpadAction.GetAxis(MovementHand) == Vector2.zero)
             RBody.velocity = Vector3.zero;
     }
 
@@ -114,17 +113,5 @@ public class VR_Player : MonoBehaviourPun
     {
         skillUICanvas.SetActive(true);
         this.enabled = false;
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
-            isGround = true;
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
-            isGround = false;
     }
 }
