@@ -30,11 +30,11 @@ public class Craft : MonoBehaviour
     public enum Gem     //재료(보석) 종류
     {
         Crystal,    //인덱스 0
-        Iron,       //1
-        Mineral,    //2
-        Core,       //3
-        SoulGem,    //4
-        RedStone    //5
+        Iron,       //인덱스 1
+        Mineral,    //인덱스 2
+        Core,       //인덱스 3
+        SoulGem,    //인덱스 4
+        RedStone    //인덱스 5
     }
 
     //가지고 있는 재료 개수 저장

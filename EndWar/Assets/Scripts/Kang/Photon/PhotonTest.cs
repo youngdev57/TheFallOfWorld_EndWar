@@ -8,6 +8,7 @@ using Photon.Realtime;
 using System.Text.RegularExpressions;
 using WebSocketSharp;
 using System.Text;
+using VRKeys;
 
 public class PhotonTest : MonoBehaviourPunCallbacks
 {
@@ -38,21 +39,46 @@ public class PhotonTest : MonoBehaviourPunCallbacks
     //최초 입장인지 판단
     bool isFirstConnection = true;
 
+    public VRKeyManager vrKeyManager;
+
+    public enum Status
+    {
+        WaitLogin,
+        InvaildEmail,
+        InvaildPassword,
+        SuccessLogin,
+        WaitGid,
+        InvaildGid,
+        SuccessGid
+    }
+
+    public Status status = Status.WaitLogin;
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.B))     //로그인 테스트용 ㅡㅡ
+        {
+            OnClickLogin("1", "1");
+        }
+    }
+
     /** 웹서버 통한 로그인 작업 **/
-    IEnumerator LoginCheck() {
+    IEnumerator LoginCheck(string email, string password) {
         WWWForm form = new WWWForm();
 
-        form.AddField("email", emailInput.text);
-        form.AddField("pwd", passInput.text);
+        form.AddField("email", email);
+        form.AddField("pwd", password);
 
-        Debug.Log(emailInput.text + " 메일주소");
-        Debug.Log(passInput.text + " 비번");
+        Debug.Log(email + " 메일주소");
+        Debug.Log(password + " 비번");
 
         WWW www = new WWW("http://ec2-15-165-174-206.ap-northeast-2.compute.amazonaws.com:8080/_EndWar/gameAccess.do", form);
 
         yield return www;
 
-        StartCoroutine(WaitForLogin(www));    
+        Debug.Log("LoginCheck : " + www.text);
+
+        StartCoroutine(WaitForLogin(www));
     }
 
     IEnumerator WaitForLogin(WWW www)
@@ -61,24 +87,33 @@ public class PhotonTest : MonoBehaviourPunCallbacks
 
         string[] result = www.text.Split(',');
 
-        Debug.Log(result + " 로그인 결과!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        Debug.Log(result[0]);
+        Debug.Log(www.text + " 로그인 결과!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 
         switch(result[0])
         {
             case "-1":
-                ShowAlert("회원 없음");
+                //ShowAlert("회원 없음");
+                status = Status.InvaildEmail;
                 break;
             case "0":
-                ShowAlert("비밀번호 틀림");
+                //ShowAlert("비밀번호 틀림");
+                status = Status.InvaildPassword;
                 break;
             case "1":   // GID 없음
                 userId = emailInput.text;
+                status = Status.WaitGid;
                 ShowGid();
                 break;
             case "2":   // GID 있음
                 //게임 접속 진행
                 userId = result[1];
-                WebLogin();
+                status = Status.SuccessLogin;
+                //WebLogin();
+                break;
+            case "":
+                status = Status.InvaildEmail;
+                Debug.Log("로그인 실패");
                 break;
         }
     }
@@ -254,9 +289,9 @@ public class PhotonTest : MonoBehaviourPunCallbacks
         }
     }
 
-    public void OnClickLogin()
+    public void OnClickLogin(string email, string password)
     {
-        StartCoroutine(LoginCheck());
+        StartCoroutine(LoginCheck(email, password));
     }
 
     public void WebLogin()
