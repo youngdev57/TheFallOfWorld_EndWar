@@ -15,6 +15,7 @@ public class SkillContentManeger : MonoBehaviourPun
 
     [Space(5)]
     public GameObject uiCanvas;
+    public GameObject pickUp;
     public VR_Player movementObj;
     public SkillManager skillmanager;
 
@@ -39,7 +40,7 @@ public class SkillContentManeger : MonoBehaviourPun
     {
         contents = new List<Transform>();
         rectTr = GetComponent<RectTransform>();
-        skillmanager.enabled = false;
+        skillmanager.gameObject.SetActive(false);
         select = chooseSkill;
     }
 
@@ -81,13 +82,24 @@ public class SkillContentManeger : MonoBehaviourPun
 
         chooseSkill = select;
 
-        skillmanager.skill = contents[select].GetComponent<AddPrefabs>().GetSkill();
+        if (contents[select].GetComponent<AddPrefabs>())
+        {
+            skillmanager.skill = contents[select].GetComponent<AddPrefabs>().GetSkill();
+            pickUp.SetActive(false);
+        }
+        else
+        {
+            contents[select].GetComponent<PickUpType>().OffObj();
+            movementObj.enabled = true;
+            return;
+        }
+
         OnObjActive();
     }
 
     void OnObjActive()
     {
-        skillmanager.enabled = true;
+        skillmanager.gameObject.SetActive(true);
         movementObj.enabled = true;
         uiCanvas.SetActive(false);
     }

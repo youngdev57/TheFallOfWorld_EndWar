@@ -41,7 +41,6 @@ public class VR_Player : MonoBehaviourPun
         moveDirection = Quaternion.AngleAxis(Angle(trackpad) + AxisHand.transform.localRotation.eulerAngles.y, Vector3.up) * Vector3.forward* trackpad.magnitude;//get the angle of the touch and correct it for the rotation of the controller
         updateInput();
         updateCollider();
-        CheckGround();
         if (trackpad.magnitude > Deadzone)
         {//make sure the touch isn't in the deadzone and we aren't going to fast.
 
@@ -71,20 +70,7 @@ public class VR_Player : MonoBehaviourPun
             OpenUI();
         }
     }
-    public void CheckGround()
-    {
-        int layerMask = 1 << 10;
-        layerMask = ~layerMask;
-        RaycastHit Hit;
-        if (Physics.Raycast(transform.position + Vector3.up* Head.transform.localPosition.y, Vector3.down, out Hit, Head.transform.localPosition.y+.2f, layerMask))
-        {
-            TouchingGround = true;
-        }
-        else
-        {
-            TouchingGround = false;
-        }
-    }
+
     public static float Angle(Vector2 p_vector2)
     {
         
@@ -113,5 +99,19 @@ public class VR_Player : MonoBehaviourPun
     {
         skillUICanvas.SetActive(true);
         this.enabled = false;
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        int layerMask = 10;
+        if (collision.gameObject.layer == layerMask)
+            TouchingGround = true;
+    }
+
+    void OnCollisionExit(Collision collision)
+    {
+        int layerMask = 10;
+        if (collision.gameObject.layer == layerMask)
+            TouchingGround = false;
     }
 }

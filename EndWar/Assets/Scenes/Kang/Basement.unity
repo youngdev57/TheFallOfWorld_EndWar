@@ -62399,11 +62399,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inven: {fileID: 1063880590}
   craftPanel: {fileID: 1340370357}
-  emeraldText: {fileID: 683968351}
-  opalText: {fileID: 1351744586}
-  topazText: {fileID: 788132676}
-  orichalcumText: {fileID: 208325546}
-  obsidianText: {fileID: 1150447917}
+  crystalText: {fileID: 0}
+  ironText: {fileID: 0}
+  mineralText: {fileID: 0}
+  coreText: {fileID: 0}
+  soulgemText: {fileID: 0}
+  redstoneText: {fileID: 0}
   craftItem_Name: {fileID: 798691311}
   craftItem_Image: {fileID: 714386319}
   requireImages:

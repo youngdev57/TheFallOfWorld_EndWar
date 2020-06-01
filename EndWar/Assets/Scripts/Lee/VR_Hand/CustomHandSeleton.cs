@@ -14,7 +14,6 @@ public class CustomHandSeleton : MonoBehaviourPun
     public WHATHAND hand;
 
     SteamVR_Behaviour_Pose pose;
-    BoneTransform boneTransform;
 
     void Awake()
     {

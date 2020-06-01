@@ -42,13 +42,13 @@ public class Skill : MonoBehaviourPun
     public bool freezing;       //빙결
 
     int n_count = 0;
-    List<PlayerCtrl> monsters; //자료형 몬스터 스크립트로 바꿀 것 (데미지를 줘야됨)  //나중에 바꿀것 몬스터로!!
+    List<Transform> monsters; //자료형 몬스터 스크립트로 바꿀 것 (데미지를 줘야됨)  //나중에 바꿀것 몬스터로!!
 
     Transform thisTr;       //본인의 Transform 을 가질 변수
 
     void Start()
     {
-        monsters = new List<PlayerCtrl>();
+        monsters = new List<Transform>();
         thisTr = GetComponent<Transform>();
     }
 
@@ -104,7 +104,7 @@ public class Skill : MonoBehaviourPun
     public void Targeting()
     {
         if(targeting != null)
-            monsters.Add(targeting.GetComponent<PlayerCtrl>());
+            monsters.Add(targeting.transform);
     }
 
 
@@ -118,7 +118,7 @@ public class Skill : MonoBehaviourPun
             {
                 if (coll[i].gameObject.layer == LayerMask.NameToLayer("Water")) //레이어로 바꿀 것
                 {
-                    monsters.Add(coll[i].GetComponent<PlayerCtrl>());  //몬스터로 바꿀것
+                    monsters.Add(coll[i].transform);  //몬스터로 바꿀것
                 }
             }
         }
@@ -174,7 +174,7 @@ public class Skill : MonoBehaviourPun
                     {
                         if (_hit.transform.gameObject.layer == LayerMask.NameToLayer("Water")) // 레이어로 바꿀 것
                         {
-                            monsters.Add(_hit.transform.GetComponent<PlayerCtrl>());  //몬스터로 바꿀것
+                            monsters.Add(_hit.transform);  //몬스터로 바꿀것
                         }
                     }
                 }
