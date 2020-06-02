@@ -3,6 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//Enum 모음집
+public enum Gem     //재료(보석) 종류
+{
+    Crystal,    //인덱스 0
+    Iron,       //인덱스 1
+    Mineral,    //인덱스 2
+    Core,       //인덱스 3
+    SoulGem,    //인덱스 4
+    RedStone    //인덱스 5
+}
+
 public class Craft : MonoBehaviour
 {
     //연결된 인벤토리 UI
@@ -26,16 +37,7 @@ public class Craft : MonoBehaviour
     public Image[] requireImages;
     public Text[] requireTexts;
  
-    //Enum 모음집
-    public enum Gem     //재료(보석) 종류
-    {
-        Crystal,    //인덱스 0
-        Iron,       //인덱스 1
-        Mineral,    //인덱스 2
-        Core,       //인덱스 3
-        SoulGem,    //인덱스 4
-        RedStone    //인덱스 5
-    }
+    
 
     //가지고 있는 재료 개수 저장
     public int[] oreCnts = {0, 0, 0, 0, 0, 0}; //가지고 있는 재료 개수 배열 (종류 총 6가지 - 크리스탈, 철, 미네랄, 코어, 소울젬, 레드스톤)
