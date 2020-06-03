@@ -6,10 +6,8 @@ using Photon.Pun;
 
 public class GunTest : MonoBehaviourPunCallbacks, IPunPrefabPool
 {
-    public GameObject rightHand;
-
-    private SteamVR_Input_Sources handType;
-    private SteamVR_Action_Boolean grapAction;
+    public SteamVR_Input_Sources handType;
+    public SteamVR_Action_Boolean grapAction;
 
     public Transform muzzleTr;
     public GameObject muzzleEffect;
@@ -34,9 +32,6 @@ public class GunTest : MonoBehaviourPunCallbacks, IPunPrefabPool
 
         if (!photonView.IsMine)
             return;
-
-        handType = SteamVR_Input_Sources.RightHand;
-        grapAction = SteamVR_Actions.default_Grip;
 
         bulletEffect.GetComponent<Bullet>().gun = this;
     }

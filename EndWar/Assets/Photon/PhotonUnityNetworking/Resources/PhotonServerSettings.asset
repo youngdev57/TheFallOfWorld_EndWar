@@ -15,7 +15,7 @@ MonoBehaviour:
   AppSettings:
     AppIdRealtime: 4decb687-3d7a-4d09-a1b3-cb15e04b2f79
     AppIdChat: 
-    AppIdVoice: 
+    AppIdVoice: 99149d43-a643-40fc-977d-cbf0dcae6e2d
     AppVersion: 
     UseNameServer: 1
     FixedRegion: 
@@ -51,6 +51,7 @@ MonoBehaviour:
   - Grip
   - Test
   - SetPick
+  - ChangeColour
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
