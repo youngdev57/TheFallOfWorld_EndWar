@@ -64,7 +64,7 @@ namespace Photon.Pun
     public static partial class PhotonNetwork
     {
         /// <summary>Version number of PUN. Used in the AppVersion, which separates your playerbase in matchmaking.</summary>
-        public const string PunVersion = "2.17";
+        public const string PunVersion = "2.18.1";
 
         /// <summary>Version number of your game. Setting this updates the AppVersion, which separates your playerbase in matchmaking.</summary>
         /// <remarks>
@@ -2935,8 +2935,7 @@ namespace Photon.Pun
         /// You should make sure you don't fire RPCs before you load another scene (which doesn't contain
         /// the same GameObjects and PhotonViews).
         ///
-        /// LoadLevel
-        /// uses SceneManager.LoadSceneAsync().
+        /// LoadLevel uses SceneManager.LoadSceneAsync().
         ///
         /// Check the progress of the LevelLoading using PhotonNetwork.LevelLoadingProgress.
         ///
