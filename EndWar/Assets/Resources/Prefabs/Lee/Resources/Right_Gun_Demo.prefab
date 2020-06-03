@@ -1445,6 +1445,16 @@ PrefabInstance:
       propertyPath: rightHand
       value: 
       objectReference: {fileID: 4044835983584005188}
+    - target: {fileID: 44687510233440265, guid: 34542551522a9d844813c94c39b3b312,
+        type: 3}
+      propertyPath: grapAction.actionPath
+      value: /actions/default/in/SkillTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 44687510233440265, guid: 34542551522a9d844813c94c39b3b312,
+        type: 3}
+      propertyPath: handType
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3832703582600944448, guid: 34542551522a9d844813c94c39b3b312,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1519,6 +1529,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GunTest
+      objectReference: {fileID: 0}
+    - target: {fileID: 3832703582600972128, guid: 34542551522a9d844813c94c39b3b312,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4932620756877897283, guid: 34542551522a9d844813c94c39b3b312,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6123602548318605172, guid: 34542551522a9d844813c94c39b3b312,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34542551522a9d844813c94c39b3b312, type: 3}

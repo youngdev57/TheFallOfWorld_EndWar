@@ -740,7 +740,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4044835983554963200}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.2588191, y: 0, z: 0, w: 0.9659258}
   m_LocalPosition: {x: 0, y: 0, z: -0.15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -749,7 +749,7 @@ Transform:
   - {fileID: 8680177777294313174}
   m_Father: {fileID: 4048626774847894740}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 30, y: 0, z: 0}
 --- !u!95 &4138855771496503110
 Animator:
   serializedVersion: 3
@@ -1451,6 +1451,16 @@ PrefabInstance:
       propertyPath: rightHand
       value: 
       objectReference: {fileID: 4044835983584005188}
+    - target: {fileID: 44687510233440265, guid: 34542551522a9d844813c94c39b3b312,
+        type: 3}
+      propertyPath: grapAction.actionPath
+      value: /actions/default/in/SkillTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 44687510233440265, guid: 34542551522a9d844813c94c39b3b312,
+        type: 3}
+      propertyPath: handType
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3832703582600944448, guid: 34542551522a9d844813c94c39b3b312,
         type: 3}
       propertyPath: m_LocalPosition.x
