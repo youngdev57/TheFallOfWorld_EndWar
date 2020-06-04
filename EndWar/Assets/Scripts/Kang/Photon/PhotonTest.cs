@@ -49,6 +49,8 @@ public class PhotonTest : MonoBehaviourPunCallbacks
         SuccessLogin,
         WaitGid,
         InvaildGid,
+        NoSpaceOrSpecialGid,
+        ExistGid,
         SuccessGid
     }
 
@@ -103,7 +105,7 @@ public class PhotonTest : MonoBehaviourPunCallbacks
             case "1":   // GID 없음
                 userId = emailInput.text;
                 status = Status.WaitGid;
-                ShowGid();
+                //ShowGid();
                 break;
             case "2":   // GID 있음
                 //게임 접속 진행
@@ -118,12 +120,12 @@ public class PhotonTest : MonoBehaviourPunCallbacks
         }
     }
 
-    IEnumerator GidCheck()
+    IEnumerator GidCheck(string gid)
     {
         WWWForm form = new WWWForm();
 
         form.AddField("email", userId);
-        form.AddField("gid", gidInput.text);
+        form.AddField("gid", gid);
 
         WWW www = new WWW("http://ec2-15-165-174-206.ap-northeast-2.compute.amazonaws.com:8080/_EndWar/createGid.do", form);
 
@@ -138,15 +140,19 @@ public class PhotonTest : MonoBehaviourPunCallbacks
 
         string[] text = www.text.Split(',');
 
+        Debug.Log(www.text + " Gid 판단");
+
         if(text[0] == "-1")
         {
-            ShowAlert("이미 존재하는 아이디입니다.");
+            //ShowAlert("이미 존재하는 아이디입니다.");
+            status = Status.ExistGid;
         } else
         {
-            ShowAlert("생성 완료!");
-            gidBox.SetActive(false);
+            //ShowAlert("생성 완료!");
+            //gidBox.SetActive(false);
             userId = text[1];
-            WebLogin();
+            status = Status.SuccessGid;
+            //WebLogin();
         }
     }
 
@@ -161,26 +167,28 @@ public class PhotonTest : MonoBehaviourPunCallbacks
         alertBox.SetActive(true);
     }
 
-    public void OnClickGidButton()
+    public void OnClickGidButton(string gid)
     {
-        if(CheckVaild(gidInput.text))
+        if(CheckVaild(gid))
         {
-            byte[] txtArr = Encoding.UTF8.GetBytes(gidInput.text);
+            byte[] txtArr = Encoding.UTF8.GetBytes(gid);
 
             if(txtArr.Length > 18 || txtArr.Length < 4)
             {
-                ShowAlert("게임 아이디가 너무 짧거나 깁니다.");
+                //ShowAlert("게임 아이디가 너무 짧거나 깁니다.");
+                status = Status.InvaildGid;
             } 
             else
             {
                 //닉네임 만들기
-                StartCoroutine(GidCheck());
+                StartCoroutine(GidCheck(gid));
             }
 
             Debug.Log("유효성 검사 완료, 바이트 수 : " + txtArr.Length);
         } else
         {
-            ShowAlert("잘못된 게임 아이디입니다.\n특수문자, 공백 불가");
+            //ShowAlert("잘못된 게임 아이디입니다.\n특수문자, 공백 불가");
+            status = Status.NoSpaceOrSpecialGid;
         }
     }
 
