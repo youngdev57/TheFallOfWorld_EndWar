@@ -80,10 +80,10 @@ public class PhotonTest : MonoBehaviourPunCallbacks
 
         Debug.Log("LoginCheck : " + www.text);
 
-        StartCoroutine(WaitForLogin(www));
+        StartCoroutine(WaitForLogin(www, email));
     }
 
-    IEnumerator WaitForLogin(WWW www)
+    IEnumerator WaitForLogin(WWW www, string tempEmail)
     {
         yield return www;
 
@@ -103,7 +103,7 @@ public class PhotonTest : MonoBehaviourPunCallbacks
                 status = Status.InvaildPassword;
                 break;
             case "1":   // GID 없음
-                userId = emailInput.text;
+                userId = tempEmail;
                 status = Status.WaitGid;
                 //ShowGid();
                 break;
@@ -142,7 +142,7 @@ public class PhotonTest : MonoBehaviourPunCallbacks
 
         Debug.Log(www.text + " Gid 판단");
 
-        if(text[0] == "-1")
+        if(text[0] == "1")
         {
             //ShowAlert("이미 존재하는 아이디입니다.");
             status = Status.ExistGid;

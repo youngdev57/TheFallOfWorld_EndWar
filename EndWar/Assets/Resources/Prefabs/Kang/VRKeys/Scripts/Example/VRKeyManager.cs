@@ -111,9 +111,22 @@ namespace VRKeys {
 
             if(Input.GetKeyDown(KeyCode.Y))     //로그인 테스트용 ㅡㅡ
             {
-                photonManager.OnClickLogin("wefsdf@naver.com", "134sdfasdf");
+                photonManager.OnClickLogin("cjfdls20000@naver.com", "123");
+                StartCoroutine(CheckLoginStatus());
             }
-		}
+
+            if (Input.GetKeyDown(KeyCode.M))     //닉네임 테스트용 ㅡㅡ  (중복)
+            {
+                photonManager.OnClickGidButton("master");
+                StartCoroutine(CheckGidStatus());
+            }
+
+            if (Input.GetKeyDown(KeyCode.L))     //닉네임 테스트용 ㅡㅡ  (성공)
+            {
+                photonManager.OnClickGidButton("minseok");
+                StartCoroutine(CheckGidStatus());
+            }
+        }
 
 		/// <summary>
 		/// Hide the validation message on update. Connect this to OnUpdate.
@@ -221,7 +234,7 @@ namespace VRKeys {
 
             if(photonManager.status == PhotonTest.Status.WaitGid)
             {
-                keyboard.ShowSuccessMessage("로그인 성공, 닉네임을 설정 해 주세요!");
+                keyboard.ShowSuccessMessage("로그인 성공, 게임 아이디를 설정 해 주세요!");
                 yield return new WaitForSeconds(1f);
                 status = Status.nickname;
                 inputLabel.text = "닉네임 설정";
