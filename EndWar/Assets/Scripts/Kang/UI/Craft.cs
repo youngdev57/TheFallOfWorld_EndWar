@@ -66,8 +66,8 @@ public class Craft : MonoBehaviour
         oreCnts[(int)Gem.RedStone] = 20;    //레드스톤
 
         craftList = new List<CraftSet>();
-        craftList.Add(new CraftSet("LSJ 피스톨", 1, 0, (int)Gem.Crystal, 3));    //제작법 등록 (재료 종류 수, 완성품 아이템 코드, 재료이름1, 재료1 개수, 재료이름2 ... 재료4 개수)
-        craftList.Add(new CraftSet("CMY-0507 피스톨",2, 1, (int)Gem.Crystal, 4, (int)Gem.Iron, 2));
+        craftList.Add(new CraftSet("LSJ 피스톨", 1, ItemType.Weapon, 0, (int)Gem.Crystal, 3));    //제작법 등록 (재료 종류 수, 완성품 아이템 코드, 재료이름1, 재료1 개수, 재료이름2 ... 재료4 개수)
+        craftList.Add(new CraftSet("CMY-0507 피스톨", 2, ItemType.Weapon, 1, (int)Gem.Crystal, 4, (int)Gem.Iron, 2));
 
         RefreshOreTexts();
         RefreshCraftInfo();

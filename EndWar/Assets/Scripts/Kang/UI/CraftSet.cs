@@ -11,10 +11,13 @@ public class CraftSet : MonoBehaviour
 
     internal int itemCode;
 
-    public CraftSet(string name, int number, int code, int ore1 = 0, int cnt1 = 0, int ore2 = 0, int cnt2 = 0, int ore3 = 0, int cnt3 = 0, int ore4 = 0, int cnt4 = 0)
+    internal ItemType itemType;
+
+    public CraftSet(string name, int number, ItemType type, int code, int ore1 = 0, int cnt1 = 0, int ore2 = 0, int cnt2 = 0, int ore3 = 0, int cnt3 = 0, int ore4 = 0, int cnt4 = 0)
     {
         itemName = name;
         itemCode = code;
+        itemType = type;
 
         int[] ores = {ore1, ore2, ore3, ore4};
         int[] cnts = {cnt1, cnt2, cnt3, cnt4};
