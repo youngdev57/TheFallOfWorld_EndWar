@@ -73,6 +73,7 @@ public class SkillManager : MonoBehaviourPun
                 Vector3 point = _hit.point;
                 point.y += .2f;
                 pointObj.transform.position = point;
+                pointObj.transform.GetChild(0).localScale = Vector3.one * skill.range;
                 skill.target = point;
             }
         }
