@@ -111,7 +111,7 @@ namespace VRKeys {
 
             if(Input.GetKeyDown(KeyCode.Y))     //로그인 테스트용 ㅡㅡ
             {
-                photonManager.OnClickLogin("cjfdls20000@naver.com", "123");
+                photonManager.OnClickLogin("1", "1");
                 StartCoroutine(CheckLoginStatus());
             }
 
@@ -121,11 +121,12 @@ namespace VRKeys {
                 StartCoroutine(CheckGidStatus());
             }
 
-            if (Input.GetKeyDown(KeyCode.L))     //닉네임 테스트용 ㅡㅡ  (성공)
+            if (Input.GetKeyDown(KeyCode.Z))     //닉네임 테스트용 ㅡㅡ  (성공)
             {
-                photonManager.OnClickGidButton("minseok");
+                photonManager.OnClickGidButton("endwar1");
                 StartCoroutine(CheckGidStatus());
             }
+
         }
 
 		/// <summary>
@@ -186,12 +187,7 @@ namespace VRKeys {
 		/// Pretend to submit the email before resetting.
 		/// </summary>
 		private IEnumerator SubmitEmail (string email) {
-			//keyboard.ShowInfoMessage ("처리중...");
             this.email = email;
-
-			//yield return new WaitForSeconds (1f);
-
-			//keyboard.ShowSuccessMessage ("Lots of spam sent to " + email);
 			keyboard.ShowSuccessMessage ("이메일 입력 완료");
 
 			yield return new WaitForSeconds (1f);

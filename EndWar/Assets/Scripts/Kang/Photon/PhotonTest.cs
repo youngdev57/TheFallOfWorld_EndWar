@@ -41,6 +41,8 @@ public class PhotonTest : MonoBehaviourPunCallbacks
 
     public VRKeyManager vrKeyManager;
 
+    public K_PlayerManager kPM;
+
     public enum Status
     {
         WaitLogin,
@@ -132,6 +134,8 @@ public class PhotonTest : MonoBehaviourPunCallbacks
             userId = text[1];
             status = Status.SuccessGid;
         }
+
+        Debug.Log(www.text);
     }
 
     void ShowGid()

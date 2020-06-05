@@ -4325,6 +4325,8 @@ MonoBehaviour:
   nowWeaponIdx: 0
   mainWeapon: 0
   subWeapon: 0
+  mainIdx: -1
+  subIdx: -1
   selectedWeapon: 0
   mainTarget: {fileID: 0}
   subTarget: {fileID: 0}
@@ -4332,6 +4334,7 @@ MonoBehaviour:
   subWeaponImage: {fileID: 0}
   mainWeaponName: {fileID: 0}
   subWeaponName: {fileID: 0}
+  pInven: {fileID: 0}
 --- !u!1 &118479172
 GameObject:
   m_ObjectHideFlags: 0
@@ -9021,6 +9024,86 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 226940729}
   m_Mesh: {fileID: 4300010, guid: 4dab9aaa56b6f9c4eb65348015ebff0d, type: 3}
+--- !u!1001 &234257713
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1698455712}
+    m_Modifications:
+    - target: {fileID: 4082013007286795512, guid: f8d573ed1371915468b8a86734360b8f,
+        type: 3}
+      propertyPath: m_Name
+      value: PhotonManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 4082013007286795513, guid: f8d573ed1371915468b8a86734360b8f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -105.873
+      objectReference: {fileID: 0}
+    - target: {fileID: 4082013007286795513, guid: f8d573ed1371915468b8a86734360b8f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.846
+      objectReference: {fileID: 0}
+    - target: {fileID: 4082013007286795513, guid: f8d573ed1371915468b8a86734360b8f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -191.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 4082013007286795513, guid: f8d573ed1371915468b8a86734360b8f,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4082013007286795513, guid: f8d573ed1371915468b8a86734360b8f,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4082013007286795513, guid: f8d573ed1371915468b8a86734360b8f,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4082013007286795513, guid: f8d573ed1371915468b8a86734360b8f,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4082013007286795513, guid: f8d573ed1371915468b8a86734360b8f,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4082013007286795513, guid: f8d573ed1371915468b8a86734360b8f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4082013007286795513, guid: f8d573ed1371915468b8a86734360b8f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4082013007286795513, guid: f8d573ed1371915468b8a86734360b8f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7565510262618733245, guid: f8d573ed1371915468b8a86734360b8f,
+        type: 3}
+      propertyPath: gems.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f8d573ed1371915468b8a86734360b8f, type: 3}
+--- !u!4 &234257714 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4082013007286795513, guid: f8d573ed1371915468b8a86734360b8f,
+    type: 3}
+  m_PrefabInstance: {fileID: 234257713}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &240228139
 GameObject:
   m_ObjectHideFlags: 0
@@ -43416,6 +43499,8 @@ MonoBehaviour:
   spriteList:
   - {fileID: 21300000, guid: db17d0e3e3908434aa818e9502c74290, type: 3}
   - {fileID: 21300000, guid: d6664e84693aa574fa99e7526bc831d3, type: 3}
+  - {fileID: 21300000, guid: baef51cbf754c8148aabffc22fb06a3c, type: 3}
+  - {fileID: 21300000, guid: 2f70e1204086a764f956633a3d2d3561, type: 3}
   slots:
   - {fileID: 674688587}
   - {fileID: 1218190705}
@@ -43451,6 +43536,8 @@ MonoBehaviour:
   nowWeaponIdx: 0
   mainWeapon: 0
   subWeapon: 0
+  mainIdx: -1
+  subIdx: -1
   selectedWeapon: 0
   mainTarget: {fileID: 156008236}
   subTarget: {fileID: 1421554311}
@@ -43458,6 +43545,7 @@ MonoBehaviour:
   subWeaponImage: {fileID: 1207061150}
   mainWeaponName: {fileID: 1397909869}
   subWeaponName: {fileID: 824408840}
+  pInven: {fileID: 0}
 --- !u!4 &1064675039 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4125389787687924, guid: 57e3542e6c16dfd40972c0b1b0899afb,
@@ -63361,6 +63449,8 @@ MonoBehaviour:
   weaponSprs:
   - {fileID: 21300000, guid: db17d0e3e3908434aa818e9502c74290, type: 3}
   - {fileID: 21300000, guid: d6664e84693aa574fa99e7526bc831d3, type: 3}
+  - {fileID: 21300000, guid: baef51cbf754c8148aabffc22fb06a3c, type: 3}
+  - {fileID: 21300000, guid: 2f70e1204086a764f956633a3d2d3561, type: 3}
   oreSprs:
   - {fileID: 21300000, guid: 8f6e05fbabd72d84f948f1c1ec884c3f, type: 3}
   - {fileID: 21300000, guid: 263388d7ab729464ba2ca0d535fc6c49, type: 3}
@@ -63369,6 +63459,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 7b48ea75e0b673241b47332237ecba84, type: 3}
   - {fileID: 21300000, guid: 94b063c98d1fd8f4cb0c31b6ba768a3d, type: 3}
   craftList: []
+  pInven: {fileID: 0}
 --- !u!1001 &1586811310
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -68858,6 +68949,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1665609176}
+  - {fileID: 234257714}
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
