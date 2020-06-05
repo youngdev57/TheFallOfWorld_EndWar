@@ -15,7 +15,7 @@ MonoBehaviour:
   AppSettings:
     AppIdRealtime: 4decb687-3d7a-4d09-a1b3-cb15e04b2f79
     AppIdChat: 
-    AppIdVoice: 99149d43-a643-40fc-977d-cbf0dcae6e2d
+    AppIdVoice: 
     AppVersion: 
     UseNameServer: 1
     FixedRegion: 
@@ -31,27 +31,24 @@ MonoBehaviour:
   RunInBackground: 1
   StartInOfflineMode: 0
   RpcList:
+  - ChangeColour
   - ClickRpc
   - DestroyRpc
   - DestroySpaceship
   - Fire
   - GetDamage
   - GrabObj
+  - Grip
   - OnGrab
   - RangeOff
   - RangeOn
+  - Release
   - ReleaseObj
   - RespawnSpaceship
   - Restore
-  - SetBone
-  - ShowRange
-  - UpdateBody
-  - UpdateIK
-  - Release
-  - Grip
-  - Test
   - SetPick
-  - ChangeColour
+  - ShowRange
+  - Test
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
