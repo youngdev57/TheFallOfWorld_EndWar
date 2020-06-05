@@ -6,22 +6,25 @@ using Photon.Pun;
 
 public class ChangeGunManager : MonoBehaviourPun
 {
+    public SteamVR_Input_Sources hand;
     public SteamVR_Action_Boolean touchPress;
     public SteamVR_Action_Vector2 touchValue;
     public GameObject mainWeapon;
     public GameObject secondaryWeapon;
 
     int select = 0;
+    Animator anim;
 
     void Start()
     {
-        
+        anim = GetComponent<Animator>();
+        ChangeGun(0);
     }
 
    
     void Update()
     {
-        if (touchPress.GetStateDown(SteamVR_Input_Sources.LeftHand))
+        if (touchPress.GetStateDown(hand))
         {
             select += touchValue.axis.y > 0 ? -1 : 1;
             if (select < 0)
@@ -29,7 +32,7 @@ public class ChangeGunManager : MonoBehaviourPun
             else if (select >= 2)
                 select = 1;
 
-
+            ChangeGun(select);
         }
     }
 
@@ -41,6 +44,18 @@ public class ChangeGunManager : MonoBehaviourPun
             {
                 mainWeapon.SetActive(true);
                 secondaryWeapon.SetActive(false);
+                anim.SetBool(mainWeapon.name, true);
+                anim.SetBool(secondaryWeapon.name, false);
+            }
+        }
+        else if(index == 1)
+        {
+            if (!secondaryWeapon.activeSelf)
+            {
+                secondaryWeapon.SetActive(true);
+                mainWeapon.SetActive(false);
+                anim.SetBool(secondaryWeapon.name, true);
+                anim.SetBool(mainWeapon.name, false);
             }
         }
     }
