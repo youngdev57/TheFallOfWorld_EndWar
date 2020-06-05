@@ -9,7 +9,12 @@ public class PlayerManager : MonoBehaviour
     public int p_MP;
     public int p_DEF;
 
-
+    void Start()
+    {
+        p_HP = 100;
+        p_MP = 100;
+        p_DEF = 0;
+    }
 
     [PunRPC]
     public void GetDamage(float damage)

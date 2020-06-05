@@ -17,7 +17,7 @@ public class ChangeGunManager : MonoBehaviourPun
     void Start()
     {
         anim = GetComponent<Animator>();
-        ChangeGun(0);
+        photonView.RPC("ChangeGun", RpcTarget.AllBuffered, 0);
     }
 
    
@@ -31,10 +31,11 @@ public class ChangeGunManager : MonoBehaviourPun
             else if (select >= 2)
                 select = 1;
 
-            ChangeGun(select);
+            photonView.RPC("ChangeGun", RpcTarget.AllBuffered,select);
         }
     }
 
+    [PunRPC]
     void ChangeGun(int index)
     {
         if (index == 0)
