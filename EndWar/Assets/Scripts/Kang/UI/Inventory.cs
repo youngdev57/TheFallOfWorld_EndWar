@@ -19,13 +19,6 @@ public class Inventory : MonoBehaviour
 
     public int nowWeaponIdx = 0;
 
-    public enum Weapon
-    {
-        None,
-        LSJ_Pistol,
-        CMY_0507
-    }
-
     public Weapon mainWeapon = Weapon.None;
     public Weapon subWeapon = Weapon.None;
 
@@ -151,7 +144,7 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void AddItem(int itemId, int itemType, string itemName)  //아이템 추가 함수
+    public void AddItem(int itemId, ItemType itemType, string itemName)  //아이템 추가 함수
     {
         Item tempItem = new Item(itemName, itemType, itemId);   //인수로 받아온 정보들로 아이템 생성~~
         if(itemList.Count == 28)    //총 28개 까지 저장 가능하므로 넘으면 저장 불가~
@@ -194,11 +187,13 @@ public class Inventory : MonoBehaviour
             {
                 mainWeapon = (Weapon)GetNth(idx).Value.itemId + 1;
                 mainWeaponName.text = GetNth(idx).Value.itemName;
+                mainIdx = idx;
             }
             else
             {
                 subWeapon = (Weapon)GetNth(idx).Value.itemId + 1;
                 subWeaponName.text = GetNth(idx).Value.itemName;
+                subIdx = idx;
             }
 
             RefreshWeapon();
@@ -240,10 +235,27 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    /** 서버 연동 **/
+
+    public void SaveInventoryAll()  //인벤토리 전체를 저장
+    {
+
+    }
+
+    public void LoadInventoryAll()  //인벤토리 전체를 불러옴
+    {
+
+    }
+
+    public void SaveLastItem()
+    {
+
+    }
+
 
     /** 스크립트 내부적으로 쓰이는 함수들 **/
 
-    LinkedListNode<Item> GetNth(int idx) {          //링크드리스트의 idx번째 아이템을 가져오는 함수 (기본적으로 없어서 만듬)
+    public LinkedListNode<Item> GetNth(int idx) {          //링크드리스트의 idx번째 아이템을 가져오는 함수 (기본적으로 없어서 만듬)
         int count = 0;
         LinkedListNode<Item> root = itemList.First;
         LinkedListNode<Item> target = null;
@@ -260,4 +272,23 @@ public class Inventory : MonoBehaviour
 
         return target;
     }
+}
+
+public enum Weapon
+{
+    None,
+    LSJ_Pistol,
+    CMY_0507
+}
+
+public enum Defense
+{
+    None,
+    Crystal,
+    Iron,
+    Crystalion,
+    Mineral,
+    Core,
+    SoulGem,
+    Redstone
 }
