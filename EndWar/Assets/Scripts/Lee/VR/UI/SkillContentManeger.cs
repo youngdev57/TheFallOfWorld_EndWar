@@ -53,7 +53,7 @@ public class SkillContentManeger : MonoBehaviourPun
             PressedDown();
 
         if (choose.GetStateUp(SteamVR_Input_Sources.LeftHand))
-            PressedUp();
+            photonView.RPC("PressedUp", RpcTarget.AllBuffered, null);
 
         if (touchPress.GetStateDown(SteamVR_Input_Sources.LeftHand))
         {
@@ -74,6 +74,7 @@ public class SkillContentManeger : MonoBehaviourPun
         button.colors = n_color;
     }
 
+    [PunRPC]
     void PressedUp()
     {
         ColorBlock n_color = button.colors;
