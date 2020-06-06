@@ -263,6 +263,9 @@ public class Monster01 : Monster
 
     public void OnEnable()
     {
+        HP = maxHp;
+        notDie = true;
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
         transform.position = Vector3.zero;
         transform.rotation = Quaternion.identity;
         monster_Staus = Staus.idle;
@@ -270,10 +273,7 @@ public class Monster01 : Monster
         canAttack = false;
         attackMode = false;
         idleMode = true;
-
-        notDie = true;
         
-        HP = maxHp;
         target = null;
     }
 }

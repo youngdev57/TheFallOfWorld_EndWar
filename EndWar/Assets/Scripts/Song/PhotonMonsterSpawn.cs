@@ -7,11 +7,15 @@ public class PhotonMonsterSpawn : MonoBehaviourPun
 {
     public List<GameObject> nomalMonster;
 
+    // 몬스터 무리 위치
+    public Vector3 m_fir;
+
     private MonsterPooling m_pool;
 
     private void Awake()
     {
         m_pool = GetComponent<MonsterPooling>();
+        m_fir = new Vector3(20,0,20);
     }
 
     private void Start()
@@ -20,7 +24,7 @@ public class PhotonMonsterSpawn : MonoBehaviourPun
         {
             return;
         }
-        m_pool.InitMontsers(nomalMonster[0].name,2);
+        m_pool.InitMontsers(nomalMonster[0].name,5);
         MonsterPos(m_pool.montsers);
     }
 
@@ -31,10 +35,19 @@ public class PhotonMonsterSpawn : MonoBehaviourPun
             switch (x)
             {
                 case 0:
-                    monster[0].transform.position = new Vector3(25, 0, 40);
+                    monster[0].transform.position = m_fir + new Vector3(25, 0, 40);
                     break;
                 case 1:
-                    monster[1].transform.position = new Vector3(20, 0, 50);
+                    monster[1].transform.position = m_fir + new Vector3(20, 0, -10);
+                    break;
+                case 2:
+                    monster[2].transform.position = m_fir + new Vector3(-20, 0, 10);
+                    break;
+                case 3:
+                    monster[3].transform.position = m_fir + new Vector3(-5, 0, -30);
+                    break;
+                case 4:
+                    monster[4].transform.position = m_fir + new Vector3(0, 0, 0);
                     break;
             }
         }
@@ -42,10 +55,6 @@ public class PhotonMonsterSpawn : MonoBehaviourPun
 
     private void Update()
     {
-        if (!PhotonNetwork.IsMasterClient)
-        {
-            return;
-        }
         MonsterCheck(m_pool.montsers);
     }
 
