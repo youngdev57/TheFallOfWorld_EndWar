@@ -5,9 +5,11 @@ using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
 
+
+
 public class PlayerInfo : MonoBehaviourPunCallbacks
 {
-    public Text nickname;
+    public Text nickname;   //머리위에 표시될 게임 아이디
 
     [SerializeField]
     internal PhotonTest photonManager;
@@ -16,6 +18,8 @@ public class PlayerInfo : MonoBehaviourPunCallbacks
     {
         nickname.text = photonView.Owner.NickName;
     }
+
+    /** ??? **/
 
     void LeaveRoom()
     {

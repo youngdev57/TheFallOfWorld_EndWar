@@ -16,6 +16,12 @@ public enum Gem     //재료(보석) 종류
 
 public class Craft : MonoBehaviour
 {
+    private static Craft instance;
+    public static Craft GetInstance()
+    {
+        return instance;
+    }
+
     //연결된 인벤토리 UI
     public Inventory inven;
 
@@ -55,20 +61,28 @@ public class Craft : MonoBehaviour
     //UI 상태 파라미터
     int viewIndex = 0;
 
+    public PlayerInven pInven;
+
     void Start()
     {
         //테스트용 초기 값
-        oreCnts[(int)Gem.Crystal] = 60;     //크리스탈
-        oreCnts[(int)Gem.Iron] = 30;        //철
-        oreCnts[(int)Gem.Mineral] = 40;     //미네랄
-        oreCnts[(int)Gem.Core] = 50;        //코어
-        oreCnts[(int)Gem.SoulGem] = 40;     //소울젬
-        oreCnts[(int)Gem.RedStone] = 20;    //레드스톤
+        //oreCnts[(int)Gem.Crystal] = 60;     //크리스탈
+        //oreCnts[(int)Gem.Iron] = 30;        //철
+        //oreCnts[(int)Gem.Mineral] = 40;     //미네랄
+        //oreCnts[(int)Gem.Core] = 50;        //코어
+        //oreCnts[(int)Gem.SoulGem] = 40;     //소울젬
+        //oreCnts[(int)Gem.RedStone] = 20;    //레드스톤
 
         craftList = new List<CraftSet>();
-        craftList.Add(new CraftSet("LSJ 피스톨", 1, 0, (int)Gem.Crystal, 3));    //제작법 등록 (재료 종류 수, 완성품 아이템 코드, 재료이름1, 재료1 개수, 재료이름2 ... 재료4 개수)
-        craftList.Add(new CraftSet("CMY-0507 피스톨",2, 1, (int)Gem.Crystal, 4, (int)Gem.Iron, 2));
+        InitAllCraftLists();
 
+        Init();
+
+        instance = this;
+    }
+
+    public void Init()
+    {
         RefreshOreTexts();
         RefreshCraftInfo();
     }
@@ -89,6 +103,14 @@ public class Craft : MonoBehaviour
         {
             CraftItem();
         }
+
+        if(Input.GetKeyDown(KeyCode.F7))
+        {
+            for (int i = 0; i < 6; i++)
+                oreCnts[i] += 20;
+            inven.pInven.SaveInven();
+        }
+
     }
 
     /** 요구 재료 이미지, 텍스트 전부 SetActive(false) 하는 함수 **/
@@ -122,9 +144,9 @@ public class Craft : MonoBehaviour
         HideRequirements();     //요구 재료 초기화
 
         CraftSet nowItem = craftList[viewIndex];    //현재 보고 있는 제작법 인덱스의 제작아이템 정보 불러와서 nowItem에 저장
-        int code = nowItem.itemCode;                //현재 제작아이템의 아이템 코드
+        Weapon code = nowItem.itemCode;                //현재 제작아이템의 아이템 코드
 
-        craftItem_Image.sprite = weaponSprs[code];  //제작할 아이템의 표시 이미지를 아이템 코드를 인덱스로 하여 이미지배열에서 불러옴
+        craftItem_Image.sprite = weaponSprs[(int)code - 1];  //제작할 아이템의 표시 이미지를 아이템 코드를 인덱스로 하여 이미지배열에서 불러옴
         craftItem_Name.text = nowItem.itemName;     //제작할 아이템의 표시 이름을 nowItem에서 불러옴
 
         for(int i=0; i<nowItem.requireOre.Length; i++)      //제작할 아이템의 요구 재료 종류만큼 for문 돌림.
@@ -193,10 +215,14 @@ public class Craft : MonoBehaviour
             return;     //요구 재료가 없다면 함수 종료 ★★★★★★★★
         }
 
-        inven.AddItem(nowItem.itemCode, 0, nowItem.itemName);   //제작한 아이템을 인벤토리에 추가
+        inven.AddItem((int)nowItem.itemCode);   //제작한 아이템을 인벤토리에 추가
 
         RefreshOreTexts();      //UI 상단 보유 재료개수 텍스트 갱신
         RefreshCraftInfo();     //보고 있는 제작법 정보 갱신
+
+        inven.pInven.BringAllItem();
+        pInven.BringAllGem();
+        inven.pInven.SaveInven();
     }
 
     /** 보석 개수 리턴 함수들 **/
@@ -223,5 +249,64 @@ public class Craft : MonoBehaviour
     int GetRedStone()   //레드스톤 개수 리턴
     {
         return oreCnts[(int)Gem.RedStone];
+    }
+
+    int craftOrder = 0;
+
+    void InitAllCraftLists()
+    {
+        //제작법 등록 (재료 종류 수, 완성품 아이템 코드, 재료이름1, 재료1 개수, 재료이름2 ... 재료4 개수)
+
+        List<Item> list = PlayerInven.allItemLists;
+
+        SetCraftList_1((int)Gem.Crystal, 4);
+        SetCraftList_1((int)Gem.Iron, 6);
+        SetCraftList_1((int)Gem.Mineral, 8);
+        SetCraftList_1((int)Gem.Core, 6);
+    }
+
+    void SetCraftList_1(int gem1, int gem1cnt) //젬 종류가 하나인 제작서
+    {
+        int idx = craftOrder;
+        List<Item> list = PlayerInven.allItemLists;
+        craftList.Add(new CraftSet(list[idx].itemName, 1, list[idx].itemType, list[idx].itemId, list[idx].attackPower, 
+            list[idx].defensePower, gem1, gem1cnt));
+        craftOrder++;
+    }
+    void SetCraftList_2(int gem1, int gem1cnt, int gem2, int gem2cnt)  //젬 종류가 둘인 제작서
+    {
+        int idx = craftOrder;
+        List<Item> list = PlayerInven.allItemLists;
+        craftList.Add(new CraftSet(list[idx].itemName, 2, list[idx].itemType, list[idx].itemId, list[idx].attackPower,
+            list[idx].defensePower, gem1, gem1cnt, gem2, gem2cnt));
+        craftOrder++;
+    }
+    void SetCraftList_3(int gem1, int gem1cnt, int gem2, int gem2cnt, int gem3, int gem3cnt)   //젬 종류가 셋인 제작서
+    {
+        int idx = craftOrder;
+        List<Item> list = PlayerInven.allItemLists;
+        craftList.Add(new CraftSet(list[idx].itemName, 3, list[idx].itemType, list[idx].itemId, list[idx].attackPower,
+            list[idx].defensePower, gem1, gem1cnt, gem2, gem2cnt, gem3, gem3cnt));
+        craftOrder++;
+    }
+
+    //젬 종류가 넷인 제작서
+    void SetCraftList_4(int gem1, int gem1cnt, int gem2, int gem2cnt, int gem3, int gem3cnt, int gem4, int gem4cnt)
+    {
+        int idx = craftOrder;
+        List<Item> list = PlayerInven.allItemLists;
+        craftList.Add(new CraftSet(list[idx].itemName, 4, list[idx].itemType, list[idx].itemId, list[idx].attackPower,
+            list[idx].defensePower, gem1, gem1cnt, gem2, gem2cnt, gem3, gem3cnt, gem4, gem4cnt));
+        craftOrder++;
+    }
+
+    /** 플레이어 인벤 경유 함수 **/
+
+    public void BringAllGems()
+    {
+        for (int i = 0; i < 6; i++)
+        {
+            oreCnts[i] = pInven.gems[i];
+        }
     }
 }

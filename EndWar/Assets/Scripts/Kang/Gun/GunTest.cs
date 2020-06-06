@@ -12,28 +12,36 @@ public class GunTest : MonoBehaviourPunCallbacks, IPunPrefabPool
     public Transform muzzleTr;
     public GameObject muzzleEffect;
 
-    private GameObject bulletEffect;
+    public GameObject bulletEffect;
+
+    private Bullet[] bulletArray;
 
     public AudioSource audioSource;
     public AudioClip[] sfxArray;
+
+    int index = 0;
 
     float delay = 0.75f;
     float timer = 0f;
 
     bool isFire = false;
     bool canFire = true;
-    bool isRestore = true;
+    //bool isRestore = true;
     
 
     void Start()
     {
-        bulletEffect = PhotonNetwork.Instantiate("BulletTrailer", muzzleTr.position, Quaternion.identity);
-        bulletEffect.SetActive(false);
-
         if (!photonView.IsMine)
             return;
 
-        bulletEffect.GetComponent<Bullet>().gun = this;
+        bulletArray = bulletEffect.GetComponentsInChildren<Bullet>(true);
+        for (int i = 0; i < bulletArray.Length; i++)
+        {
+            bulletArray[i].gameObject.SetActive(false);
+
+            bulletArray[i].gun = this;
+            bulletArray[i].index = this.index++;
+        }
     }
 
     [PunRPC]
@@ -44,10 +52,11 @@ public class GunTest : MonoBehaviourPunCallbacks, IPunPrefabPool
 
         RaycastHit hit;
 
-        isRestore = false;
-        StartCoroutine(FireEffect());
+        //isRestore = false;
+        photonView.RPC("FireEffect", RpcTarget.AllBuffered, index);
+        //StartCoroutine(FireEffect());
 
-        if(Physics.Raycast(muzzleTr.position, muzzleTr.right, out hit, 5000f))
+        if (Physics.Raycast(muzzleTr.position, muzzleTr.right, out hit, 5000f))
         {
             if(hit.collider.attachedRigidbody)
             {
@@ -58,11 +67,12 @@ public class GunTest : MonoBehaviourPunCallbacks, IPunPrefabPool
         canFire = false;
     }
 
-    IEnumerator FireEffect()
+    [PunRPC]
+    IEnumerator FireEffect(int _index)
     {
-        bulletEffect.SetActive(true);
+        bulletArray[_index].gameObject.SetActive(true);
         muzzleEffect.SetActive(true);
-        bulletEffect.GetComponent<Rigidbody>().AddForce(muzzleTr.right * 8000f);
+        bulletArray[_index].GetComponent<Rigidbody>().AddForce(muzzleTr.right * 8000f);
         audioSource.PlayOneShot(sfxArray[Random.Range(0, sfxArray.Length)]);
 
         yield return new WaitForSeconds(0.15f);
@@ -70,18 +80,19 @@ public class GunTest : MonoBehaviourPunCallbacks, IPunPrefabPool
         muzzleEffect.SetActive(false);
 
         yield return new WaitForSeconds(0.55f);
-
-        photonView.RPC("Restore", RpcTarget.AllViaServer);
+        photonView.RPC("Restore", RpcTarget.AllViaServer, _index);
         //Restore();
     }
 
     [PunRPC]
-    public void Restore()
+    public void Restore(int _index)
     {
-        isRestore = true;
-        bulletEffect.transform.position = muzzleTr.position;
-        bulletEffect.SetActive(false);
-        bulletEffect.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        //isRestore = true;
+        GameObject bullet = bulletArray[_index].gameObject;
+        bullet.transform.position = muzzleTr.position;
+        bullet.SetActive(false);
+        bullet.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        bullet.transform.position = muzzleTr.position;
     }
     
     void Update()
@@ -97,14 +108,15 @@ public class GunTest : MonoBehaviourPunCallbacks, IPunPrefabPool
             timer -= delay;
         }
 
-        if (isRestore)
-            bulletEffect.transform.position = muzzleTr.position;
-
         if (grapAction.GetLastState(handType) && canFire)
         {
+            if (index >= bulletArray.Length)
+                index = 0;
+
             isFire = true;
             //Fire();
             photonView.RPC("Fire", RpcTarget.AllViaServer);
+            index++;
         }
 
         if(grapAction.GetLastStateUp(handType))

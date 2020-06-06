@@ -41,6 +41,8 @@ public class PhotonTest : MonoBehaviourPunCallbacks
 
     public VRKeyManager vrKeyManager;
 
+    public K_PlayerManager kPM;
+
     public enum Status
     {
         WaitLogin,
@@ -49,18 +51,13 @@ public class PhotonTest : MonoBehaviourPunCallbacks
         SuccessLogin,
         WaitGid,
         InvaildGid,
+        NoSpaceOrSpecialGid,
+        ExistGid,
         SuccessGid
     }
 
     public Status status = Status.WaitLogin;
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.B))     //로그인 테스트용 ㅡㅡ
-        {
-            OnClickLogin("1", "1");
-        }
-    }
 
     /** 웹서버 통한 로그인 작업 **/
     IEnumerator LoginCheck(string email, string password) {
@@ -69,26 +66,18 @@ public class PhotonTest : MonoBehaviourPunCallbacks
         form.AddField("email", email);
         form.AddField("pwd", password);
 
-        Debug.Log(email + " 메일주소");
-        Debug.Log(password + " 비번");
-
         WWW www = new WWW("http://ec2-15-165-174-206.ap-northeast-2.compute.amazonaws.com:8080/_EndWar/gameAccess.do", form);
 
         yield return www;
 
-        Debug.Log("LoginCheck : " + www.text);
-
-        StartCoroutine(WaitForLogin(www));
+        StartCoroutine(WaitForLogin(www, email));
     }
 
-    IEnumerator WaitForLogin(WWW www)
+    IEnumerator WaitForLogin(WWW www, string tempEmail)
     {
         yield return www;
 
         string[] result = www.text.Split(',');
-
-        Debug.Log(result[0]);
-        Debug.Log(www.text + " 로그인 결과!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 
         switch(result[0])
         {
@@ -101,9 +90,9 @@ public class PhotonTest : MonoBehaviourPunCallbacks
                 status = Status.InvaildPassword;
                 break;
             case "1":   // GID 없음
-                userId = emailInput.text;
+                userId = tempEmail;
                 status = Status.WaitGid;
-                ShowGid();
+                //ShowGid();
                 break;
             case "2":   // GID 있음
                 //게임 접속 진행
@@ -113,17 +102,16 @@ public class PhotonTest : MonoBehaviourPunCallbacks
                 break;
             case "":
                 status = Status.InvaildEmail;
-                Debug.Log("로그인 실패");
                 break;
         }
     }
 
-    IEnumerator GidCheck()
+    IEnumerator GidCheck(string gid)
     {
         WWWForm form = new WWWForm();
 
         form.AddField("email", userId);
-        form.AddField("gid", gidInput.text);
+        form.AddField("gid", gid);
 
         WWW www = new WWW("http://ec2-15-165-174-206.ap-northeast-2.compute.amazonaws.com:8080/_EndWar/createGid.do", form);
 
@@ -138,16 +126,16 @@ public class PhotonTest : MonoBehaviourPunCallbacks
 
         string[] text = www.text.Split(',');
 
-        if(text[0] == "-1")
+        if(text[0] == "1")
         {
-            ShowAlert("이미 존재하는 아이디입니다.");
+            status = Status.ExistGid;
         } else
         {
-            ShowAlert("생성 완료!");
-            gidBox.SetActive(false);
             userId = text[1];
-            WebLogin();
+            status = Status.SuccessGid;
         }
+
+        Debug.Log(www.text);
     }
 
     void ShowGid()
@@ -161,26 +149,27 @@ public class PhotonTest : MonoBehaviourPunCallbacks
         alertBox.SetActive(true);
     }
 
-    public void OnClickGidButton()
+    public void OnClickGidButton(string gid)
     {
-        if(CheckVaild(gidInput.text))
+        if(CheckVaild(gid))
         {
-            byte[] txtArr = Encoding.UTF8.GetBytes(gidInput.text);
+            byte[] txtArr = Encoding.UTF8.GetBytes(gid);
 
             if(txtArr.Length > 18 || txtArr.Length < 4)
             {
-                ShowAlert("게임 아이디가 너무 짧거나 깁니다.");
+                //ShowAlert("게임 아이디가 너무 짧거나 깁니다.");
+                status = Status.InvaildGid;
             } 
             else
             {
                 //닉네임 만들기
-                StartCoroutine(GidCheck());
+                StartCoroutine(GidCheck(gid));
             }
 
-            Debug.Log("유효성 검사 완료, 바이트 수 : " + txtArr.Length);
         } else
         {
-            ShowAlert("잘못된 게임 아이디입니다.\n특수문자, 공백 불가");
+            //ShowAlert("잘못된 게임 아이디입니다.\n특수문자, 공백 불가");
+            status = Status.NoSpaceOrSpecialGid;
         }
     }
 
@@ -298,6 +287,7 @@ public class PhotonTest : MonoBehaviourPunCallbacks
     {
         loginButton.interactable = false;  //로그인 버튼 여러번 누르는 것 방지
         PhotonNetwork.NickName = userId;
+        Debug.Log(PhotonNetwork.NickName + " <- 이름");
 
         destination = 1;
 

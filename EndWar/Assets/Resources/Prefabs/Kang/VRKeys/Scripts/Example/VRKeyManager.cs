@@ -9,6 +9,8 @@
  */
 
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 using System;
 using System.Text.RegularExpressions;
 using System.Collections;
@@ -35,6 +37,8 @@ namespace VRKeys {
             password,
             nickname
         }
+
+        public TextMeshProUGUI inputLabel;
 
         public Status status = Status.email;
 
@@ -107,9 +111,23 @@ namespace VRKeys {
 
             if(Input.GetKeyDown(KeyCode.Y))     //로그인 테스트용 ㅡㅡ
             {
-                photonManager.OnClickLogin("wefsdf@naver.com", "134sdfasdf");
+                photonManager.OnClickLogin("1", "1");
+                StartCoroutine(CheckLoginStatus());
             }
-		}
+
+            if (Input.GetKeyDown(KeyCode.M))     //닉네임 테스트용 ㅡㅡ  (중복)
+            {
+                photonManager.OnClickGidButton("master");
+                StartCoroutine(CheckGidStatus());
+            }
+
+            if (Input.GetKeyDown(KeyCode.Z))     //닉네임 테스트용 ㅡㅡ  (성공)
+            {
+                photonManager.OnClickGidButton("endwar1");
+                StartCoroutine(CheckGidStatus());
+            }
+
+        }
 
 		/// <summary>
 		/// Hide the validation message on update. Connect this to OnUpdate.
@@ -148,6 +166,16 @@ namespace VRKeys {
 
                     StartCoroutine(CheckLoginStatus());
                     break;
+
+                case Status.nickname:
+                    keyboard.DisableInput();
+
+                    keyboard.ShowInfoMessage("처리중...");
+
+                    photonManager.OnClickGidButton(keyboard.text);
+
+                    StartCoroutine(CheckGidStatus());
+                    break;
             }
 		}
 
@@ -159,13 +187,8 @@ namespace VRKeys {
 		/// Pretend to submit the email before resetting.
 		/// </summary>
 		private IEnumerator SubmitEmail (string email) {
-			keyboard.ShowInfoMessage ("처리중...");
             this.email = email;
-
-			yield return new WaitForSeconds (1f);
-
-			//keyboard.ShowSuccessMessage ("Lots of spam sent to " + email);
-			keyboard.ShowSuccessMessage ("성공!!!");
+			keyboard.ShowSuccessMessage ("이메일 입력 완료");
 
 			yield return new WaitForSeconds (1f);
 
@@ -174,7 +197,8 @@ namespace VRKeys {
 			keyboard.EnableInput ();
 
             status = Status.password;
-		}
+            inputLabel.text = "비밀번호";
+        }
 
 		private bool ValidateEmail (string text) {
 			if (!emailValidator.IsMatch (text)) {
@@ -189,17 +213,80 @@ namespace VRKeys {
 
             if(photonManager.status == PhotonTest.Status.SuccessLogin)
             {
+                keyboard.ShowSuccessMessage("로그인 성공, 접속 중...");
                 photonManager.WebLogin();
             }
 
             if (photonManager.status == PhotonTest.Status.InvaildEmail)
             {
-                keyboard.ShowValidationMessage("존재하지 않는 유저입니다");
+                keyboard.ShowValidationMessage("로그인에 실패했습니다.");
+                yield return new WaitForSeconds(0.5f);
+                keyboard.HideValidationMessage();
+
+                status = Status.email;
+
+                inputLabel.text = "이메일";
             }
 
-            if (photonManager.status == PhotonTest.Status.InvaildPassword)
+            if(photonManager.status == PhotonTest.Status.WaitGid)
             {
-                keyboard.ShowValidationMessage("잘못된 비밀번호 입니다");
+                keyboard.ShowSuccessMessage("로그인 성공, 게임 아이디를 설정 해 주세요!");
+                yield return new WaitForSeconds(1f);
+                status = Status.nickname;
+                inputLabel.text = "닉네임 설정";
+
+                keyboard.HideInfoMessage();
+            }
+
+            keyboard.SetText("");
+            keyboard.EnableInput();
+
+            //if (photonManager.status == PhotonTest.Status.InvaildPassword)
+            //{
+            //    keyboard.ShowValidationMessage("잘못된 비밀번호 입니다");
+            //}
+        }
+
+        IEnumerator CheckGidStatus()
+        {
+            yield return new WaitForSeconds(1f);
+
+            keyboard.HideInfoMessage();
+
+            switch (photonManager.status)
+            {
+                case PhotonTest.Status.ExistGid:
+                    keyboard.ShowValidationMessage("이미 존재하는 게임 아이디입니다.");
+                    yield return new WaitForSeconds(1f);
+                    keyboard.HideValidationMessage();
+                    keyboard.SetText("");
+                    keyboard.EnableInput();
+                    break;
+
+                case PhotonTest.Status.NoSpaceOrSpecialGid:
+                    keyboard.ShowValidationMessage("공백이나 특수 문자 사용은 불가능합니다.");
+                    yield return new WaitForSeconds(1f);
+                    keyboard.HideValidationMessage();
+                    keyboard.SetText("");
+                    keyboard.EnableInput();
+                    break;
+
+                case PhotonTest.Status.InvaildGid:
+                    keyboard.ShowValidationMessage("게임 아이디가 너무 짧거나 깁니다.");
+                    yield return new WaitForSeconds(1f);
+                    keyboard.HideValidationMessage();
+                    keyboard.SetText("");
+                    keyboard.EnableInput();
+                    break;
+
+                case PhotonTest.Status.SuccessGid:
+                    keyboard.ShowSuccessMessage("생성 완료, 접속 중...");
+                    photonManager.WebLogin();
+                    break;
+
+                case PhotonTest.Status.WaitGid:
+                    StartCoroutine(CheckGidStatus());
+                    break;
             }
         }
 	}

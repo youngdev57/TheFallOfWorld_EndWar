@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4082013007286795513}
   - component: {fileID: 4082013007286795518}
+  - component: {fileID: 9069108028298597919}
+  - component: {fileID: 7565510262618733245}
   m_Layer: 0
   m_Name: PhotonManager
   m_TagString: Untagged
@@ -53,3 +55,52 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  basePoint: {fileID: 0}
+  emailInput: {fileID: 0}
+  passInput: {fileID: 0}
+  loginButton: {fileID: 0}
+  gidBox: {fileID: 0}
+  gidInput: {fileID: 0}
+  gidButton: {fileID: 0}
+  alertBox: {fileID: 0}
+  alertText: {fileID: 0}
+  alertButton: {fileID: 0}
+  destination: 0
+  vrKeyManager: {fileID: 0}
+  kPM: {fileID: 0}
+  status: 0
+--- !u!114 &9069108028298597919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4082013007286795512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1720680f1944cc84e8236024b65d788e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inven: {fileID: 7565510262618733245}
+  power: 0
+  story: 0
+  location: 0
+  selectedWeapon: 0
+  mainWeapon: 0
+  subWeapon: 0
+--- !u!114 &7565510262618733245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4082013007286795512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18e729a2d80cda04e95a5854740551b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseInven: {fileID: 0}
+  items: []
+  mainWeapon: {fileID: 0}
+  subWeapon: {fileID: 0}

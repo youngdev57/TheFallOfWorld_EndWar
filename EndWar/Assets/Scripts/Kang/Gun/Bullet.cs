@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
 {
     public GunTest gun;
 
+    public int index;
     private void OnTriggerEnter(Collider other)
     {
         if (!gun.photonView.IsMine)
