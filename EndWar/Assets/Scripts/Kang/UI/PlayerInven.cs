@@ -79,6 +79,7 @@ public class PlayerInven : MonoBehaviour
 
     public string MakeGemsString()
     {
+        BringAllGem();
         StringBuilder str = new StringBuilder();
 
         for (int i = 0; i < gems.Length; i++)
