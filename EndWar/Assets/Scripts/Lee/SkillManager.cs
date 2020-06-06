@@ -37,6 +37,8 @@ public class SkillManager : MonoBehaviourPun
             case SkillType.POINT:
                 if(isPoint)
                     pointObj.SetActive(true);
+                else
+                    pointObj.SetActive(false);
                 break;
             case SkillType.TARGET:
                 skill.NonTargeting();
