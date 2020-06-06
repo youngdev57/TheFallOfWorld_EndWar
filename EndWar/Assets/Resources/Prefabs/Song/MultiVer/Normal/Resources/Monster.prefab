@@ -74,25 +74,25 @@ MonoBehaviour:
   ShowParameterInspector: 1
   m_SynchronizeParameters:
   - Type: 9
-    SynchronizeType: 1
+    SynchronizeType: 2
     Name: Walk
   - Type: 9
-    SynchronizeType: 1
+    SynchronizeType: 2
     Name: Idle
   - Type: 9
-    SynchronizeType: 1
+    SynchronizeType: 2
     Name: Run
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: Die
   - Type: 9
-    SynchronizeType: 1
+    SynchronizeType: 2
     Name: Hook
   - Type: 9
-    SynchronizeType: 1
+    SynchronizeType: 2
     Name: Spin
   - Type: 9
-    SynchronizeType: 1
+    SynchronizeType: 2
     Name: Chop
   m_SynchronizeLayers:
   - SynchronizeType: 2

@@ -31,8 +31,9 @@ public class MonsterPooling : MonoBehaviourPun
             {
                 indexMonster = 0;
             }
-            GameObject obj = montsers[indexMonster];
+            GameObject obj = temp;
         }
+        obj.SetActive(true);
         return obj;
     }
 
