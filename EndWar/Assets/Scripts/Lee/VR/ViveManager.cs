@@ -16,9 +16,4 @@ public class ViveManager : MonoBehaviourPun
     [Space(10)]
     public IK leftIK;
     public IK rightIK;
-
-    [Space(10)]
-    public GripController leftGrip;
-    public GripController rightGrip;
-
 }
