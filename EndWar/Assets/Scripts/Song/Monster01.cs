@@ -41,7 +41,8 @@ public class Monster01 : Monster
         notDie = true;
         delay = 0f;
 
-        HP = 50;
+        maxHp = 200;
+        HP = maxHp;
         VIT = 10;
         ACT = 5;
         actSpeed = 2.5f;
@@ -258,5 +259,21 @@ public class Monster01 : Monster
     {
         yield return new WaitForSeconds(6f);
         gameObject.transform.parent.gameObject.SetActive(false);
+    }
+
+    public void OnEnable()
+    {
+        transform.position = Vector3.zero;
+        transform.rotation = Quaternion.identity;
+        monster_Staus = Staus.idle;
+
+        canAttack = false;
+        attackMode = false;
+        idleMode = true;
+
+        notDie = true;
+        
+        HP = maxHp;
+        target = null;
     }
 }
