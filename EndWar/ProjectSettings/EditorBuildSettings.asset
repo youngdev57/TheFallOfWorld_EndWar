@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Kang/Title_Test.unity
     guid: 15b301ecbe5fce04da1d637e54923fad
+  - enabled: 1
+    path: Assets/Scenes/Kang/BattleTest.unity
+    guid: 6f484b9c905f4a342ae03c05439a4e62
   m_configObjects: {}
