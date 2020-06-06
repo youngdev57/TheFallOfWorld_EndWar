@@ -9,6 +9,7 @@ public enum SkillType {RADIAL, POINT, TARGET }
 //스킬의 효과
 public enum Skillability {NONE, AIRBORNE, STUN, DOT, SLOW, MEZ }
 
+[RequireComponent(typeof(PhotonView))]
 public class Skill : MonoBehaviourPun
 {
     //공용
@@ -38,6 +39,7 @@ public class Skill : MonoBehaviourPun
     public int speed;           //날아가는 스피드
     public float seconds;       //지속되는 시간
     public int nonTargetDamage; //논타겟팅 대미지
+    public Quaternion rotation;  //네트워크 소환시 방향
 
     //MEZ 효과
     public bool electricShock;  //감전
@@ -59,7 +61,7 @@ public class Skill : MonoBehaviourPun
         if (speed == null && type == SkillType.TARGET)
             return; 
 
-        PhotonNetwork.Instantiate(gameObject.name, target, Quaternion.identity);
+        PhotonNetwork.Instantiate(gameObject.name, target, rotation);
     }
 
     //에디터용 필요없음
