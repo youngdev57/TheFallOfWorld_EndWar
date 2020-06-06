@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class Bullet : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class Bullet : MonoBehaviour
             if(other.gameObject.name.Contains("Target"))
             {
                 gun.photonView.RPC("Restore", Photon.Pun.RpcTarget.AllViaServer);
+                other.GetComponent<PhotonView>().RPC("GetDamager", RpcTarget.AllBuffered, null);
                 Debug.Log("Restored!! " + other.gameObject.name);
                 other.GetComponent<MeshRenderer>().material.color = Color.blue;
                 other.GetComponent<MeshRenderer>().material.DisableKeyword("_EMISSION");

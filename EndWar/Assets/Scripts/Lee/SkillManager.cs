@@ -35,10 +35,11 @@ public class SkillManager : MonoBehaviourPun
                 skillProjector.enabled = true;
                 break;
             case SkillType.POINT:
-                pointObj.SetActive(true);
+                if(isPoint)
+                    pointObj.SetActive(true);
                 break;
             case SkillType.TARGET:
-
+                skill.NonTargeting();
                 break;
         }
     }
@@ -87,7 +88,6 @@ public class SkillManager : MonoBehaviourPun
         }
         if(skill.type == SkillType.TARGET)
         {
-            skill.NonTargeting();
             skill.target = transform.position;
             skill.rotation = transform.rotation;
         }

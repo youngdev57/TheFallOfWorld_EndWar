@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 [RequireComponent(typeof(CapsuleCollider))]
 public class NonTargetTrigger : MonoBehaviour
@@ -21,9 +22,10 @@ public class NonTargetTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.layer == LayerMask.NameToLayer(""))
+        if(other.gameObject.layer == LayerMask.NameToLayer("Monster"))
         {
-
+            other.GetComponent<PhotonView>().RPC("GetDamager", RpcTarget.AllBuffered, damage);
+            Debug.Log("몬스타!");
         }
     }
 }
