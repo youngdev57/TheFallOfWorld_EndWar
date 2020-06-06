@@ -20,7 +20,7 @@ public class PhotonMonsterSpawn : MonoBehaviourPun
         {
             return;
         }
-        m_pool.InitMontsers(nomalMonster[0],2);
+        m_pool.InitMontsers(nomalMonster[0].name,2);
         MonsterPos(m_pool.montsers);
     }
 

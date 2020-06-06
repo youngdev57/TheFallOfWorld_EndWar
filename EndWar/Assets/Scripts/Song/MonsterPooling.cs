@@ -1,23 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class MonsterPooling : MonoBehaviour
+public class MonsterPooling : MonoBehaviourPun
 {
     internal List<GameObject> montsers;
     private Transform pool;
     private GameObject obj;
     private int indexMonster = 0;
 
-    public void InitMontsers(GameObject obj, int poolSize)
+    public void InitMontsers(string name, int poolSize)
     {
         montsers = new List<GameObject>();
         pool = transform;
-        this.obj = obj;
 
         for (int i = 0; i < poolSize; i++)
         {
-            GameObject goMontsers = Instantiate(obj) as GameObject;
+            GameObject goMontsers = PhotonNetwork.Instantiate(name, Vector3.zero, Quaternion.identity) as GameObject;
             PushMontsers(goMontsers);
         }
     }

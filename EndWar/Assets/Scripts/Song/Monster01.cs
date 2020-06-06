@@ -144,7 +144,7 @@ public class Monster01 : Monster
                         {
                             monster_Staus = Staus.attack;
                             delay = 0f;
-                        }
+                        }   
                         else
                         {
                             monster_Staus = Staus.idle;
@@ -217,21 +217,15 @@ public class Monster01 : Monster
     }
 
     // 피격
-    private void OnCollisionEnter(Collision collision)
+    [PunRPC]
+    public void GetDamage(int Damage)
     {
-        if (!PhotonNetwork.IsMasterClient)
-        {
-            return;
-        }
-        if (collision.gameObject.tag == "Bullet")
-        {
-            HP -= 10;
-            //Aggro();
-            mNav.stoppingDistance = 10;
-            mNav.speed = 10f;
-            canAttack = true;
-            StopAllCoroutines();
-        }
+        HP -= Damage;
+        //Aggro();
+        mNav.stoppingDistance = 10;
+        mNav.speed = 10f;
+        canAttack = true;
+        StopAllCoroutines();
     }
 
     // 몬스터 목표 지점 설정
