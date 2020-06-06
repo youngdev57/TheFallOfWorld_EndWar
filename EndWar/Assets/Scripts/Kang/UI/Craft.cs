@@ -157,6 +157,8 @@ public class Craft : MonoBehaviour
             requireImages[i].sprite = oreSprs[nowItem.requireOre[i]];           // 요구 재료 이미지를 nowItem의 정보를 토대로 가져옴
             requireTexts[i].text = oreCnts[nowItem.requireOre[i]] + " / " + nowItem.requireCnt[i];  // 요구 재료 개수 텍스트를 표시함 (해당 광물 가진 재료 수 / 요구 재료 수)
         }
+
+        Debug.Log("현재 크래프트 인덱스 : " + viewIndex); 
     }
 
     /** 다음 버튼 콜백 함수 **/
@@ -251,7 +253,7 @@ public class Craft : MonoBehaviour
         return oreCnts[(int)Gem.RedStone];
     }
 
-    int craftOrder = 0;
+    int craftOrder = 1;
 
     void InitAllCraftLists()
     {

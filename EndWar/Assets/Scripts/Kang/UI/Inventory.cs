@@ -161,7 +161,7 @@ public class Inventory : MonoBehaviour
 
     public void AddItem(int itemId)  //아이템 추가 함수
     {
-        Item tItem = PlayerInven.allItemLists[itemId];
+        Item tItem = PlayerInven.allItemLists[itemId - 1];
         if (itemList.Count == 28)    //총 28개 까지 저장 가능하므로 넘으면 저장 불가~
         {
             Debug.Log("인벤토리 꽉 참");
@@ -205,25 +205,30 @@ public class Inventory : MonoBehaviour
             return;
         }
 
+        Debug.Log("체인지 웨폰 Null? : " + GetNth(idx).Value.itemName);
+
         if (GetNth(idx) != null)
         {
             if (selectedWeapon == ChangeTarget.MainWeapon)
             {
-                mainWeapon = (Weapon)GetNth(idx).Value.itemId + 1;
+                mainWeapon = (Weapon)GetNth(idx).Value.itemId;  Debug.Log((Weapon)GetNth(idx).Value.itemId);
                 mainWeaponName.text = GetNth(idx).Value.itemName;
                 mainIdx = idx;
+
+                pInven.BringMainWeapon();
+
             }
             else
             {
-                subWeapon = (Weapon)GetNth(idx).Value.itemId + 1;
+                subWeapon = (Weapon)GetNth(idx).Value.itemId; Debug.Log((Weapon)GetNth(idx).Value.itemId);
                 subWeaponName.text = GetNth(idx).Value.itemName;
                 subIdx = idx;
+
+                pInven.BringSubWeapon();
             }
 
             RefreshWeapon();
         }
-
-        pInven.BringAllWeapon();
         
         if(doSave == 0)
             pInven.SaveInven();
@@ -258,7 +263,7 @@ public class Inventory : MonoBehaviour
             mainWeaponImage.sprite = null;
         } else
         {
-            mainWeaponImage.sprite = spriteList[(int)mainWeapon - 1];
+            mainWeaponImage.sprite = spriteList[(int)mainWeapon - 1];   Debug.Log("장착한 메인 무기 : " + mainWeapon);
         }
 
         if (subWeapon == Weapon.None)

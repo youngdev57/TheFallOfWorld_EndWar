@@ -33,11 +33,22 @@ public class PlayerInven : MonoBehaviour
 
     public void BringAllWeapon()
     {
+        BringMainWeapon();
+        BringSubWeapon();
+    }
+
+    public void BringMainWeapon()
+    {
         mainWeapon = items[baseInven.mainIdx];
-        subWeapon = items[baseInven.subIdx];
         mainIdx = baseInven.mainIdx;
+    }
+
+    public void BringSubWeapon()
+    {
+        subWeapon = items[baseInven.subIdx];
         subIdx = baseInven.subIdx;
     }
+
 
     public void BringAllItem() //기지 인벤의 아이템 리스트의 아이템 들을 전부 불러옴
     {
@@ -48,7 +59,7 @@ public class PlayerInven : MonoBehaviour
         {
             items[i] = baseInven.GetNth(i).Value;
 
-            Debug.Log(i + " : " + items[i].itemName);
+            Debug.Log(i + "번째 슬롯 : " + items[i].itemName + ", 아이템 코드 : " + items[i].itemId);
         }
     }
 
@@ -98,7 +109,7 @@ public class PlayerInven : MonoBehaviour
 
         for (int i = 0; i < items.Length; i++)
         {
-            str.Append(items[i].itemId);
+            str.Append((int)items[i].itemId);
             if (i != items.Length - 1)
                 str.Append(",");
         }
@@ -130,10 +141,9 @@ public class PlayerInven : MonoBehaviour
     IEnumerator IE_Load()
     {
         WWWForm form = new WWWForm();
-
-        //form.AddField("gid", PhotonNetwork.NickName);
-        form.AddField("gid", "endwar1");
-        PhotonNetwork.NickName = "endwar1";
+        
+        form.AddField("gid", "TESTER");
+        PhotonNetwork.NickName = "TESTER";
         Debug.Log(PhotonNetwork.NickName + " 누구야");
 
         WWW www = new WWW("http://ec2-15-165-174-206.ap-northeast-2.compute.amazonaws.com:8080/_EndWar/loadInventory.do", form);
@@ -153,15 +163,16 @@ public class PlayerInven : MonoBehaviour
 
         baseCraft.BringAllGems();
 
-        if (bytes[2] == "*")
+        if (bytes[2] == "-1")
         {
             mainIdx = -1;
         } else
         {
             mainIdx = int.Parse(bytes[2]);
+            Debug.Log("로드 시 메인 인덱스 : " + mainIdx);
         }
 
-        if(bytes[3] == "*")
+        if(bytes[3] == "-1")
         {
             subIdx = -1;
         } else
@@ -180,20 +191,20 @@ public class PlayerInven : MonoBehaviour
             }
         }
 
-        Debug.Log(bytesSlot.Length);
-
         if(itemLastIdx == -1)
         {
             //저장된 아이템이 아무것도 없음
+            Debug.Log("불러올 아이템이 아무것도 없음");
         } else
         {
             int[] intSlot = new int[itemLastIdx + 1];
             items = new Item[intSlot.Length];
+
             for (int i = 0; i < intSlot.Length; i++)
             {
                 int tempIdx = int.Parse(bytesSlot[i]);
                 intSlot[i] = int.Parse(bytesSlot[i]);
-                items[i] = allItemLists[tempIdx];
+                items[i] = allItemLists[tempIdx - 1];
             }
 
             baseInven.BringAllItems(intSlot);
@@ -213,9 +224,10 @@ public class PlayerInven : MonoBehaviour
     void InitAllItemLists()
     {
         allItemLists.Add(new Item("기본 피스톨", ItemType.Weapon, Weapon.LightPistol, 10, 0));
-        allItemLists.Add(new Item("크리스탈 피스톨", ItemType.Weapon, Weapon.CrystalPistol, 25, 0));
-        allItemLists.Add(new Item("아이언 피스톨", ItemType.Weapon, Weapon.IronPistol, 45, 0));
-        allItemLists.Add(new Item("미네랄 피스톨", ItemType.Weapon, Weapon.MineralPistol, 75, 0));
+        allItemLists.Add(new Item("크리스탈 피스톨", ItemType.Weapon, Weapon.CrystalPistol, 15, 0));
+        allItemLists.Add(new Item("아이언 피스톨", ItemType.Weapon, Weapon.IronPistol, 30, 0));
+        allItemLists.Add(new Item("미네랄 피스톨", ItemType.Weapon, Weapon.MineralPistol, 45, 0));
+        allItemLists.Add(new Item("코어 피스톨", ItemType.Weapon, Weapon.CorePistol, 75, 0));
     }
 
     IEnumerator WaitBaseInventory()
