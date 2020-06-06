@@ -103,6 +103,14 @@ public class Craft : MonoBehaviour
         {
             CraftItem();
         }
+
+        if(Input.GetKeyDown(KeyCode.F7))
+        {
+            for (int i = 0; i < 6; i++)
+                oreCnts[i] += 20;
+            inven.pInven.SaveInven();
+        }
+
     }
 
     /** 요구 재료 이미지, 텍스트 전부 SetActive(false) 하는 함수 **/
