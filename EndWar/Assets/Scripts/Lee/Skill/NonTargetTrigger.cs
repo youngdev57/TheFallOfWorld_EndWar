@@ -16,7 +16,7 @@ public class NonTargetTrigger : MonoBehaviour
 
     void Update()
     {
-        transform.position += Vector3.forward * speed * Time.deltaTime;
+        transform.position += transform.forward * speed * Time.deltaTime;
     }
 
     private void OnTriggerEnter(Collider other)

@@ -58,6 +58,7 @@ public class SkillManager : MonoBehaviourPun
     public void ShowRange()
     {
         isPoint = true;
+        skill.rotation = Quaternion.identity;
         if (skill.type == SkillType.RADIAL)
         {
             //범위 표시
@@ -87,6 +88,8 @@ public class SkillManager : MonoBehaviourPun
         if(skill.type == SkillType.TARGET)
         {
             skill.NonTargeting();
+            skill.target = transform.position;
+            skill.rotation = transform.rotation;
         }
     }
 
