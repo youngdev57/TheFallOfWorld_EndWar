@@ -49,6 +49,7 @@ public class Monster01 : Monster
 
     void Update()
     {
+
         PlayAnimation();
         OnMove();
         TargetPosition();
@@ -56,6 +57,7 @@ public class Monster01 : Monster
     }
 
     // 애니메이션
+    [PunRPC]
     private void PlayAnimation()
     {
         switch (monster_Staus)
