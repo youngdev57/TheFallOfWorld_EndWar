@@ -72,8 +72,7 @@ MonoBehaviour:
   prefab: {fileID: 0}
   distance: 50
   n_damageCount: 1
-  damage:
-  - 50
+  damage: 32000000
   type: 1
   ability: 0
   abilityTime: 0
@@ -84,7 +83,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 1024
-  target: {x: 36.225418, y: 0.2, z: 14.881935}
+  target: {x: 0, y: 0, z: 0}
   speed: 0
   seconds: 0
   nonTargetDamage: 0

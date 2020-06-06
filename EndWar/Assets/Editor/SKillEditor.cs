@@ -29,7 +29,7 @@ public class SKillEditor : Editor
         _editor.prefab = (Transform)EditorGUILayout.ObjectField(new GUIContent("Effect Prefab", "이펙트 오브젝트를 설정합니다."), _editor.prefab, typeof(Transform), true);
         EditorGUILayout.Space(5);
 
-        skillTypeTab = GUILayout.Toolbar((int)_editor.type, new string[] { "RADIAL", "AOE", "TARGETING" });
+        skillTypeTab = GUILayout.Toolbar((int)_editor.type, new string[] { "RADIAL", "AOE", "NONTARGET" });
         _editor.type = (SkillType)skillTypeTab;
 
         if (skillTypeTab != 2)
@@ -40,8 +40,8 @@ public class SKillEditor : Editor
                 _editor.n_damageCount = 0;
             }
 
-            if (_editor.damage == null || _editor.damage.Length == 0)
-                _editor.damage = new float[_editor.n_damageCount];
+            if (_editor.damage == null || _editor.damage.Length != _editor.n_damageCount)
+                _editor.damage = new int[_editor.n_damageCount];
 
             _editor.damage = _editor.damage;
 
@@ -54,7 +54,7 @@ public class SKillEditor : Editor
                     EditorGUI.indentLevel += 2;
                     for (int i = 0; i < _editor.damage.Length; i++)
                     {
-                        _editor.damage[i] = EditorGUILayout.FloatField(new GUIContent("Damage " + i, "피해량을 설정합니다."), _editor.damage[i]);
+                        _editor.damage[i] = EditorGUILayout.IntField(new GUIContent("Damage " + i, "피해량을 설정합니다."), _editor.damage[i]);
                         //SerializedProperty property = _editor.damage;
                     }
                     EditorGUI.indentLevel -= 2;
@@ -86,7 +86,9 @@ public class SKillEditor : Editor
 
         if (skillTypeTab != 2)
         {
-            tempMask = EditorGUILayout.MaskField(new GUIContent("LayerMask", "지정될 대상의 레이어를 선택합니다."), mask, displayOption);
+            tempMask = EditorGUILayout.MaskField(new GUIContent("LayerMask", "지정될 대상의 레이어를 선택합니다.\n" +
+                                                                "RADIAL : 피해를 받을 적을 설정합니다.\n" +
+                                                                "AOE : 바닥을 설정합니다."), mask, displayOption);
             _editor.layerMask = InternalEditorUtility.ConcatenatedLayersMaskToLayerMask(tempMask);
             EditorGUILayout.Space(5);
         }

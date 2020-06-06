@@ -4,7 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 
 //스킬 타입
-public enum SkillType {RADIAL, POINT, TARGET }
+public enum SkillType {RADIAL, POINT, NONTARGET }
 
 //스킬의 효과
 public enum Skillability {NONE, AIRBORNE, STUN, DOT, SLOW, MEZ }
@@ -17,7 +17,7 @@ public class Skill : MonoBehaviourPun
     public Transform prefab;    //이펙트 오브젝트
     public float distance;      // 거리
     public int n_damageCount;   //대미지 배열 초기화
-    public float[] damage;      //대미지
+    public int[] damage;      //대미지
     public SkillType type;      // 스킬 타입
     public Skillability ability;// 상태효과
 
@@ -54,11 +54,13 @@ public class Skill : MonoBehaviourPun
     {
         monsters = new List<Transform>();
         thisTr = GetComponent<Transform>();
+        if(type == SkillType.NONTARGET)
+            NonTargeting();
     }
 
     public void Use()
     {
-        if (speed == null && type == SkillType.TARGET)
+        if (speed == null && type == SkillType.NONTARGET)
             return; 
 
         PhotonNetwork.Instantiate(gameObject.name, target, rotation);
@@ -208,7 +210,7 @@ public class Skill : MonoBehaviourPun
                 Gizmos.color = Color.red;
                 Gizmos.DrawRay(thisTr.position, _distance);
                 break;
-            case SkillType.TARGET :
+            case SkillType.NONTARGET :
                 Gizmos.color = Color.red;
                 Gizmos.DrawRay(thisTr.position, _distance);
                 break;
