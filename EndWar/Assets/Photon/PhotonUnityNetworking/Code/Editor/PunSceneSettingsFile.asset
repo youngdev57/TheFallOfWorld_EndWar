@@ -13,4 +13,16 @@ MonoBehaviour:
   m_Name: PunSceneSettingsFile
   m_EditorClassIdentifier: 
   SceneSettingsListFoldoutOpen: 1
-  MinViewIdPerScene: []
+  MinViewIdPerScene:
+  - sceneAsset: {fileID: 102900000, guid: 15b301ecbe5fce04da1d637e54923fad, type: 3}
+    sceneName: Title_Test
+    minViewId: 1
+  - sceneAsset: {fileID: 102900000, guid: 9bff2de33744dc24bbaece25624a3400, type: 3}
+    sceneName: Title
+    minViewId: 2
+  - sceneAsset: {fileID: 102900000, guid: 80a7b5808b43ae245bc2c97ce3cfc017, type: 3}
+    sceneName: SnowMountains
+    minViewId: 3
+  - sceneAsset: {fileID: 102900000, guid: 12365aead2ff4774383f5aa5d4ea4761, type: 3}
+    sceneName: Basement
+    minViewId: 900
