@@ -17,8 +17,9 @@ public class PlayerManager : MonoBehaviour
     }
 
     [PunRPC]
-    public void GetDamage(float damage)
+    public void GetDamage(int damage)
     {
+        p_HP -= damage;
         Debug.Log("아프다~~~~~ 행~복~~해~~~줘~~어~~~~" + this.gameObject.name + ", " + damage);
     }
 }
