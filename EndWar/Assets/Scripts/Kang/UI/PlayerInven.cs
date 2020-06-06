@@ -170,12 +170,13 @@ public class PlayerInven : MonoBehaviour
         }
 
         string[] bytesSlot = bytes[4].Split(',');
-        int itemLastIdx = 0;
+        int itemLastIdx = -1;
         for(int i=0; i<bytesSlot.Length; i++)
         {
             if(bytesSlot[i] == "-1")
             {
                 itemLastIdx = i - 1;
+                break;
             }
         }
 

@@ -250,6 +250,9 @@ public class PhotonTest : MonoBehaviourPunCallbacks
             case 2: //사막맵 씬 전용 룸
                 PhotonNetwork.CreateRoom("Desert", new RoomOptions { MaxPlayers = this.maxPlayer });
                 break;
+            case 98: //전투 테스트
+                PhotonNetwork.CreateRoom("BattleTest", new RoomOptions { MaxPlayers = this.maxPlayer });
+                break;
             case 99: //사격연습장
                 PhotonNetwork.CreateRoom("AimTest", new RoomOptions { MaxPlayers = this.maxPlayer });
                 break;
@@ -285,6 +288,9 @@ public class PhotonTest : MonoBehaviourPunCallbacks
 
             case 2: //사막맵 씬 로드
                 break;
+            case 98:
+                LoadBattleTestScene();
+                break;
             case 99:
                 LoadAimScene();
                 break;
@@ -315,8 +321,6 @@ public class PhotonTest : MonoBehaviourPunCallbacks
         userId = emailInput.text;
         PhotonNetwork.NickName = emailInput.text;
 
-        destination = 1;
-
         LeaveRoom();
         ChangeRoom(destination);
         isFirstConnection = false;
@@ -344,6 +348,9 @@ public class PhotonTest : MonoBehaviourPunCallbacks
                 PhotonNetwork.JoinRoom("Ice");
                 break;
             case 2:  //사막맵 룸 입장 시도
+                break;
+            case 98:
+                PhotonNetwork.JoinRoom("BattleTest");
                 break;
             case 99:
                 PhotonNetwork.JoinRoom("AimTest");
@@ -432,7 +439,32 @@ public class PhotonTest : MonoBehaviourPunCallbacks
         CreatePlayer(destination);  //플레이어 생성
     }
 
+    //전투테스트 씬 로드  
+    public void LoadBattleTestScene()
+    {
+        if (destination == 98)
+            StartCoroutine(BattleTestSceneLoading());
+    }
 
+    IEnumerator BattleTestSceneLoading()
+    {
+        PhotonNetwork.IsMessageQueueRunning = false;
+
+        AsyncOperation operation = SceneManager.LoadSceneAsync("BattleTest");
+
+        operation.allowSceneActivation = true;
+
+        while (!operation.isDone)
+        {
+            //비동기 씬 로드 완료 시 까지 대기
+            yield return null;
+        }
+
+        //대기 후 위치에 플레이어 생성
+        pointsObj = PlayerPoints.GetInstance();
+        playerSpawnPoints = pointsObj.points;
+        CreatePlayer(destination);  //플레이어 생성
+    }
 
 
 
@@ -467,6 +499,13 @@ public class PhotonTest : MonoBehaviourPunCallbacks
                 tempObj = PhotonNetwork.Instantiate("Player", playerSpawnPoints[idx].position, Quaternion.identity, 0);
                 tempObj.GetComponent<PlayerInfo>().photonManager = this;
                 Debug.Log("아이스맵에 소환됨");
+                break;
+
+            case 98:
+                idx = 0; //소환 위치 하나뿐이라서 그냥 0
+                tempObj = PhotonNetwork.Instantiate("Player", playerSpawnPoints[idx].position, Quaternion.identity, 0);
+                tempObj.GetComponent<PlayerInfo>().photonManager = this;
+                Debug.Log("전투테스트에 소환됨");
                 break;
 
             case 99:
