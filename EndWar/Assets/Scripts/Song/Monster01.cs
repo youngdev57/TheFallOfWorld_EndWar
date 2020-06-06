@@ -163,7 +163,7 @@ public class Monster01 : Monster
             }
             else
             {
-                if (transform.position == target.position)
+                if (transform.position.x == target.position.x && transform.position.z == target.position.z)
                 {
                     target = null;
                     idleMode = true;
@@ -233,10 +233,10 @@ public class Monster01 : Monster
     // 몬스터 목표 지점 설정
     public void SetNoneTarget()
     {
-        float x = Random.Range(-10f, 10f);
-        float z = Random.Range(-10f, 10f);
+        float x = Random.Range(-50f, 50f);
+        float z = Random.Range(-50f, 50f);
 
-        noneTarget.position = new Vector3(transform.position.x + x, transform.position.y, transform.position.z + z);
+        noneTarget.position = new Vector3(transform.parent.position.x + x, transform.parent.position.y, transform.parent.position.z + z);
         target = noneTarget;
     }
     private IEnumerator SetTarget()
@@ -257,6 +257,6 @@ public class Monster01 : Monster
     private IEnumerator ActiveFalse()
     {
         yield return new WaitForSeconds(6f);
-        gameObject.SetActive(false);
+        gameObject.transform.parent.gameObject.SetActive(false);
     }
 }
