@@ -9,6 +9,7 @@ using System.Text.RegularExpressions;
 using WebSocketSharp;
 using System.Text;
 using VRKeys;
+using System;
 
 public class PhotonTest : MonoBehaviourPunCallbacks
 {
@@ -193,9 +194,15 @@ public class PhotonTest : MonoBehaviourPunCallbacks
 
     private void Awake()
     {
-        loginButton.interactable = false;  //마스터 서버에 연결하기 전까진 로그인 버튼 비활성화
-        DontDestroyOnLoad(this.gameObject);
-        PhotonNetwork.AutomaticallySyncScene = true;
+        try
+        {
+            loginButton.interactable = false;  //마스터 서버에 연결하기 전까진 로그인 버튼 비활성화
+            DontDestroyOnLoad(this.gameObject);
+            PhotonNetwork.AutomaticallySyncScene = true;
+        } catch(Exception e)
+        {
+
+        }
     }
 
     void Start()
@@ -209,11 +216,17 @@ public class PhotonTest : MonoBehaviourPunCallbacks
     {
         Debug.Log("Connect To Master ");
 
-        if (isFirstConnection)
-            loginButton.interactable = true;  //마스터 서버에 연결 완료되면 버튼 활성화
-        else
+        try
         {
-            PhotonNetwork.JoinLobby();
+            if (isFirstConnection)
+                loginButton.interactable = true;  //마스터 서버에 연결 완료되면 버튼 활성화
+            else
+            {
+                PhotonNetwork.JoinLobby();
+            }
+        } catch(Exception e)
+        {
+
         }
     }
 
@@ -448,7 +461,7 @@ public class PhotonTest : MonoBehaviourPunCallbacks
                 break;
 
             case 1:
-                idx = Random.Range(1, playerSpawnPoints.Length);
+                idx = UnityEngine.Random.Range(1, playerSpawnPoints.Length);
                 //포톤에서 프리팹을 소환하려면 최상위 루트의 Resources 폴더 안에 프리팹을 둬야만 함
                 //그리고 프리팹의 이름을 문자열로 호출하여 Instantiate 함
                 tempObj = PhotonNetwork.Instantiate("Player", playerSpawnPoints[idx].position, Quaternion.identity, 0);

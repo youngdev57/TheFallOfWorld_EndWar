@@ -32,14 +32,17 @@ MonoBehaviour:
   StartInOfflineMode: 0
   RpcList:
   - ChangeColour
+  - ChangeGun
   - ClickRpc
   - DestroyRpc
   - DestroySpaceship
   - Fire
+  - FireEffect
   - GetDamage
   - GrabObj
   - Grip
   - OnGrab
+  - PressedUp
   - RangeOff
   - RangeOn
   - Release
@@ -49,9 +52,7 @@ MonoBehaviour:
   - SetPick
   - ShowRange
   - Test
-  - ChangeGun
-  - PressedUp
-  - FireEffect
+  - FireTest
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

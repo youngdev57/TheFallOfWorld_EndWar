@@ -31,9 +31,6 @@ public class GunTest : MonoBehaviourPunCallbacks, IPunPrefabPool
 
     void Start()
     {
-        if (!photonView.IsMine)
-            return;
-
         bulletArray = bulletEffect.GetComponentsInChildren<Bullet>(true);
         for (int i = 0; i < bulletArray.Length; i++)
         {
@@ -76,7 +73,7 @@ public class GunTest : MonoBehaviourPunCallbacks, IPunPrefabPool
         audioSource.PlayOneShot(sfxArray[Random.Range(0, sfxArray.Length)]);
 
         yield return new WaitForSeconds(0.15f);
-
+        
         muzzleEffect.SetActive(false);
 
         yield return new WaitForSeconds(0.55f);
@@ -108,11 +105,12 @@ public class GunTest : MonoBehaviourPunCallbacks, IPunPrefabPool
             timer -= delay;
         }
 
-        if (grapAction.GetLastState(handType) && canFire)
+        if (grapAction.GetState(handType) && canFire)
         {
             if (index >= bulletArray.Length)
                 index = 0;
 
+            Debug.Log(index);
             isFire = true;
             //Fire();
             photonView.RPC("Fire", RpcTarget.AllViaServer);

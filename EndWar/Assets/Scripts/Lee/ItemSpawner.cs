@@ -13,7 +13,7 @@ public class ItemSpawner : MonoBehaviour
         {
             Vector3 position;
             position.x = transform.position.x + Random.Range(-50f, 50f);
-            position.y = 10f;
+            position.y = 0.5f;
             position.z = transform.position.z + Random.Range(-50f, 50f);
             PhotonNetwork.Instantiate(Item[i].name, position, Item[i].transform.rotation, 0);
         }

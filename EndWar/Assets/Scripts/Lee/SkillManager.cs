@@ -79,14 +79,14 @@ public class SkillManager : MonoBehaviourPun
         }
         if(skill.type == SkillType.TARGET)
         {
-            if (Physics.Raycast(pivot.position, pivot.forward, out _hit, skill.distance, skill.layerMask)) //레이어를 Ground로 설정
+            if (true) //레이어를 Ground로 설정
             {
-                skill.targeting = _hit.transform;
-                skill.target = skill.targeting.position;
+                /*skill.speed = _hit.transform;
+                skill.target = skill.speed.position;*/
             }
             else
             {
-                skill.targeting = null;
+                //skill.speed = null;
             }
         }
     }
