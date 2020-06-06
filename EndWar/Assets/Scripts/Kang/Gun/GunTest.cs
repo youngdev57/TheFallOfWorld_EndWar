@@ -105,19 +105,22 @@ public class GunTest : MonoBehaviourPunCallbacks, IPunPrefabPool
             timer -= delay;
         }
 
-        if (grapAction.GetState(handType) && canFire)
+        if (grapAction.GetStateDown(handType) && canFire)
         {
-            if (index >= bulletArray.Length)
-                index = 0;
+            if (grapAction.GetState(handType) && canFire)
+            {
+                if (index >= bulletArray.Length)
+                    index = 0;
 
-            Debug.Log(index);
-            isFire = true;
-            //Fire();
-            photonView.RPC("Fire", RpcTarget.AllViaServer);
-            index++;
+                Debug.Log(index);
+                isFire = true;
+                //Fire();
+                photonView.RPC("Fire", RpcTarget.AllViaServer);
+                index++;
+            }
         }
 
-        if(grapAction.GetLastStateUp(handType))
+        if(grapAction.GetStateUp(handType))
         {
             isFire = false;
         }

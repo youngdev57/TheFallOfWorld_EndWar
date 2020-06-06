@@ -32,8 +32,6 @@ public class Hand_PickUp : MonoBehaviourPun
         {
             if(!skillCanvasUi.activeSelf)
                 skillCanvasUi.SetActive(true);
-            else
-                skillCanvasUi.SetActive(false);
         }
     }
 

@@ -16,14 +16,17 @@ public class ChangeGunManager : MonoBehaviourPun
     Animator anim;
     void Start()
     {
-        anim = GetComponent<Animator>();
-        photonView.RPC("ChangeGun", RpcTarget.AllBuffered, 0);
+        if (photonView.IsMine)
+        {
+            anim = GetComponent<Animator>();
+            photonView.RPC("ChangeGun", RpcTarget.AllBuffered, 0);
+        }
     }
 
    
     void Update()
     {
-        if (touchPress.GetStateDown(hand))
+        if (photonView.IsMine && touchPress.GetStateDown(hand))
         {
             select += touchValue.axis.y > 0 ? -1 : 1;
             if (select < 0)
