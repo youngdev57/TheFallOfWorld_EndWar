@@ -16,6 +16,10 @@ public class PhotonMonsterSpawn : MonoBehaviourPun
 
     private void Start()
     {
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            return;
+        }
         m_pool.InitMontsers(nomalMonster[0],2);
         MonsterPos(m_pool.montsers);
     }
@@ -27,10 +31,10 @@ public class PhotonMonsterSpawn : MonoBehaviourPun
             switch (x)
             {
                 case 0:
-                    monster[0].transform.position = Vector3.zero;
+                    monster[0].transform.position = new Vector3(300, 0, 200);
                     break;
                 case 1:
-                    monster[1].transform.position = new Vector3(0,0,30);
+                    monster[1].transform.position = new Vector3(300,0,170);
                     break;
             }
         }
@@ -38,6 +42,10 @@ public class PhotonMonsterSpawn : MonoBehaviourPun
 
     private void Update()
     {
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            return;
+        }
         MonsterCheck(m_pool.montsers);
     }
 
