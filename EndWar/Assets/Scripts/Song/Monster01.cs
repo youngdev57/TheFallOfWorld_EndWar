@@ -49,10 +49,6 @@ public class Monster01 : Monster
 
     void Update()
     {
-        if (!PhotonNetwork.IsMasterClient)
-        {
-            return;
-        }
         PlayAnimation();
         OnMove();
         TargetPosition();
@@ -198,10 +194,6 @@ public class Monster01 : Monster
     // 플레이어 인식
     private void OnTriggerEnter(Collider other)
     {
-        if (!PhotonNetwork.IsMasterClient)
-        {
-            return;
-        }
         if (!canAttack && other.gameObject.tag == "Player")
         {
             target = other.gameObject.transform;
@@ -213,10 +205,6 @@ public class Monster01 : Monster
     }
     private void OnTriggerExit(Collider other)
     {
-        if (!PhotonNetwork.IsMasterClient)
-        {
-            return;
-        }
         if (!attackMode && canAttack && other.gameObject.tag == "Player")
         {
             mNav.stoppingDistance = 0;
