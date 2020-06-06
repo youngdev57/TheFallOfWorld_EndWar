@@ -24,8 +24,7 @@ public class NonTargetTrigger : MonoBehaviour
     {
         if(other.gameObject.layer == LayerMask.NameToLayer("Monster"))
         {
-            other.GetComponent<PhotonView>().RPC("GetDamager", RpcTarget.AllBuffered, damage);
-            Debug.Log("몬스타!");
+            other.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.AllBuffered, damage);
         }
     }
 }
