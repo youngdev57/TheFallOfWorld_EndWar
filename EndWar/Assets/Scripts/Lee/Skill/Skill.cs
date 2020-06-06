@@ -88,6 +88,7 @@ public class Skill : MonoBehaviourPun
         for (int i = 0; i < monsters.Count; i++)
         {
             monsters[i].GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.AllBuffered, damage[n_count]);
+            Debug.Log("몬스타!");
         }
         n_count++;
 
@@ -119,7 +120,7 @@ public class Skill : MonoBehaviourPun
         {
             for (int i = 0; i < coll.Length; i++)
             {
-                if (coll[i].gameObject.layer == LayerMask.NameToLayer("Water")) //레이어로 바꿀 것
+                if (coll[i].gameObject.layer == LayerMask.NameToLayer("Monster")) //레이어로 바꿀 것
                 {
                     monsters.Add(coll[i].transform);  //몬스터로 바꿀것
                 }
@@ -165,7 +166,7 @@ public class Skill : MonoBehaviourPun
         for (int i = 0; i < _target.Length; i++)
         {
             Transform _targetTf = _target[i].transform;
-            if(_targetTf.gameObject.layer == LayerMask.NameToLayer("Water")) //레이어
+            if(_targetTf.gameObject.layer == LayerMask.NameToLayer("Monster")) //레이어
             {
                 Vector3 _direction = (_targetTf.position - playerPosition).normalized;
                 float _angle = Vector3.Angle(_direction, thisTr.forward);
@@ -175,7 +176,7 @@ public class Skill : MonoBehaviourPun
                     RaycastHit _hit;
                     if (Physics.Raycast(playerPosition, _direction, out _hit, distance))
                     {
-                        if (_hit.transform.gameObject.layer == LayerMask.NameToLayer("Water")) // 레이어로 바꿀 것
+                        if (_hit.transform.gameObject.layer == LayerMask.NameToLayer("Monster")) // 레이어로 바꿀 것
                         {
                             monsters.Add(_hit.transform);  //몬스터로 바꿀것
                         }

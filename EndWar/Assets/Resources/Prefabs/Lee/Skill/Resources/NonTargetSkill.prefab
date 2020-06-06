@@ -66,6 +66,7 @@ MonoBehaviour:
   speed: 10
   seconds: 5
   nonTargetDamage: 30
+  rotation: {x: -0.16014259, y: -0.073039286, z: -0.46332994, w: 0.86853033}
   electricShock: 0
   freezing: 0
 --- !u!136 &3514354509554447596
