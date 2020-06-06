@@ -259,6 +259,7 @@ public class Monster01 : Monster
     {
         yield return new WaitForSeconds(6f);
         gameObject.transform.parent.gameObject.SetActive(false);
+        StopAllCoroutines();
     }
 
     public void OnEnable()
@@ -266,7 +267,7 @@ public class Monster01 : Monster
         HP = maxHp;
         notDie = true;
         GetComponent<Rigidbody>().velocity = Vector3.zero;
-        transform.position = Vector3.zero;
+        transform.localPosition = Vector3.zero;
         transform.rotation = Quaternion.identity;
         monster_Staus = Staus.idle;
 
