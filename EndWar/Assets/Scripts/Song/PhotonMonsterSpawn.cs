@@ -62,7 +62,7 @@ public class PhotonMonsterSpawn : MonoBehaviourPun
     {
         for (int x = 0; x < obj.Count; x++)
         {
-            if (obj[x].active == false)
+            if (obj[x].activeSelf == false)
             {
                 StartCoroutine(MonsterSpawn(obj[x]));
             }

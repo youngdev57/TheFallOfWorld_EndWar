@@ -267,6 +267,10 @@ public class Monster01 : Monster
         HP = maxHp;
         notDie = true;
         GetComponent<Rigidbody>().velocity = Vector3.zero;
+        mNav.updatePosition = true;
+        mNav.updateRotation = true;
+        mNav.isStopped = false;
+        GetComponent<CapsuleCollider>().isTrigger = false;
         transform.localPosition = Vector3.zero;
         transform.rotation = Quaternion.identity;
         monster_Staus = Staus.idle;
