@@ -157,7 +157,7 @@ public class Monster01 : Monster
                 {
                     attackMode = false;
                     mNav.isStopped = false;
-                    mNav.speed = 10f;
+                    mNav.speed = 5f;
                     monster_Staus = Staus.run;
                 }
             }
@@ -171,7 +171,7 @@ public class Monster01 : Monster
                 }
                 else
                 {
-                    mNav.speed = 8f;
+                    mNav.speed = 3f;
                     monster_Staus = Staus.walk;
                 }
             }
@@ -200,7 +200,7 @@ public class Monster01 : Monster
         {
             target = other.gameObject.transform;
             mNav.stoppingDistance = 10;
-            mNav.speed = 10f;
+            mNav.speed = 5f;
             canAttack = true;
             StopAllCoroutines();
         }
@@ -212,7 +212,7 @@ public class Monster01 : Monster
             mNav.stoppingDistance = 0;
             monster_Staus = Staus.walk;
             target = noneTarget;
-            mNav.speed = 8f;
+            mNav.speed = 3f;
             canAttack = false;
             idleMode = true;
         }
@@ -225,7 +225,7 @@ public class Monster01 : Monster
         HP -= Damage;
         //Aggro();
         mNav.stoppingDistance = 10;
-        mNav.speed = 10f;
+        mNav.speed = 5f;
         canAttack = true;
         StopAllCoroutines();
     }
@@ -233,8 +233,8 @@ public class Monster01 : Monster
     // 몬스터 목표 지점 설정
     public void SetNoneTarget()
     {
-        float x = Random.Range(-50f, 50f);
-        float z = Random.Range(-50f, 50f);
+        float x = Random.Range(-10f, 10f);
+        float z = Random.Range(-10f, 10f);
 
         noneTarget.position = new Vector3(transform.position.x + x, transform.position.y, transform.position.z + z);
         target = noneTarget;
@@ -250,7 +250,7 @@ public class Monster01 : Monster
     {
         mNav.speed = 0;
         yield return new WaitForSeconds(3f);
-        mNav.speed = 10f;
+        mNav.speed = 5f;
         monster_Staus = Staus.idle;
     }
 
