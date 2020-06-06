@@ -15,13 +15,10 @@ public class Bullet : MonoBehaviour
 
         if(other.attachedRigidbody)
         {
-            if(other.gameObject.name.Contains("Target"))
+            if(other.gameObject.layer == LayerMask.NameToLayer("Monster"))
             {
-                gun.photonView.RPC("Restore", Photon.Pun.RpcTarget.AllViaServer);
+                gun.photonView.RPC("Restore", RpcTarget.AllViaServer);
                 other.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.AllBuffered, 10);
-                Debug.Log("Restored!! " + other.gameObject.name);
-                other.GetComponent<MeshRenderer>().material.color = Color.blue;
-                other.GetComponent<MeshRenderer>().material.DisableKeyword("_EMISSION");
             }
         }
     }
