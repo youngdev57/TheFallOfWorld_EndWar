@@ -7,6 +7,12 @@ using System.Diagnostics.Tracing;
 
 public class Inventory : MonoBehaviour
 {
+    private static Inventory instance;
+    public static Inventory GetInstance()
+    {
+        return instance;
+    }
+
     public LinkedList<Item> itemList;
     public List<Sprite> spriteList;
 
@@ -40,6 +46,8 @@ public class Inventory : MonoBehaviour
 
     public TextMeshProUGUI mainWeaponName, subWeaponName;
 
+    public PlayerInven pInven;
+
     void Start()
     {
         itemList = new LinkedList<Item>();
@@ -54,6 +62,13 @@ public class Inventory : MonoBehaviour
             ins.SetActive(false);
         }
 
+        Init();
+
+        instance = this;
+    }
+
+    public void Init()
+    {
         RefreshUI();
     }
 
@@ -124,7 +139,7 @@ public class Inventory : MonoBehaviour
             Text nameText = itemClone.transform.GetChild(0).GetComponent<Text>();
             Text typeText = itemClone.transform.GetChild(1).GetComponent<Text>();
 
-            itemClone.transform.GetChild(2).GetComponent<Image>().sprite = spriteList[GetNth(i).Value.itemId];
+            itemClone.transform.GetChild(2).GetComponent<Image>().sprite = spriteList[(int)GetNth(i).Value.itemId - 1];
 
             nameText.text = GetNth(i).Value.itemName;
             typeText.text = GetNth(i).Value.itemType.ToString();
@@ -144,15 +159,17 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void AddItem(int itemId, ItemType itemType, string itemName)  //아이템 추가 함수
+    public void AddItem(int itemId)  //아이템 추가 함수
     {
-        Item tempItem = new Item(itemName, itemType, itemId);   //인수로 받아온 정보들로 아이템 생성~~
-        if(itemList.Count == 28)    //총 28개 까지 저장 가능하므로 넘으면 저장 불가~
+        Item tItem = PlayerInven.allItemLists[itemId];
+        if (itemList.Count == 28)    //총 28개 까지 저장 가능하므로 넘으면 저장 불가~
         {
             Debug.Log("인벤토리 꽉 참");
-        } else
+        }
+        else
         {
-            itemList.AddLast(tempItem);     //링크드 리스트 맨 마지막에 추가
+            //링크드 리스트 맨 마지막에 추가
+            itemList.AddLast(new Item(tItem.itemName, tItem.itemType, tItem.itemId, tItem.attackPower, tItem.defensePower));     
         }
 
         RefreshUI();    //추가 후 UI 초기화~
@@ -163,6 +180,8 @@ public class Inventory : MonoBehaviour
             itemList.Remove(GetNth(idx));
 
         RefreshUI();    //삭제 후 UI 초기화~
+        pInven.BringAllItem();
+        pInven.SaveInven();
     }
 
     public void SelectMain()
@@ -179,8 +198,13 @@ public class Inventory : MonoBehaviour
         subTarget.gameObject.SetActive(true);
     }
 
-    public void ChangeWeapon(int idx)
+    public void ChangeWeapon(int idx, int doSave = 0)
     {
+        if(idx == -1)
+        {
+            return;
+        }
+
         if (GetNth(idx) != null)
         {
             if (selectedWeapon == ChangeTarget.MainWeapon)
@@ -198,6 +222,11 @@ public class Inventory : MonoBehaviour
 
             RefreshWeapon();
         }
+
+        pInven.BringAllWeapon();
+        
+        if(doSave == 0)
+            pInven.SaveInven();
     }
 
     public void ClearWeapon(ChangeTarget target)
@@ -206,13 +235,20 @@ public class Inventory : MonoBehaviour
         {
             case ChangeTarget.MainWeapon:
                 mainWeapon = Weapon.None;
+                mainIdx = -1;   //맨주먹   (인벤토리 어디에도 없기 때문에 -1)
+                mainWeaponName.text = "미장착";
                 break;
             case ChangeTarget.SubWeapon:
                 subWeapon = Weapon.None;
+                subIdx = -1;    //맨주먹
+                subWeaponName.text = "미장착";
                 break;
         }
 
         RefreshWeapon();
+
+        pInven.BringAllWeapon();
+        pInven.SaveInven();
     }
 
     public void RefreshWeapon()
@@ -235,21 +271,14 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    /** 서버 연동 **/
+    /** 플레이어 인벤 연동 **/
 
-    public void SaveInventoryAll()  //인벤토리 전체를 저장
+    public void BringAllItems(int[] intSlot)
     {
-
-    }
-
-    public void LoadInventoryAll()  //인벤토리 전체를 불러옴
-    {
-
-    }
-
-    public void SaveLastItem()
-    {
-
+        for(int i=0; i<intSlot.Length; i++)
+        {
+            AddItem(intSlot[i]);
+        }
     }
 
 
@@ -274,12 +303,7 @@ public class Inventory : MonoBehaviour
     }
 }
 
-public enum Weapon
-{
-    None,
-    LSJ_Pistol,
-    CMY_0507
-}
+
 
 public enum Defense
 {
