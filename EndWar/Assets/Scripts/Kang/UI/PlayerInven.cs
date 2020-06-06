@@ -133,6 +133,7 @@ public class PlayerInven : MonoBehaviour
 
         //form.AddField("gid", PhotonNetwork.NickName);
         form.AddField("gid", "endwar1");
+        PhotonNetwork.NickName = "endwar1";
         Debug.Log(PhotonNetwork.NickName + " 누구야");
 
         WWW www = new WWW("http://ec2-15-165-174-206.ap-northeast-2.compute.amazonaws.com:8080/_EndWar/loadInventory.do", form);
@@ -178,6 +179,8 @@ public class PlayerInven : MonoBehaviour
             }
         }
 
+        Debug.Log(bytesSlot.Length);
+
         if(itemLastIdx == -1)
         {
             //저장된 아이템이 아무것도 없음
@@ -193,6 +196,8 @@ public class PlayerInven : MonoBehaviour
             }
 
             baseInven.BringAllItems(intSlot);
+
+            Debug.Log("슬롯 크기 : " + intSlot.Length + ", 슬롯 내용 : " + intSlot);
         }
 
         baseInven.Init();
@@ -208,7 +213,7 @@ public class PlayerInven : MonoBehaviour
     {
         allItemLists.Add(new Item("기본 피스톨", ItemType.Weapon, Weapon.LightPistol, 10, 0));
         allItemLists.Add(new Item("크리스탈 피스톨", ItemType.Weapon, Weapon.CrystalPistol, 25, 0));
-        allItemLists.Add(new Item("아이언 피스톨", ItemType.Weapon, Weapon.CrystalPistol, 45, 0));
+        allItemLists.Add(new Item("아이언 피스톨", ItemType.Weapon, Weapon.IronPistol, 45, 0));
         allItemLists.Add(new Item("미네랄 피스톨", ItemType.Weapon, Weapon.MineralPistol, 75, 0));
     }
 
