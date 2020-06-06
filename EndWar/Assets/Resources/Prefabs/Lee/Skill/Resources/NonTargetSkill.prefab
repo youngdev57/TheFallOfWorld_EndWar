@@ -62,11 +62,11 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 0
-  target: {x: 0, y: 0, z: 0}
+  target: {x: -1.3790421, y: 1.446477, z: -31.162426}
   speed: 50
   seconds: 5
   nonTargetDamage: 30
-  rotation: {x: 0.041939154, y: -0.08581714, z: -0.69937605, w: 0.7083429}
+  rotation: {x: -0.1948026, y: 0.19746454, z: -0.6533737, w: 0.7043881}
   electricShock: 0
   freezing: 0
 --- !u!136 &3514354509554447596
