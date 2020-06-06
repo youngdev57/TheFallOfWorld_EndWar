@@ -137,7 +137,6 @@ GameObject:
   - component: {fileID: 4811412790919760}
   - component: {fileID: 33780012582060624}
   - component: {fileID: 23992106945193800}
-  - component: {fileID: 64715910289377608}
   m_Layer: 0
   m_Name: Roof_Angle_03_B
   m_TagString: Untagged
@@ -206,20 +205,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &64715910289377608
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1016551988151920}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: c7627f04bb51b4c4a839c158bbb5567c, type: 3}
 --- !u!1 &1018612478812426
 GameObject:
   m_ObjectHideFlags: 0
@@ -1981,7 +1966,6 @@ GameObject:
   - component: {fileID: 4793831503423204}
   - component: {fileID: 33685813932981764}
   - component: {fileID: 23923473282811168}
-  - component: {fileID: 64020405671349870}
   m_Layer: 0
   m_Name: Roof_Angle_03_B
   m_TagString: Untagged
@@ -2050,20 +2034,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &64020405671349870
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1392194047093440}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: c7627f04bb51b4c4a839c158bbb5567c, type: 3}
 --- !u!1 &1393411844353172
 GameObject:
   m_ObjectHideFlags: 0
@@ -2725,7 +2695,6 @@ GameObject:
   - component: {fileID: 4813821183927316}
   - component: {fileID: 33934867272196398}
   - component: {fileID: 23109434623679208}
-  - component: {fileID: 64957567210718274}
   m_Layer: 0
   m_Name: Roof_Angle_03_B
   m_TagString: Untagged
@@ -2794,20 +2763,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &64957567210718274
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1567795922304686}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: c7627f04bb51b4c4a839c158bbb5567c, type: 3}
 --- !u!1 &1595970306818162
 GameObject:
   m_ObjectHideFlags: 0
@@ -2967,7 +2922,6 @@ GameObject:
   - component: {fileID: 4665732661997292}
   - component: {fileID: 33387300294852954}
   - component: {fileID: 23530489990854462}
-  - component: {fileID: 64444455623649780}
   m_Layer: 0
   m_Name: Roof_Angle_03_B
   m_TagString: Untagged
@@ -3036,20 +2990,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &64444455623649780
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1624709392155810}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: c7627f04bb51b4c4a839c158bbb5567c, type: 3}
 --- !u!1 &1625990750253578
 GameObject:
   m_ObjectHideFlags: 0
@@ -3892,7 +3832,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4030930874819822}
-  - component: {fileID: 114784367408394586}
   m_Layer: 0
   m_Name: P_Radar_Big_01
   m_TagString: Untagged
@@ -3915,25 +3854,6 @@ Transform:
   m_Father: {fileID: 4915000301921938}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114784367408394586
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1764217820242224}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8aed4a39c429349ed9883c39d37d8fc3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TurnX: 0
-  TurnY: 2
-  TurnZ: 0
-  MoveX: 0
-  MoveY: 0
-  MoveZ: 0
-  World: 0
 --- !u!1 &1770627304150482
 GameObject:
   m_ObjectHideFlags: 0
