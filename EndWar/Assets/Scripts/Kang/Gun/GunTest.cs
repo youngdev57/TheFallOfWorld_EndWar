@@ -71,6 +71,7 @@ public class GunTest : MonoBehaviourPunCallbacks, IPunPrefabPool
         muzzleEffect.SetActive(true);
         bulletArray[_index].GetComponent<Rigidbody>().AddForce(muzzleTr.right * 8000f);
         audioSource.PlayOneShot(sfxArray[Random.Range(0, sfxArray.Length)]);
+        index++;
 
         yield return new WaitForSeconds(0.15f);
         
@@ -107,16 +108,14 @@ public class GunTest : MonoBehaviourPunCallbacks, IPunPrefabPool
 
         if (grapAction.GetStateDown(handType) && canFire)
         {
-            if (grapAction.GetState(handType) && canFire)
+            if (grapAction.GetState(handType))
             {
                 if (index >= bulletArray.Length)
                     index = 0;
 
-                Debug.Log(index);
                 isFire = true;
                 //Fire();
                 photonView.RPC("Fire", RpcTarget.AllViaServer);
-                index++;
             }
         }
 
