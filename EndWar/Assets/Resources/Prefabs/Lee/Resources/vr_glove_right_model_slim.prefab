@@ -846,10 +846,10 @@ MonoBehaviour:
     SynchronizeType: 2
     Name: TriggerBlend
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: GunTest
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: LowPoly Scifi_Gun
   m_SynchronizeLayers:
   - SynchronizeType: 0

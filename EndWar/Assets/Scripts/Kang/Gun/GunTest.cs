@@ -31,9 +31,6 @@ public class GunTest : MonoBehaviourPunCallbacks, IPunPrefabPool
 
     void Start()
     {
-        if (!photonView.IsMine)
-            return;
-
         bulletArray = bulletEffect.GetComponentsInChildren<Bullet>(true);
         for (int i = 0; i < bulletArray.Length; i++)
         {
@@ -53,7 +50,7 @@ public class GunTest : MonoBehaviourPunCallbacks, IPunPrefabPool
         RaycastHit hit;
 
         //isRestore = false;
-        photonView.RPC("FireTest", RpcTarget.AllBuffered, index);
+        photonView.RPC("FireEffect", RpcTarget.AllBuffered, index);
         //StartCoroutine(FireEffect());
 
         if (Physics.Raycast(muzzleTr.position, muzzleTr.right, out hit, 5000f))
@@ -68,14 +65,6 @@ public class GunTest : MonoBehaviourPunCallbacks, IPunPrefabPool
     }
 
     [PunRPC]
-    public void FireTest(int _index)
-    {
-        bulletArray[_index].gameObject.SetActive(true);
-        muzzleEffect.SetActive(true);
-        bulletArray[_index].GetComponent<Rigidbody>().AddForce(muzzleTr.right * 8000f);
-        audioSource.PlayOneShot(sfxArray[Random.Range(0, sfxArray.Length)]);
-    }
-
     IEnumerator FireEffect(int _index)
     {
         bulletArray[_index].gameObject.SetActive(true);
