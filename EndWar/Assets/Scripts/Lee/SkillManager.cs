@@ -18,6 +18,7 @@ public class SkillManager : MonoBehaviourPun
     RaycastHit _hit;
     public PhotonView myPv;
 
+    bool isPoint;
     void Start()
     {
         //skillProjector = transform.parent.Find("Range").GetComponent<Projector>();
@@ -56,6 +57,7 @@ public class SkillManager : MonoBehaviourPun
     [PunRPC]
     public void ShowRange()
     {
+        isPoint = true;
         if (skill.type == SkillType.RADIAL)
         {
             //범위 표시
@@ -70,24 +72,21 @@ public class SkillManager : MonoBehaviourPun
 
             if (Physics.Raycast(pivot.position, pivot.forward, out _hit, skill.distance, skill.layerMask)) //레이어를 Ground로 설정
             {
+                isPoint = true;
                 Vector3 point = _hit.point;
                 point.y += .2f;
                 pointObj.transform.position = point;
                 pointObj.transform.GetChild(0).localScale = Vector3.one * skill.range;
                 skill.target = point;
             }
+            else
+            {
+                isPoint = false;
+            }
         }
         if(skill.type == SkillType.TARGET)
         {
-            if (true) //레이어를 Ground로 설정
-            {
-                /*skill.speed = _hit.transform;
-                skill.target = skill.speed.position;*/
-            }
-            else
-            {
-                //skill.speed = null;
-            }
+            skill.NonTargeting();
         }
     }
 
@@ -108,7 +107,7 @@ public class SkillManager : MonoBehaviourPun
             myPv.RPC("ShowRange", RpcTarget.AllBuffered, null);
         }
         //잡는 버튼을 땔때
-        if (grabAction.GetStateUp(handType))
+        if (grabAction.GetStateUp(handType) && isPoint)
         {
             myPv.RPC("RangeOff", RpcTarget.AllBuffered, null);
             Shoot();
