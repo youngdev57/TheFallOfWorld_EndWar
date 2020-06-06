@@ -31,10 +31,10 @@ public class PhotonMonsterSpawn : MonoBehaviourPun
             switch (x)
             {
                 case 0:
-                    monster[0].transform.position = new Vector3(0, 0, 5);
+                    monster[0].transform.position = new Vector3(25, 0, 40);
                     break;
                 case 1:
-                    monster[1].transform.position = new Vector3(10, 0, 15);
+                    monster[1].transform.position = new Vector3(20, 0, 50);
                     break;
             }
         }
