@@ -35,7 +35,9 @@ public class Skill : MonoBehaviourPun
     Color color = Color.blue;   //Gizmo용 컬러
 
     //타겟형
-    public Transform targeting; //타켓이 누가 잡혔는지에 대한 확인용
+    public int speed;           //날아가는 스피드
+    public float seconds;       //지속되는 시간
+    public int nonTargetDamage; //논타겟팅 대미지
 
     //MEZ 효과
     public bool electricShock;  //감전
@@ -54,7 +56,7 @@ public class Skill : MonoBehaviourPun
 
     public void Use()
     {
-        if (targeting == null && type == SkillType.TARGET)
+        if (speed == null && type == SkillType.TARGET)
             return; 
 
         PhotonNetwork.Instantiate(gameObject.name, target, Quaternion.identity);
@@ -79,9 +81,6 @@ public class Skill : MonoBehaviourPun
             case SkillType.POINT:
                 AreaOfEffect();
                 break;
-            case SkillType.TARGET:
-                Targeting();
-                break;
         }
 
         for (int i = 0; i < monsters.Count; i++)
@@ -95,21 +94,23 @@ public class Skill : MonoBehaviourPun
     }
 
     //애니메이션 이벤트용 함수
-    public void DestroyObj()
+    private void DestroyObj()
     {
         Destroy(this.gameObject);
     }
 
-    //타겟형 함수들
-    public void Targeting()
+    //논타겟형 함수들
+    public void NonTargeting()
     {
-        if(targeting != null)
-            monsters.Add(targeting.transform);
+        NonTargetTrigger trigger = GetComponent<NonTargetTrigger>();
+        trigger.speed = speed;
+        trigger.damage = nonTargetDamage;
+        trigger.seconds = seconds;
     }
 
 
     //범위형 함수들
-    public void AreaOfEffect()
+    private void AreaOfEffect()
     {
         Collider[] coll = Physics.OverlapSphere(target, range);
         if (!isCollision)

@@ -16,7 +16,6 @@ public class SKillEditor : Editor
     void OnEnable()
     {
         _editor = target as Skill;
-
     }
 
     public override void OnInspectorGUI()
@@ -33,37 +32,39 @@ public class SKillEditor : Editor
         skillTypeTab = GUILayout.Toolbar((int)_editor.type, new string[] { "RADIAL", "AOE", "TARGETING" });
         _editor.type = (SkillType)skillTypeTab;
 
-        _editor.n_damageCount = EditorGUILayout.IntField(new GUIContent("Damage Count", "피해 횟수를 설정합니다."), _editor.n_damageCount);
-        if (_editor.n_damageCount < 0)
+        if (skillTypeTab != 2)
         {
-            _editor.n_damageCount = 0;
-        }
+            _editor.n_damageCount = EditorGUILayout.IntField(new GUIContent("Damage Count", "피해 횟수를 설정합니다."), _editor.n_damageCount);
+            if (_editor.n_damageCount < 0)
+            {
+                _editor.n_damageCount = 0;
+            }
 
-        if (_editor.damage == null || _editor.damage.Length == 0)
-            _editor.damage = new float[_editor.n_damageCount];
+            if (_editor.damage == null || _editor.damage.Length == 0)
+                _editor.damage = new float[_editor.n_damageCount];
 
-        _editor.damage = _editor.damage;
+            _editor.damage = _editor.damage;
 
-        if (_editor.n_damageCount > 0)
-        {
-            EditorGUI.indentLevel += 2;
-            show_Damage = EditorGUILayout.Foldout(show_Damage, "Damage");
-            if (show_Damage)
+            if (_editor.n_damageCount > 0)
             {
                 EditorGUI.indentLevel += 2;
-                for (int i = 0; i < _editor.damage.Length; i++)
+                show_Damage = EditorGUILayout.Foldout(show_Damage, "Damage");
+                if (show_Damage)
                 {
-                    _editor.damage[i] = EditorGUILayout.FloatField(new GUIContent("Damage " + i, "피해량을 설정합니다."), _editor.damage[i]);
-                    //SerializedProperty property = _editor.damage;
+                    EditorGUI.indentLevel += 2;
+                    for (int i = 0; i < _editor.damage.Length; i++)
+                    {
+                        _editor.damage[i] = EditorGUILayout.FloatField(new GUIContent("Damage " + i, "피해량을 설정합니다."), _editor.damage[i]);
+                        //SerializedProperty property = _editor.damage;
+                    }
+                    EditorGUI.indentLevel -= 2;
                 }
                 EditorGUI.indentLevel -= 2;
             }
-            EditorGUI.indentLevel -= 2;
+
+            EditorGUILayout.Space(5);
+            _editor.distance = EditorGUILayout.FloatField(new GUIContent("Distance", "거리 설정을 합니다."), _editor.distance);
         }
-
-        EditorGUILayout.Space(5);
-        _editor.distance = EditorGUILayout.FloatField(new GUIContent("Distance", "거리 설정을 합니다."), _editor.distance);
-
         switch (skillTypeTab)
         {
             case 0:
@@ -76,14 +77,19 @@ public class SKillEditor : Editor
                                                                             "\n충돌이 없을때 false, 공격용"), _editor.isCollision);
                 break;
             case 2:
-                //_editor.targeting = (Transform) EditorGUILayout.ObjectField(new GUIContent("Targeting", "지정당한 대상입니다."), _editor._hit.transform, typeof(Transform), true);
+                _editor.nonTargetDamage = EditorGUILayout.IntField(new GUIContent("NonTargetDamage", "데미지를 설정합니다."), _editor.nonTargetDamage);
+                _editor.seconds = EditorGUILayout.FloatField(new GUIContent("Seconds", "지속되는 시간을 설정합니다."), _editor.seconds);
+                _editor.speed = EditorGUILayout.IntField(new GUIContent("Speed", "날라가는 속도를 설정합니다."), _editor.speed);
                 break;
         }
         EditorGUILayout.Space(5);
 
-        tempMask = EditorGUILayout.MaskField(new GUIContent("LayerMask", "지정될 대상의 레이어를 선택합니다."), mask, displayOption);
-        _editor.layerMask = InternalEditorUtility.ConcatenatedLayersMaskToLayerMask(tempMask);
-        EditorGUILayout.Space(5);
+        if (skillTypeTab != 2)
+        {
+            tempMask = EditorGUILayout.MaskField(new GUIContent("LayerMask", "지정될 대상의 레이어를 선택합니다."), mask, displayOption);
+            _editor.layerMask = InternalEditorUtility.ConcatenatedLayersMaskToLayerMask(tempMask);
+            EditorGUILayout.Space(5);
+        }
 
         skillAbilityTab = GUILayout.Toolbar((int)_editor.ability, new string[] { "NONE", "AIRBORNE", "STUN", "DOT", "SLOW", "MEZ" });
         _editor.ability = (Skillability)skillAbilityTab;
