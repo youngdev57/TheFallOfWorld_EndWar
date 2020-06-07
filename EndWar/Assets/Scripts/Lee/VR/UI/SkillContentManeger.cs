@@ -53,24 +53,18 @@ public class SkillContentManeger : MonoBehaviourPun
             PressedDown();
 
         if (choose.GetStateUp(SteamVR_Input_Sources.LeftHand))
-            photonView.RPC("PressedUp", RpcTarget.AllBuffered, null);
+            PressedUp();
 
         if (touchPress.GetStateDown(SteamVR_Input_Sources.LeftHand))
         {
-            photonView.RPC("selectUpDown", RpcTarget.AllBuffered, null);
+            select += touchValue.axis.y > 0 ? -1 : 1;
+            if (select <= 1)
+                select = 1;
+            else if (select >= contents.Count - 2)
+                select = contents.Count - 2;
         }
 
         SelectedSkill();
-    }
-
-    [PunRPC]
-    void selectUpDown()
-    {
-        select += touchValue.axis.y > 0 ? -1 : 1;
-        if (select <= 1)
-            select = 1;
-        else if (select >= contents.Count - 2)
-            select = contents.Count - 2;
     }
 
     void PressedDown()
@@ -80,7 +74,6 @@ public class SkillContentManeger : MonoBehaviourPun
         button.colors = n_color;
     }
 
-    [PunRPC]
     void PressedUp()
     {
         ColorBlock n_color = button.colors;

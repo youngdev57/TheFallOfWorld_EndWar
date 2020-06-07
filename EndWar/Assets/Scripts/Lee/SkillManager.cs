@@ -25,8 +25,6 @@ public class SkillManager : MonoBehaviourPun
         //pointObj = transform.parent.Find("Fx_Point").gameObject;
     }
 
-    //범위 표시 오브젝트를 끄고 키는 함수를 만들것
-    [PunRPC]
     public void RangeOn()
     {
         switch (skill.type)
@@ -47,7 +45,6 @@ public class SkillManager : MonoBehaviourPun
     }
 
     //오브젝트 끄기
-    [PunRPC]
     public void RangeOff()
     {
         skillProjector.enabled = false;
@@ -57,7 +54,6 @@ public class SkillManager : MonoBehaviourPun
 
 
     //스킬 준비(범위, 조준을 보여줌)
-    [PunRPC]
     public void ShowRange()
     {
         isPoint = true;
@@ -108,13 +104,13 @@ public class SkillManager : MonoBehaviourPun
 
         if (grabAction.GetState(handType))
         {
-            myPv.RPC("RangeOn", RpcTarget.AllBuffered, null);
-            myPv.RPC("ShowRange", RpcTarget.AllBuffered, null);
+            RangeOn();
+            ShowRange();
         }
         //잡는 버튼을 땔때
         if (grabAction.GetStateUp(handType) && isPoint)
         {
-            myPv.RPC("RangeOff", RpcTarget.AllBuffered, null);
+            RangeOff();
             Shoot();
         }
     }

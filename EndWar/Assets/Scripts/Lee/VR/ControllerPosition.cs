@@ -64,14 +64,10 @@ public class ControllerPosition : MonoBehaviourPun
     {
         Transform obj = viveManager.myBody.transform;
 
-        if (index == 4)
-            obj = viveManager.transform;
-
         if (photonView.IsMine)
             switch (index)
             {
                 case 2:
-                case 4:
                     obj = viveManager.leftHand.transform;
                     break;
                 case 3:
