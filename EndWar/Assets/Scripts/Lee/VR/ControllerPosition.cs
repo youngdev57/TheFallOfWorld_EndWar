@@ -8,7 +8,6 @@ public class ControllerPosition : MonoBehaviourPun
 {
     public int index = 1;
     public PhotonView myPv;
-    public bool UI = false;
     public GameObject Head;
 
     ViveManager viveManager;
@@ -42,6 +41,9 @@ public class ControllerPosition : MonoBehaviourPun
                 transform.position = viveManager.rightHand.transform.position;
                 transform.rotation = viveManager.rightHand.transform.rotation;
                 break;
+            case 4:
+                transform.position = viveManager.leftHand.transform.position;
+                break;
         }
     }
 
@@ -62,13 +64,14 @@ public class ControllerPosition : MonoBehaviourPun
     {
         Transform obj = viveManager.myBody.transform;
 
-        if (UI == true)
+        if (index == 4)
             obj = viveManager.transform;
 
         if (photonView.IsMine)
             switch (index)
             {
                 case 2:
+                case 4:
                     obj = viveManager.leftHand.transform;
                     break;
                 case 3:

@@ -80,7 +80,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 4096
-  target: {x: 15.513995, y: 1.6190727, z: -8.0667095}
+  target: {x: 1.4850432, y: 1.3636053, z: 0.9902003}
   speed: 0
   seconds: 0
   nonTargetDamage: 0

@@ -957,7 +957,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 3
   myPv: {fileID: 4739809230717535197}
-  UI: 0
   Head: {fileID: 1074170897990178472, guid: 6dd0752998d961d498212c77a515f204, type: 3}
 --- !u!114 &8514670022395631751
 MonoBehaviour:
