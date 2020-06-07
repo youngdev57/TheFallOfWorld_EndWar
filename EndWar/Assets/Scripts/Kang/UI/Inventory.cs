@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Diagnostics.Tracing;
+using System.Text;
 
 public class Inventory : MonoBehaviour
 {
@@ -30,6 +31,7 @@ public class Inventory : MonoBehaviour
 
     public int mainIdx = -1;
     public int subIdx = -1;
+    public int removeIdx = -1;
 
     public enum ChangeTarget
     {
@@ -47,6 +49,8 @@ public class Inventory : MonoBehaviour
     public TextMeshProUGUI mainWeaponName, subWeaponName;
 
     public PlayerInven pInven;
+
+    public GameObject removeDialog;
 
     void Start()
     {
@@ -169,7 +173,14 @@ public class Inventory : MonoBehaviour
         else
         {
             //링크드 리스트 맨 마지막에 추가
-            itemList.AddLast(new Item(tItem.itemName, tItem.itemType, tItem.itemId, tItem.attackPower, tItem.defensePower));     
+            itemList.AddLast(new Item(tItem.itemName, tItem.itemType, tItem.itemId, tItem.attackPower, tItem.defensePower));
+
+            StringBuilder str = new StringBuilder() ;
+            for(int i=0; i<itemList.Count; i++)
+            {
+                str.Append(GetNth(i).Value.itemId);
+            }
+            Debug.Log("제작 후 리스트 : " + str);
         }
 
         RefreshUI();    //추가 후 UI 초기화~
@@ -189,6 +200,13 @@ public class Inventory : MonoBehaviour
         selectedWeapon = ChangeTarget.MainWeapon;
         mainTarget.gameObject.SetActive(true);
         subTarget.gameObject.SetActive(false);
+
+        foreach (GameObject obj in slots)
+        {
+            Button btn = obj.GetComponent<Button>();
+            btn.onClick.RemoveAllListeners();
+            btn.onClick.AddListener(delegate () { btn.GetComponent<Button_InvenSlot>().OnButtonChangeWeapon(); });
+        }
     }
 
     public void SelectSub()
@@ -196,6 +214,13 @@ public class Inventory : MonoBehaviour
         selectedWeapon = ChangeTarget.SubWeapon;
         mainTarget.gameObject.SetActive(false);
         subTarget.gameObject.SetActive(true);
+
+        foreach (GameObject obj in slots)
+        {
+            Button btn = obj.GetComponent<Button>();
+            btn.onClick.RemoveAllListeners();
+            btn.onClick.AddListener(delegate () { btn.GetComponent<Button_InvenSlot>().OnButtonChangeWeapon(); });
+        }
     }
 
     public void ChangeWeapon(int idx, int doSave = 0)
@@ -205,7 +230,9 @@ public class Inventory : MonoBehaviour
             return;
         }
 
-        Debug.Log("체인지 웨폰 Null? : " + GetNth(idx).Value.itemName);
+        if (idx == mainIdx || idx == subIdx && idx != -1)
+            return;
+        
 
         if (GetNth(idx) != null)
         {
@@ -216,7 +243,6 @@ public class Inventory : MonoBehaviour
                 mainIdx = idx;
 
                 pInven.BringMainWeapon();
-
             }
             else
             {
@@ -234,6 +260,38 @@ public class Inventory : MonoBehaviour
             pInven.SaveInven();
     }
 
+    public void UI_ChangeWeapon(string name)    //슬롯 버튼 이름을 int로 파싱해서 무기 교체
+    {
+        ChangeWeapon(int.Parse(name) - 1);
+
+        
+    }
+
+    public void UI_RemoveItem(int idx)  //UI에서 접근할 함수
+    {
+        removeIdx = idx - 1;        //삭제 하려는 아이템의 슬롯 위치 갱신
+
+        ShowRemoveDialog();     //아이템 삭제 예,아니오 확인창 팝업
+    }
+
+    public void ConfirmRemove()         //아이템 삭제 수락
+    {
+        RemoveItem(removeIdx);
+
+        HideRemoveDialog();
+    }
+
+    public void ShowRemoveDialog()      //아이템 삭제 확인창 보여줌
+    {
+        removeDialog.SetActive(true);
+    }
+
+    public void HideRemoveDialog()      //아이템 삭제 확인창 숨김
+    {
+        removeDialog.SetActive(false);
+    }
+
+    //들고있는 무기 해제
     public void ClearWeapon(ChangeTarget target)
     {
         switch(target)
@@ -256,6 +314,7 @@ public class Inventory : MonoBehaviour
         pInven.SaveInven();
     }
 
+    //무기 장착 상태 갱신
     public void RefreshWeapon()
     {
         if(mainWeapon == Weapon.None)

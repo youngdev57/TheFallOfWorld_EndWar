@@ -17,7 +17,7 @@ public class Gate : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.name.Equals("Player(Clone)"))
+        if(other.gameObject.layer.Equals(LayerMask.NameToLayer("Player")))
         {
             if(other.gameObject.GetComponent<PhotonView>().IsMine)
             {

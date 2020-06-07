@@ -67,7 +67,7 @@ MonoBehaviour:
   alertButton: {fileID: 0}
   destination: 0
   vrKeyManager: {fileID: 0}
-  kPM: {fileID: 0}
+  kPM: {fileID: 9069108028298597919}
   status: 0
 --- !u!114 &9069108028298597919
 MonoBehaviour:
@@ -100,7 +100,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18e729a2d80cda04e95a5854740551b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseInven: {fileID: 0}
-  items: []
+  gold: 0
+  gems: 000000000000000000000000000000000000000000000000
   mainWeapon: {fileID: 0}
   subWeapon: {fileID: 0}
+  mainIdx: 0
+  subIdx: 0
+  items: []

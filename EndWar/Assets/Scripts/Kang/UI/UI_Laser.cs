@@ -1,0 +1,92 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using Valve.VR;
+
+public class UI_Laser : MonoBehaviour
+{
+    public SteamVR_Input_Sources handType;
+    public SteamVR_Behaviour_Pose controllerPose;
+    public SteamVR_Action_Boolean action;
+
+    public GameObject laserPrefab;
+    public GameObject effectPrefab;
+    public GameObject effect;
+    private GameObject laser;
+    private Transform laserTr;
+    private Vector3 hitPoint;
+
+    bool isPull = false;
+
+    float rayDist = 20;
+
+    public PlayerInven pInven;
+    public K_PlayerManager kPm;
+
+    void Start()
+    {
+        //  레이저 생성
+        laser = Instantiate(laserPrefab);
+        laserTr = laser.transform;
+        laser.transform.SetParent(this.transform);
+        laser.transform.localPosition = Vector3.zero;
+    }
+    
+    void Update()
+    {
+        if(action.GetState(handType))
+        {
+            isPull = true;
+
+            RaycastHit hit;
+
+            if(Physics.Raycast(controllerPose.transform.position, transform.forward, out hit, rayDist, 1 << LayerMask.NameToLayer("UI")))
+            {
+                Debug.DrawRay(controllerPose.transform.position, transform.forward * rayDist, Color.green);
+
+                LaserColorChange(hit);
+            }
+        }
+
+        if(action.GetStateUp(handType))
+        {
+            isPull = false;
+
+            RaycastHit hit;
+
+            if (Physics.Raycast(controllerPose.transform.position, transform.forward, out hit, 20, 1 << LayerMask.NameToLayer("UI")))
+            {
+                ConfirmAction(hit);
+            }
+
+            laser.GetComponentInChildren<MeshRenderer>().material.color = Color.red;
+        }
+    }
+
+    // 트리거 액션과 함께 레이저 색깔 변경 (트리거 당겼는지 유저가 확실히 보이게)
+    private void LaserColorChange(RaycastHit hit)
+    {
+        laser.GetComponentInChildren<MeshRenderer>().material.color = Color.blue; //레이저 파란색으로
+    }
+
+    private void ConfirmAction(RaycastHit hit)
+    {
+        hit.collider.GetComponent<Button>().onClick.Invoke();
+
+        ShowEffect().transform.position = hit.point;
+        effect.GetComponent<ParticleSystem>().Play();
+
+        laser.GetComponentInChildren<MeshRenderer>().material.color = Color.red;
+    }
+
+    private GameObject ShowEffect()
+    {
+        if(effect == null)
+        {
+            effect = Instantiate(effectPrefab);
+        }
+
+        return effect;
+    }
+}

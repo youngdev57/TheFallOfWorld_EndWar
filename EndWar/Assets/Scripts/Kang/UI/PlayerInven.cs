@@ -27,7 +27,10 @@ public class PlayerInven : MonoBehaviour
     {
         allItemLists = new List<Item>();
         InitAllItemLists();
+    }
 
+    public void OnBaseCamp()
+    {
         StartCoroutine(WaitBaseInventory());
     }
 
@@ -39,13 +42,15 @@ public class PlayerInven : MonoBehaviour
 
     public void BringMainWeapon()
     {
-        mainWeapon = items[baseInven.mainIdx];
+        if(baseInven.mainIdx != -1)
+            mainWeapon = items[baseInven.mainIdx];
         mainIdx = baseInven.mainIdx;
     }
 
     public void BringSubWeapon()
     {
-        subWeapon = items[baseInven.subIdx];
+        if (baseInven.subIdx != -1)
+            subWeapon = items[baseInven.subIdx];
         subIdx = baseInven.subIdx;
     }
 
@@ -59,7 +64,7 @@ public class PlayerInven : MonoBehaviour
         {
             items[i] = baseInven.GetNth(i).Value;
 
-            Debug.Log(i + "번째 슬롯 : " + items[i].itemName + ", 아이템 코드 : " + items[i].itemId);
+            Debug.Log("BringAll-Item " + i + "번째 슬롯 : " + items[i].itemName + ", 아이템 코드 : " + items[i].itemId);
         }
     }
 
@@ -105,13 +110,29 @@ public class PlayerInven : MonoBehaviour
 
     public string MakeSlotsString()
     {
+        BringAllItem();
         StringBuilder str = new StringBuilder();
 
-        for (int i = 0; i < items.Length; i++)
+        Debug.Log("items[0] 의 이름: " + items[0].itemId);
+        for (int i = 0; i < 28; i++)
         {
-            str.Append((int)items[i].itemId);
-            if (i != items.Length - 1)
+            
+            if(i >= items.Length)
+            {
+                str.Append("-1");
+                Debug.Log(i + " : 아이템s 크기를 i가 넘어섬");
+            } else
+            {
+                str.Append((int)items[i].itemId);
+                Debug.Log(i + " : 정상적인 입장");
+            }
+
+            if (i != 27)
+            {
                 str.Append(",");
+            }
+
+            Debug.Log("메이크슬롯스트링 " + str);
         }
 
         return str.ToString();
@@ -142,8 +163,8 @@ public class PlayerInven : MonoBehaviour
     {
         WWWForm form = new WWWForm();
         
-        form.AddField("gid", "TESTER");
-        PhotonNetwork.NickName = "TESTER";
+        form.AddField("gid", PhotonNetwork.NickName);
+       // PhotonNetwork.NickName = "TESTER";
         Debug.Log(PhotonNetwork.NickName + " 누구야");
 
         WWW www = new WWW("http://ec2-15-165-174-206.ap-northeast-2.compute.amazonaws.com:8080/_EndWar/loadInventory.do", form);

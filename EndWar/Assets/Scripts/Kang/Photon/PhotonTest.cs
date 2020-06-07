@@ -308,8 +308,6 @@ public class PhotonTest : MonoBehaviourPunCallbacks
         PhotonNetwork.NickName = userId;
         Debug.Log(PhotonNetwork.NickName + " <- 이름");
 
-        destination = 1;
-
         LeaveRoom();
         ChangeRoom(destination);
         isFirstConnection = false;
@@ -410,6 +408,8 @@ public class PhotonTest : MonoBehaviourPunCallbacks
         pointsObj = PlayerPoints.GetInstance();
         playerSpawnPoints = pointsObj.points;
         CreatePlayer(destination);  //생성  0=기지에 플레이어 생성용
+
+        kPM.inven.OnBaseCamp();
     }
 
     //사격연습장 씬 로드  
@@ -487,8 +487,15 @@ public class PhotonTest : MonoBehaviourPunCallbacks
         {
             case 0:
                 idx = 0; //기지 소환 위치 하나뿐이라서 그냥 0
-                tempObj = PhotonNetwork.Instantiate("Player", playerSpawnPoints[idx].position, Quaternion.identity, 0);
+                tempObj = PhotonNetwork.Instantiate("PlayerOnBase", playerSpawnPoints[idx].position, Quaternion.identity, 0);
                 tempObj.GetComponent<PlayerInfo>().photonManager = this;
+                tempObj.GetComponentsInChildren<UI_Laser>()[0].enabled = true;
+                tempObj.GetComponentsInChildren<UI_Laser>()[1].enabled = true;
+
+                tempObj.GetComponentsInChildren<UI_Laser>()[0].pInven = GetComponent<PlayerInven>();
+                tempObj.GetComponentsInChildren<UI_Laser>()[0].kPm = GetComponent<K_PlayerManager>();
+                tempObj.GetComponentsInChildren<UI_Laser>()[1].pInven = GetComponent<PlayerInven>();
+                tempObj.GetComponentsInChildren<UI_Laser>()[1].kPm = GetComponent<K_PlayerManager>();
                 Debug.Log("기지맵에 소환됨");
                 break;
 

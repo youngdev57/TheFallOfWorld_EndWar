@@ -128,6 +128,10 @@ namespace VRKeys {
 
         public VRKeyManager keyManager;
 
+        public GameObject realLeftHand;
+        public GameObject realRightHand;
+
+
 		/// <summary>
 		/// Initialization.
 		/// </summary>
@@ -140,7 +144,7 @@ namespace VRKeys {
             //playerSpace.transform.localPosition = InputTracking.GetLocalPosition (XRNode.TrackingReference);
             //playerSpace.transform.localRotation = InputTracking.GetLocalRotation (XRNode.TrackingReference);
 
-            playerSpace.transform.position = new Vector3(500.0f, 0f, 494.0f);
+            playerSpace.transform.position = new Vector3(500.0f, 0f, 493.7f);
 
 			leftHand = new GameObject ("Left Hand");
 			rightHand = new GameObject ("Right Hand");
@@ -175,12 +179,12 @@ namespace VRKeys {
 			transform.SetParent (playerSpace.transform, false);
 			transform.localPosition = positionRelativeToUser;
 
-			leftMallet.transform.SetParent (leftHand.transform);
+			leftMallet.transform.SetParent (realLeftHand.transform);
 			leftMallet.transform.localPosition = Vector3.zero;
 			leftMallet.transform.localRotation = Quaternion.Euler (90f, 0f, 0f);
 			leftMallet.SetActive (true);
 
-			rightMallet.transform.SetParent (rightHand.transform);
+			rightMallet.transform.SetParent (realRightHand.transform);
 			rightMallet.transform.localPosition = Vector3.zero;
 			rightMallet.transform.localRotation = Quaternion.Euler (90f, 0f, 0f);
 			rightMallet.SetActive (true);
