@@ -8,7 +8,7 @@ public class ControllerPosition : MonoBehaviourPun
 {
     public int index = 1;
     public PhotonView myPv;
-
+    public bool UI = false;
     public GameObject Head;
 
     ViveManager viveManager;
@@ -61,6 +61,9 @@ public class ControllerPosition : MonoBehaviourPun
     public void FindParent()
     {
         Transform obj = viveManager.myBody.transform;
+
+        if (UI == true)
+            obj = viveManager.transform;
 
         if (photonView.IsMine)
             switch (index)
