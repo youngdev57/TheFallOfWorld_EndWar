@@ -67,7 +67,7 @@ public class VR_Player : MonoBehaviourPun
 
         if (openUI.GetStateDown(SteamVR_Input_Sources.LeftHand))
         {
-            OpenUI();
+            photonView.RPC("OpenUI", RpcTarget.AllBuffered, null);
         }
     }
 
@@ -95,6 +95,7 @@ public class VR_Player : MonoBehaviourPun
             RBody.velocity = Vector3.zero;
     }
 
+    [PunRPC]
     void OpenUI()
     {
         skillUICanvas.SetActive(true);
