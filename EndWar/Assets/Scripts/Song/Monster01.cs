@@ -34,6 +34,10 @@ public class Monster01 : Monster
         mAnimator = GetComponent<Animator>();
         mRigidbody = GetComponent<Rigidbody>();
 
+        mNav.updatePosition = true;
+        mNav.updateRotation = true;
+        mNav.isStopped = false;
+
         canAttack =  false;
         attackMode = false;
         idleMode = true;
@@ -258,7 +262,7 @@ public class Monster01 : Monster
     private IEnumerator ActiveFalse()
     {
         yield return new WaitForSeconds(6f);
-        gameObject.transform.parent.gameObject.SetActive(false);
+        this.gameObject.SetActive(false);
         StopAllCoroutines();
     }
 
@@ -267,9 +271,6 @@ public class Monster01 : Monster
         HP = maxHp;
         notDie = true;
         GetComponent<Rigidbody>().velocity = Vector3.zero;
-        mNav.updatePosition = true;
-        mNav.updateRotation = true;
-        mNav.isStopped = false;
         GetComponent<CapsuleCollider>().isTrigger = false;
         transform.localPosition = Vector3.zero;
         transform.rotation = Quaternion.identity;

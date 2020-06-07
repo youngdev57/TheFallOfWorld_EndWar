@@ -52,9 +52,13 @@ public class PhotonMonsterSpawn : MonoBehaviourPun
             }
         }
     }
-
+    /*
     private void Update()
     {
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            return;
+        }
         MonsterCheck(m_pool.montsers);
     }
 
@@ -74,4 +78,5 @@ public class PhotonMonsterSpawn : MonoBehaviourPun
         yield return new WaitForSeconds(10f);
         obj.SetActive(true);
     }
+    */
 }   
