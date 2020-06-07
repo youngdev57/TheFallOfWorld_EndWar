@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 9179914088401790794}
   - component: {fileID: 4445439502662952076}
   - component: {fileID: -1581412989635576041}
+  - component: {fileID: 2928221552198699374}
   m_Layer: 0
   m_Name: PurpleCrystal_Prefab 1
   m_TagString: Untagged
@@ -102,10 +103,24 @@ MonoBehaviour:
   prefixField: -1
   Synchronization: 0
   OwnershipTransfer: 0
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 0}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!65 &2928221552198699374
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9179914088401790789}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.32665196, y: 0.32665193, z: 0.4427386}
+  m_Center: {x: -0.019985104, y: -0.013835777, z: 0.09032696}
 --- !u!1001 &1290407736805467568
 PrefabInstance:
   m_ObjectHideFlags: 0

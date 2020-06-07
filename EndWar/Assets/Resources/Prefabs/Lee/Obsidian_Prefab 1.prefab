@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2717657477111524236}
   - component: {fileID: 8739022453852815274}
   - component: {fileID: 8330639685424389254}
+  - component: {fileID: 588504882128727657}
   m_Layer: 0
   m_Name: Obsidian_Prefab 1
   m_TagString: Untagged
@@ -69,10 +70,24 @@ MonoBehaviour:
   prefixField: -1
   Synchronization: 0
   OwnershipTransfer: 0
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 0}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!65 &588504882128727657
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2717657477111524239}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.8409185, y: 1.730272, z: 1.531107}
+  m_Center: {x: 0.033194065, y: 0.6417538, z: 0.15490627}
 --- !u!1 &3123956507906453155
 GameObject:
   m_ObjectHideFlags: 0

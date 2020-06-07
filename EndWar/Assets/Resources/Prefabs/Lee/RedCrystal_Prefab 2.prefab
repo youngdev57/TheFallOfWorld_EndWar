@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1620957063653159187}
   - component: {fileID: 5480802032639161501}
   - component: {fileID: -958299259628965125}
+  - component: {fileID: 3213912273664088739}
   m_Layer: 0
   m_Name: RedCrystal_Prefab 2
   m_TagString: Untagged
@@ -67,10 +68,24 @@ MonoBehaviour:
   prefixField: -1
   Synchronization: 0
   OwnershipTransfer: 0
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 0}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!65 &3213912273664088739
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1620957063653159186}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.24535054, y: 0.27553633, z: 0.25205833}
+  m_Center: {x: 0.0016770875, y: -0.05701785, z: 0.08888079}
 --- !u!1 &3930743487202729594
 GameObject:
   m_ObjectHideFlags: 0
