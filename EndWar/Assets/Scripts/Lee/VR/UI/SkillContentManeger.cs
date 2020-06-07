@@ -57,14 +57,20 @@ public class SkillContentManeger : MonoBehaviourPun
 
         if (touchPress.GetStateDown(SteamVR_Input_Sources.LeftHand))
         {
-            select += touchValue.axis.y > 0 ? -1 : 1;
-            if (select <= 1)
-                select = 1;
-            else if (select >= contents.Count-2)
-                select = contents.Count - 2;
+            photonView.RPC("selectUpDown", RpcTarget.AllBuffered, null);
         }
 
         SelectedSkill();
+    }
+
+    [PunRPC]
+    void selectUpDown()
+    {
+        select += touchValue.axis.y > 0 ? -1 : 1;
+        if (select <= 1)
+            select = 1;
+        else if (select >= contents.Count - 2)
+            select = contents.Count - 2;
     }
 
     void PressedDown()
