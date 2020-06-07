@@ -32,19 +32,33 @@ public class K_PlayerManager : MonoBehaviour
         selectedWeapon = subWeapon;
     }
 
-    public void GetMainWeapon()     //메인 무기 정보 반환
+    public void GetMainWeapon()     //메인 무기 정보 갱신
     {
-
+        if(inven.mainIdx == -1)
+        {
+            mainWeapon = Weapon.None;
+        }
+        else
+        {
+            mainWeapon = (Weapon)inven.mainIdx;
+        }
     }
 
-    public void GetSubWeapon()      //서브 무기 정보 반환
+    public void GetSubWeapon()      //서브 무기 정보 갱신
     {
-
+        if (inven.subIdx == -1)
+        {
+            subWeapon = Weapon.None;
+        }
+        else
+        {
+            subWeapon = (Weapon)inven.subIdx;
+        }
     }
 
     public void GetWeapon()         //현재 장착 무기 정보 반환
     {
-
+        Item item = PlayerInven.allItemLists[(int)selectedWeapon - 1];
     }
 
     /** 웹 연동 함수 **/
