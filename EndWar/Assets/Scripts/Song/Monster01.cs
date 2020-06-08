@@ -28,15 +28,17 @@ public class Monster01 : Monster
 
     void Start()
     {
+        maxHp = 200;
+        HP = maxHp;
+        VIT = 10;
+        ACT = 5;
+        actSpeed = 2.5f;
+
         monster_Staus = Staus.idle;
 
         mNav = GetComponent<NavMeshAgent>();
         mAnimator = GetComponent<Animator>();
         mRigidbody = GetComponent<Rigidbody>();
-
-        mNav.updatePosition = true;
-        mNav.updateRotation = true;
-        mNav.isStopped = false;
 
         canAttack =  false;
         attackMode = false;
@@ -45,11 +47,9 @@ public class Monster01 : Monster
         notDie = true;
         delay = 0f;
 
-        maxHp = 200;
-        HP = maxHp;
-        VIT = 10;
-        ACT = 5;
-        actSpeed = 2.5f;
+        mNav.updatePosition = true;
+        mNav.updateRotation = true;
+        mNav.isStopped = false;
     }
 
     void Update()
