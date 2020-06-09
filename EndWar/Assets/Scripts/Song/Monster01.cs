@@ -28,6 +28,12 @@ public class Monster01 : Monster
 
     void Start()
     {
+        maxHp = 200;
+        HP = maxHp;
+        VIT = 10;
+        ACT = 5;
+        actSpeed = 2.5f;
+
         monster_Staus = Staus.idle;
 
         mNav = GetComponent<NavMeshAgent>();
@@ -41,11 +47,9 @@ public class Monster01 : Monster
         notDie = true;
         delay = 0f;
 
-        maxHp = 200;
-        HP = maxHp;
-        VIT = 10;
-        ACT = 5;
-        actSpeed = 2.5f;
+        mNav.updatePosition = true;
+        mNav.updateRotation = true;
+        mNav.isStopped = false;
     }
 
     void Update()
@@ -258,7 +262,7 @@ public class Monster01 : Monster
     private IEnumerator ActiveFalse()
     {
         yield return new WaitForSeconds(6f);
-        gameObject.transform.parent.gameObject.SetActive(false);
+        this.gameObject.SetActive(false);
         StopAllCoroutines();
     }
 
@@ -267,9 +271,6 @@ public class Monster01 : Monster
         HP = maxHp;
         notDie = true;
         GetComponent<Rigidbody>().velocity = Vector3.zero;
-        mNav.updatePosition = true;
-        mNav.updateRotation = true;
-        mNav.isStopped = false;
         GetComponent<CapsuleCollider>().isTrigger = false;
         transform.localPosition = Vector3.zero;
         transform.rotation = Quaternion.identity;

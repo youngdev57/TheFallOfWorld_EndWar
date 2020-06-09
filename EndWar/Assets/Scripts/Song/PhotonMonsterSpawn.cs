@@ -15,7 +15,7 @@ public class PhotonMonsterSpawn : MonoBehaviourPun
     private void Awake()
     {
         m_pool = GetComponent<MonsterPooling>();
-        m_fir = new Vector3(20,0,20);
+        m_fir = new Vector3(751,2.112f,2050);
     }
 
     private void Start()
@@ -35,7 +35,7 @@ public class PhotonMonsterSpawn : MonoBehaviourPun
             switch (x)
             {
                 case 0:
-                    monster[0].transform.position = m_fir + new Vector3(30, 0, 30);
+                    monster[0].transform.position = m_fir + new Vector3(20, 0, 10);
                     break;
                 case 1:
                     monster[1].transform.position = m_fir + new Vector3(20, 0, -10);
@@ -44,7 +44,7 @@ public class PhotonMonsterSpawn : MonoBehaviourPun
                     monster[2].transform.position = m_fir + new Vector3(-20, 0, 10);
                     break;
                 case 3:
-                    monster[3].transform.position = m_fir + new Vector3(-5, 0, -30);
+                    monster[3].transform.position = m_fir + new Vector3(-5, 0, -20);
                     break;
                 case 4:
                     monster[4].transform.position = m_fir + new Vector3(0, 0, 0);
@@ -52,9 +52,13 @@ public class PhotonMonsterSpawn : MonoBehaviourPun
             }
         }
     }
-
+    /*
     private void Update()
     {
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            return;
+        }
         MonsterCheck(m_pool.montsers);
     }
 
@@ -74,4 +78,5 @@ public class PhotonMonsterSpawn : MonoBehaviourPun
         yield return new WaitForSeconds(10f);
         obj.SetActive(true);
     }
+    */
 }   

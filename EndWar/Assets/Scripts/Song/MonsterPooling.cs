@@ -42,6 +42,6 @@ public class MonsterPooling : MonoBehaviourPun
         montsers.Add(obj);
         obj.transform.parent = pool;
         obj.transform.localPosition = Vector3.zero;
-        obj.SetActive(false);
+        obj.transform.GetChild(0).gameObject.SetActive(false);
     }
 }
