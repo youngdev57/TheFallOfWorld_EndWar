@@ -10,6 +10,7 @@ public class SkillManager : MonoBehaviourPun
     public SteamVR_Behaviour_Pose controllerPose;   //컨트롤러 정보
     public SteamVR_Action_Boolean grabAction;       //그랩 액션
     [Space(5)]
+    public PlayerManager player;
     public Skill skill;
     public Projector skillProjector;
     public GameObject pointObj;
@@ -101,17 +102,20 @@ public class SkillManager : MonoBehaviourPun
     {
         if (!myPv.IsMine)
             return;
-
-        if (grabAction.GetState(handType))
+        if ( player.IsUseSkill() )
         {
-            RangeOn();
-            ShowRange();
-        }
-        //잡는 버튼을 땔때
-        if (grabAction.GetStateUp(handType) && isPoint)
-        {
-            RangeOff();
-            Shoot();
+            if (grabAction.GetState(handType))
+            {
+                RangeOn();
+                ShowRange();
+            }
+            //잡는 버튼을 땔때
+            if (grabAction.GetStateUp(handType) && isPoint)
+            {
+                RangeOff();
+                Shoot();
+                player.UseSkill();
+            }
         }
     }
 }
