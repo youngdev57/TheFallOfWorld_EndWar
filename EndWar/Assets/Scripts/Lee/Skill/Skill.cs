@@ -106,7 +106,7 @@ public class Skill : MonoBehaviourPun
     //논타겟형 함수들
     public void NonTargeting()
     {
-        NonTargetTrigger trigger = GetComponent<NonTargetTrigger>();
+        ProjectileMoveScript trigger = GetComponent<ProjectileMoveScript>();
         trigger.speed = speed;
         trigger.damage = nonTargetDamage;
         trigger.seconds = seconds;
