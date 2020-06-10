@@ -144,7 +144,7 @@ public class Craft : MonoBehaviour
         HideRequirements();     //요구 재료 초기화
 
         CraftSet nowItem = craftList[viewIndex];    //현재 보고 있는 제작법 인덱스의 제작아이템 정보 불러와서 nowItem에 저장
-        Weapon code = nowItem.itemCode;                //현재 제작아이템의 아이템 코드
+        Equipment code = nowItem.itemCode;                //현재 제작아이템의 아이템 코드
 
         craftItem_Image.sprite = weaponSprs[(int)code - 1];  //제작할 아이템의 표시 이미지를 아이템 코드를 인덱스로 하여 이미지배열에서 불러옴
         craftItem_Name.text = nowItem.itemName;     //제작할 아이템의 표시 이름을 nowItem에서 불러옴

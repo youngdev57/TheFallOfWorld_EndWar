@@ -9,14 +9,14 @@ public class CraftSet : MonoBehaviour
     internal int[] requireOre;
     internal int[] requireCnt;
 
-    internal Weapon itemCode;
+    internal Equipment itemCode;
 
     internal ItemType itemType;
 
     internal int attackPower;
     internal int defensePower;
 
-    public CraftSet(string name, int number, ItemType type, Weapon code, int atk, int def, int ore1 = 0, int cnt1 = 0, int ore2 = 0, int cnt2 = 0, int ore3 = 0, int cnt3 = 0, int ore4 = 0, int cnt4 = 0)
+    public CraftSet(string name, int number, ItemType type, Equipment code, int atk, int def, int ore1 = 0, int cnt1 = 0, int ore2 = 0, int cnt2 = 0, int ore3 = 0, int cnt3 = 0, int ore4 = 0, int cnt4 = 0)
     {
         itemName = name;
         itemCode = code;
