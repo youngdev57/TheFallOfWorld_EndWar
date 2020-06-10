@@ -26,7 +26,6 @@ public class SKillEditor : Editor
         string[] displayOption = InternalEditorUtility.layers;
 
         _editor.skillName = EditorGUILayout.TextField(new GUIContent("Skill Name", "스킬의 이름을 설정합니다."), _editor.skillName);
-        _editor.prefab = (Transform)EditorGUILayout.ObjectField(new GUIContent("Effect Prefab", "이펙트 오브젝트를 설정합니다."), _editor.prefab, typeof(Transform), true);
         EditorGUILayout.Space(5);
 
         skillTypeTab = GUILayout.Toolbar((int)_editor.type, new string[] { "RADIAL", "AOE", "NONTARGET" });

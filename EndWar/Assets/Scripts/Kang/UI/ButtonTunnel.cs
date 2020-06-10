@@ -34,7 +34,7 @@ public class ButtonTunnel : MonoBehaviour
 
     public void OnTunnel_ClearWeapon()
     {
-        inven.ClearWeapon(inven.selectedWeapon);
+        inven.ClearEquip(inven.selectedEquip);
     }
 
     public void OnTunnel_NextCraft()

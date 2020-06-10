@@ -17,10 +17,10 @@ public class K_PlayerManager : MonoBehaviour
 
     public Location location;
 
-    public Weapon selectedWeapon;
+    public Equipment selectedWeapon;
 
-    public Weapon mainWeapon;
-    public Weapon subWeapon;
+    public Equipment mainWeapon;
+    public Equipment subWeapon;
 
     public void ChangeWeaponToMain()    //현재 무기를 메인 무기로..
     {
@@ -36,11 +36,11 @@ public class K_PlayerManager : MonoBehaviour
     {
         if(inven.mainIdx == -1)
         {
-            mainWeapon = Weapon.None;
+            mainWeapon = Equipment.None;
         }
         else
         {
-            mainWeapon = (Weapon)inven.mainIdx;
+            mainWeapon = (Equipment)inven.mainIdx;
         }
     }
 
@@ -48,11 +48,11 @@ public class K_PlayerManager : MonoBehaviour
     {
         if (inven.subIdx == -1)
         {
-            subWeapon = Weapon.None;
+            subWeapon = Equipment.None;
         }
         else
         {
-            subWeapon = (Weapon)inven.subIdx;
+            subWeapon = (Equipment)inven.subIdx;
         }
     }
 

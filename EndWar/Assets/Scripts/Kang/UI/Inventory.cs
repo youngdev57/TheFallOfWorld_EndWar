@@ -26,25 +26,37 @@ public class Inventory : MonoBehaviour
 
     public int nowWeaponIdx = 0;
 
-    public Weapon mainWeapon = Weapon.None;
-    public Weapon subWeapon = Weapon.None;
+    public Equipment mainWeapon = Equipment.None;
+    public Equipment subWeapon = Equipment.None;
+    public Equipment helmet, armor, shoulder, glove, pants, shoes, acc;
+    
 
     public int mainIdx = -1;
     public int subIdx = -1;
+    public int helmetIdx = -1, armorIdx = -1, shoulderIdx = -1, gloveIdx = -1, pantsIdx = -1, shoesIdx = -1, accIdx = -1;
     public int removeIdx = -1;
 
     public enum ChangeTarget
     {
         MainWeapon,
-        SubWeapon
+        SubWeapon,
+        Helmet,
+        Armor,
+        Shoulder,
+        Glove,
+        Pants,
+        Shoes,
+        Acc
     }
 
-    public ChangeTarget selectedWeapon = ChangeTarget.MainWeapon;
+    public ChangeTarget selectedEquip = ChangeTarget.MainWeapon;
 
-    public Image mainTarget;
-    public Image subTarget;
+    //표적 이미지
+    public Image mainTarget, subTarget, helmetTarget, armorTarget, shoulderTarget, gloveTarget, PantsTarget, shoesTarget, accTarget;
+    
     public Image mainWeaponImage;
     public Image subWeaponImage;
+    public Image helmetImage, armorImage, shoulderImage, gloveImage, pantsImage, shoesImage, accImage;
 
     public TextMeshProUGUI mainWeaponName, subWeaponName;
 
@@ -81,22 +93,22 @@ public class Inventory : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha0))
         {
-            ChangeWeapon(0);
+            ChangeEquip(0);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            ChangeWeapon(1);
+            ChangeEquip(1);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            ChangeWeapon(2);
+            ChangeEquip(2);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            ChangeWeapon(3);
+            ChangeEquip(3);
         }
 
         if(Input.GetKeyDown(KeyCode.Comma))
@@ -111,12 +123,12 @@ public class Inventory : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.K))
         {
-            ClearWeapon(ChangeTarget.MainWeapon);
+            ClearEquip(ChangeTarget.MainWeapon);
         }
 
         if (Input.GetKeyDown(KeyCode.L))
         {
-            ClearWeapon(ChangeTarget.SubWeapon);
+            ClearEquip(ChangeTarget.SubWeapon);
         }
     }
 
@@ -195,26 +207,28 @@ public class Inventory : MonoBehaviour
         pInven.SaveInven();
     }
 
-    public void SelectMain()
+    /** 장비칸 선택 함수 **/
+
+    public void SelectMain()    //메인무기 슬롯 선택
     {
-        selectedWeapon = ChangeTarget.MainWeapon;
+        selectedEquip = ChangeTarget.MainWeapon;
         mainTarget.gameObject.SetActive(true);
         subTarget.gameObject.SetActive(false);
 
-        foreach (GameObject obj in slots)
-        {
-            Button btn = obj.GetComponent<Button>();
-            btn.onClick.RemoveAllListeners();
-            btn.onClick.AddListener(delegate () { btn.GetComponent<Button_InvenSlot>().OnButtonChangeWeapon(); });
-        }
+        UI_ToWeaponChange();
     }
 
-    public void SelectSub()
+    public void SelectSub()     //서브무기 슬롯 선택
     {
-        selectedWeapon = ChangeTarget.SubWeapon;
+        selectedEquip = ChangeTarget.SubWeapon;
         mainTarget.gameObject.SetActive(false);
         subTarget.gameObject.SetActive(true);
 
+        UI_ToWeaponChange();
+    }
+
+    void UI_ToWeaponChange()    //아이템 슬롯에 장비 교체 함수 장착
+    {
         foreach (GameObject obj in slots)
         {
             Button btn = obj.GetComponent<Button>();
@@ -223,7 +237,10 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void ChangeWeapon(int idx, int doSave = 0)
+
+    /** 장비 교체 함수 **/
+
+    public void ChangeEquip(int idx, int doSave = 0)
     {
         if(idx == -1)
         {
@@ -236,24 +253,66 @@ public class Inventory : MonoBehaviour
 
         if (GetNth(idx) != null)
         {
-            if (selectedWeapon == ChangeTarget.MainWeapon)
+            switch(selectedEquip)
             {
-                mainWeapon = (Weapon)GetNth(idx).Value.itemId;  Debug.Log((Weapon)GetNth(idx).Value.itemId);
-                mainWeaponName.text = GetNth(idx).Value.itemName;
-                mainIdx = idx;
+                case ChangeTarget.MainWeapon:
+                    mainWeapon = (Equipment)GetNth(idx).Value.itemId; Debug.Log((Equipment)GetNth(idx).Value.itemId);
+                    //mainWeaponName.text = GetNth(idx).Value.itemName;
+                    mainIdx = idx;
+                    pInven.BringMainWeapon();
+                    break;
 
-                pInven.BringMainWeapon();
+                case ChangeTarget.SubWeapon:
+                    subWeapon = (Equipment)GetNth(idx).Value.itemId; Debug.Log((Equipment)GetNth(idx).Value.itemId);
+                    //subWeaponName.text = GetNth(idx).Value.itemName;
+                    subIdx = idx;
+                    pInven.BringSubWeapon();
+                    break;
+
+                case ChangeTarget.Helmet:
+                    helmet = (Equipment)GetNth(idx).Value.itemId; Debug.Log((Equipment)GetNth(idx).Value.itemId);
+                    helmetIdx = idx;
+                    pInven.BringHelmet();
+                    break;
+
+                case ChangeTarget.Armor:
+                    armor = (Equipment)GetNth(idx).Value.itemId; Debug.Log((Equipment)GetNth(idx).Value.itemId);
+                    armorIdx = idx;
+                    pInven.BringArmor();
+                    break;
+
+                case ChangeTarget.Shoulder:
+                    shoulder = (Equipment)GetNth(idx).Value.itemId; Debug.Log((Equipment)GetNth(idx).Value.itemId);
+                    shoulderIdx = idx;
+                    pInven.BringShoulder();
+                    break;
+
+                case ChangeTarget.Glove:
+                    glove = (Equipment)GetNth(idx).Value.itemId; Debug.Log((Equipment)GetNth(idx).Value.itemId);
+                    gloveIdx = idx;
+                    pInven.BringGlove();
+                    break;
+
+                case ChangeTarget.Pants:
+                    pants = (Equipment)GetNth(idx).Value.itemId; Debug.Log((Equipment)GetNth(idx).Value.itemId);
+                    pantsIdx = idx;
+                    pInven.BringPants();
+                    break;
+
+                case ChangeTarget.Shoes:
+                    shoes = (Equipment)GetNth(idx).Value.itemId; Debug.Log((Equipment)GetNth(idx).Value.itemId);
+                    shoesIdx = idx;
+                    pInven.BringShoes();
+                    break;
+
+                case ChangeTarget.Acc:
+                    acc = (Equipment)GetNth(idx).Value.itemId; Debug.Log((Equipment)GetNth(idx).Value.itemId);
+                    accIdx = idx;
+                    pInven.BringAcc();
+                    break;
             }
-            else
-            {
-                subWeapon = (Weapon)GetNth(idx).Value.itemId; Debug.Log((Weapon)GetNth(idx).Value.itemId);
-                subWeaponName.text = GetNth(idx).Value.itemName;
-                subIdx = idx;
 
-                pInven.BringSubWeapon();
-            }
-
-            RefreshWeapon();
+            RefreshEquip();
         }
         
         if(doSave == 0)
@@ -262,7 +321,7 @@ public class Inventory : MonoBehaviour
 
     public void UI_ChangeWeapon(string name)    //슬롯 버튼 이름을 int로 파싱해서 무기 교체
     {
-        ChangeWeapon(int.Parse(name) - 1);
+        ChangeEquip(int.Parse(name) - 1);
 
         
     }
@@ -291,48 +350,104 @@ public class Inventory : MonoBehaviour
         removeDialog.SetActive(false);
     }
 
-    //들고있는 무기 해제
-    public void ClearWeapon(ChangeTarget target)
+    //들고있는 장비 해제
+    public void ClearEquip(ChangeTarget target)
     {
         switch(target)
         {
             case ChangeTarget.MainWeapon:
-                mainWeapon = Weapon.None;
-                mainIdx = -1;   //맨주먹   (인벤토리 어디에도 없기 때문에 -1)
-                mainWeaponName.text = "미장착";
+                mainWeapon = Equipment.None;
+                mainIdx = -1;   //비움   (인벤토리 어디에도 없기 때문에 -1)
+                //mainWeaponName.text = "미장착";
                 break;
             case ChangeTarget.SubWeapon:
-                subWeapon = Weapon.None;
-                subIdx = -1;    //맨주먹
-                subWeaponName.text = "미장착";
+                subWeapon = Equipment.None;
+                subIdx = -1;
+                //subWeaponName.text = "미장착";
+                break;
+            case ChangeTarget.Helmet:
+                helmet = Equipment.None;
+                helmetIdx = -1;
+                break;
+            case ChangeTarget.Armor:
+                armor = Equipment.None;
+                armorIdx = -1;
+                break;
+            case ChangeTarget.Shoulder:
+                shoulder = Equipment.None;
+                shoulderIdx = -1;
+                break;
+            case ChangeTarget.Glove:
+                glove = Equipment.None;
+                gloveIdx = -1;
+                break;
+            case ChangeTarget.Pants:
+                pants = Equipment.None;
+                pantsIdx = -1;
+                break;
+            case ChangeTarget.Shoes:
+                shoes = Equipment.None;
+                shoesIdx = -1;
+                break;
+            case ChangeTarget.Acc:
+                acc = Equipment.None;
+                accIdx = -1;
                 break;
         }
 
-        RefreshWeapon();
+        RefreshEquip();
 
-        pInven.BringAllWeapon();
+        pInven.BringAllEquip();
         pInven.SaveInven();
     }
 
-    //무기 장착 상태 갱신
-    public void RefreshWeapon()
+    //장비 장착 상태 갱신
+    public void RefreshEquip()
     {
-        if(mainWeapon == Weapon.None)
-        {
+        if(mainWeapon == Equipment.None)
             mainWeaponImage.sprite = null;
-        } else
-        {
-            mainWeaponImage.sprite = spriteList[(int)mainWeapon - 1];   Debug.Log("장착한 메인 무기 : " + mainWeapon);
-        }
-
-        if (subWeapon == Weapon.None)
-        {
-            subWeaponImage.sprite = null;
-        }
         else
-        {
+            mainWeaponImage.sprite = spriteList[(int)mainWeapon - 1];
+
+        if (subWeapon == Equipment.None)
+            subWeaponImage.sprite = null;
+        else
             subWeaponImage.sprite = spriteList[(int)subWeapon - 1];
-        }
+
+        if (helmet == Equipment.None)
+            helmetImage.sprite = null;
+        else
+            helmetImage.sprite = spriteList[(int)helmet - 1];
+
+        if (armor == Equipment.None)
+            armorImage.sprite = null;
+        else
+            armorImage.sprite = spriteList[(int)armor - 1];
+
+        if (shoulder == Equipment.None)
+            shoulderImage.sprite = null;
+        else
+            shoulderImage.sprite = spriteList[(int)shoulder - 1];
+
+        if (glove == Equipment.None)
+            gloveImage.sprite = null;
+        else
+            gloveImage.sprite = spriteList[(int)glove - 1];
+
+        if (pants == Equipment.None)
+            pantsImage.sprite = null;
+        else
+            pantsImage.sprite = spriteList[(int)pants - 1];
+
+        if (shoes == Equipment.None)
+            shoesImage.sprite = null;
+        else
+            shoesImage.sprite = spriteList[(int)shoes - 1];
+
+        if (acc == Equipment.None)
+            accImage.sprite = null;
+        else
+            accImage.sprite = spriteList[(int)acc - 1];
     }
 
     /** 플레이어 인벤 연동 **/
@@ -365,18 +480,4 @@ public class Inventory : MonoBehaviour
 
         return target;
     }
-}
-
-
-
-public enum Defense
-{
-    None,
-    Crystal,
-    Iron,
-    Crystalion,
-    Mineral,
-    Core,
-    SoulGem,
-    Redstone
 }
