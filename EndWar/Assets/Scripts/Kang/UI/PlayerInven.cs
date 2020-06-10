@@ -15,9 +15,11 @@ public class PlayerInven : MonoBehaviour
 
     public Item mainWeapon;
     public Item subWeapon;
+    public Item helmet, armor, shoulder, glove, pants, shoes, acc;
 
     public int mainIdx;
-    public int subIdx;
+    public int subIdx;      //메인,서브 무기 인덱스
+    public int helmetIdx, armorIdx, shoulderIdx, gloveIdx, pantsIdx, shoesIdx, accIdx;
 
     public Item[] items;
 
@@ -34,10 +36,17 @@ public class PlayerInven : MonoBehaviour
         StartCoroutine(WaitBaseInventory());
     }
 
-    public void BringAllWeapon()
+    public void BringAllEquip()
     {
         BringMainWeapon();
         BringSubWeapon();
+        BringHelmet();
+        BringArmor();
+        BringShoulder();
+        BringGlove();
+        BringPants();
+        BringShoes();
+        BringAcc();
     }
 
     public void BringMainWeapon()
@@ -52,6 +61,55 @@ public class PlayerInven : MonoBehaviour
         if (baseInven.subIdx != -1)
             subWeapon = items[baseInven.subIdx];
         subIdx = baseInven.subIdx;
+    }
+
+    public void BringHelmet()
+    {
+        if (baseInven.helmetIdx != -1)
+            helmet = items[baseInven.helmetIdx];
+        helmetIdx = baseInven.helmetIdx;
+    }
+
+    public void BringArmor()
+    {
+        if (baseInven.armorIdx != -1)
+            armor = items[baseInven.armorIdx];
+        armorIdx = baseInven.armorIdx;
+    }
+
+    public void BringShoulder()
+    {
+        if (baseInven.shoulderIdx != -1)
+            shoulder = items[baseInven.shoulderIdx];
+        shoulderIdx = baseInven.shoulderIdx;
+    }
+
+    public void BringGlove()
+    {
+        if (baseInven.gloveIdx != -1)
+            glove = items[baseInven.gloveIdx];
+        gloveIdx = baseInven.gloveIdx;
+    }
+
+    public void BringPants()
+    {
+        if (baseInven.pantsIdx != -1)
+            pants = items[baseInven.pantsIdx];
+        pantsIdx = baseInven.pantsIdx;
+    }
+
+    public void BringShoes()
+    {
+        if (baseInven.shoesIdx != -1)
+            shoes = items[baseInven.shoesIdx];
+        shoesIdx = baseInven.shoesIdx;
+    }
+
+    public void BringAcc()
+    {
+        if (baseInven.accIdx != -1)
+            acc = items[baseInven.accIdx];
+        accIdx = baseInven.accIdx;
     }
 
 
@@ -149,10 +207,17 @@ public class PlayerInven : MonoBehaviour
         form.AddField("main_weapon", mainIdx);
         form.AddField("sub_weapon", subIdx);
         form.AddField("slot", MakeSlotsString());
-
+        form.AddField("helmet", helmetIdx);
+        form.AddField("armor", armorIdx);
+        form.AddField("shoulder", shoulderIdx);
+        form.AddField("glove", gloveIdx);
+        form.AddField("pants", pantsIdx);
+        form.AddField("shoes", shoesIdx);
+        form.AddField("acc", accIdx);
 
         Debug.Log("저장할 내용 - 골드 : " + gold + ", 재료 : " + MakeGemsString() + ", 메인 : " + mainIdx + ", 서브 : " + subIdx +
-            ", 슬롯 상태 : " + MakeSlotsString());
+            ", 슬롯 상태 : " + MakeSlotsString() + ", H-A-Sd-G-P-S-Ac : " + helmetIdx + ", " + armorIdx + ", " + shoulderIdx + ", " + gloveIdx
+             + ", " + pantsIdx + ", " + shoesIdx + ", " + accIdx);
 
         WWW www = new WWW("http://ec2-15-165-174-206.ap-northeast-2.compute.amazonaws.com:8080/_EndWar/saveInventory.do", form);
 
@@ -233,22 +298,61 @@ public class PlayerInven : MonoBehaviour
             Debug.Log("슬롯 크기 : " + intSlot.Length + ", 슬롯 내용 : " + intSlot);
         }
 
+        helmetIdx = int.Parse(bytes[5]);
+        armorIdx = int.Parse(bytes[6]);
+        shoulderIdx = int.Parse(bytes[7]);
+        gloveIdx = int.Parse(bytes[8]);
+        pantsIdx = int.Parse(bytes[9]);
+        shoesIdx = int.Parse(bytes[10]);
+        accIdx = int.Parse(bytes[11]);
+
         baseInven.Init();
         baseCraft.Init();
 
-        baseInven.selectedWeapon = Inventory.ChangeTarget.SubWeapon;
-        baseInven.ChangeWeapon(subIdx, 1);
-        baseInven.selectedWeapon = Inventory.ChangeTarget.MainWeapon;
-        baseInven.ChangeWeapon(mainIdx, 1);
+        baseInven.selectedEquip = Inventory.ChangeTarget.SubWeapon;
+        baseInven.ChangeEquip(subIdx, 1);
+        baseInven.selectedEquip = Inventory.ChangeTarget.MainWeapon;
+        baseInven.ChangeEquip(mainIdx, 1);
+        baseInven.selectedEquip = Inventory.ChangeTarget.Helmet;
+        baseInven.ChangeEquip(helmetIdx, 1);
+        baseInven.selectedEquip = Inventory.ChangeTarget.Armor;
+        baseInven.ChangeEquip(armorIdx, 1);
+        baseInven.selectedEquip = Inventory.ChangeTarget.Shoulder;
+        baseInven.ChangeEquip(shoulderIdx, 1);
+        baseInven.selectedEquip = Inventory.ChangeTarget.Glove;
+        baseInven.ChangeEquip(gloveIdx, 1);
+        baseInven.selectedEquip = Inventory.ChangeTarget.Pants;
+        baseInven.ChangeEquip(pantsIdx, 1);
+        baseInven.selectedEquip = Inventory.ChangeTarget.Shoes;
+        baseInven.ChangeEquip(shoesIdx, 1);
+        baseInven.selectedEquip = Inventory.ChangeTarget.Acc;
+        baseInven.ChangeEquip(accIdx, 1);
     }
 
     void InitAllItemLists()
     {
-        allItemLists.Add(new Item("기본 피스톨", ItemType.Weapon, Weapon.LightPistol, 10, 0));
-        allItemLists.Add(new Item("크리스탈 피스톨", ItemType.Weapon, Weapon.CrystalPistol, 15, 0));
-        allItemLists.Add(new Item("아이언 피스톨", ItemType.Weapon, Weapon.IronPistol, 30, 0));
-        allItemLists.Add(new Item("미네랄 피스톨", ItemType.Weapon, Weapon.MineralPistol, 45, 0));
-        allItemLists.Add(new Item("코어 피스톨", ItemType.Weapon, Weapon.CorePistol, 75, 0));
+        //피스톨
+        allItemLists.Add(new Item("기본 피스톨", ItemType.Weapon, Equipment.LightPistol, 10, 0));
+        allItemLists.Add(new Item("크리스탈 피스톨", ItemType.Weapon, Equipment.CrystalPistol, 15, 0));
+        allItemLists.Add(new Item("아이언 피스톨", ItemType.Weapon, Equipment.IronPistol, 30, 0));
+        allItemLists.Add(new Item("미네랄 피스톨", ItemType.Weapon, Equipment.MineralPistol, 45, 0));
+        allItemLists.Add(new Item("코어 피스톨", ItemType.Weapon, Equipment.CorePistol, 75, 0));
+        allItemLists.Add(new Item("소울젬 피스톨", ItemType.Weapon, Equipment.SoulGemPistol, 110, 0));
+        allItemLists.Add(new Item("레드스톤 피스톨", ItemType.Weapon, Equipment.RedStonePistol, 160, 0));
+        //헬멧
+        allItemLists.Add(new Item("크리스탈 헬멧", ItemType.Weapon, Equipment.CrystalHelmet, 15, 0));
+        allItemLists.Add(new Item("아이언 헬멧", ItemType.Weapon, Equipment.IronHelmet, 30, 0));
+        allItemLists.Add(new Item("미네랄 헬멧", ItemType.Weapon, Equipment.MineralHelmet, 45, 0));
+        allItemLists.Add(new Item("코어 헬멧", ItemType.Weapon, Equipment.CoreHelmet, 75, 0));
+        allItemLists.Add(new Item("소울젬 헬멧", ItemType.Weapon, Equipment.SoulGemHelmet, 110, 0));
+        allItemLists.Add(new Item("레드스톤 헬멧", ItemType.Weapon, Equipment.RedStoneHelmet, 160, 0));
+        //갑옷
+        allItemLists.Add(new Item("크리스탈 갑옷", ItemType.Weapon, Equipment.CrystalArmor, 15, 0));
+        allItemLists.Add(new Item("아이언 갑옷", ItemType.Weapon, Equipment.IronArmor, 30, 0));
+        allItemLists.Add(new Item("미네랄 갑옷", ItemType.Weapon, Equipment.MineralArmor, 45, 0));
+        allItemLists.Add(new Item("코어 갑옷", ItemType.Weapon, Equipment.CoreArmor, 75, 0));
+        allItemLists.Add(new Item("소울젬 갑옷", ItemType.Weapon, Equipment.SoulGemArmor, 110, 0));
+        allItemLists.Add(new Item("레드스톤 갑옷", ItemType.Weapon, Equipment.RedStoneArmor, 160, 0));
     }
 
     IEnumerator WaitBaseInventory()

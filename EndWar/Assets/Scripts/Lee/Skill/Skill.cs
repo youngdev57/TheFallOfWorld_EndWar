@@ -14,7 +14,6 @@ public class Skill : MonoBehaviourPun
 {
     //공용
     public string skillName;    // 스킬 이름
-    public Transform prefab;    //이펙트 오브젝트
     public float distance;      // 거리
     public int n_damageCount;   //대미지 배열 초기화
     public int[] damage;      //대미지
@@ -106,7 +105,7 @@ public class Skill : MonoBehaviourPun
     //논타겟형 함수들
     public void NonTargeting()
     {
-        NonTargetTrigger trigger = GetComponent<NonTargetTrigger>();
+        ProjectileMoveScript trigger = GetComponent<ProjectileMoveScript>();
         trigger.speed = speed;
         trigger.damage = nonTargetDamage;
         trigger.seconds = seconds;

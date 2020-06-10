@@ -59,7 +59,7 @@ public class Craft : MonoBehaviour
 
 
     //UI 상태 파라미터
-    int viewIndex = 0;
+    int viewIndex = 1;
 
     public PlayerInven pInven;
 
@@ -144,7 +144,7 @@ public class Craft : MonoBehaviour
         HideRequirements();     //요구 재료 초기화
 
         CraftSet nowItem = craftList[viewIndex];    //현재 보고 있는 제작법 인덱스의 제작아이템 정보 불러와서 nowItem에 저장
-        Weapon code = nowItem.itemCode;                //현재 제작아이템의 아이템 코드
+        Equipment code = nowItem.itemCode;                //현재 제작아이템의 아이템 코드
 
         craftItem_Image.sprite = weaponSprs[(int)code - 1];  //제작할 아이템의 표시 이미지를 아이템 코드를 인덱스로 하여 이미지배열에서 불러옴
         craftItem_Name.text = nowItem.itemName;     //제작할 아이템의 표시 이름을 nowItem에서 불러옴
@@ -166,7 +166,7 @@ public class Craft : MonoBehaviour
     {
         if (viewIndex + 1 == craftList.Count)
         {
-            viewIndex = 0;      // 마지막 인덱스면 첫번째(0) 제작법을 불러옴
+            viewIndex = 1;      // 마지막 인덱스면 첫번째(0) 제작법을 불러옴
         } else
         {
             viewIndex++;
@@ -179,7 +179,7 @@ public class Craft : MonoBehaviour
     /** 이전 버튼 콜백 함수 **/
     public void LoadPrevCraft()     
     {
-        if (viewIndex == 0)
+        if (viewIndex == 1)
         {
             viewIndex = craftList.Count - 1;    // 인덱스가 0이면 맨 마지막 제작법을 불러옴
         } else
@@ -253,24 +253,41 @@ public class Craft : MonoBehaviour
         return oreCnts[(int)Gem.RedStone];
     }
 
-    int craftOrder = 1;
+    int craftOrder = 0;
 
     void InitAllCraftLists()
     {
         //제작법 등록 (재료 종류 수, 완성품 아이템 코드, 재료이름1, 재료1 개수, 재료이름2 ... 재료4 개수)
 
         List<Item> list = PlayerInven.allItemLists;
-
+        //무기
+        SetCraftList_1((int)Gem.Crystal, 1);
         SetCraftList_1((int)Gem.Crystal, 4);
         SetCraftList_1((int)Gem.Iron, 6);
         SetCraftList_1((int)Gem.Mineral, 8);
         SetCraftList_1((int)Gem.Core, 6);
+        SetCraftList_1((int)Gem.SoulGem, 5);
+        SetCraftList_1((int)Gem.RedStone, 6);
+        //투구
+        SetCraftList_1((int)Gem.Crystal, 4);
+        SetCraftList_1((int)Gem.Iron, 6);
+        SetCraftList_1((int)Gem.Mineral, 8);
+        SetCraftList_1((int)Gem.Core, 6);
+        SetCraftList_1((int)Gem.SoulGem, 5);
+        SetCraftList_1((int)Gem.RedStone, 6);
+        //갑옷
+        SetCraftList_1((int)Gem.Crystal, 4);
+        SetCraftList_1((int)Gem.Iron, 6);
+        SetCraftList_1((int)Gem.Mineral, 8);
+        SetCraftList_1((int)Gem.Core, 6);
+        SetCraftList_1((int)Gem.SoulGem, 5);
+        SetCraftList_1((int)Gem.RedStone, 6);
     }
 
     void SetCraftList_1(int gem1, int gem1cnt) //젬 종류가 하나인 제작서
     {
         int idx = craftOrder;
-        List<Item> list = PlayerInven.allItemLists;
+        List<Item> list = PlayerInven.allItemLists; Debug.Log(idx + "????????????? " + list[idx].itemName);
         craftList.Add(new CraftSet(list[idx].itemName, 1, list[idx].itemType, list[idx].itemId, list[idx].attackPower, 
             list[idx].defensePower, gem1, gem1cnt));
         craftOrder++;
