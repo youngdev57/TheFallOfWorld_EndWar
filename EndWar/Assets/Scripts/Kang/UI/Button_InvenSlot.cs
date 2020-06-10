@@ -10,10 +10,10 @@ public class Button_InvenSlot : MonoBehaviour
     void Start()
     {
         button = GetComponent<Button>();
-        button.onClick.AddListener(delegate () { OnButtonChangeWeapon(); });
+        button.onClick.AddListener(delegate () { OnButtonChangeEquip(); });
     }
 
-    public void OnButtonChangeWeapon()
+    public void OnButtonChangeEquip()
     {
         Inventory inven = GetComponentInParent<Inventory>();
         inven.UI_ChangeWeapon(this.gameObject.name);

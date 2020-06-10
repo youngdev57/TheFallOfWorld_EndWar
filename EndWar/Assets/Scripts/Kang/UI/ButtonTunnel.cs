@@ -32,7 +32,42 @@ public class ButtonTunnel : MonoBehaviour
         inven.SelectSub();
     }
 
-    public void OnTunnel_ClearWeapon()
+    public void OnTunnel_SelectHelmet()
+    {
+        inven.SelectHelmet();
+    }
+
+    public void OnTunnel_SelectArmor()
+    {
+        inven.SelectArmor();
+    }
+
+    public void OnTunnel_SelectShoulder()
+    {
+        inven.SelectShoulder();
+    }
+
+    public void OnTunnel_SelectGlove()
+    {
+        inven.SelectGlove();
+    }
+
+    public void OnTunnel_SelectPants()
+    {
+        inven.SelectPants();
+    }
+
+    public void OnTunnel_SelectShoes()
+    {
+        inven.SelectShoes();
+    }
+
+    public void OnTunnel_SelectAcc()
+    {
+        inven.SelectAcc();
+    }
+
+    public void OnTunnel_ClearEquip()
     {
         inven.ClearEquip(inven.selectedEquip);
     }

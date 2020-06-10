@@ -6,9 +6,9 @@ public enum ItemType
 {
     Weapon,
     Helmet,
+    Armor,
     Shoulder,
     Glove,
-    Armor,
     Pants,
     Shoes,
     Accessory
