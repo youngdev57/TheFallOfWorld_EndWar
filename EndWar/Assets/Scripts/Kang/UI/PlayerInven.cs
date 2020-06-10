@@ -313,6 +313,20 @@ public class PlayerInven : MonoBehaviour
         baseInven.ChangeEquip(subIdx, 1);
         baseInven.selectedEquip = Inventory.ChangeTarget.MainWeapon;
         baseInven.ChangeEquip(mainIdx, 1);
+        baseInven.selectedEquip = Inventory.ChangeTarget.Helmet;
+        baseInven.ChangeEquip(helmetIdx, 1);
+        baseInven.selectedEquip = Inventory.ChangeTarget.Armor;
+        baseInven.ChangeEquip(armorIdx, 1);
+        baseInven.selectedEquip = Inventory.ChangeTarget.Shoulder;
+        baseInven.ChangeEquip(shoulderIdx, 1);
+        baseInven.selectedEquip = Inventory.ChangeTarget.Glove;
+        baseInven.ChangeEquip(gloveIdx, 1);
+        baseInven.selectedEquip = Inventory.ChangeTarget.Pants;
+        baseInven.ChangeEquip(pantsIdx, 1);
+        baseInven.selectedEquip = Inventory.ChangeTarget.Shoes;
+        baseInven.ChangeEquip(shoesIdx, 1);
+        baseInven.selectedEquip = Inventory.ChangeTarget.Acc;
+        baseInven.ChangeEquip(accIdx, 1);
     }
 
     void InitAllItemLists()
@@ -337,8 +351,8 @@ public class PlayerInven : MonoBehaviour
         allItemLists.Add(new Item("아이언 갑옷", ItemType.Weapon, Equipment.IronArmor, 30, 0));
         allItemLists.Add(new Item("미네랄 갑옷", ItemType.Weapon, Equipment.MineralArmor, 45, 0));
         allItemLists.Add(new Item("코어 갑옷", ItemType.Weapon, Equipment.CoreArmor, 75, 0));
-        allItemLists.Add(new Item("소울젬 갑옷", ItemType.Weapon, Equipment.SoulGemHelmet, 110, 0));
-        allItemLists.Add(new Item("레드스톤 갑옷", ItemType.Weapon, Equipment.RedStoneHelmet, 160, 0));
+        allItemLists.Add(new Item("소울젬 갑옷", ItemType.Weapon, Equipment.SoulGemArmor, 110, 0));
+        allItemLists.Add(new Item("레드스톤 갑옷", ItemType.Weapon, Equipment.RedStoneArmor, 160, 0));
     }
 
     IEnumerator WaitBaseInventory()
