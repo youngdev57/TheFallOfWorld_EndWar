@@ -34,7 +34,7 @@ public class VR_Player : MonoBehaviourPun
 
     void Update()
     {
-        if (!photonView.IsMine)
+        if (!photonView.IsMine || PlayerManager.isDie == true)
             return;
 
         Rigidbody RBody = GetComponent<Rigidbody>();

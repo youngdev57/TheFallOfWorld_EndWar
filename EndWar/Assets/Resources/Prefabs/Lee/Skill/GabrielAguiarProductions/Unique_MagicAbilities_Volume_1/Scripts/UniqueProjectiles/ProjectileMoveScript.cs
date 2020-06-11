@@ -81,7 +81,7 @@ public class ProjectileMoveScript : MonoBehaviour {
 	void OnCollisionEnter (Collision co) {
         if (!bounce)
         {
-            if (co.gameObject.tag != "Bullet" && !collided)
+            if (co.gameObject.tag != "Bullet" && co.gameObject.tag != "Player" && !collided)
             {
                 collided = true;
 

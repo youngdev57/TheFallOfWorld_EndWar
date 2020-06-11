@@ -14339,7 +14339,7 @@ GameObject:
   - component: {fileID: 6989800394292285258}
   - component: {fileID: 4719136199977664532}
   m_Layer: 0
-  m_Name: vfx_MagicAbility_Spikes_Arcane
+  m_Name: GroundAttakAriBone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14412,7 +14412,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillName: 
-  prefab: {fileID: 0}
   distance: 10
   n_damageCount: 1
   damage: 14000000
@@ -14426,11 +14425,11 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 4096
-  target: {x: 0, y: 0, z: 0}
+  target: {x: -5.165209, y: 0, z: -2.235198}
   speed: 0
   seconds: 0
   nonTargetDamage: 0
-  rotation: {x: 0, y: 0, z: 0, w: 0}
+  rotation: {x: 0, y: 0.63502556, z: 0, w: -0.77249116}
   electricShock: 0
   freezing: 0
 --- !u!1 &1628800754501523456

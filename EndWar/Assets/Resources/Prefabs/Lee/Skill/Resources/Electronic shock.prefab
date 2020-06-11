@@ -57489,7 +57489,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillName: 
-  prefab: {fileID: 0}
   distance: 50
   n_damageCount: 1
   damage: 64000000
@@ -57503,11 +57502,11 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 1024
-  target: {x: 0, y: 0, z: 0}
+  target: {x: -8.481445, y: 0.2, z: 0.8045349}
   speed: 0
   seconds: 0
   nonTargetDamage: 0
-  rotation: {x: 0, y: 0, z: 0, w: 0}
+  rotation: {x: 0, y: 0, z: 0, w: 1}
   electricShock: 0
   freezing: 0
 --- !u!95 &1436970818729605229

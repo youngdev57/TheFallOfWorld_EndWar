@@ -95,7 +95,7 @@ public class GunTest : MonoBehaviourPunCallbacks, IPunPrefabPool
     
     void Update()
     {
-        if (!photonView.IsMine)
+        if (!photonView.IsMine || PlayerManager.isDie == true)
             return;
 
         timer += Time.deltaTime;

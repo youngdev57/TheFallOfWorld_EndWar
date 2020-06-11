@@ -19,6 +19,9 @@ public class Hand_PickUp : MonoBehaviourPun
 
     void Update()
     {
+        if (!player.GetComponent<PhotonView>().IsMine && PlayerManager.isDie == true)
+            return;
+
         if (action.GetStateDown(hand) && canPickup)
         {
             if(item != null)

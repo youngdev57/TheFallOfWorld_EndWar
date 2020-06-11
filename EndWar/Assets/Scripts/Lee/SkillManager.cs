@@ -65,7 +65,8 @@ public class SkillManager : MonoBehaviourPun
             skillProjector.fieldOfView = skill.viewAngle;
             skillProjector.farClipPlane = skill.distance - 1f;
 
-            skill.target = transform.position;
+            skill.target = player.transform.position;
+            skill.rotation = Quaternion.Euler(new Vector3(0, transform.eulerAngles.y, 0));
         }
         if (skill.type == SkillType.POINT)
         {
@@ -100,7 +101,7 @@ public class SkillManager : MonoBehaviourPun
 
     void Update()
     {
-        if (!myPv.IsMine)
+        if (!myPv.IsMine || PlayerManager.isDie == true)
             return;
         if ( player.IsUseSkill() )
         {

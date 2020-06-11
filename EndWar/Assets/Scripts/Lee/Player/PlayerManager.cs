@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 
-public class PlayerManager : MonoBehaviour
+public class PlayerManager : MonoBehaviourPun
 {
     public Transform MPBOX;     //MP통
 
@@ -17,10 +17,15 @@ public class PlayerManager : MonoBehaviour
     public int p_MP = 3;      //스킬 사용 횟수
     public int p_DEF = 0;     //방어력
 
+    [Space(10)]
+    public GameObject dieEffect;
+    public GameObject teleportEffect;
+    public GameObject DieText;
+    public static bool isDie = false;
+
     MPBar[] mpArray;
 
     int currHP;
-    int currMP;
     int currDEF;
 
     bool isbackHpHit = false;
@@ -43,7 +48,6 @@ public class PlayerManager : MonoBehaviour
     void Init()
     {
         currHP = p_HP;
-        currMP = p_MP;
         currDEF = p_DEF;
 
         hP_Slider.maxValue = currHP;
@@ -56,9 +60,18 @@ public class PlayerManager : MonoBehaviour
     //-------------------------------------Update
     void Update()
     {
+        if (!photonView.IsMine || isDie == true)
+            return;
+
         SliderHPBar();
+        if(currHP <= 0)
+            photonView.RPC("IsDie", RpcTarget.All, true);
+
         if (Input.GetKeyDown(KeyCode.A))
+        {
             currHP -= 10;
+            isbackHpHit = true;
+        }
     }
 
     void SliderHPBar()
@@ -120,6 +133,16 @@ public class PlayerManager : MonoBehaviour
             }
         }
         return false;
+    }
+
+    [PunRPC]
+    void IsDie(bool boolean)
+    {
+        dieEffect.SetActive(boolean);
+        teleportEffect.SetActive(boolean);
+        DieText.SetActive(boolean);
+        isDie = boolean;
+        currHP = p_HP;
     }
 
     [PunRPC]
