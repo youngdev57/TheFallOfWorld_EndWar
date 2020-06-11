@@ -63,6 +63,58 @@ public class Craft : MonoBehaviour
     void Start()
     {
         craftList = new List<CraftSet>();
+
+        equipmentSprs = new List<Sprite>();
+        equipmentSprs.Add(Resources.Load<Sprite>("Image/Equipment/set_02/weapon_s02"));
+        equipmentSprs.Add(Resources.Load<Sprite>("Image/Equipment/set_03/weapon_s03"));
+        equipmentSprs.Add(Resources.Load<Sprite>("Image/Equipment/set_01/weapon_s01"));
+        equipmentSprs.Add(Resources.Load<Sprite>("Image/Equipment/set_09/weapon_s09"));
+        equipmentSprs.Add(Resources.Load<Sprite>("Image/Equipment/set_07/weapon_s07"));
+        equipmentSprs.Add(Resources.Load<Sprite>("Image/Equipment/set_06/weapon_s06"));
+        equipmentSprs.Add(Resources.Load<Sprite>("Image/Equipment/set_08/weapon_s08"));
+        equipmentSprs.Add(Resources.Load<Sprite>("Image/Equipment/set_03/helmet_s03"));
+        equipmentSprs.Add(Resources.Load<Sprite>("Image/Equipment/set_01/helmet_s01"));
+        equipmentSprs.Add(Resources.Load<Sprite>("Image/Equipment/set_09/helmet_s09"));
+        equipmentSprs.Add(Resources.Load<Sprite>("Image/Equipment/set_07/helmet_s07"));
+        equipmentSprs.Add(Resources.Load<Sprite>("Image/Equipment/set_06/helmet_s06"));
+        equipmentSprs.Add(Resources.Load<Sprite>("Image/Equipment/set_08/helmet_s08"));
+        equipmentSprs.Add(Resources.Load<Sprite>("Image/Equipment/set_03/armor_s03"));
+        equipmentSprs.Add(Resources.Load<Sprite>("Image/Equipment/set_01/armor_s01"));
+        equipmentSprs.Add(Resources.Load<Sprite>("Image/Equipment/set_09/armor_s09"));
+        equipmentSprs.Add(Resources.Load<Sprite>("Image/Equipment/set_07/armor_s07"));
+        equipmentSprs.Add(Resources.Load<Sprite>("Image/Equipment/set_06/armor_s06"));
+        equipmentSprs.Add(Resources.Load<Sprite>("Image/Equipment/set_08/armor_s08"));
+        equipmentSprs.Add(Resources.Load<Sprite>("Image/Equipment/set_03/shoulders_s03"));
+        equipmentSprs.Add(Resources.Load<Sprite>("Image/Equipment/set_01/shoulders_s01"));
+        equipmentSprs.Add(Resources.Load<Sprite>("Image/Equipment/set_09/shoulders_s09"));
+        equipmentSprs.Add(Resources.Load<Sprite>("Image/Equipment/set_07/shoulders_s07"));
+        equipmentSprs.Add(Resources.Load<Sprite>("Image/Equipment/set_06/shoulders_s06"));
+        equipmentSprs.Add(Resources.Load<Sprite>("Image/Equipment/set_08/shoulders_s08"));
+        equipmentSprs.Add(Resources.Load<Sprite>("Image/Equipment/set_03/gloves_s03"));
+        equipmentSprs.Add(Resources.Load<Sprite>("Image/Equipment/set_01/gloves_s01"));
+        equipmentSprs.Add(Resources.Load<Sprite>("Image/Equipment/set_09/gloves_s09"));
+        equipmentSprs.Add(Resources.Load<Sprite>("Image/Equipment/set_07/gloves_s07"));
+        equipmentSprs.Add(Resources.Load<Sprite>("Image/Equipment/set_06/gloves_s06"));
+        equipmentSprs.Add(Resources.Load<Sprite>("Image/Equipment/set_08/gloves_s08"));
+        equipmentSprs.Add(Resources.Load<Sprite>("Image/Equipment/set_03/pants_s03"));
+        equipmentSprs.Add(Resources.Load<Sprite>("Image/Equipment/set_01/pants_s01"));
+        equipmentSprs.Add(Resources.Load<Sprite>("Image/Equipment/set_09/pants_s09"));
+        equipmentSprs.Add(Resources.Load<Sprite>("Image/Equipment/set_07/pants_s07"));
+        equipmentSprs.Add(Resources.Load<Sprite>("Image/Equipment/set_06/pants_s06"));
+        equipmentSprs.Add(Resources.Load<Sprite>("Image/Equipment/set_08/pants_s08"));
+        equipmentSprs.Add(Resources.Load<Sprite>("Image/Equipment/set_03/boots_s03"));
+        equipmentSprs.Add(Resources.Load<Sprite>("Image/Equipment/set_01/boots_s01"));
+        equipmentSprs.Add(Resources.Load<Sprite>("Image/Equipment/set_09/boots_s09"));
+        equipmentSprs.Add(Resources.Load<Sprite>("Image/Equipment/set_07/boots_s07"));
+        equipmentSprs.Add(Resources.Load<Sprite>("Image/Equipment/set_06/boots_s06"));
+        equipmentSprs.Add(Resources.Load<Sprite>("Image/Equipment/set_04/boots_s04"));
+        equipmentSprs.Add(Resources.Load<Sprite>("Image/Equipment/set_03/ammunition_s03"));
+        equipmentSprs.Add(Resources.Load<Sprite>("Image/Equipment/set_01/ammunition_s01"));
+        equipmentSprs.Add(Resources.Load<Sprite>("Image/Equipment/set_09/ammunition_s09"));
+        equipmentSprs.Add(Resources.Load<Sprite>("Image/Equipment/set_07/ammunition_s07"));
+        equipmentSprs.Add(Resources.Load<Sprite>("Image/Equipment/set_06/ammunition_s06"));
+        equipmentSprs.Add(Resources.Load<Sprite>("Image/Equipment/set_04/ammunition_s04"));
+
         InitAllCraftLists();
 
         Init();
@@ -311,7 +363,7 @@ public class Craft : MonoBehaviour
     void SetCraftList_1(int gem1, int gem1cnt) //젬 종류가 하나인 제작서
     {
         int idx = craftOrder;
-        List<Item> list = PlayerInven.allItemLists; Debug.Log(idx + "????????????? " + list[idx].itemName);
+        List<Item> list = PlayerInven.allItemLists;
         craftList.Add(new CraftSet(list[idx].itemName, 1, list[idx].itemType, list[idx].itemId, list[idx].attackPower, 
             list[idx].defensePower, gem1, gem1cnt));
         craftOrder++;

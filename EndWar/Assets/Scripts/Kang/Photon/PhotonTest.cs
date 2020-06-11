@@ -250,6 +250,11 @@ public class PhotonTest : MonoBehaviourPunCallbacks
             case 2: //사막맵 씬 전용 룸
                 PhotonNetwork.CreateRoom("Desert", new RoomOptions { MaxPlayers = this.maxPlayer });
                 break;
+
+            case 3: //지하 던전
+                PhotonNetwork.CreateRoom("Dungeon_Underground", new RoomOptions { MaxPlayers = this.maxPlayer });
+                break;
+
             case 98: //전투 테스트
                 PhotonNetwork.CreateRoom("BattleTest", new RoomOptions { MaxPlayers = this.maxPlayer });
                 break;
@@ -279,20 +284,26 @@ public class PhotonTest : MonoBehaviourPunCallbacks
         switch (destination)
         {
             case 0: //기지 씬 로드
-                LoadBaseScene();
+                LoadingManager.LoadScene("Basement");
+                StartCoroutine(BaseSettingWait());
                 break;
 
             case 1: //아이스맵 씬 로드
-                LoadIceScene();
+                LoadingManager.LoadScene("SnowMountains");
                 break;
 
             case 2: //사막맵 씬 로드
                 break;
+
+            case 3: //지하 던전 씬 로드
+                LoadingManager.LoadScene("Dungeon_Underground");
+                break;
             case 98:
-                LoadBattleTestScene();
+                LoadingManager.LoadScene("BattleTest");
+                StartCoroutine(SceneSettingWait());
                 break;
             case 99:
-                LoadAimScene();
+                LoadingManager.LoadScene("AimTest");
                 break;
         }
     }
@@ -347,6 +358,9 @@ public class PhotonTest : MonoBehaviourPunCallbacks
                 break;
             case 2:  //사막맵 룸 입장 시도
                 break;
+            case 3:  //지하 던전 룸 입장 시도
+                PhotonNetwork.JoinRoom("Dungeon_Underground");
+                break;
             case 98:
                 PhotonNetwork.JoinRoom("BattleTest");
                 break;
@@ -355,6 +369,8 @@ public class PhotonTest : MonoBehaviourPunCallbacks
                 break;
         }
     }
+
+    /** 씬 로드 부분 ------------------------------------------------------------------------------------------- **/
 
     //아이스맵 씬 로드
     public void LoadIceScene()
@@ -403,7 +419,22 @@ public class PhotonTest : MonoBehaviourPunCallbacks
             //비동기 씬 로드 완료 시 까지 대기
             yield return null;
         }
+    }
 
+    IEnumerator BaseSettingWait()
+    {
+        yield return new WaitForSeconds(2f);
+        if (LoadingManager.loadEnd)
+        {
+            BaseSetting();
+            LoadingManager.loadEnd = false;
+        }
+        else
+            StartCoroutine(BaseSettingWait());
+    }
+
+    public void BaseSetting()
+    {
         //대기 후 위치에 플레이어 생성
         pointsObj = PlayerPoints.GetInstance();
         playerSpawnPoints = pointsObj.points;
@@ -411,6 +442,54 @@ public class PhotonTest : MonoBehaviourPunCallbacks
 
         kPM.inven.OnBaseCamp();
     }
+
+    IEnumerator SceneSettingWait()
+    {
+        yield return new WaitForSeconds(2f);
+        if (LoadingManager.loadEnd)
+        {
+            SceneSetting();
+            LoadingManager.loadEnd = false;
+        }
+        else
+            StartCoroutine(SceneSettingWait());
+    }
+
+    public void SceneSetting()
+    {
+        //대기 후 위치에 플레이어 생성
+        pointsObj = PlayerPoints.GetInstance();
+        playerSpawnPoints = pointsObj.points;
+        CreatePlayer(destination);  //생성  0=기지에 플레이어 생성용
+    }
+
+    //던전맵 씬 로드  
+    public void LoadDungeonScene()
+    {
+        if (destination == 3)
+            StartCoroutine(DungeonSceneLoading());
+    }
+
+    IEnumerator DungeonSceneLoading()
+    {
+        PhotonNetwork.IsMessageQueueRunning = false;
+
+        AsyncOperation operation = SceneManager.LoadSceneAsync("Dungeon_Underground");
+
+        operation.allowSceneActivation = true;
+
+        while (!operation.isDone)
+        {
+            //비동기 씬 로드 완료 시 까지 대기
+            yield return null;
+        }
+
+        //대기 후 위치에 플레이어 생성
+        pointsObj = PlayerPoints.GetInstance();
+        playerSpawnPoints = pointsObj.points;
+        CreatePlayer(destination);  //생성  0=기지에 플레이어 생성용
+    }
+
 
     //사격연습장 씬 로드  
     public void LoadAimScene()
@@ -467,9 +546,6 @@ public class PhotonTest : MonoBehaviourPunCallbacks
     }
 
 
-
-
-
     /** 아래는 생성이나 설정 함수들 **/
 
 
@@ -506,6 +582,13 @@ public class PhotonTest : MonoBehaviourPunCallbacks
                 tempObj = PhotonNetwork.Instantiate("Player", playerSpawnPoints[idx].position, Quaternion.identity, 0);
                 tempObj.GetComponent<PlayerInfo>().photonManager = this;
                 Debug.Log("아이스맵에 소환됨");
+                break;
+
+            case 3:
+                idx = 0;
+                tempObj = PhotonNetwork.Instantiate("Player", playerSpawnPoints[idx].position, Quaternion.identity, 0);
+                tempObj.GetComponent<PlayerInfo>().photonManager = this;
+                Debug.Log("던전에 소환됨");
                 break;
 
             case 98:

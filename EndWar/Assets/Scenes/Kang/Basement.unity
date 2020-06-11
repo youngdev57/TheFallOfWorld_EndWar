@@ -620,7 +620,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2242791, g: 0.6039549, b: 0.754717, a: 0.5254902}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -8472,7 +8472,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2242791, g: 0.6039549, b: 0.754717, a: 0.5254902}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -15658,7 +15658,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2242791, g: 0.6039549, b: 0.754717, a: 0.5254902}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -15931,7 +15931,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2242791, g: 0.6039549, b: 0.754717, a: 0.5254902}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -19956,7 +19956,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2242791, g: 0.6039549, b: 0.754717, a: 0.5254902}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -20366,7 +20366,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -20.59, y: 12.26}
+  m_AnchoredPosition: {x: -18.02, y: 12.26}
   m_SizeDelta: {x: 17.542, y: 4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &483358544
@@ -29923,7 +29923,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -10.319057, y: 12.259998}
+  m_AnchoredPosition: {x: -7.749096, y: 12.259998}
   m_SizeDelta: {x: 3, y: 3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &687471222
@@ -52673,7 +52673,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2242791, g: 0.6039549, b: 0.754717, a: 0.5254902}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -59724,7 +59724,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2242791, g: 0.6039549, b: 0.754717, a: 0.5254902}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -59858,7 +59858,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2242791, g: 0.6039549, b: 0.754717, a: 0.5254902}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -67377,56 +67377,7 @@ MonoBehaviour:
   - {fileID: 1598655573}
   - {fileID: 1138229424}
   oreCnts: 000000000000000000000000000000000000000000000000
-  weaponSprs:
-  - {fileID: 21300000, guid: 2b49ab28bebfd6949b224360170dbc86, type: 3}
-  - {fileID: 21300000, guid: 1db395ecc7bd16849a362b24f31d2ad1, type: 3}
-  - {fileID: 21300000, guid: f2a0fe6e26a3671428c46e958a94ea25, type: 3}
-  - {fileID: 21300000, guid: 58da7758b14143648a642fd0a5794791, type: 3}
-  - {fileID: 21300000, guid: 7303fa49af4bfb348bfa79fd950a3cb0, type: 3}
-  - {fileID: 21300000, guid: 4a3528b77957ecb4e9e64090edcc4b4a, type: 3}
-  - {fileID: 21300000, guid: 407ed0fa3199cc8459de377b25ceea66, type: 3}
-  - {fileID: 21300000, guid: 7e30f256445516b49b4e5805b118bca4, type: 3}
-  - {fileID: 21300000, guid: 137dff61157d41b4f9645e1171adff6b, type: 3}
-  - {fileID: 21300000, guid: c6a2b618624a9d94fbe901428b6ad7ae, type: 3}
-  - {fileID: 21300000, guid: 5f2f06d64958e6b4692ea68389dc33ee, type: 3}
-  - {fileID: 21300000, guid: 49e9538ba0a9d094a93d19e2a56c3f1a, type: 3}
-  - {fileID: 21300000, guid: f7f211ceb919a9d41800f652b315dda1, type: 3}
-  - {fileID: 21300000, guid: 45da2560161e0664bb8cd3145fb4be10, type: 3}
-  - {fileID: 21300000, guid: 9d292e866c8e1d444916e25d410658df, type: 3}
-  - {fileID: 21300000, guid: 7c3d038d88387fe45948e17fbf32fb3a, type: 3}
-  - {fileID: 21300000, guid: d1a8072db042b994585a5aacd7b98230, type: 3}
-  - {fileID: 21300000, guid: 9a3fb6545c20d4f449dcbd26f6b05b44, type: 3}
-  - {fileID: 21300000, guid: 60d10e4b2c140a6458706592d3e87712, type: 3}
-  - {fileID: 21300000, guid: 6bc233b288f65664f87d48083db3d417, type: 3}
-  - {fileID: 21300000, guid: e606985bab1f3c7428e8dc7421cb0b62, type: 3}
-  - {fileID: 21300000, guid: 02ac438a8602117448e698518f2792a9, type: 3}
-  - {fileID: 21300000, guid: 82b3e12f4fccaef4f9449d8bacac60be, type: 3}
-  - {fileID: 21300000, guid: 3e3dff80d88b5ec4ca94268263248fe8, type: 3}
-  - {fileID: 21300000, guid: 2f67b56959b237945b6c813039c73271, type: 3}
-  - {fileID: 21300000, guid: 985a39420c36dba46a2dae938d42a13c, type: 3}
-  - {fileID: 21300000, guid: 4a8389dddf001524bb5ae36230574d70, type: 3}
-  - {fileID: 21300000, guid: 72b6811547cb1a24ca39bba2ce02668c, type: 3}
-  - {fileID: 21300000, guid: 429d96fecf07a6f4190da710ec27cfbf, type: 3}
-  - {fileID: 21300000, guid: 7e7677ee25ff87f4bb778c4ba65e9ef7, type: 3}
-  - {fileID: 21300000, guid: 6f7797c22d14492499d897bde6aeefe5, type: 3}
-  - {fileID: 21300000, guid: f59a9dc4d8377304aa4b8f141bb9ba51, type: 3}
-  - {fileID: 21300000, guid: 27e9776cfbec8ed46b8fbbb1b433b68f, type: 3}
-  - {fileID: 21300000, guid: 3b2a708296f320648b683662a9052f4b, type: 3}
-  - {fileID: 21300000, guid: 75d9dbb6fb9f4b04c9489b84710901a1, type: 3}
-  - {fileID: 21300000, guid: 26625ef66b785444cab9af9e8df07c9c, type: 3}
-  - {fileID: 21300000, guid: 5a492528003363044aaf067a7cad4446, type: 3}
-  - {fileID: 21300000, guid: 740fd35a8633e4d499c6211e5d693050, type: 3}
-  - {fileID: 21300000, guid: f937ac6989b9b504d81a84861dce7b06, type: 3}
-  - {fileID: 21300000, guid: bfd1325088a26884c8244589c14e106b, type: 3}
-  - {fileID: 21300000, guid: 0cf33aef3ceb17e45bf185f69ea88471, type: 3}
-  - {fileID: 21300000, guid: 009c4890906b4024782b21c1ecbaa9d8, type: 3}
-  - {fileID: 21300000, guid: f1dadc7ea955727408fdc90a3896bcbe, type: 3}
-  - {fileID: 21300000, guid: 8c6a24bbe9c9da74dbdb91b09dab042f, type: 3}
-  - {fileID: 21300000, guid: b3e729503fb1e7a4096d9f6498200895, type: 3}
-  - {fileID: 21300000, guid: 2a76a7196d1d9ff49a185a5b9249abfe, type: 3}
-  - {fileID: 21300000, guid: dea29cbab1c16b543a6efc11c73cd03a, type: 3}
-  - {fileID: 21300000, guid: 0170e3d1f11bbf84ea29507473dd12aa, type: 3}
-  - {fileID: 21300000, guid: f54550a4f8b087f4688f070a888494bf, type: 3}
+  equipmentSprs: []
   oreSprs:
   - {fileID: 21300000, guid: 8f6e05fbabd72d84f948f1c1ec884c3f, type: 3}
   - {fileID: 21300000, guid: 263388d7ab729464ba2ca0d535fc6c49, type: 3}
@@ -73243,7 +73194,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2242791, g: 0.6039549, b: 0.754717, a: 0.5254902}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -88194,7 +88145,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -30.861057, y: 12.259995}
+  m_AnchoredPosition: {x: -28.291096, y: 12.259995}
   m_SizeDelta: {x: 3, y: 3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2144486483
