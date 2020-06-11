@@ -140,7 +140,9 @@ public class PlayerManager : MonoBehaviourPun
     {
         dieEffect.SetActive(boolean);
         teleportEffect.SetActive(boolean);
-        DieText.SetActive(boolean);
+        if(photonView.IsMine)
+            DieText.SetActive(boolean);
+
         isDie = boolean;
         currHP = p_HP;
     }
