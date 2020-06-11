@@ -331,7 +331,7 @@ public class PlayerInven : MonoBehaviour
 
     void InitAllItemLists()
     {
-        //피스톨
+        //피스톨 (무기)
         allItemLists.Add(new Item("기본 피스톨", ItemType.Weapon, Equipment.LightPistol, 10, 0));
         allItemLists.Add(new Item("크리스탈 피스톨", ItemType.Weapon, Equipment.CrystalPistol, 15, 0));
         allItemLists.Add(new Item("아이언 피스톨", ItemType.Weapon, Equipment.IronPistol, 30, 0));
@@ -339,20 +339,55 @@ public class PlayerInven : MonoBehaviour
         allItemLists.Add(new Item("코어 피스톨", ItemType.Weapon, Equipment.CorePistol, 75, 0));
         allItemLists.Add(new Item("소울젬 피스톨", ItemType.Weapon, Equipment.SoulGemPistol, 110, 0));
         allItemLists.Add(new Item("레드스톤 피스톨", ItemType.Weapon, Equipment.RedStonePistol, 160, 0));
-        //헬멧
-        allItemLists.Add(new Item("크리스탈 헬멧", ItemType.Weapon, Equipment.CrystalHelmet, 15, 0));
-        allItemLists.Add(new Item("아이언 헬멧", ItemType.Weapon, Equipment.IronHelmet, 30, 0));
-        allItemLists.Add(new Item("미네랄 헬멧", ItemType.Weapon, Equipment.MineralHelmet, 45, 0));
-        allItemLists.Add(new Item("코어 헬멧", ItemType.Weapon, Equipment.CoreHelmet, 75, 0));
-        allItemLists.Add(new Item("소울젬 헬멧", ItemType.Weapon, Equipment.SoulGemHelmet, 110, 0));
-        allItemLists.Add(new Item("레드스톤 헬멧", ItemType.Weapon, Equipment.RedStoneHelmet, 160, 0));
-        //갑옷
-        allItemLists.Add(new Item("크리스탈 갑옷", ItemType.Weapon, Equipment.CrystalArmor, 15, 0));
-        allItemLists.Add(new Item("아이언 갑옷", ItemType.Weapon, Equipment.IronArmor, 30, 0));
-        allItemLists.Add(new Item("미네랄 갑옷", ItemType.Weapon, Equipment.MineralArmor, 45, 0));
-        allItemLists.Add(new Item("코어 갑옷", ItemType.Weapon, Equipment.CoreArmor, 75, 0));
-        allItemLists.Add(new Item("소울젬 갑옷", ItemType.Weapon, Equipment.SoulGemArmor, 110, 0));
-        allItemLists.Add(new Item("레드스톤 갑옷", ItemType.Weapon, Equipment.RedStoneArmor, 160, 0));
+        //헬멧 (투구)
+        allItemLists.Add(new Item("크리스탈 헬멧", ItemType.Helmet, Equipment.CrystalHelmet, 0, 10));
+        allItemLists.Add(new Item("아이언 헬멧", ItemType.Helmet, Equipment.IronHelmet, 0, 20));
+        allItemLists.Add(new Item("미네랄 헬멧", ItemType.Helmet, Equipment.MineralHelmet, 0, 30));
+        allItemLists.Add(new Item("코어 헬멧", ItemType.Helmet, Equipment.CoreHelmet, 0, 50));
+        allItemLists.Add(new Item("소울젬 헬멧", ItemType.Helmet, Equipment.SoulGemHelmet, 0, 70));
+        allItemLists.Add(new Item("레드스톤 헬멧", ItemType.Helmet, Equipment.RedStoneHelmet, 0, 100));
+        //아머 (갑옷)
+        allItemLists.Add(new Item("크리스탈 아머", ItemType.Armor, Equipment.CrystalArmor, 0, 20));
+        allItemLists.Add(new Item("아이언 아머", ItemType.Armor, Equipment.IronArmor, 0, 30));
+        allItemLists.Add(new Item("미네랄 아머", ItemType.Armor, Equipment.MineralArmor, 0, 40));
+        allItemLists.Add(new Item("코어 아머", ItemType.Armor, Equipment.CoreArmor, 0, 60));
+        allItemLists.Add(new Item("소울젬 아머", ItemType.Armor, Equipment.SoulGemArmor, 0, 80));
+        allItemLists.Add(new Item("레드스톤 아머", ItemType.Armor, Equipment.RedStoneArmor, 0, 110));
+        //숄더 (어깨 방어구)
+        allItemLists.Add(new Item("크리스탈 숄더", ItemType.Shoulder, Equipment.CrystalShoulder, 0, 10));
+        allItemLists.Add(new Item("아이언 숄더", ItemType.Shoulder, Equipment.IronShoulder, 0, 20));
+        allItemLists.Add(new Item("미네랄 숄더", ItemType.Shoulder, Equipment.MineralShoulder, 0, 30));
+        allItemLists.Add(new Item("코어 숄더", ItemType.Shoulder, Equipment.CoreShoulder, 0, 50));
+        allItemLists.Add(new Item("소울젬 숄더", ItemType.Shoulder, Equipment.SoulGemShoulder, 0, 70));
+        allItemLists.Add(new Item("레드스톤 숄더", ItemType.Shoulder, Equipment.RedStoneShoulder, 0, 100));
+        //글러브 (장갑)
+        allItemLists.Add(new Item("크리스탈 글러브", ItemType.Glove, Equipment.CrystalGlove, 0, 10));
+        allItemLists.Add(new Item("아이언 글러브", ItemType.Glove, Equipment.IronGlove, 0, 20));
+        allItemLists.Add(new Item("미네랄 글러브", ItemType.Glove, Equipment.MineralGlove, 0, 30));
+        allItemLists.Add(new Item("코어 글러브", ItemType.Glove, Equipment.CoreGlove, 0, 50));
+        allItemLists.Add(new Item("소울젬 글러브", ItemType.Glove, Equipment.SoulGemGlove, 0, 70));
+        allItemLists.Add(new Item("레드스톤 글러브", ItemType.Glove, Equipment.RedStoneGlove, 0, 100));
+        //팬츠 (바지)
+        allItemLists.Add(new Item("크리스탈 팬츠", ItemType.Pants, Equipment.CrystalPants, 0, 10));
+        allItemLists.Add(new Item("아이언 팬츠", ItemType.Pants, Equipment.IronPants, 0, 20));
+        allItemLists.Add(new Item("미네랄 팬츠", ItemType.Pants, Equipment.MineralPants, 0, 30));
+        allItemLists.Add(new Item("코어 팬츠", ItemType.Pants, Equipment.CorePants, 0, 50));
+        allItemLists.Add(new Item("소울젬 팬츠", ItemType.Pants, Equipment.SoulGemPants, 0, 70));
+        allItemLists.Add(new Item("레드스톤 팬츠", ItemType.Pants, Equipment.RedStonePants, 0, 100));
+        //슈즈 (신발)
+        allItemLists.Add(new Item("크리스탈 슈즈", ItemType.Shoes, Equipment.CrystalShoes, 0, 10));
+        allItemLists.Add(new Item("아이언 슈즈", ItemType.Shoes, Equipment.IronShoes, 0, 20));
+        allItemLists.Add(new Item("미네랄 슈즈", ItemType.Shoes, Equipment.MineralShoes, 0, 30));
+        allItemLists.Add(new Item("코어 슈즈", ItemType.Shoes, Equipment.CoreShoes, 0, 50));
+        allItemLists.Add(new Item("소울젬 슈즈", ItemType.Shoes, Equipment.SoulGemShoes, 0, 70));
+        allItemLists.Add(new Item("레드스톤 슈즈", ItemType.Shoes, Equipment.RedStoneShoes, 0, 100));
+        //악세서리 (장신구)
+        allItemLists.Add(new Item("크리스탈 오브", ItemType.Accessory, Equipment.CrystalAcc, 10, 10));
+        allItemLists.Add(new Item("아이언 오브", ItemType.Accessory, Equipment.IronAcc, 20, 20));
+        allItemLists.Add(new Item("미네랄 오브", ItemType.Accessory, Equipment.MineralAcc, 30, 30));
+        allItemLists.Add(new Item("코어 오브", ItemType.Accessory, Equipment.CoreAcc, 50, 50));
+        allItemLists.Add(new Item("소울젬 오브", ItemType.Accessory, Equipment.SoulGemAcc, 70, 70));
+        allItemLists.Add(new Item("레드스톤 오브", ItemType.Accessory, Equipment.RedStoneAcc, 100, 100));
     }
 
     IEnumerator WaitBaseInventory()

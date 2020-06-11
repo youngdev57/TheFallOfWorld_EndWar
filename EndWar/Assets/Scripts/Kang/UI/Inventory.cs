@@ -29,12 +29,13 @@ public class Inventory : MonoBehaviour
     public Equipment mainWeapon = Equipment.None;
     public Equipment subWeapon = Equipment.None;
     public Equipment helmet, armor, shoulder, glove, pants, shoes, acc;
-    
 
-    public int mainIdx = -1;
-    public int subIdx = -1;
-    public int helmetIdx = -1, armorIdx = -1, shoulderIdx = -1, gloveIdx = -1, pantsIdx = -1, shoesIdx = -1, accIdx = -1;
-    public int removeIdx = -1;
+    [Space(5)]
+
+    internal int mainIdx = -1;
+    internal int subIdx = -1;
+    internal int helmetIdx = -1, armorIdx = -1, shoulderIdx = -1, gloveIdx = -1, pantsIdx = -1, shoesIdx = -1, accIdx = -1;
+    internal int removeIdx = -1;
 
     public enum ChangeTarget
     {
@@ -51,8 +52,10 @@ public class Inventory : MonoBehaviour
 
     public ChangeTarget selectedEquip = ChangeTarget.MainWeapon;
 
+    [Space(5)]
+
     //표적 이미지
-    public Image mainTarget, subTarget, helmetTarget, armorTarget, shoulderTarget, gloveTarget, PantsTarget, shoesTarget, accTarget;
+    public Image mainTarget, subTarget, helmetTarget, armorTarget, shoulderTarget, gloveTarget, pantsTarget, shoesTarget, accTarget;
     
     public Image mainWeaponImage;
     public Image subWeaponImage;
@@ -199,7 +202,9 @@ public class Inventory : MonoBehaviour
     }
 
     public void RemoveItem(int idx) {           //인덱스를 이용해 링크드리스트 해당 자리의 아이템 삭제~~
-        if(GetNth(idx) != null)
+        CheckEquipsAndClear(idx);   //우선 지울 아이템을 장비하고 있는지 확인 후 해당 장비 슬롯 비움
+
+        if (GetNth(idx) != null)
             itemList.Remove(GetNth(idx));
 
         RefreshUI();    //삭제 후 UI 초기화~
@@ -207,33 +212,140 @@ public class Inventory : MonoBehaviour
         pInven.SaveInven();
     }
 
+    public void CheckEquipsAndClear(int idx)   //아이템 삭제 시, 해당 아이템을 장비했었다면 장착 해제 시킴
+    {
+        if(mainIdx == idx)
+            ClearEquip(ChangeTarget.MainWeapon);
+
+        if (subIdx == idx)
+            ClearEquip(ChangeTarget.SubWeapon);
+
+        if (helmetIdx == idx)
+            ClearEquip(ChangeTarget.Helmet);
+
+        if (armorIdx == idx)
+            ClearEquip(ChangeTarget.Armor);
+
+        if (shoulderIdx == idx)
+            ClearEquip(ChangeTarget.Shoulder);
+
+        if (gloveIdx == idx)
+            ClearEquip(ChangeTarget.Glove);
+
+        if (pantsIdx == idx)
+            ClearEquip(ChangeTarget.Pants);
+
+        if (shoesIdx == idx)
+            ClearEquip(ChangeTarget.Shoes);
+
+        if (accIdx == idx)
+            ClearEquip(ChangeTarget.Acc);
+    }
+
     /** 장비칸 선택 함수 **/
 
     public void SelectMain()    //메인무기 슬롯 선택
     {
         selectedEquip = ChangeTarget.MainWeapon;
+        AllOffTarget();
         mainTarget.gameObject.SetActive(true);
-        subTarget.gameObject.SetActive(false);
 
-        UI_ToWeaponChange();
+        UI_ToEquipChange();
     }
 
     public void SelectSub()     //서브무기 슬롯 선택
     {
         selectedEquip = ChangeTarget.SubWeapon;
-        mainTarget.gameObject.SetActive(false);
+        AllOffTarget();
         subTarget.gameObject.SetActive(true);
 
-        UI_ToWeaponChange();
+        UI_ToEquipChange();
     }
 
-    void UI_ToWeaponChange()    //아이템 슬롯에 장비 교체 함수 장착
+    public void SelectHelmet()
+    {
+        selectedEquip = ChangeTarget.Helmet;
+        AllOffTarget();
+        helmetTarget.gameObject.SetActive(true);
+
+        UI_ToEquipChange();
+    }
+
+    public void SelectArmor()
+    {
+        selectedEquip = ChangeTarget.Armor;
+        AllOffTarget();
+        armorTarget.gameObject.SetActive(true);
+
+        UI_ToEquipChange();
+    }
+
+    public void SelectShoulder()
+    {
+        selectedEquip = ChangeTarget.Shoulder;
+        AllOffTarget();
+        shoulderTarget.gameObject.SetActive(true);
+
+        UI_ToEquipChange();
+    }
+
+    public void SelectGlove()
+    {
+        selectedEquip = ChangeTarget.Glove;
+        AllOffTarget();
+        gloveTarget.gameObject.SetActive(true);
+
+        UI_ToEquipChange();
+    }
+
+    public void SelectPants()
+    {
+        selectedEquip = ChangeTarget.Pants;
+        AllOffTarget();
+        pantsTarget.gameObject.SetActive(true);
+
+        UI_ToEquipChange();
+    }
+
+    public void SelectShoes()
+    {
+        selectedEquip = ChangeTarget.Shoes;
+        AllOffTarget();
+        shoesTarget.gameObject.SetActive(true);
+
+        UI_ToEquipChange();
+    }
+
+    public void SelectAcc()
+    {
+        selectedEquip = ChangeTarget.Acc;
+        AllOffTarget();
+        accTarget.gameObject.SetActive(true);
+
+        UI_ToEquipChange();
+    }
+
+    //모든 타겟 이미지 끔 (장비 슬롯에 빨간색 테두리)
+    void AllOffTarget()
+    {
+        mainTarget.gameObject.SetActive(false);
+        subTarget.gameObject.SetActive(false);
+        helmetTarget.gameObject.SetActive(false);
+        armorTarget.gameObject.SetActive(false);
+        shoulderTarget.gameObject.SetActive(false);
+        gloveTarget.gameObject.SetActive(false);
+        pantsTarget.gameObject.SetActive(false);
+        shoesTarget.gameObject.SetActive(false);
+        accTarget.gameObject.SetActive(false);
+    }
+
+    void UI_ToEquipChange()    //아이템 슬롯에 장비 교체 함수 장착
     {
         foreach (GameObject obj in slots)
         {
             Button btn = obj.GetComponent<Button>();
             btn.onClick.RemoveAllListeners();
-            btn.onClick.AddListener(delegate () { btn.GetComponent<Button_InvenSlot>().OnButtonChangeWeapon(); });
+            btn.onClick.AddListener(delegate () { btn.GetComponent<Button_InvenSlot>().OnButtonChangeEquip(); });
         }
     }
 
@@ -242,14 +354,23 @@ public class Inventory : MonoBehaviour
 
     public void ChangeEquip(int idx, int doSave = 0)
     {
-        if(idx == -1)
+        if(idx == -1)       // 장비 슬롯이 빈칸일 때, DB에 -1으로 표시되어있음. 빈 슬롯 그대로 두면 되므로 리턴
         {
             return;
         }
 
-        if (idx == mainIdx || idx == subIdx && idx != -1)
+        //다른 종류의 장비는 이럴일이 없으나 무기는 슬롯이 두개이므로 같은 장비를 두 슬롯에 동시에 낄 수 없도록 조치 (완전히 같은 장비를 메인에도 서브에도 끼는 경우 방지)
+        if (idx == mainIdx || idx == subIdx && idx != -1)       
             return;
+
+        int tempNum = (int)selectedEquip == 0 || (int)selectedEquip == 1 ? 0 : (int)selectedEquip - 1;  //아이템과 해당 장비 자리가 맞는지 확인할 int (무기 자리에는 무기만, 갑옷 자리에는 갑옷만)
         
+        if (tempNum != (int)(GetNth(idx).Value.itemType))   //현재 선택된 장비 슬롯과 착용하려는 장비의 타입을 비교해 알맞는지 확인
+        {
+            Debug.Log("장비 슬롯에 올바르지 않은 아이템 타입을 장비하려 시도했음");
+            return;
+        }
+
 
         if (GetNth(idx) != null)
         {
@@ -322,7 +443,6 @@ public class Inventory : MonoBehaviour
     public void UI_ChangeWeapon(string name)    //슬롯 버튼 이름을 int로 파싱해서 무기 교체
     {
         ChangeEquip(int.Parse(name) - 1);
-
         
     }
 

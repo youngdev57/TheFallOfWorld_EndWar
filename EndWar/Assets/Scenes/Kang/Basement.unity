@@ -4726,16 +4726,6 @@ MonoBehaviour:
   pants: 0
   shoes: 0
   acc: 0
-  mainIdx: -1
-  subIdx: -1
-  helmetIdx: -1
-  armorIdx: -1
-  shoulderIdx: -1
-  gloveIdx: -1
-  pantsIdx: -1
-  shoesIdx: -1
-  accIdx: -1
-  removeIdx: -1
   selectedEquip: 0
   mainTarget: {fileID: 0}
   subTarget: {fileID: 0}
@@ -4743,7 +4733,7 @@ MonoBehaviour:
   armorTarget: {fileID: 0}
   shoulderTarget: {fileID: 0}
   gloveTarget: {fileID: 0}
-  PantsTarget: {fileID: 0}
+  pantsTarget: {fileID: 0}
   shoesTarget: {fileID: 0}
   accTarget: {fileID: 0}
   mainWeaponImage: {fileID: 0}
@@ -45903,6 +45893,36 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d1a8072db042b994585a5aacd7b98230, type: 3}
   - {fileID: 21300000, guid: 9a3fb6545c20d4f449dcbd26f6b05b44, type: 3}
   - {fileID: 21300000, guid: 60d10e4b2c140a6458706592d3e87712, type: 3}
+  - {fileID: 21300000, guid: 6bc233b288f65664f87d48083db3d417, type: 3}
+  - {fileID: 21300000, guid: e606985bab1f3c7428e8dc7421cb0b62, type: 3}
+  - {fileID: 21300000, guid: 02ac438a8602117448e698518f2792a9, type: 3}
+  - {fileID: 21300000, guid: 82b3e12f4fccaef4f9449d8bacac60be, type: 3}
+  - {fileID: 21300000, guid: 3e3dff80d88b5ec4ca94268263248fe8, type: 3}
+  - {fileID: 21300000, guid: 2f67b56959b237945b6c813039c73271, type: 3}
+  - {fileID: 21300000, guid: 985a39420c36dba46a2dae938d42a13c, type: 3}
+  - {fileID: 21300000, guid: 4a8389dddf001524bb5ae36230574d70, type: 3}
+  - {fileID: 21300000, guid: 72b6811547cb1a24ca39bba2ce02668c, type: 3}
+  - {fileID: 21300000, guid: 429d96fecf07a6f4190da710ec27cfbf, type: 3}
+  - {fileID: 21300000, guid: 7e7677ee25ff87f4bb778c4ba65e9ef7, type: 3}
+  - {fileID: 21300000, guid: 6f7797c22d14492499d897bde6aeefe5, type: 3}
+  - {fileID: 21300000, guid: f59a9dc4d8377304aa4b8f141bb9ba51, type: 3}
+  - {fileID: 21300000, guid: 27e9776cfbec8ed46b8fbbb1b433b68f, type: 3}
+  - {fileID: 21300000, guid: 3b2a708296f320648b683662a9052f4b, type: 3}
+  - {fileID: 21300000, guid: 75d9dbb6fb9f4b04c9489b84710901a1, type: 3}
+  - {fileID: 21300000, guid: 26625ef66b785444cab9af9e8df07c9c, type: 3}
+  - {fileID: 21300000, guid: 5a492528003363044aaf067a7cad4446, type: 3}
+  - {fileID: 21300000, guid: 740fd35a8633e4d499c6211e5d693050, type: 3}
+  - {fileID: 21300000, guid: f937ac6989b9b504d81a84861dce7b06, type: 3}
+  - {fileID: 21300000, guid: bfd1325088a26884c8244589c14e106b, type: 3}
+  - {fileID: 21300000, guid: 0cf33aef3ceb17e45bf185f69ea88471, type: 3}
+  - {fileID: 21300000, guid: 009c4890906b4024782b21c1ecbaa9d8, type: 3}
+  - {fileID: 21300000, guid: f1dadc7ea955727408fdc90a3896bcbe, type: 3}
+  - {fileID: 21300000, guid: 8c6a24bbe9c9da74dbdb91b09dab042f, type: 3}
+  - {fileID: 21300000, guid: b3e729503fb1e7a4096d9f6498200895, type: 3}
+  - {fileID: 21300000, guid: 2a76a7196d1d9ff49a185a5b9249abfe, type: 3}
+  - {fileID: 21300000, guid: dea29cbab1c16b543a6efc11c73cd03a, type: 3}
+  - {fileID: 21300000, guid: 0170e3d1f11bbf84ea29507473dd12aa, type: 3}
+  - {fileID: 21300000, guid: f54550a4f8b087f4688f070a888494bf, type: 3}
   slots:
   - {fileID: 674688587}
   - {fileID: 1218190705}
@@ -45945,16 +45965,6 @@ MonoBehaviour:
   pants: 0
   shoes: 0
   acc: 0
-  mainIdx: -1
-  subIdx: -1
-  helmetIdx: -1
-  armorIdx: -1
-  shoulderIdx: -1
-  gloveIdx: -1
-  pantsIdx: -1
-  shoesIdx: -1
-  accIdx: -1
-  removeIdx: -1
   selectedEquip: 0
   mainTarget: {fileID: 156008236}
   subTarget: {fileID: 1421554311}
@@ -45962,7 +45972,7 @@ MonoBehaviour:
   armorTarget: {fileID: 1527196679}
   shoulderTarget: {fileID: 1906560023}
   gloveTarget: {fileID: 572657060}
-  PantsTarget: {fileID: 124691099}
+  pantsTarget: {fileID: 0}
   shoesTarget: {fileID: 2094517934}
   accTarget: {fileID: 605564274}
   mainWeaponImage: {fileID: 1365296145}
@@ -67387,6 +67397,36 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d1a8072db042b994585a5aacd7b98230, type: 3}
   - {fileID: 21300000, guid: 9a3fb6545c20d4f449dcbd26f6b05b44, type: 3}
   - {fileID: 21300000, guid: 60d10e4b2c140a6458706592d3e87712, type: 3}
+  - {fileID: 21300000, guid: 6bc233b288f65664f87d48083db3d417, type: 3}
+  - {fileID: 21300000, guid: e606985bab1f3c7428e8dc7421cb0b62, type: 3}
+  - {fileID: 21300000, guid: 02ac438a8602117448e698518f2792a9, type: 3}
+  - {fileID: 21300000, guid: 82b3e12f4fccaef4f9449d8bacac60be, type: 3}
+  - {fileID: 21300000, guid: 3e3dff80d88b5ec4ca94268263248fe8, type: 3}
+  - {fileID: 21300000, guid: 2f67b56959b237945b6c813039c73271, type: 3}
+  - {fileID: 21300000, guid: 985a39420c36dba46a2dae938d42a13c, type: 3}
+  - {fileID: 21300000, guid: 4a8389dddf001524bb5ae36230574d70, type: 3}
+  - {fileID: 21300000, guid: 72b6811547cb1a24ca39bba2ce02668c, type: 3}
+  - {fileID: 21300000, guid: 429d96fecf07a6f4190da710ec27cfbf, type: 3}
+  - {fileID: 21300000, guid: 7e7677ee25ff87f4bb778c4ba65e9ef7, type: 3}
+  - {fileID: 21300000, guid: 6f7797c22d14492499d897bde6aeefe5, type: 3}
+  - {fileID: 21300000, guid: f59a9dc4d8377304aa4b8f141bb9ba51, type: 3}
+  - {fileID: 21300000, guid: 27e9776cfbec8ed46b8fbbb1b433b68f, type: 3}
+  - {fileID: 21300000, guid: 3b2a708296f320648b683662a9052f4b, type: 3}
+  - {fileID: 21300000, guid: 75d9dbb6fb9f4b04c9489b84710901a1, type: 3}
+  - {fileID: 21300000, guid: 26625ef66b785444cab9af9e8df07c9c, type: 3}
+  - {fileID: 21300000, guid: 5a492528003363044aaf067a7cad4446, type: 3}
+  - {fileID: 21300000, guid: 740fd35a8633e4d499c6211e5d693050, type: 3}
+  - {fileID: 21300000, guid: f937ac6989b9b504d81a84861dce7b06, type: 3}
+  - {fileID: 21300000, guid: bfd1325088a26884c8244589c14e106b, type: 3}
+  - {fileID: 21300000, guid: 0cf33aef3ceb17e45bf185f69ea88471, type: 3}
+  - {fileID: 21300000, guid: 009c4890906b4024782b21c1ecbaa9d8, type: 3}
+  - {fileID: 21300000, guid: f1dadc7ea955727408fdc90a3896bcbe, type: 3}
+  - {fileID: 21300000, guid: 8c6a24bbe9c9da74dbdb91b09dab042f, type: 3}
+  - {fileID: 21300000, guid: b3e729503fb1e7a4096d9f6498200895, type: 3}
+  - {fileID: 21300000, guid: 2a76a7196d1d9ff49a185a5b9249abfe, type: 3}
+  - {fileID: 21300000, guid: dea29cbab1c16b543a6efc11c73cd03a, type: 3}
+  - {fileID: 21300000, guid: 0170e3d1f11bbf84ea29507473dd12aa, type: 3}
+  - {fileID: 21300000, guid: f54550a4f8b087f4688f070a888494bf, type: 3}
   oreSprs:
   - {fileID: 21300000, guid: 8f6e05fbabd72d84f948f1c1ec884c3f, type: 3}
   - {fileID: 21300000, guid: 263388d7ab729464ba2ca0d535fc6c49, type: 3}

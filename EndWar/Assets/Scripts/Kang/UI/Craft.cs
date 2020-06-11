@@ -49,14 +49,11 @@ public class Craft : MonoBehaviour
     public int[] oreCnts = {0, 0, 0, 0, 0, 0}; //가지고 있는 재료 개수 배열 (종류 총 6가지 - 크리스탈, 철, 미네랄, 코어, 소울젬, 레드스톤)
 
     //제작법 이미지 리스트
-    public List<Sprite> weaponSprs;
+    public List<Sprite> equipmentSprs;
     public List<Sprite> oreSprs;
 
     //제작법 리스트
     public List<CraftSet> craftList;
-
-    //제작 아이템 이름
-
 
     //UI 상태 파라미터
     int viewIndex = 1;
@@ -65,14 +62,6 @@ public class Craft : MonoBehaviour
 
     void Start()
     {
-        //테스트용 초기 값
-        //oreCnts[(int)Gem.Crystal] = 60;     //크리스탈
-        //oreCnts[(int)Gem.Iron] = 30;        //철
-        //oreCnts[(int)Gem.Mineral] = 40;     //미네랄
-        //oreCnts[(int)Gem.Core] = 50;        //코어
-        //oreCnts[(int)Gem.SoulGem] = 40;     //소울젬
-        //oreCnts[(int)Gem.RedStone] = 20;    //레드스톤
-
         craftList = new List<CraftSet>();
         InitAllCraftLists();
 
@@ -104,7 +93,7 @@ public class Craft : MonoBehaviour
             CraftItem();
         }
 
-        if(Input.GetKeyDown(KeyCode.F7))
+        if(Input.GetKeyDown(KeyCode.F7))    //치트입니다 ㅎㅎ 광물 20개씩 전부 증가
         {
             for (int i = 0; i < 6; i++)
                 oreCnts[i] += 20;
@@ -146,7 +135,7 @@ public class Craft : MonoBehaviour
         CraftSet nowItem = craftList[viewIndex];    //현재 보고 있는 제작법 인덱스의 제작아이템 정보 불러와서 nowItem에 저장
         Equipment code = nowItem.itemCode;                //현재 제작아이템의 아이템 코드
 
-        craftItem_Image.sprite = weaponSprs[(int)code - 1];  //제작할 아이템의 표시 이미지를 아이템 코드를 인덱스로 하여 이미지배열에서 불러옴
+        craftItem_Image.sprite = equipmentSprs[(int)code - 1];  //제작할 아이템의 표시 이미지를 아이템 코드를 인덱스로 하여 이미지배열에서 불러옴
         craftItem_Name.text = nowItem.itemName;     //제작할 아이템의 표시 이름을 nowItem에서 불러옴
 
         for(int i=0; i<nowItem.requireOre.Length; i++)      //제작할 아이템의 요구 재료 종류만큼 for문 돌림.
@@ -282,6 +271,41 @@ public class Craft : MonoBehaviour
         SetCraftList_1((int)Gem.Core, 6);
         SetCraftList_1((int)Gem.SoulGem, 5);
         SetCraftList_1((int)Gem.RedStone, 6);
+        //숄더
+        SetCraftList_1((int)Gem.Crystal, 4);
+        SetCraftList_1((int)Gem.Iron, 6);
+        SetCraftList_1((int)Gem.Mineral, 8);
+        SetCraftList_1((int)Gem.Core, 6);
+        SetCraftList_1((int)Gem.SoulGem, 5);
+        SetCraftList_1((int)Gem.RedStone, 6);
+        //글러브
+        SetCraftList_1((int)Gem.Crystal, 4);
+        SetCraftList_1((int)Gem.Iron, 6);
+        SetCraftList_1((int)Gem.Mineral, 8);
+        SetCraftList_1((int)Gem.Core, 6);
+        SetCraftList_1((int)Gem.SoulGem, 5);
+        SetCraftList_1((int)Gem.RedStone, 6);
+        //팬츠
+        SetCraftList_1((int)Gem.Crystal, 4);
+        SetCraftList_1((int)Gem.Iron, 6);
+        SetCraftList_1((int)Gem.Mineral, 8);
+        SetCraftList_1((int)Gem.Core, 6);
+        SetCraftList_1((int)Gem.SoulGem, 5);
+        SetCraftList_1((int)Gem.RedStone, 6);
+        //슈즈
+        SetCraftList_1((int)Gem.Crystal, 4);
+        SetCraftList_1((int)Gem.Iron, 6);
+        SetCraftList_1((int)Gem.Mineral, 8);
+        SetCraftList_1((int)Gem.Core, 6);
+        SetCraftList_1((int)Gem.SoulGem, 5);
+        SetCraftList_1((int)Gem.RedStone, 6);
+        //악세서리
+        SetCraftList_1((int)Gem.Crystal, 4);
+        SetCraftList_1((int)Gem.Iron, 6);
+        SetCraftList_1((int)Gem.Mineral, 8);
+        SetCraftList_1((int)Gem.Core, 6);
+        SetCraftList_1((int)Gem.SoulGem, 5);
+        SetCraftList_1((int)Gem.RedStone, 6);
     }
 
     void SetCraftList_1(int gem1, int gem1cnt) //젬 종류가 하나인 제작서
@@ -321,7 +345,7 @@ public class Craft : MonoBehaviour
 
     /** 플레이어 인벤 경유 함수 **/
 
-    public void BringAllGems()
+    public void BringAllGems()      //플레이어 인벤의 모든 젬 개수를 가져옴
     {
         for (int i = 0; i < 6; i++)
         {
