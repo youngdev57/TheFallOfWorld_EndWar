@@ -421,7 +421,7 @@ public class PhotonTest : MonoBehaviourPunCallbacks
         }
     }
 
-    IEnumerator BaseSettingWait()
+    internal IEnumerator BaseSettingWait()
     {
         yield return new WaitForSeconds(2f);
         if (LoadingManager.loadEnd)
@@ -565,6 +565,7 @@ public class PhotonTest : MonoBehaviourPunCallbacks
                 idx = 0; //기지 소환 위치 하나뿐이라서 그냥 0
                 tempObj = PhotonNetwork.Instantiate("PlayerOnBase", playerSpawnPoints[idx].position, Quaternion.identity, 0);
                 tempObj.GetComponent<PlayerInfo>().photonManager = this;
+                tempObj.GetComponent<PlayerManager>().photonManager = this;
                 tempObj.GetComponentsInChildren<UI_Laser>()[0].enabled = true;
                 tempObj.GetComponentsInChildren<UI_Laser>()[1].enabled = true;
 
@@ -581,6 +582,7 @@ public class PhotonTest : MonoBehaviourPunCallbacks
                 //그리고 프리팹의 이름을 문자열로 호출하여 Instantiate 함
                 tempObj = PhotonNetwork.Instantiate("Player", playerSpawnPoints[idx].position, Quaternion.identity, 0);
                 tempObj.GetComponent<PlayerInfo>().photonManager = this;
+                tempObj.GetComponent<PlayerManager>().photonManager = this;
                 Debug.Log("아이스맵에 소환됨");
                 break;
 
@@ -588,6 +590,7 @@ public class PhotonTest : MonoBehaviourPunCallbacks
                 idx = 0;
                 tempObj = PhotonNetwork.Instantiate("Player", playerSpawnPoints[idx].position, Quaternion.identity, 0);
                 tempObj.GetComponent<PlayerInfo>().photonManager = this;
+                tempObj.GetComponent<PlayerManager>().photonManager = this;
                 Debug.Log("던전에 소환됨");
                 break;
 
@@ -595,6 +598,7 @@ public class PhotonTest : MonoBehaviourPunCallbacks
                 idx = 0; //소환 위치 하나뿐이라서 그냥 0
                 tempObj = PhotonNetwork.Instantiate("Player", playerSpawnPoints[idx].position, Quaternion.identity, 0);
                 tempObj.GetComponent<PlayerInfo>().photonManager = this;
+                tempObj.GetComponent<PlayerManager>().photonManager = this;
                 Debug.Log("전투테스트에 소환됨");
                 break;
 
@@ -602,6 +606,7 @@ public class PhotonTest : MonoBehaviourPunCallbacks
                 idx = 0; //소환 위치 하나뿐이라서 그냥 0
                 tempObj = PhotonNetwork.Instantiate("Player", playerSpawnPoints[idx].position, Quaternion.identity, 0);
                 tempObj.GetComponent<PlayerInfo>().photonManager = this;
+                tempObj.GetComponent<PlayerManager>().photonManager = this;
                 Debug.Log("사격연습장에 소환됨");
                 break;
         }
