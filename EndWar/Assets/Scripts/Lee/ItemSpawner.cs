@@ -5,17 +5,29 @@ using Photon.Pun;
 
 public class ItemSpawner : MonoBehaviour
 {
-    public GameObject[] Item;
+    public GameObject crystal;
+    public GameObject iron;
+    public GameObject mineral;
+
+    public Transform[] crystalPos;
+    public Transform[] ironPos;
+    public Transform[] mineralPos;
     
     void Start()
     {
-        for (int i = 0; i < Item.Length; i++)
+        for (int i = 0; i < crystalPos.Length; i++)
         {
-            Vector3 position;
-            position.x = transform.position.x + Random.Range(-50f, 50f);
-            position.y = 0.5f;
-            position.z = transform.position.z + Random.Range(-50f, 50f);
-            PhotonNetwork.Instantiate(Item[i].name, position, Item[i].transform.rotation, 0);
+            Instantiate(crystal, crystalPos[i].position, crystal.transform.rotation);
+        }
+
+        for (int i = 0; i < ironPos.Length; i++)
+        {
+            Instantiate(iron, ironPos[i].position, iron.transform.rotation);
+        }
+
+        for (int i = 0; i < mineralPos.Length; i++)
+        {
+            Instantiate(mineral, mineralPos[i].position, mineral.transform.rotation);
         }
     }
 

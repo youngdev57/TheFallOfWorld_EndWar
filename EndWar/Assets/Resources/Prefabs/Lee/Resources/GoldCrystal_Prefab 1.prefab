@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 514965749646700827}
   - component: {fileID: 4583320297026766785}
-  - component: {fileID: -3047546391488828966}
   - component: {fileID: 7827262796333475202}
   m_Layer: 11
   m_Name: GoldCrystal_Prefab 1
@@ -54,28 +53,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickUpLine: {fileID: 5705796418562845085}
   gemType: 0
---- !u!114 &-3047546391488828966
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 514965749646700824}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 0
-  OwnershipTransfer: 0
-  ObservedComponents:
-  - {fileID: 0}
-  viewIdField: 0
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
 --- !u!65 &7827262796333475202
 BoxCollider:
   m_ObjectHideFlags: 0
