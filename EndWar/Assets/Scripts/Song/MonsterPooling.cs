@@ -5,14 +5,13 @@ using Photon.Pun;
 
 public class MonsterPooling : MonoBehaviourPun
 {
-    internal List<GameObject> montsers;
+    internal List<GameObject> montsers = new List<GameObject>();
     private Transform pool;
     private GameObject obj;
     private int indexMonster = 0;
 
     public void InitMontsers(string name, int poolSize)
     {
-        montsers = new List<GameObject>();
         pool = transform;
 
         for (int i = 0; i < poolSize; i++)
@@ -21,7 +20,7 @@ public class MonsterPooling : MonoBehaviourPun
             PushMontsers(goMontsers);
         }
     }
-
+    /*
     public GameObject PopMontsers(GameObject temp)
     {
         if (montsers.Count > 0)
@@ -36,6 +35,7 @@ public class MonsterPooling : MonoBehaviourPun
         obj.SetActive(true);
         return obj;
     }
+    */
 
     public void PushMontsers(GameObject obj)
     {

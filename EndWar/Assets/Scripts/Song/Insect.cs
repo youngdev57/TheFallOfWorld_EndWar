@@ -1,16 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 using Photon.Pun;
+using UnityEngine.AI;
 
-public enum Staus
+public class Insect : Monster
 {
-    idle, walk, run, die, attack
-}
 
-public class Monster01 : Monster
-{
     public Staus monster_Staus;
 
     internal Animator mAnimator;
@@ -18,7 +14,8 @@ public class Monster01 : Monster
     private NavMeshAgent mNav;
     public Transform target;
     public Transform noneTarget;
-    
+    public Collider coll;
+
     public bool canAttack;
     private bool idleMode;
     private bool attackMode;
@@ -26,35 +23,8 @@ public class Monster01 : Monster
 
     private float delay;
 
-    void Start()
-    {
-        maxHp = 200;
-        HP = maxHp;
-        VIT = 10;
-        ACT = 5;
-        actSpeed = 2.5f;
-
-        monster_Staus = Staus.idle;
-
-        mNav = GetComponent<NavMeshAgent>();
-        mAnimator = GetComponent<Animator>();
-        mRigidbody = GetComponent<Rigidbody>();
-
-        canAttack =  false;
-        attackMode = false;
-        idleMode = true;
-
-        notDie = true;
-        delay = 0f;
-
-        mNav.updatePosition = true;
-        mNav.updateRotation = true;
-        mNav.isStopped = false;
-    }
-
     void Update()
     {
-
         PlayAnimation();
         OnMove();
         TargetPosition();
@@ -77,22 +47,22 @@ public class Monster01 : Monster
                 mAnimator.SetTrigger("Run");
                 break;
             case Staus.die:
-                if(notDie)
+                if (notDie)
                     mAnimator.SetTrigger("Die");
                 notDie = false;
                 break;
             case Staus.attack:
-                int type = Random.Range(0,3);
+                int type = Random.Range(0, 3);
                 switch (type)
                 {
                     case 0:
-                        mAnimator.SetTrigger("Hook");
+                        mAnimator.SetTrigger("Attack_fir");
                         break;
                     case 1:
-                        mAnimator.SetTrigger("Chop");
+                        mAnimator.SetTrigger("Attack_sec");
                         break;
                     case 2:
-                        mAnimator.SetTrigger("Spin");
+                        mAnimator.SetTrigger("Attack_thi");
                         break;
                 }
                 StartCoroutine(NavStop());
@@ -109,7 +79,8 @@ public class Monster01 : Monster
             mNav.updatePosition = false;
             mNav.updateRotation = false;
             mNav.isStopped = true;
-            GetComponent<CapsuleCollider>().isTrigger = true;
+            coll.isTrigger = true;
+            mRigidbody.useGravity = false;
             StartCoroutine(ActiveFalse());
         }
     }
@@ -138,7 +109,7 @@ public class Monster01 : Monster
             if (target.gameObject.tag == "Player")
             {
                 float dir = Vector3.Distance(transform.position, target.position);
-                if (dir <= 10)
+                if (dir <= 2)
                 {
                     attackMode = true;
                     mNav.isStopped = true;
@@ -151,7 +122,7 @@ public class Monster01 : Monster
                         {
                             monster_Staus = Staus.attack;
                             delay = 0f;
-                        }   
+                        }
                         else
                         {
                             monster_Staus = Staus.idle;
@@ -183,33 +154,20 @@ public class Monster01 : Monster
         }
     }
 
-    /*
-    // 어그로 수치 계산
-    public void Aggro()
-    {
-        target = GameManager.GM.Players[0].transform;
-        for (int x = 0; x > GameManager.GM.Players.Length; x++)
-        {
-            if (GameManager.GM.Players[x].GetComponent<Player>().aggro > target.gameObject.GetComponent<Player>().aggro)
-            {
-                target = GameManager.GM.Players[x].transform;
-            }
-        }
-    }
-    */
-
-    // 플레이어 인식
     private void OnTriggerEnter(Collider other)
     {
+    //    Debug.Log("트리거 인식");
         if (!canAttack && other.gameObject.tag == "Player")
         {
+        //    Debug.Log("플레이어 인식");
             target = other.gameObject.transform;
-            mNav.stoppingDistance = 10;
+            mNav.stoppingDistance = 2;
             mNav.speed = 5f;
             canAttack = true;
             StopAllCoroutines();
         }
     }
+
     private void OnTriggerExit(Collider other)
     {
         if (!attackMode && canAttack && other.gameObject.tag == "Player")
@@ -229,9 +187,13 @@ public class Monster01 : Monster
     {
         HP -= Damage;
         //Aggro();
-        mNav.stoppingDistance = 10;
+        mNav.stoppingDistance = 2;
         mNav.speed = 5f;
         canAttack = true;
+        if (target == null || target.gameObject.tag != "Player")
+        {
+
+        }
         StopAllCoroutines();
     }
 
@@ -247,7 +209,7 @@ public class Monster01 : Monster
     private IEnumerator SetTarget()
     {
         idleMode = false;
-        yield return new WaitForSeconds(Random.Range(5f,9f));
+        yield return new WaitForSeconds(Random.Range(5f, 9f));
         SetNoneTarget();
     }
 
@@ -263,23 +225,42 @@ public class Monster01 : Monster
     {
         yield return new WaitForSeconds(6f);
         this.gameObject.SetActive(false);
+        mNav.enabled = false;
         StopAllCoroutines();
     }
 
     public void OnEnable()
     {
+        maxHp = 200;
         HP = maxHp;
-        notDie = true;
-        GetComponent<Rigidbody>().velocity = Vector3.zero;
-        GetComponent<CapsuleCollider>().isTrigger = false;
-        transform.localPosition = Vector3.zero;
-        transform.rotation = Quaternion.identity;
+        VIT = 10;
+        ACT = 5;
+        actSpeed = 2.5f;
+
         monster_Staus = Staus.idle;
+
+        mNav = GetComponent<NavMeshAgent>();
+        mAnimator = GetComponent<Animator>();
+        mRigidbody = GetComponent<Rigidbody>();
 
         canAttack = false;
         attackMode = false;
         idleMode = true;
-        
+
+        notDie = true;
+        delay = 0f;
+
+        mNav.enabled = true;
+        mNav.updatePosition = true;
+        mNav.updateRotation = true;
+        mNav.isStopped = false;
+        mRigidbody.useGravity = true;
+
         target = null;
+
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
+        coll.isTrigger = false;
+        transform.localPosition = Vector3.zero;
+        transform.rotation = Quaternion.identity;
     }
 }
