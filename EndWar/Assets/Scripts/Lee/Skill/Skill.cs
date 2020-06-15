@@ -89,11 +89,41 @@ public class Skill : MonoBehaviourPun
         for (int i = 0; i < monsters.Count; i++)
         {
             monsters[i].GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, damage[n_count]);
+            Ability();
         }
         n_count++;
 
         if (n_count == n_damageCount)
             n_count = 0;
+    }
+
+    void Ability()
+    {
+        switch(ability)
+        {
+            case Skillability.AIRBORNE:
+
+                break;
+            case Skillability.DOT:
+
+                break;
+            case Skillability.MEZ:
+                if (electricShock)
+                {
+
+                }
+                if (freezing)
+                {
+
+                }
+                break;
+            case Skillability.SLOW:
+
+                break;
+            case Skillability.STUN:
+
+                break;
+        }
     }
 
     //애니메이션 이벤트용 함수

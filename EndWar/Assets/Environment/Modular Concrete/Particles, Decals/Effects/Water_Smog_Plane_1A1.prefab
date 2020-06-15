@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4099329907930188}
   - component: {fileID: 33807804632424320}
   - component: {fileID: 23722033954667732}
-  - component: {fileID: 64896455656142056}
   m_Layer: 0
   m_Name: Water_Smog_Plane_1A1
   m_TagString: Untagged
@@ -80,17 +79,3 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &64896455656142056
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1630148771172856}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 86bfbb8272e6be74d98bf0a8f866f60a, type: 3}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4742621279603882}
   - component: {fileID: 33337682529627820}
   - component: {fileID: 23394805094201524}
-  - component: {fileID: 64079345542477836}
+  - component: {fileID: 5282979038320092843}
   m_Layer: 0
   m_Name: Concrete_Pipe_1A1
   m_TagString: Untagged
@@ -80,8 +80,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &64079345542477836
-MeshCollider:
+--- !u!136 &5282979038320092843
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -90,7 +90,7 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300008, guid: ccfcda709198870439654a891e2413fc, type: 3}
+  m_Radius: 1.004483
+  m_Height: 6.2481174
+  m_Direction: 2
+  m_Center: {x: -0.00000023841858, y: -0.011826277, z: -0.12405872}

@@ -41,22 +41,16 @@ MonoBehaviour:
   - GetDamage
   - GrabObj
   - Grip
+  - IsDie
   - OnGrab
-  - PressedUp
-  - RangeOff
-  - RangeOn
+  - OpenUI
+  - PlayAnimation
   - Release
   - ReleaseObj
   - RespawnSpaceship
   - Restore
   - SetPick
-  - ShowRange
   - Test
-  - FireTest
-  - PlayAnimation
-  - OpenUI
-  - selectUpDown
-  - IsDie
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
