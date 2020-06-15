@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4412191195787390}
   - component: {fileID: 33744703259533834}
   - component: {fileID: 23139525085641628}
-  - component: {fileID: 64573355755287354}
+  - component: {fileID: 9054724662679237781}
   m_Layer: 0
   m_Name: Wall_1A1_Grate
   m_TagString: Untagged
@@ -80,8 +80,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &64573355755287354
-MeshCollider:
+--- !u!65 &9054724662679237781
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -90,7 +90,6 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 6eeb405a33a2cdd4788a146cd6a4dcbe, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 0.4426093, y: 5.000001, z: 4}
+  m_Center: {x: 0.20001864, y: 0.598155, z: 0.0001757145}

@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4492188901903456}
   - component: {fileID: 33114518287941108}
   - component: {fileID: 23795761964848926}
-  - component: {fileID: 64134160596651704}
   m_Layer: 0
   m_Name: Wires_1A3
   m_TagString: Untagged
@@ -80,17 +79,3 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &64134160596651704
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1121860409798194}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 0bf0919d5b7990644a94bb71643a7200, type: 3}

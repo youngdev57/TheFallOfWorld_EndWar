@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4342625848643572}
   - component: {fileID: 33387591274415210}
   - component: {fileID: 23939514672887058}
-  - component: {fileID: 64310668611934020}
   m_Layer: 0
   m_Name: Sign_1A5
   m_TagString: Untagged
@@ -80,17 +79,3 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &64310668611934020
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1615187189828138}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300006, guid: 23a764a88b2d14b46848d5a272d71bf3, type: 3}
