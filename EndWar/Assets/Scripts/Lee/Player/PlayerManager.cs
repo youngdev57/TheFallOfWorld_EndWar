@@ -30,6 +30,8 @@ public class PlayerManager : MonoBehaviourPun
 
     bool isbackHpHit = false;
 
+    internal PhotonTest photonManager;
+
     //-------------------------------------Start
     void Start()
     {
@@ -145,6 +147,12 @@ public class PlayerManager : MonoBehaviourPun
 
         isDie = boolean;
         currHP = p_HP;
+
+        if(boolean == true)     //죽으면 기지보내기~ (기지에서 쓰지 마시오 ㅡㅡ)
+        {
+            photonManager.StartCoroutine(photonManager.BaseSettingWait());
+            LoadingManager.LoadScene("Basement");
+        }
     }
 
     [PunRPC]

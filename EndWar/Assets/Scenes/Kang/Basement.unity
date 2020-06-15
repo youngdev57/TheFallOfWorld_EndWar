@@ -584,7 +584,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 10373643}
-        m_MethodName: OnTunnel_SelectSub
+        m_MethodName: OnTunnel_SelectGlove
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8436,7 +8436,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 192311902}
-        m_MethodName: OnTunnel_SelectSub
+        m_MethodName: OnTunnel_SelectPants
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -15622,7 +15622,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 382639003}
-        m_MethodName: OnTunnel_SelectSub
+        m_MethodName: OnTunnel_SelectHelmet
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -15895,7 +15895,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 387801619}
-        m_MethodName: OnTunnel_SelectSub
+        m_MethodName: OnTunnel_SelectShoulder
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -19920,7 +19920,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 475562532}
-        m_MethodName: OnTunnel_SelectSub
+        m_MethodName: OnTunnel_SelectShoes
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -45972,7 +45972,7 @@ MonoBehaviour:
   armorTarget: {fileID: 1527196679}
   shoulderTarget: {fileID: 1906560023}
   gloveTarget: {fileID: 572657060}
-  pantsTarget: {fileID: 0}
+  pantsTarget: {fileID: 124691099}
   shoesTarget: {fileID: 2094517934}
   accTarget: {fileID: 605564274}
   mainWeaponImage: {fileID: 1365296145}
@@ -59688,7 +59688,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1359169158}
-        m_MethodName: OnTunnel_SelectSub
+        m_MethodName: OnTunnel_SelectAcc
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -73158,7 +73158,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1696257096}
-        m_MethodName: OnTunnel_SelectSub
+        m_MethodName: OnTunnel_SelectArmor
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

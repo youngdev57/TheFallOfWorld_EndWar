@@ -8,14 +8,21 @@ public class PhotonMonsterSpawn : MonoBehaviourPun
     public List<GameObject> nomalMonster;
 
     // 몬스터 무리 위치
-    public Vector3 m_fir;
+    public Vector3 m_fir, m_sec;
 
     private MonsterPooling m_pool;
 
     private void Awake()
     {
         m_pool = GetComponent<MonsterPooling>();
-        m_fir = new Vector3(751,2.112f,2050);
+        // 실제 맵 위치
+        /*
+        m_fir = new Vector3(751,0,2050); 
+        m_sec = new Vector3(0,0,0);
+        */
+        // 테스트 맵 위치
+        m_fir = new Vector3(40, 0, 40);
+        m_sec = new Vector3(-40, 0, 40);
     }
 
     private void Start()
@@ -25,6 +32,7 @@ public class PhotonMonsterSpawn : MonoBehaviourPun
             return;
         }
         m_pool.InitMontsers(nomalMonster[0].name,5);
+        m_pool.InitMontsers(nomalMonster[1].name, 5);
         MonsterPos(m_pool.montsers);
     }
 
@@ -32,51 +40,64 @@ public class PhotonMonsterSpawn : MonoBehaviourPun
     {
         for (int x = 0; x < monster.Count; x++)
         {
-            switch (x)
+            switch ((x+1)%5)
             {
                 case 0:
-                    monster[0].transform.position = m_fir + new Vector3(20, 0, 10);
+                    switch (monster[x].name)
+                    {
+                        case "Juggernaut(Clone)":
+                            monster[x].transform.position = m_fir + new Vector3(20, 0, 10);
+                            break;
+                        case "Insect(Clone)":
+                            monster[x].transform.position = m_sec + new Vector3(20, 0, 10);
+                            break;
+                    }
                     break;
                 case 1:
-                    monster[1].transform.position = m_fir + new Vector3(20, 0, -10);
+                    switch (monster[x].name)
+                    {
+                        case "Juggernaut(Clone)":
+                            monster[x].transform.position = m_fir + new Vector3(20, 0, -10);
+                            break;
+                        case "Insect(Clone)":
+                            monster[x].transform.position = m_sec + new Vector3(20, 0, -10);
+                            break;
+                    }
                     break;
                 case 2:
-                    monster[2].transform.position = m_fir + new Vector3(-20, 0, 10);
+                    switch (monster[x].name)
+                    {
+                        case "Juggernaut(Clone)":
+                            monster[x].transform.position = m_fir + new Vector3(-20, 0, 10);
+                            break;
+                        case "Insect(Clone)":
+                            monster[x].transform.position = m_sec + new Vector3(-20, 0, 10);
+                            break;
+                    }
                     break;
                 case 3:
-                    monster[3].transform.position = m_fir + new Vector3(-5, 0, -20);
+                    switch (monster[x].name)
+                    {
+                        case "Juggernaut(Clone)":
+                            monster[x].transform.position = m_fir + new Vector3(-5, 0, -20);
+                            break;
+                        case "Insect(Clone)":
+                            monster[x].transform.position = m_sec + new Vector3(5, 0, 20);
+                            break;
+                    }
                     break;
                 case 4:
-                    monster[4].transform.position = m_fir + new Vector3(0, 0, 0);
+                    switch (monster[x].name)
+                    {
+                        case "Juggernaut(Clone)":
+                            monster[x].transform.position = m_fir + new Vector3(0, 0, 0);
+                            break;
+                        case "Insect(Clone)":
+                            monster[x].transform.position = m_sec + new Vector3(0, 0, 0);
+                            break;
+                    }
                     break;
             }
         }
     }
-    /*
-    private void Update()
-    {
-        if (!PhotonNetwork.IsMasterClient)
-        {
-            return;
-        }
-        MonsterCheck(m_pool.montsers);
-    }
-
-    public void MonsterCheck(List<GameObject> obj)
-    {
-        for (int x = 0; x < obj.Count; x++)
-        {
-            if (obj[x].activeSelf == false)
-            {
-                StartCoroutine(MonsterSpawn(obj[x]));
-            }
-        }
-    }
-
-    IEnumerator MonsterSpawn(GameObject obj)
-    {
-        yield return new WaitForSeconds(10f);
-        obj.SetActive(true);
-    }
-    */
 }   
