@@ -29,4 +29,6 @@ public class Monster : MonoBehaviour
             target = tr;
         }
     }
+
+    public virtual void GetAbility(int abilityType, float seconde, int damage, float index = 0) { }
 }

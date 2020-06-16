@@ -11,7 +11,6 @@ public class Juggernaut : Monster
     internal Animator mAnimator;
     private Rigidbody mRigidbody;
     private NavMeshAgent mNav;
-    public Transform target;
     public Transform noneTarget;
     public Collider coll;
 
@@ -183,7 +182,7 @@ public class Juggernaut : Monster
 
     // 피격
     [PunRPC]
-    public void GetDamage(int Damage)
+    public override void GetDamage(int Damage)
     {
         HP -= Damage;
         mNav.stoppingDistance = 10;
@@ -198,7 +197,7 @@ public class Juggernaut : Monster
 
     //상태이상 효과
     [PunRPC]
-    public void GetAbility(int abilityType, float seconde, int damage, float index = 0)
+    public override void GetAbility(int abilityType, float seconde, int damage, float index = 0)
     {
         switch ((Skillability)abilityType)
         {

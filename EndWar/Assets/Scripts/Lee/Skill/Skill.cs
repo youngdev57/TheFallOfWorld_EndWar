@@ -90,8 +90,11 @@ public class Skill : MonoBehaviourPun
 
         for (int i = 0; i < monsters.Count; i++)
         {
-            monsters[i].GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All ,damage[i]);
-            Ability(monsters[i]);
+            Monster mon = monsters[i].GetComponent<Monster>();
+            mon.GetDamage(damage[i]);
+            mon.PlayerTarget(player);
+            Ability(monsters[i],damage[i]);
+
         }
         n_count++;
 
@@ -99,9 +102,10 @@ public class Skill : MonoBehaviourPun
             n_count = 0;
     }
 
-    void Ability(Transform monster)
+    void Ability(Transform monster, int damage)
     {
-        switch(ability)
+        Monster mon = monster.GetComponent<Monster>();
+        switch (ability)
         {
             case Skillability.DOT:
 
@@ -117,10 +121,10 @@ public class Skill : MonoBehaviourPun
                 }
                 break;
             case Skillability.SLOW:
-
+                mon.GetAbility((int)Skillability.SLOW, seconds, damage, slowing);
                 break;
             case Skillability.STUN:
-
+                mon.GetAbility((int)Skillability.STUN, seconds, damage);
                 break;
         }
     }
