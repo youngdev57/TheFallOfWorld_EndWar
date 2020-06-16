@@ -92,7 +92,7 @@ public class SKillEditor : Editor
             EditorGUILayout.Space(5);
         }
 
-        skillAbilityTab = GUILayout.Toolbar((int)_editor.ability, new string[] { "NONE", "AIRBORNE", "STUN", "DOT", "SLOW", "MEZ" });
+        skillAbilityTab = GUILayout.Toolbar((int)_editor.ability, new string[] { "NONE", "STUN", "DOT", "SLOW", "MEZ" });
         _editor.ability = (Skillability)skillAbilityTab;
         if (skillAbilityTab != 0)
             _editor.abilityTime = EditorGUILayout.FloatField(new GUIContent("AbilityTime","상태이상 효과의 지속시간을 설정합니다."), _editor.abilityTime);

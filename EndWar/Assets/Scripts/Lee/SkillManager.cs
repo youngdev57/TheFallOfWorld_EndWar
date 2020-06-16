@@ -59,6 +59,7 @@ public class SkillManager : MonoBehaviourPun
     {
         isPoint = true;
         skill.rotation = Quaternion.identity;
+        skill.player = player.GetComponent<Transform>();
         if (skill.type == SkillType.RADIAL)
         {
             //범위 표시

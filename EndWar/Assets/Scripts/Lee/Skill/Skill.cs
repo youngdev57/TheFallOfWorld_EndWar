@@ -7,11 +7,13 @@ using Photon.Pun;
 public enum SkillType {RADIAL, POINT, NONTARGET }
 
 //스킬의 효과
-public enum Skillability {NONE, AIRBORNE, STUN, DOT, SLOW, MEZ }
+public enum Skillability {NONE, STUN, DOT, SLOW, MEZ }
 
 [RequireComponent(typeof(PhotonView))]
 public class Skill : MonoBehaviourPun
 {
+    public Transform player;
+
     //공용
     public string skillName;    // 스킬 이름
     public float distance;      // 거리
@@ -88,8 +90,8 @@ public class Skill : MonoBehaviourPun
 
         for (int i = 0; i < monsters.Count; i++)
         {
-            monsters[i].GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, damage[n_count]);
-            Ability();
+            monsters[i].GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All ,damage[i]);
+            Ability(monsters[i]);
         }
         n_count++;
 
@@ -97,13 +99,10 @@ public class Skill : MonoBehaviourPun
             n_count = 0;
     }
 
-    void Ability()
+    void Ability(Transform monster)
     {
         switch(ability)
         {
-            case Skillability.AIRBORNE:
-
-                break;
             case Skillability.DOT:
 
                 break;

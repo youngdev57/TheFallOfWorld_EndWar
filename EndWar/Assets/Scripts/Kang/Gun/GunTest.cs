@@ -21,7 +21,7 @@ public class GunTest : MonoBehaviourPunCallbacks, IPunPrefabPool
 
     int index = 0;
 
-    float delay = 0.75f;
+    public float delay = 0.75f;
     float timer = 0f;
 
     bool isFire = false;
@@ -106,7 +106,7 @@ public class GunTest : MonoBehaviourPunCallbacks, IPunPrefabPool
             timer -= delay;
         }
 
-        if (grapAction.GetStateDown(handType) && canFire)
+        if (grapAction.GetState(handType) && canFire)
         {
             if (grapAction.GetState(handType))
             {

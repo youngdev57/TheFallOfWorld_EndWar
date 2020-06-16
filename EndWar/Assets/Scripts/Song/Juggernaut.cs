@@ -26,7 +26,8 @@ public class Juggernaut : Monster
     private bool notDie;
 
     private float delay;
-    
+
+    float speed;
     void Update()
     {
         PlayAnimation();
@@ -198,6 +199,47 @@ public class Juggernaut : Monster
 
         }
         StopAllCoroutines();
+    }
+
+    //상태이상 효과
+    [PunRPC]
+    public void GetAbility(int abilityType, float seconde, int damage, float index = 0)
+    {
+        switch ((Skillability)abilityType)
+        {
+            case Skillability.DOT:
+
+                break;
+            case Skillability.MEZ:
+
+                break;
+            case Skillability.SLOW:
+                SetStatusEffect(index, seconde);
+                break;
+            case Skillability.STUN:
+                SetStatusEffect(seconde);
+                break;
+        }
+        HP -= damage;
+    }
+
+    //슬로우
+    public IEnumerator SetStatusEffect(float slowing, float se)
+    {
+        speed = mNav.speed;
+        mNav.speed *= slowing;
+        yield return new WaitForSeconds(se);
+        mNav.speed = speed;
+    }
+
+    //스턴
+    public IEnumerator SetStatusEffect(float se)
+    {
+        mNav.enabled = true;
+        canAttack = false;
+        yield return new WaitForSeconds(se);
+        mNav.enabled = false;
+        canAttack = true;
     }
 
     // 몬스터 목표 지점 설정
