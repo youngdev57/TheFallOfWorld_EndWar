@@ -4,11 +4,6 @@ using UnityEngine;
 using UnityEngine.AI;
 using Photon.Pun;
 
-public enum Staus
-{
-    idle, walk, run, die, attack
-}
-
 public class Juggernaut : Monster
 {
     public Staus monster_Staus;
@@ -257,6 +252,7 @@ public class Juggernaut : Monster
         mNav.updatePosition = true;
         mNav.updateRotation = true;
         mNav.isStopped = false;
+        mNav.stoppingDistance = 0f;
         mRigidbody.useGravity = true;
 
         target = null;
