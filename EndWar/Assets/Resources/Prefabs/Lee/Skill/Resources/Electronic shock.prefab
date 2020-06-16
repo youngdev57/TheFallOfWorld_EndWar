@@ -57488,21 +57488,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45db19b7db9b30c47904449cdc1ebff6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   skillName: 
   distance: 50
   n_damageCount: 1
   damage: 64000000
   type: 1
-  ability: 0
-  abilityTime: 0
-  slowing: 0
+  ability: 3
+  abilityTime: 2
+  slowing: 0.9
   viewAngle: 3
   isCollision: 0
   range: 4
   layerMask:
     serializedVersion: 2
     m_Bits: 1024
-  target: {x: -8.481445, y: 0.2, z: 0.8045349}
+  target: {x: 0, y: 0, z: 0}
   speed: 0
   seconds: 0
   nonTargetDamage: 0

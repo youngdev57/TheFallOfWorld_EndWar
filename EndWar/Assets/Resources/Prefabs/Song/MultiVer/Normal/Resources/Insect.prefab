@@ -879,8 +879,8 @@ MonoBehaviour:
   VIT: 0
   ACT: 0
   actSpeed: 0
-  monster_Staus: 0
   target: {fileID: 0}
+  monster_Staus: 0
   noneTarget: {fileID: 54735450858314879}
   coll: {fileID: 54735451609699751}
   canAttack: 0

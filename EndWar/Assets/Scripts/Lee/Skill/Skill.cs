@@ -38,7 +38,7 @@ public class Skill : MonoBehaviourPun
 
     //타겟형
     public int speed;           //날아가는 스피드
-    public float seconds;       //지속되는 시간
+    public float seconds;       //날라가는 구체의 지속되는 시간
     public int nonTargetDamage; //논타겟팅 대미지
     public Quaternion rotation;  //네트워크 소환시 방향
 
@@ -90,11 +90,12 @@ public class Skill : MonoBehaviourPun
 
         for (int i = 0; i < monsters.Count; i++)
         {
+            Debug.Log("스킬사용" + monsters.Count + " , " + i);
             Monster mon = monsters[i].GetComponent<Monster>();
-            mon.GetDamage(damage[i]);
+            int _damage = this.damage[n_count];
+            mon.GetDamage(_damage);
             mon.PlayerTarget(player);
-            Ability(monsters[i],damage[i]);
-
+            Ability(monsters[i]);
         }
         n_count++;
 
@@ -102,7 +103,7 @@ public class Skill : MonoBehaviourPun
             n_count = 0;
     }
 
-    void Ability(Transform monster, int damage)
+    void Ability(Transform monster)
     {
         Monster mon = monster.GetComponent<Monster>();
         switch (ability)
@@ -121,10 +122,10 @@ public class Skill : MonoBehaviourPun
                 }
                 break;
             case Skillability.SLOW:
-                mon.GetAbility((int)Skillability.SLOW, seconds, damage, slowing);
+                mon.GetAbility((int)ability, abilityTime, slowing);
                 break;
             case Skillability.STUN:
-                mon.GetAbility((int)Skillability.STUN, seconds, damage);
+                mon.GetAbility((int)ability, abilityTime);
                 break;
         }
     }
@@ -153,9 +154,16 @@ public class Skill : MonoBehaviourPun
         {
             for (int i = 0; i < coll.Length; i++)
             {
+                int count = 0;
                 if (coll[i].gameObject.layer == LayerMask.NameToLayer("Monster")) //레이어로 바꿀 것
                 {
-                    monsters.Add(coll[i].transform);  //몬스터로 바꿀것
+                    for (int j = 0; j < monsters.Count; j++)
+                    {
+                        if (monsters[j] == coll[i].transform)
+                            count++;
+                    }
+                    if (count == 0)
+                        monsters.Add(coll[i].transform);  //몬스터로 바꿀것
                 }
             }
         }
@@ -198,6 +206,7 @@ public class Skill : MonoBehaviourPun
 
         for (int i = 0; i < _target.Length; i++)
         {
+            int count = 0;
             Transform _targetTf = _target[i].transform;
             if(_targetTf.gameObject.layer == LayerMask.NameToLayer("Monster")) //레이어
             {
@@ -211,7 +220,13 @@ public class Skill : MonoBehaviourPun
                     {
                         if (_hit.transform.gameObject.layer == LayerMask.NameToLayer("Monster")) // 레이어로 바꿀 것
                         {
-                            monsters.Add(_hit.transform);  //몬스터로 바꿀것
+                            for (int j = 0; j < monsters.Count; j++)
+                            {
+                                if (monsters[j] == _hit.transform)
+                                    count++;
+                            }
+                            if(count == 0)
+                                monsters.Add(_hit.transform);  //몬스터로 바꿀것
                         }
                     }
                 }

@@ -21,7 +21,7 @@ public class Juggernaut : Monster
 
     private float delay;
 
-    float speed;
+    float speed = 1; //본인의 기본 속도를 저장     // 추가한 사람 : 이상재
     void Update()
     {
         PlayAnimation();
@@ -132,7 +132,7 @@ public class Juggernaut : Monster
                 {
                     attackMode = false;
                     mNav.isStopped = false;
-                    mNav.speed = 5f;
+                    mNav.speed = 5f * speed;
                     monster_Staus = Staus.run;
                 }
             }
@@ -146,7 +146,7 @@ public class Juggernaut : Monster
                 }
                 else
                 {
-                    mNav.speed = 3f;
+                    mNav.speed = 3f * speed;
                     monster_Staus = Staus.walk;
                 }
             }
@@ -162,7 +162,7 @@ public class Juggernaut : Monster
            // Debug.Log("플레이어 인식");
             target = other.gameObject.transform;
             mNav.stoppingDistance = 2;
-            mNav.speed = 5f;
+            mNav.speed = 5f * speed;
             canAttack = true;
             StopAllCoroutines();
         }
@@ -174,7 +174,7 @@ public class Juggernaut : Monster
             mNav.stoppingDistance = 0;
             monster_Staus = Staus.walk;
             target = noneTarget;
-            mNav.speed = 3f;
+            mNav.speed = 3f * speed;
             canAttack = false;
             idleMode = true;
         }
@@ -185,8 +185,8 @@ public class Juggernaut : Monster
     public override void GetDamage(int Damage)
     {
         HP -= Damage;
-        mNav.stoppingDistance = 10;
-        mNav.speed = 5f;
+        //mNav.stoppingDistance = 10;
+        mNav.speed = 5f * speed;
         canAttack = true;
         if (target == null || target.gameObject.tag != "Player")
         {
@@ -195,9 +195,11 @@ public class Juggernaut : Monster
         StopAllCoroutines();
     }
 
+    //이상재, 추가본----------------------
+
     //상태이상 효과
     [PunRPC]
-    public override void GetAbility(int abilityType, float seconde, int damage, float index = 0)
+    public override void GetAbility(int abilityType, float seconde, float index = 0)
     {
         switch ((Skillability)abilityType)
         {
@@ -208,33 +210,45 @@ public class Juggernaut : Monster
 
                 break;
             case Skillability.SLOW:
-                SetStatusEffect(index, seconde);
+                StartCoroutine( SetStatusEffect(index, seconde));
                 break;
             case Skillability.STUN:
-                SetStatusEffect(seconde);
+                StartCoroutine( SetStatusEffect(seconde) );
                 break;
         }
-        HP -= damage;
     }
 
     //슬로우
     public IEnumerator SetStatusEffect(float slowing, float se)
     {
-        speed = mNav.speed;
-        mNav.speed *= slowing;
+        Debug.Log("slow");
+        speed = slowing;
+        float tempSpeed = mNav.speed;
+        mNav.speed *= speed;
         yield return new WaitForSeconds(se);
-        mNav.speed = speed;
+        speed = 1f;
+        mNav.speed = tempSpeed;
     }
 
     //스턴
     public IEnumerator SetStatusEffect(float se)
     {
-        mNav.enabled = true;
+        Debug.Log("stun");
+        monster_Staus = Staus.idle;
+        SetNavStopped(false);
         canAttack = false;
         yield return new WaitForSeconds(se);
-        mNav.enabled = false;
+        SetNavStopped(true);
         canAttack = true;
     }
+
+    public void SetNavStopped(bool isTrue)
+    {
+        mNav.updatePosition = isTrue;
+        mNav.updateRotation = isTrue;
+        mNav.isStopped = !isTrue;
+    }
+    //이상재, 추가본----------------------
 
     // 몬스터 목표 지점 설정
     public void SetNoneTarget()
@@ -256,7 +270,7 @@ public class Juggernaut : Monster
     {
         mNav.speed = 0;
         yield return new WaitForSeconds(3f);
-        mNav.speed = 5f;
+        mNav.speed = 5f * speed;
         monster_Staus = Staus.idle;
     }
 
