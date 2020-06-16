@@ -1,12 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
 using UnityEngine.AI;
+using Photon.Pun;
 
-public class Insect : Monster
+
+public class Reptile : Monster
 {
-
     public Staus monster_Staus;
 
     internal Animator mAnimator;
@@ -55,13 +55,13 @@ public class Insect : Monster
                 switch (type)
                 {
                     case 0:
-                        mAnimator.SetTrigger("Attack_fir");
+                        mAnimator.SetTrigger("Hook");
                         break;
                     case 1:
-                        mAnimator.SetTrigger("Attack_sec");
+                        mAnimator.SetTrigger("Chop");
                         break;
                     case 2:
-                        mAnimator.SetTrigger("Attack_thi");
+                        mAnimator.SetTrigger("Spin");
                         break;
                 }
                 StartCoroutine(NavStop());
@@ -153,12 +153,13 @@ public class Insect : Monster
         }
     }
 
+    // 플레이어 인식
     private void OnTriggerEnter(Collider other)
     {
-    //    Debug.Log("트리거 인식");
+        //  Debug.Log("트리거 인식");
         if (!canAttack && other.gameObject.tag == "Player")
         {
-        //    Debug.Log("플레이어 인식");
+            // Debug.Log("플레이어 인식");
             target = other.gameObject.transform;
             mNav.stoppingDistance = 2;
             mNav.speed = 5f;
@@ -166,7 +167,6 @@ public class Insect : Monster
             StopAllCoroutines();
         }
     }
-
     private void OnTriggerExit(Collider other)
     {
         if (!attackMode && canAttack && other.gameObject.tag == "Player")
@@ -181,19 +181,18 @@ public class Insect : Monster
     }
 
     // 피격
-    public override void GetDamage(int Damage)
+    [PunRPC]
+    public void GetDamage(int Damage)
     {
         HP -= Damage;
-        //Aggro();
-        mNav.stoppingDistance = 2;
+        mNav.stoppingDistance = 10;
         mNav.speed = 5f;
         canAttack = true;
-        StopAllCoroutines();
-    }
+        if (target == null || target.gameObject.tag != "Player")
+        {
 
-    public override void PlayerTarget(Transform tr)
-    {
-        base.PlayerTarget(tr);
+        }
+        StopAllCoroutines();
     }
 
     // 몬스터 목표 지점 설정
@@ -234,7 +233,7 @@ public class Insect : Monster
         HP = maxHp;
         VIT = 10;
         ACT = 5;
-        actSpeed = 1.5f;
+        actSpeed = 2.5f;
 
         monster_Staus = Staus.idle;
 
