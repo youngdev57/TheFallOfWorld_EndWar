@@ -2434,6 +2434,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f377c2ca664343a41ba4708113420dc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pInven: {fileID: 0}
   cristal: 0
   iron: 0
   mineral: 0

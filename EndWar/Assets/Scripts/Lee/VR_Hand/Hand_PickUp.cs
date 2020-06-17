@@ -27,7 +27,11 @@ public class Hand_PickUp : MonoBehaviourPun
             if(item != null)
             {
                 player.GetComponent<PlayerItem>().GetItme((int)item.gemType);
-                PhotonNetwork.Destroy(item.gameObject);
+                item.GetComponent<PickedItem>().PickOff();      //일정 시간 동안 주울 수 없게 함
+
+                item.SetPick(false);
+                item = null;
+                canPickup = false;
             }
         }
 
@@ -43,7 +47,7 @@ public class Hand_PickUp : MonoBehaviourPun
         if (other.gameObject.layer == 11)
         {
             item = other.GetComponent<PickedItem>();
-            other.GetComponent<PhotonView>().RPC("SetPick", RpcTarget.AllBuffered, true);
+            item.SetPick(true);
             canPickup = true;
         }
     }
@@ -52,8 +56,9 @@ public class Hand_PickUp : MonoBehaviourPun
     {
         if (other.gameObject.layer == 11)
         {
+            item = other.GetComponent<PickedItem>();
+            item.SetPick(false);
             item = null;
-            other.GetComponent<PhotonView>().RPC("SetPick", RpcTarget.AllBuffered, false);
             canPickup = false;
         }
     }

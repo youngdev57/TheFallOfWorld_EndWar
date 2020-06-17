@@ -141,9 +141,9 @@ public class PlayerInven : MonoBehaviour
     }
 
     /** 웹 연동 함수 **/
-    public void SaveInven()
+    public void SaveInven(bool loadItems = true)
     {
-        StartCoroutine(IE_Save());
+        StartCoroutine(IE_Save(loadItems));
     }
 
     public void LoadInven()
@@ -151,9 +151,10 @@ public class PlayerInven : MonoBehaviour
         StartCoroutine(IE_Load());
     }
 
-    public string MakeGemsString()
+    public string MakeGemsString(bool loadBase = true)
     {
-        BringAllGem();
+        if(loadBase)
+            BringAllGem();
         StringBuilder str = new StringBuilder();
 
         for (int i = 0; i < gems.Length; i++)
@@ -166,47 +167,61 @@ public class PlayerInven : MonoBehaviour
         return str.ToString();
     }
 
-    public string MakeSlotsString()
+    public string slotString = "";
+
+    public string MakeSlotsString(bool loadBase = true)
     {
-        BringAllItem();
-        StringBuilder str = new StringBuilder();
-
-        Debug.Log("items[0] 의 이름: " + items[0].itemId);
-        for (int i = 0; i < 28; i++)
+        if(loadBase)
         {
-            
-            if(i >= items.Length)
+            BringAllItem();
+            Debug.Log("************************** 로드 베이스");
+
+            StringBuilder str = new StringBuilder();
+
+            Debug.Log("items[0] 의 이름: " + items[0].itemId);
+            for (int i = 0; i < 28; i++)
             {
-                str.Append("-1");
-                Debug.Log(i + " : 아이템s 크기를 i가 넘어섬");
-            } else
-            {
-                str.Append((int)items[i].itemId);
-                Debug.Log(i + " : 정상적인 입장");
+
+                if (i >= items.Length)
+                {
+                    str.Append("-1");
+                    Debug.Log(i + " : 아이템s 크기를 i가 넘어섬");
+                }
+                else
+                {
+                    str.Append((int)items[i].itemId);
+                    Debug.Log(i + " : 정상적인 입장");
+                }
+
+                if (i != 27)
+                {
+                    str.Append(",");
+                }
+
+                Debug.Log("메이크슬롯스트링 " + str);
             }
 
-            if (i != 27)
-            {
-                str.Append(",");
-            }
+            slotString = str.ToString();
 
-            Debug.Log("메이크슬롯스트링 " + str);
+            return str.ToString();
         }
-
-        return str.ToString();
+        else
+        {
+            return slotString;
+        }
     }
 
     /** 웹 연동 코루틴 **/
-    IEnumerator IE_Save()
+    IEnumerator IE_Save(bool loadItems)
     {
         WWWForm form = new WWWForm();
 
         form.AddField("gid", PhotonNetwork.NickName);
         form.AddField("gold", gold);
-        form.AddField("ingre", MakeGemsString());
+        form.AddField("ingre", MakeGemsString(loadItems));
         form.AddField("main_weapon", mainIdx);
         form.AddField("sub_weapon", subIdx);
-        form.AddField("slot", MakeSlotsString());
+        form.AddField("slot", MakeSlotsString(loadItems));
         form.AddField("helmet", helmetIdx);
         form.AddField("armor", armorIdx);
         form.AddField("shoulder", shoulderIdx);
@@ -215,8 +230,8 @@ public class PlayerInven : MonoBehaviour
         form.AddField("shoes", shoesIdx);
         form.AddField("acc", accIdx);
 
-        Debug.Log("저장할 내용 - 골드 : " + gold + ", 재료 : " + MakeGemsString() + ", 메인 : " + mainIdx + ", 서브 : " + subIdx +
-            ", 슬롯 상태 : " + MakeSlotsString() + ", H-A-Sd-G-P-S-Ac : " + helmetIdx + ", " + armorIdx + ", " + shoulderIdx + ", " + gloveIdx
+        Debug.Log("저장할 내용 - 골드 : " + gold + ", 재료 : " + MakeGemsString(loadItems) + ", 메인 : " + mainIdx + ", 서브 : " + subIdx +
+            ", 슬롯 상태 : " + MakeSlotsString(loadItems) + ", H-A-Sd-G-P-S-Ac : " + helmetIdx + ", " + armorIdx + ", " + shoulderIdx + ", " + gloveIdx
              + ", " + pantsIdx + ", " + shoesIdx + ", " + accIdx);
 
         WWW www = new WWW("http://ec2-15-165-174-206.ap-northeast-2.compute.amazonaws.com:8080/_EndWar/saveInventory.do", form);
@@ -297,6 +312,29 @@ public class PlayerInven : MonoBehaviour
 
             Debug.Log("슬롯 크기 : " + intSlot.Length + ", 슬롯 내용 : " + intSlot);
         }
+
+
+
+        StringBuilder sb = new StringBuilder();
+        slotString = "";
+
+        for (int i=0; i<28; i++)
+        {
+            if(i >= bytesSlot.Length)
+            {
+                sb.Append("-1");
+            } else
+            {
+                sb.Append(bytesSlot[i]);
+            }
+
+            if (i != 27)
+                sb.Append(",");
+        }
+
+        slotString = sb.ToString();
+
+
 
         helmetIdx = int.Parse(bytes[5]);
         armorIdx = int.Parse(bytes[6]);

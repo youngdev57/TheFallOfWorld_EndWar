@@ -67,7 +67,7 @@ MonoBehaviour:
   alertButton: {fileID: 0}
   destination: 0
   vrKeyManager: {fileID: 0}
-  kPM: {fileID: 9069108028298597919}
+  KPM: {fileID: 9069108028298597919}
   status: 0
 --- !u!114 &9069108028298597919
 MonoBehaviour:
@@ -104,6 +104,20 @@ MonoBehaviour:
   gems: 000000000000000000000000000000000000000000000000
   mainWeapon: {fileID: 0}
   subWeapon: {fileID: 0}
+  helmet: {fileID: 0}
+  armor: {fileID: 0}
+  shoulder: {fileID: 0}
+  glove: {fileID: 0}
+  pants: {fileID: 0}
+  shoes: {fileID: 0}
+  acc: {fileID: 0}
   mainIdx: 0
   subIdx: 0
+  helmetIdx: 0
+  armorIdx: 0
+  shoulderIdx: 0
+  gloveIdx: 0
+  pantsIdx: 0
+  shoesIdx: 0
+  accIdx: 0
   items: []

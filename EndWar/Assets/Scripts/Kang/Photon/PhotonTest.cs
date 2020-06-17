@@ -42,7 +42,7 @@ public class PhotonTest : MonoBehaviourPunCallbacks
 
     public VRKeyManager vrKeyManager;
 
-    public K_PlayerManager kPM;
+    public K_PlayerManager KPM;
 
     public enum Status
     {
@@ -290,6 +290,7 @@ public class PhotonTest : MonoBehaviourPunCallbacks
 
             case 1: //아이스맵 씬 로드
                 LoadingManager.LoadScene("SnowMountains");
+                StartCoroutine(SceneSettingWait());
                 break;
 
             case 2: //사막맵 씬 로드
@@ -297,6 +298,7 @@ public class PhotonTest : MonoBehaviourPunCallbacks
 
             case 3: //지하 던전 씬 로드
                 LoadingManager.LoadScene("Dungeon_Underground");
+                StartCoroutine(SceneSettingWait());
                 break;
             case 98:
                 LoadingManager.LoadScene("BattleTest");
@@ -304,6 +306,7 @@ public class PhotonTest : MonoBehaviourPunCallbacks
                 break;
             case 99:
                 LoadingManager.LoadScene("AimTest");
+                StartCoroutine(SceneSettingWait());
                 break;
         }
     }
@@ -440,7 +443,7 @@ public class PhotonTest : MonoBehaviourPunCallbacks
         playerSpawnPoints = pointsObj.points;
         CreatePlayer(destination);  //생성  0=기지에 플레이어 생성용
 
-        kPM.inven.OnBaseCamp();
+        KPM.inven.OnBaseCamp();
     }
 
     IEnumerator SceneSettingWait()
@@ -561,7 +564,7 @@ public class PhotonTest : MonoBehaviourPunCallbacks
 
         switch (destination)
         {
-            case 0:
+            case 0:     //기지
                 idx = 0; //기지 소환 위치 하나뿐이라서 그냥 0
                 tempObj = PhotonNetwork.Instantiate("PlayerOnBase", playerSpawnPoints[idx].position, Quaternion.identity, 0);
                 tempObj.GetComponent<PlayerInfo>().photonManager = this;
@@ -573,43 +576,31 @@ public class PhotonTest : MonoBehaviourPunCallbacks
                 tempObj.GetComponentsInChildren<UI_Laser>()[0].kPm = GetComponent<K_PlayerManager>();
                 tempObj.GetComponentsInChildren<UI_Laser>()[1].pInven = GetComponent<PlayerInven>();
                 tempObj.GetComponentsInChildren<UI_Laser>()[1].kPm = GetComponent<K_PlayerManager>();
-                Debug.Log("기지맵에 소환됨");
                 break;
 
-            case 1:
-                idx = UnityEngine.Random.Range(1, playerSpawnPoints.Length);
-                //포톤에서 프리팹을 소환하려면 최상위 루트의 Resources 폴더 안에 프리팹을 둬야만 함
-                //그리고 프리팹의 이름을 문자열로 호출하여 Instantiate 함
-                tempObj = PhotonNetwork.Instantiate("Player", playerSpawnPoints[idx].position, Quaternion.identity, 0);
-                tempObj.GetComponent<PlayerInfo>().photonManager = this;
-                tempObj.GetComponent<PlayerManager>().photonManager = this;
-                Debug.Log("아이스맵에 소환됨");
+            case 1:     //스노우맵
+                SpawnPlayer();
                 break;
-
-            case 3:
-                idx = 0;
-                tempObj = PhotonNetwork.Instantiate("Player", playerSpawnPoints[idx].position, Quaternion.identity, 0);
-                tempObj.GetComponent<PlayerInfo>().photonManager = this;
-                tempObj.GetComponent<PlayerManager>().photonManager = this;
-                Debug.Log("던전에 소환됨");
+            case 3:     //던전
+                SpawnPlayer();
                 break;
-
-            case 98:
-                idx = 0; //소환 위치 하나뿐이라서 그냥 0
-                tempObj = PhotonNetwork.Instantiate("Player", playerSpawnPoints[idx].position, Quaternion.identity, 0);
-                tempObj.GetComponent<PlayerInfo>().photonManager = this;
-                tempObj.GetComponent<PlayerManager>().photonManager = this;
-                Debug.Log("전투테스트에 소환됨");
+            case 98:    //배틀테스트
+                SpawnPlayer();
                 break;
-
-            case 99:
-                idx = 0; //소환 위치 하나뿐이라서 그냥 0
-                tempObj = PhotonNetwork.Instantiate("Player", playerSpawnPoints[idx].position, Quaternion.identity, 0);
-                tempObj.GetComponent<PlayerInfo>().photonManager = this;
-                tempObj.GetComponent<PlayerManager>().photonManager = this;
-                Debug.Log("사격연습장에 소환됨");
+            case 99:    //사격연습장
+                SpawnPlayer();
                 break;
         }
+    }
+
+    void SpawnPlayer()
+    {
+        GameObject tempObj;
+        tempObj = PhotonNetwork.Instantiate("Player", playerSpawnPoints[0].position, Quaternion.identity, 0);
+        tempObj.GetComponent<PlayerInfo>().photonManager = this;
+        tempObj.GetComponent<PlayerManager>().photonManager = this;
+        tempObj.GetComponent<PlayerItem>().pInven = GetComponent<PlayerInven>();
+        tempObj.GetComponent<PlayerItem>().LoadGemsLocal();     //PlayerInven의 재료 개수를 PlayerItem에 적용하는 함수
     }
 
     public void SetDestination(int num)
