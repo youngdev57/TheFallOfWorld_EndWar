@@ -199,12 +199,12 @@ public class Juggernaut : Monster
 
     //상태이상 효과
     [PunRPC]
-    public override void GetAbility(int abilityType, float seconde, float index = 0)
+    public override void GetAbility(Skillability abilityType, float seconde, float index = 0, int dotDamage = 0)
     {
-        switch ((Skillability)abilityType)
+        switch (abilityType)
         {
             case Skillability.DOT:
-
+                StartCoroutine( SetStatusEffect(dotDamage, seconde) );
                 break;
             case Skillability.MEZ:
 
@@ -218,11 +218,24 @@ public class Juggernaut : Monster
         }
     }
 
+    //도트 데미지
+    public IEnumerator SetStatusEffect(int damage, float se)
+    {
+        Debug.Log("dot");
+        float seconds = 0;
+        while (seconds >= se)
+        {
+            HP -= damage;
+            yield return new WaitForSeconds(.1f);
+            seconds += .1f;
+        }
+    }
+
     //슬로우
     public IEnumerator SetStatusEffect(float slowing, float se)
     {
         Debug.Log("slow");
-        speed = slowing;
+        speed = 1f - slowing;
         float tempSpeed = mNav.speed;
         mNav.speed *= speed;
         yield return new WaitForSeconds(se);

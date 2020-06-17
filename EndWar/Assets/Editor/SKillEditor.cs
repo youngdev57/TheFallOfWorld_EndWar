@@ -98,10 +98,13 @@ public class SKillEditor : Editor
             _editor.abilityTime = EditorGUILayout.FloatField(new GUIContent("AbilityTime","상태이상 효과의 지속시간을 설정합니다."), _editor.abilityTime);
         switch (skillAbilityTab)
         {
-            case 3:
+            case (int)Skillability.DOT:
+                _editor.dotDamage = EditorGUILayout.IntField(new GUIContent("도트 데미지를 설정합니다."), _editor.dotDamage);
+                break;
+            case (int)Skillability.SLOW:
                 _editor.slowing = EditorGUILayout.Slider(new GUIContent("Slowing", "둔화율을 설정합니다."), _editor.slowing, 0f, .9f);
                 break;
-            case 4:
+            case (int)Skillability.STUN:
                 _editor.electricShock = EditorGUILayout.Toggle(new GUIContent("Electric Shock", "감전을 설정합니다."), _editor.electricShock);
                 _editor.freezing = EditorGUILayout.Toggle(new GUIContent("Freezing", "빙결을 설정합니다."), _editor.freezing);
                 break;

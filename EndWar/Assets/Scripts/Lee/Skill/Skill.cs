@@ -46,6 +46,9 @@ public class Skill : MonoBehaviourPun
     public bool electricShock;  //감전
     public bool freezing;       //빙결
 
+    //DOT Damage
+    public int dotDamage;       //도트 데미지
+
     int n_count = 0;
     List<Transform> monsters; //자료형 몬스터 스크립트로 바꿀 것 (데미지를 줘야됨)  //나중에 바꿀것 몬스터로!!
 
@@ -109,7 +112,7 @@ public class Skill : MonoBehaviourPun
         switch (ability)
         {
             case Skillability.DOT:
-
+                mon.GetAbility(ability, abilityTime, dotDamage);
                 break;
             case Skillability.MEZ:
                 if (electricShock)
@@ -122,10 +125,10 @@ public class Skill : MonoBehaviourPun
                 }
                 break;
             case Skillability.SLOW:
-                mon.GetAbility((int)ability, abilityTime, slowing);
+                mon.GetAbility(ability, abilityTime, slowing);
                 break;
             case Skillability.STUN:
-                mon.GetAbility((int)ability, abilityTime);
+                mon.GetAbility(ability, abilityTime);
                 break;
         }
     }
