@@ -9,8 +9,9 @@ public class MonsterPooling : MonoBehaviourPun
     private Transform pool;
     private GameObject obj;
     private int indexMonster = 0;
+    private MobLocation spawnLocation;
 
-    public void InitMontsers(string name, int poolSize)
+    public void InitMontsers(string name, int poolSize, MobLocation spawnLocation)
     {
         pool = transform;
 
@@ -19,6 +20,8 @@ public class MonsterPooling : MonoBehaviourPun
             GameObject goMontsers = PhotonNetwork.Instantiate(name, Vector3.zero, Quaternion.identity) as GameObject;
             PushMontsers(goMontsers);
         }
+
+        this.spawnLocation = spawnLocation;
     }
     /*
     public GameObject PopMontsers(GameObject temp)
@@ -43,5 +46,11 @@ public class MonsterPooling : MonoBehaviourPun
         obj.transform.parent = pool;
         obj.transform.localPosition = Vector3.zero;
         obj.transform.GetChild(0).gameObject.SetActive(false);
+        obj.transform.GetChild(0).GetComponent<Monster>().location = spawnLocation;
+
+        if(spawnLocation == MobLocation.Dungeon)
+        {
+            obj.GetComponent<MonsterRespawn>().enabled = false;
+        }
     }
 }

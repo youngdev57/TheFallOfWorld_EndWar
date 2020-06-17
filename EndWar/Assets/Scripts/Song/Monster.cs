@@ -2,6 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum MobLocation     //몬스터의 소환 위치 (필드인지 던전인지)
+{
+    Field,
+    Dungeon
+}
+
 public class Monster : MonoBehaviour
 {
     public enum Staus
@@ -14,6 +20,8 @@ public class Monster : MonoBehaviour
     public int VIT;                      // 방어력
     public int ACT;                     // 공격력
     public float actSpeed;         // 공격속도
+
+    public MobLocation location = MobLocation.Field;    //몬스터 위치 기본값 : 필드
 
     public Transform target;
     

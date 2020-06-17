@@ -10,6 +10,8 @@ public class PhotonMonsterSpawn : MonoBehaviourPun
     // 몬스터 무리 위치
     public Vector3 m_fir, m_sec;
 
+    public MobLocation spawnLocation;       //씬안에 있는 몹스포너의 인스펙터에서 이걸 설정해줘야함 (필드면 필드, 던전이면 던전)
+
     private MonsterPooling m_pool;
 
     private void Awake()
@@ -21,8 +23,10 @@ public class PhotonMonsterSpawn : MonoBehaviourPun
         m_sec = new Vector3(0,0,0);
         */
         // 테스트 맵 위치
-        m_fir = new Vector3(40, 0, 40);
-        m_sec = new Vector3(-40, 0, 40);
+        //m_fir = new Vector3(40, 0, 40);
+        //m_sec = new Vector3(-40, 0, 40);
+        m_fir = new Vector3(111f, 26f, 99f);
+        m_sec = new Vector3(108.5f, 26f, 99f);
     }
 
     private void Start()
@@ -31,8 +35,8 @@ public class PhotonMonsterSpawn : MonoBehaviourPun
         {
             return;
         }
-        m_pool.InitMontsers(nomalMonster[0].name,5);
-        m_pool.InitMontsers(nomalMonster[1].name, 5);
+        m_pool.InitMontsers(nomalMonster[0].name, 5, spawnLocation);
+        m_pool.InitMontsers(nomalMonster[1].name, 5, spawnLocation);
         MonsterPos(m_pool.montsers);
     }
 
