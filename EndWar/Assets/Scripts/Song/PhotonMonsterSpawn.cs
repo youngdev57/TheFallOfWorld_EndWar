@@ -1,16 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using Photon.Pun;
 
 public class PhotonMonsterSpawn : MonoBehaviourPun
 {
-    public List<GameObject> nomalMonster;
+    public List<GameObject> nomalMonster;   //일반 몬스터
+    public List<GameObject> dunMonster;     //던전 몬스터
 
     // 몬스터 무리 위치
     public Vector3 m_fir, m_sec;
 
     public MobLocation spawnLocation;       //씬안에 있는 몹스포너의 인스펙터에서 이걸 설정해줘야함 (필드면 필드, 던전이면 던전)
+    public List<Transform> spawnPos;
 
     private MonsterPooling m_pool;
 
@@ -35,12 +38,22 @@ public class PhotonMonsterSpawn : MonoBehaviourPun
         {
             return;
         }
-        m_pool.InitMontsers(nomalMonster[0].name, 5, spawnLocation);
-        m_pool.InitMontsers(nomalMonster[1].name, 5, spawnLocation);
-        MonsterPos(m_pool.montsers);
+
+        if(spawnLocation == MobLocation.Field)      //필드에 몬스터 소환할 때
+        {
+            m_pool.InitMontsers(nomalMonster[0].name, 5, spawnLocation);
+            m_pool.InitMontsers(nomalMonster[1].name, 5, spawnLocation);
+            MonsterPos(m_pool.montsers);
+        }
+        else          //던전에 몬스터 소환할 때
+        {
+            m_pool.InitMontsers(dunMonster[0].name, 5, spawnLocation);
+            m_pool.InitMontsers(dunMonster[1].name, 5, spawnLocation);
+            DungeonMonsterSpawn(m_pool.montsers);
+        }
     }
 
-    public void MonsterPos(List<GameObject> monster)
+    public void MonsterPos(List<GameObject> monster)        //필드
     {
         for (int x = 0; x < monster.Count; x++)
         {
@@ -102,6 +115,15 @@ public class PhotonMonsterSpawn : MonoBehaviourPun
                     }
                     break;
             }
+        }
+    }
+
+    public void DungeonMonsterSpawn(List<GameObject> monsters)      //던전 고정위치 소환..
+    {
+        for(int i=0; i<monsters.Count; i++)
+        {
+            //monsters[i].GetComponent<NavMeshAgent>().Warp(spawnPos[i].localPosition);
+            monsters[i].transform.position = spawnPos[i].position;
         }
     }
 }   
