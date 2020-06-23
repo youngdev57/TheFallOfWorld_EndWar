@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public enum MobLocation     //몬스터의 소환 위치 (필드인지 던전인지)
 {
@@ -8,7 +9,7 @@ public enum MobLocation     //몬스터의 소환 위치 (필드인지 던전인
     Dungeon
 }
 
-public class Monster : MonoBehaviour
+public abstract class Monster : MonoBehaviour
 {
     public enum Staus
     {
@@ -24,7 +25,7 @@ public class Monster : MonoBehaviour
     public MobLocation location = MobLocation.Field;    //몬스터 위치 기본값 : 필드
 
     public Transform target;
-    
+
     public virtual void GetDamage(int Damage)
     {
 
@@ -38,5 +39,13 @@ public class Monster : MonoBehaviour
         }
     }
 
-    public virtual void GetAbility(Skillability abilityType, float seconde, float index = 0, int dotDamage = 0) { }
+    public abstract void GetAbility(Skillability abilityType, float seconde, float index = 0, int dotDamage = 0);
+
+    //슬로우
+    public abstract IEnumerator SetStatusEffect(float slowing, float se);
+
+    //스턴
+    public abstract IEnumerator SetStatusEffect(float se);
+
+    public abstract void SetNavStopped(bool isTrue);
 }
