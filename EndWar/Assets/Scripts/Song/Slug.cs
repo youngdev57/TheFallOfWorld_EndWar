@@ -4,8 +4,9 @@ using UnityEngine;
 using Photon.Pun;
 using UnityEngine.AI;
 
-public class Insect : Monster
+public class Slug : Monster
 {
+    // 피격
     [PunRPC]
     public override void GetDamage(int Damage)
     {
@@ -18,44 +19,10 @@ public class Insect : Monster
             Damage = 0;
         }
         HP -= Damage;
-        mNav.stoppingDistance = 2f;
+        mNav.stoppingDistance = 3.5f;
         mNav.speed = 5f * speed;
         canAttack = true;
         StopAllCoroutines();
-    }
-
-    [PunRPC]
-    public override void PlayAnimation()
-    {
-        switch (monster_Staus)
-        {
-            case Staus.idle:
-                mAnimator.SetTrigger("Idle");
-                break;
-            case Staus.walk:
-                mAnimator.SetTrigger("Walk");
-                break;
-            case Staus.run:
-                break;
-            case Staus.die:
-                if (notDie)
-                    mAnimator.SetTrigger("Die");
-                notDie = false;
-                break;
-            case Staus.attack:
-                int type = Random.Range(0, 2);
-                switch (type)
-                {
-                    case 0:
-                        mAnimator.SetTrigger("Attack_fir");
-                        break;
-                    case 1:
-                        mAnimator.SetTrigger("Attack_sec");
-                        break;
-                }
-                StartCoroutine(NavStop());
-                break;
-        }
     }
 
     // 판단
@@ -74,7 +41,7 @@ public class Insect : Monster
             if (target.gameObject.tag == "Player")
             {
                 float dir = Vector3.Distance(transform.position, target.position);
-                if (dir <= 2f)
+                if (dir <= 3.5f)
                 {
                     attackMode = true;
                     mNav.isStopped = true;
@@ -125,7 +92,7 @@ public class Insect : Monster
         if (!canAttack && other.gameObject.tag == "Player")
         {
             target = other.gameObject.transform;
-            mNav.stoppingDistance = 2f;
+            mNav.stoppingDistance = 3.5f;
             mNav.speed = 5f * speed;
             canAttack = true;
             StopAllCoroutines();
@@ -159,7 +126,7 @@ public class Insect : Monster
         HP = maxHp;
         VIT = 10;
         ACT = 5;
-        actSpeed = 2.5f;
+        actSpeed = 5f;
 
         monster_Staus = Staus.idle;
 

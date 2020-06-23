@@ -4,8 +4,11 @@ using UnityEngine;
 using Photon.Pun;
 using UnityEngine.AI;
 
-public class Insect : Monster
+
+public class Titan : Monster
 {
+    private int AttackCount;
+    // 피격
     [PunRPC]
     public override void GetDamage(int Damage)
     {
@@ -18,12 +21,13 @@ public class Insect : Monster
             Damage = 0;
         }
         HP -= Damage;
-        mNav.stoppingDistance = 2f;
+        mNav.stoppingDistance = 6.5f;
         mNav.speed = 5f * speed;
         canAttack = true;
         StopAllCoroutines();
     }
 
+    // 애니메이션
     [PunRPC]
     public override void PlayAnimation()
     {
@@ -36,6 +40,7 @@ public class Insect : Monster
                 mAnimator.SetTrigger("Walk");
                 break;
             case Staus.run:
+                mAnimator.SetTrigger("Run");
                 break;
             case Staus.die:
                 if (notDie)
@@ -43,15 +48,29 @@ public class Insect : Monster
                 notDie = false;
                 break;
             case Staus.attack:
-                int type = Random.Range(0, 2);
-                switch (type)
+                if (AttackCount <= 7)
                 {
-                    case 0:
-                        mAnimator.SetTrigger("Attack_fir");
-                        break;
-                    case 1:
-                        mAnimator.SetTrigger("Attack_sec");
-                        break;
+                    int type = Random.Range(0, 3);
+                    switch (type)
+                    {
+                        case 0:
+                            mAnimator.SetTrigger("Attack_fir");
+                            AttackCount++;
+                            break;
+                        case 1:
+                            mAnimator.SetTrigger("Attack_sec");
+                            AttackCount++;
+                            break;
+                        case 2:
+                            mAnimator.SetTrigger("Attack_thi");
+                            AttackCount++;
+                            break;
+                    }
+                }
+                else
+                {
+                    mAnimator.SetTrigger("Attack_fou");
+                    AttackCount = 0;
                 }
                 StartCoroutine(NavStop());
                 break;
@@ -74,7 +93,7 @@ public class Insect : Monster
             if (target.gameObject.tag == "Player")
             {
                 float dir = Vector3.Distance(transform.position, target.position);
-                if (dir <= 2f)
+                if (dir <= 6.5f)
                 {
                     attackMode = true;
                     mNav.isStopped = true;
@@ -125,7 +144,7 @@ public class Insect : Monster
         if (!canAttack && other.gameObject.tag == "Player")
         {
             target = other.gameObject.transform;
-            mNav.stoppingDistance = 2f;
+            mNav.stoppingDistance = 6.5f;
             mNav.speed = 5f * speed;
             canAttack = true;
             StopAllCoroutines();
@@ -155,13 +174,15 @@ public class Insect : Monster
 
     public void OnEnable()
     {
+        AttackCount = 0;
         maxHp = 200;
         HP = maxHp;
         VIT = 10;
         ACT = 5;
-        actSpeed = 2.5f;
+        actSpeed = 5f;
 
         monster_Staus = Staus.idle;
+        type = MonsterType.Boss;
 
         mNav = GetComponent<NavMeshAgent>();
         mAnimator = GetComponent<Animator>();

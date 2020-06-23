@@ -10,6 +10,11 @@ public enum MobLocation     //몬스터의 소환 위치 (필드인지 던전인
     Dungeon
 }
 
+public enum MonsterType
+{
+    Boss, Nomal
+}
+
 public  class Monster : MonoBehaviour
 {
     public enum Staus
@@ -24,6 +29,7 @@ public  class Monster : MonoBehaviour
     public float actSpeed;         // 공격속도
 
     public MobLocation location = MobLocation.Field;    //몬스터 위치 기본값 : 필드
+    public MonsterType type = MonsterType.Nomal;        //몬스터 타입 기본값 : 일반 
 
     public Staus monster_Staus;
 
@@ -221,19 +227,32 @@ public  class Monster : MonoBehaviour
     [PunRPC]
     public virtual void GetAbility(Skillability abilityType, float seconde, float index = 0, int dotDamage = 0)
     {
-        switch (abilityType)
+        switch (type)
         {
-            case Skillability.DOT:
-                StartCoroutine(SetStatusEffect(dotDamage, seconde));
+            case MonsterType.Boss:
+                switch (abilityType)
+                {
+                    case Skillability.DOT:
+                        StartCoroutine(SetStatusEffect(dotDamage, seconde));
+                        break;
+                }
                 break;
-            case Skillability.MEZ:
+            case MonsterType.Nomal:
+                switch (abilityType)
+                {
+                    case Skillability.DOT:
+                        StartCoroutine(SetStatusEffect(dotDamage, seconde));
+                        break;
+                    case Skillability.MEZ:
 
-                break;
-            case Skillability.SLOW:
-                StartCoroutine(SetStatusEffect(index, seconde));
-                break;
-            case Skillability.STUN:
-                StartCoroutine(SetStatusEffect(seconde));
+                        break;
+                    case Skillability.SLOW:
+                        StartCoroutine(SetStatusEffect(index, seconde));
+                        break;
+                    case Skillability.STUN:
+                        StartCoroutine(SetStatusEffect(seconde));
+                        break;
+                }
                 break;
         }
     }
