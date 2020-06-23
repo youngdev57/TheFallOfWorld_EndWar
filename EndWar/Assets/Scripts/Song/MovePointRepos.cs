@@ -16,10 +16,8 @@ public class MovePointRepos : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("트리거 인식");
         if (other.gameObject.tag == "Wall")
         {
-            Debug.Log("벽 인식");
             isWall = true;
         }
     }

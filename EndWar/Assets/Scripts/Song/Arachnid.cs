@@ -4,19 +4,52 @@ using UnityEngine;
 using UnityEngine.AI;
 using Photon.Pun;
 
-public class Juggernaut : Monster
+public class Arachnid : Monster
 {
     // 피격
     [PunRPC]
     public override void GetDamage(int Damage)
     {
         HP -= Damage;
-        mNav.stoppingDistance = 2;
-        mNav.speed = 5f * speed;
+        mNav.stoppingDistance = 2.5f;
+        mNav.speed = 3f * speed;
         canAttack = true;
         StopAllCoroutines();
     }
 
+    public override void PlayAnimation()
+    {
+        switch (monster_Staus)
+        {
+            case Staus.idle:
+                mAnimator.SetTrigger("Idle");
+                break;
+            case Staus.walk:
+                mAnimator.SetTrigger("Walk");
+                break;
+            case Staus.run:
+                mAnimator.SetTrigger("Run");
+                break;
+            case Staus.die:
+                if (notDie)
+                    mAnimator.SetTrigger("Die");
+                notDie = false;
+                break;
+            case Staus.attack:
+                int type = Random.Range(0, 2);
+                switch (type)
+                {
+                    case 0:
+                        mAnimator.SetTrigger("Attack_fir");
+                        break;
+                    case 1:
+                        mAnimator.SetTrigger("Attack_sec");
+                        break;
+                }
+                StartCoroutine(NavStop());
+                break;
+        }
+    }
     // 판단
     public override void TargetPosition()
     {
@@ -32,7 +65,7 @@ public class Juggernaut : Monster
             if (target.gameObject.tag == "Player")
             {
                 float dir = Vector3.Distance(transform.position, target.position);
-                if (dir <= 2)
+                if (dir <= 2.5f)
                 {
                     attackMode = true;
                     mNav.isStopped = true;
@@ -57,7 +90,7 @@ public class Juggernaut : Monster
                 {
                     attackMode = false;
                     mNav.isStopped = false;
-                    mNav.speed = 5f * speed;
+                    mNav.speed = 3f * speed;
                     monster_Staus = Staus.run;
                 }
             }
@@ -71,7 +104,7 @@ public class Juggernaut : Monster
                 }
                 else
                 {
-                    mNav.speed = 3f * speed;
+                    mNav.speed = 2f * speed;
                     monster_Staus = Staus.walk;
                 }
             }
@@ -83,8 +116,8 @@ public class Juggernaut : Monster
         if (!canAttack && other.gameObject.tag == "Player")
         {
             target = other.gameObject.transform;
-            mNav.stoppingDistance = 2;
-            mNav.speed = 5f * speed;
+            mNav.stoppingDistance = 2.5f;
+            mNav.speed = 3f * speed;
             canAttack = true;
             StopAllCoroutines();
         }
@@ -97,7 +130,7 @@ public class Juggernaut : Monster
             mNav.stoppingDistance = 0;
             monster_Staus = Staus.walk;
             target = noneTarget;
-            mNav.speed = 3f * speed;
+            mNav.speed = 2f * speed;
             canAttack = false;
             idleMode = true;
         }
@@ -107,7 +140,7 @@ public class Juggernaut : Monster
     {
         mNav.speed = 0;
         yield return new WaitForSeconds(3f);
-        mNav.speed = 5f * speed;
+        mNav.speed = 3f * speed;
         monster_Staus = Staus.idle;
     }
 
@@ -117,7 +150,7 @@ public class Juggernaut : Monster
         HP = maxHp;
         VIT = 10;
         ACT = 5;
-        actSpeed = 2.5f;
+        actSpeed = 1.5f;
 
         monster_Staus = Staus.idle;
 

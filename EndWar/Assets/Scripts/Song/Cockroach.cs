@@ -6,94 +6,20 @@ using Photon.Pun;
 
 public class Cockroach : Monster
 {
-    public Staus monster_Staus;
 
-    internal Animator mAnimator;
-    private Rigidbody mRigidbody;
-    private NavMeshAgent mNav;
-    public Transform noneTarget;
-    public Collider coll;
-
-    public bool canAttack;
-    private bool idleMode;
-    private bool attackMode;
-    private bool notDie;
-
-    private float delay;
-
-    void Update()
-    {
-        PlayAnimation();
-        OnMove();
-        TargetPosition();
-        Die();
-    }
-
-    // 애니메이션
+    // 피격
     [PunRPC]
-    private void PlayAnimation()
+    public override void GetDamage(int Damage)
     {
-        switch (monster_Staus)
-        {
-            case Staus.idle:
-                mAnimator.SetTrigger("Idle");
-                break;
-            case Staus.walk:
-                mAnimator.SetTrigger("Walk");
-                break;
-            case Staus.run:
-                mAnimator.SetTrigger("Run");
-                break;
-            case Staus.die:
-                if (notDie)
-                    mAnimator.SetTrigger("Die");
-                notDie = false;
-                break;
-            case Staus.attack:
-                int type = Random.Range(0, 3);
-                switch (type)
-                {
-                    case 0:
-                        mAnimator.SetTrigger("Hook");
-                        break;
-                    case 1:
-                        mAnimator.SetTrigger("Chop");
-                        break;
-                    case 2:
-                        mAnimator.SetTrigger("Spin");
-                        break;
-                }
-                StartCoroutine(NavStop());
-                break;
-        }
-    }
-
-    private void Die()
-    {
-        if (HP <= 0)
-        {
-            monster_Staus = Staus.die;
-            mRigidbody.velocity = Vector3.zero;
-            mNav.updatePosition = false;
-            mNav.updateRotation = false;
-            mNav.isStopped = true;
-            coll.isTrigger = true;
-            mRigidbody.useGravity = false;
-            StartCoroutine(ActiveFalse());
-        }
-    }
-
-    // 이동
-    private void OnMove()
-    {
-        if (target != null)
-        {
-            mNav.SetDestination(target.position);
-        }
+        HP -= Damage;
+        mNav.stoppingDistance = 2.5f;
+        mNav.speed = 5f * speed;
+        canAttack = true;
+        StopAllCoroutines();
     }
 
     // 판단
-    private void TargetPosition()
+    public override void TargetPosition()
     {
         if (target == null)
         {
@@ -107,7 +33,7 @@ public class Cockroach : Monster
             if (target.gameObject.tag == "Player")
             {
                 float dir = Vector3.Distance(transform.position, target.position);
-                if (dir <= 2)
+                if (dir <= 2.5f)
                 {
                     attackMode = true;
                     mNav.isStopped = true;
@@ -120,6 +46,7 @@ public class Cockroach : Monster
                         {
                             monster_Staus = Staus.attack;
                             delay = 0f;
+                            target.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, ACT);
                         }
                         else
                         {
@@ -131,7 +58,7 @@ public class Cockroach : Monster
                 {
                     attackMode = false;
                     mNav.isStopped = false;
-                    mNav.speed = 5f;
+                    mNav.speed = 5f * speed;
                     monster_Staus = Staus.run;
                 }
             }
@@ -145,85 +72,44 @@ public class Cockroach : Monster
                 }
                 else
                 {
-                    mNav.speed = 3f;
+                    mNav.speed = 3f * speed;
                     monster_Staus = Staus.walk;
                 }
             }
         }
     }
 
-    // 플레이어 인식
-    private void OnTriggerEnter(Collider other)
+    public override void OnTriggerEnter(Collider other)
     {
-        //  Debug.Log("트리거 인식");
         if (!canAttack && other.gameObject.tag == "Player")
         {
-            // Debug.Log("플레이어 인식");
             target = other.gameObject.transform;
-            mNav.stoppingDistance = 2;
-            mNav.speed = 5f;
+            mNav.stoppingDistance = 2.5f;
+            mNav.speed = 5f * speed;
             canAttack = true;
             StopAllCoroutines();
         }
     }
-    private void OnTriggerExit(Collider other)
+
+    public override void OnTriggerExit(Collider other)
     {
         if (!attackMode && canAttack && other.gameObject.tag == "Player")
         {
             mNav.stoppingDistance = 0;
             monster_Staus = Staus.walk;
             target = noneTarget;
-            mNav.speed = 3f;
+            mNav.speed = 3f * speed;
             canAttack = false;
             idleMode = true;
         }
     }
 
-    // 피격
-    [PunRPC]
-    public void GetDamage(int Damage)
-    {
-        HP -= Damage;
-        mNav.stoppingDistance = 10;
-        mNav.speed = 5f;
-        canAttack = true;
-        if (target == null || target.gameObject.tag != "Player")
-        {
-
-        }
-        StopAllCoroutines();
-    }
-
-    // 몬스터 목표 지점 설정
-    public void SetNoneTarget()
-    {
-        float x = Random.Range(-50f, 50f);
-        float z = Random.Range(-50f, 50f);
-
-        noneTarget.position = new Vector3(transform.parent.position.x + x, transform.parent.position.y, transform.parent.position.z + z);
-        target = noneTarget;
-    }
-    private IEnumerator SetTarget()
-    {
-        idleMode = false;
-        yield return new WaitForSeconds(Random.Range(5f, 9f));
-        SetNoneTarget();
-    }
-
-    private IEnumerator NavStop()
+    public override IEnumerator NavStop()
     {
         mNav.speed = 0;
         yield return new WaitForSeconds(3f);
-        mNav.speed = 5f;
+        mNav.speed = 5f * speed;
         monster_Staus = Staus.idle;
-    }
-
-    private IEnumerator ActiveFalse()
-    {
-        yield return new WaitForSeconds(6f);
-        this.gameObject.SetActive(false);
-        mNav.enabled = false;
-        StopAllCoroutines();
     }
 
     public void OnEnable()
@@ -239,6 +125,7 @@ public class Cockroach : Monster
         mNav = GetComponent<NavMeshAgent>();
         mAnimator = GetComponent<Animator>();
         mRigidbody = GetComponent<Rigidbody>();
+        pv = GetComponent<PhotonView>();
 
         canAttack = false;
         attackMode = false;
