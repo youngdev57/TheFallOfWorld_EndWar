@@ -6,7 +6,6 @@ using Photon.Pun;
 
 public class Cockroach : Monster
 {
-
     // 피격
     [PunRPC]
     public override void GetDamage(int Damage)
@@ -19,6 +18,7 @@ public class Cockroach : Monster
     }
 
     // 판단
+    [PunRPC]
     public override void TargetPosition()
     {
         if (target == null)

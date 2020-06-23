@@ -18,6 +18,7 @@ public class Juggernaut : Monster
     }
 
     // 판단
+    [PunRPC]
     public override void TargetPosition()
     {
         if (target == null)

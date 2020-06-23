@@ -6,6 +6,50 @@ using UnityEngine.AI;
 
 public class Insect : Monster
 {
+    [PunRPC]
+    public override void GetDamage(int Damage)
+    {
+        HP -= Damage;
+        mNav.stoppingDistance = 2.5f;
+        mNav.speed = 5f * speed;
+        canAttack = true;
+        StopAllCoroutines();
+    }
+
+    [PunRPC]
+    public override void PlayAnimation()
+    {
+        switch (monster_Staus)
+        {
+            case Staus.idle:
+                mAnimator.SetTrigger("Idle");
+                break;
+            case Staus.walk:
+                mAnimator.SetTrigger("Walk");
+                break;
+            case Staus.run:
+                break;
+            case Staus.die:
+                if (notDie)
+                    mAnimator.SetTrigger("Die");
+                notDie = false;
+                break;
+            case Staus.attack:
+                int type = Random.Range(0, 2);
+                switch (type)
+                {
+                    case 0:
+                        mAnimator.SetTrigger("Attack_fir");
+                        break;
+                    case 1:
+                        mAnimator.SetTrigger("Attack_sec");
+                        break;
+                }
+                StartCoroutine(NavStop());
+                break;
+        }
+    }
+
     // 판단
     [PunRPC]
     public override void TargetPosition()
@@ -91,16 +135,6 @@ public class Insect : Monster
             canAttack = false;
             idleMode = true;
         }
-    }
-
-    // 피격
-    public override void GetDamage(int Damage)
-    {
-        HP -= Damage;
-        mNav.stoppingDistance = 2.5f;
-        mNav.speed = 5f * speed;
-        canAttack = true;
-        StopAllCoroutines();
     }
 
     public override IEnumerator NavStop()

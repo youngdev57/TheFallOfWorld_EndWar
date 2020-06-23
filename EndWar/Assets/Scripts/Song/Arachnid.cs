@@ -17,6 +17,7 @@ public class Arachnid : Monster
         StopAllCoroutines();
     }
 
+    [PunRPC]
     public override void PlayAnimation()
     {
         switch (monster_Staus)
@@ -28,7 +29,6 @@ public class Arachnid : Monster
                 mAnimator.SetTrigger("Walk");
                 break;
             case Staus.run:
-                mAnimator.SetTrigger("Run");
                 break;
             case Staus.die:
                 if (notDie)
@@ -50,7 +50,9 @@ public class Arachnid : Monster
                 break;
         }
     }
+
     // 판단
+    [PunRPC]
     public override void TargetPosition()
     {
         if (target == null)
