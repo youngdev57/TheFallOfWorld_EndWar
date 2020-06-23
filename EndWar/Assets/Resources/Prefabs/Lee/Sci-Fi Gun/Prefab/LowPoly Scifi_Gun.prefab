@@ -107,10 +107,10 @@ MonoBehaviour:
   bulletEffect: {fileID: 3109673196016297635}
   audioSource: {fileID: 5879858279435571424}
   sfxArray:
-  - {fileID: 8300000, guid: 9270ddc8630a1654bbce8a26e755b058, type: 3}
-  - {fileID: 8300000, guid: c5ab43eb861ef3c4db4600527c3ec29b, type: 3}
-  - {fileID: 8300000, guid: 8e5adb3004157f24385e3de1f02cc1ce, type: 3}
-  - {fileID: 8300000, guid: 0800b4854e84ad243a55e1f7a44844f2, type: 3}
+  - {fileID: 8300000, guid: dfac0c1a2df2ad74d8be4823300a4f56, type: 3}
+  - {fileID: 8300000, guid: ef60541ebbb9d084289ab5fb98d05231, type: 3}
+  - {fileID: 8300000, guid: 321c57076d528934aa5e2ed5eb2798ce, type: 3}
+  - {fileID: 8300000, guid: 6f8efae2a70a9f54cbdb5dc8dd4e9fd7, type: 3}
   delay: 0.75
 --- !u!82 &5879858279435571424
 AudioSource:

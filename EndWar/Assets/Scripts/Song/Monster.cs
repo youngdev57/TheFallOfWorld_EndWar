@@ -9,7 +9,7 @@ public enum MobLocation     //몬스터의 소환 위치 (필드인지 던전인
     Dungeon
 }
 
-public abstract class Monster : MonoBehaviour
+public class Monster : MonoBehaviour
 {
     public enum Staus
     {
@@ -39,13 +39,5 @@ public abstract class Monster : MonoBehaviour
         }
     }
 
-    public abstract void GetAbility(Skillability abilityType, float seconde, float index = 0, int dotDamage = 0);
-
-    //슬로우
-    public abstract IEnumerator SetStatusEffect(float slowing, float se);
-
-    //스턴
-    public abstract IEnumerator SetStatusEffect(float se);
-
-    public abstract void SetNavStopped(bool isTrue);
+    public void GetAbility(Skillability abilityType, float seconde, float index = 0, int dotDamage = 0) { }
 }
