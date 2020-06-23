@@ -39,5 +39,5 @@ public class Monster : MonoBehaviour
         }
     }
 
-    public void GetAbility(Skillability abilityType, float seconde, float index = 0, int dotDamage = 0) { }
+    public virtual void GetAbility(Skillability abilityType, float seconde, float index = 0, int dotDamage = 0) { }
 }
