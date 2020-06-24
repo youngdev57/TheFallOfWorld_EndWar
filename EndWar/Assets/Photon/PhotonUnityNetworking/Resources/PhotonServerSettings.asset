@@ -52,10 +52,10 @@ MonoBehaviour:
   - Restore
   - SetPick
   - Test
-  - TargetPosition
   - Blast
   - GravityOff
   - GravityOn
+  - TargetPosition
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1
