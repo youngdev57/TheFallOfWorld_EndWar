@@ -4,7 +4,7 @@ using UnityEngine;
 using Valve.VR;
 using Photon.Pun;
 
-public class GunTest : MonoBehaviourPunCallbacks, IPunPrefabPool
+public class GunTest : MonoBehaviourPunCallbacks
 {
     public SteamVR_Input_Sources handType;
     public SteamVR_Action_Boolean grapAction;
@@ -13,6 +13,7 @@ public class GunTest : MonoBehaviourPunCallbacks, IPunPrefabPool
     public GameObject muzzleEffect;
 
     public GameObject bulletEffect;
+    public GameObject bullet;
 
     private Bullet[] bulletArray;
 
@@ -67,9 +68,11 @@ public class GunTest : MonoBehaviourPunCallbacks, IPunPrefabPool
     [PunRPC]
     IEnumerator FireEffect(int _index)
     {
-        bulletArray[_index].gameObject.SetActive(true);
+        //bulletArray[_index].gameObject.SetActive(true);
+        //bulletArray[_index].GetComponent<Rigidbody>().AddForce(muzzleTr.right * 8000f);
         muzzleEffect.SetActive(true);
-        bulletArray[_index].GetComponent<Rigidbody>().AddForce(muzzleTr.right * 8000f);
+        GameObject temp = PhotonNetwork.Instantiate(bullet.name, muzzleTr.position, Quaternion.identity);
+        temp.GetComponent<Rigidbody>().AddForce(muzzleTr.right * 8000f);
         audioSource.PlayOneShot(sfxArray[Random.Range(0, sfxArray.Length)]);
         index++;
 
@@ -123,15 +126,5 @@ public class GunTest : MonoBehaviourPunCallbacks, IPunPrefabPool
         {
             isFire = false;
         }
-    }
-
-    public new GameObject Instantiate(string prefabId, Vector3 position, Quaternion rotation)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void Destroy(GameObject gameObject)
-    {
-        throw new System.NotImplementedException();
     }
 }
