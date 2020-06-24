@@ -247,10 +247,11 @@ MonoBehaviour:
   ACT: 0
   actSpeed: 0
   location: 0
-  target: {fileID: 0}
+  type: 1
   monster_Staus: 0
   noneTarget: {fileID: 8547673497643969850}
   coll: {fileID: 8547673497881125302}
+  target: {fileID: 0}
   canAttack: 0
 --- !u!195 &8547673497881125299
 NavMeshAgent:
