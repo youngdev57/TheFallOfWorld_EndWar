@@ -13,7 +13,7 @@ public class MonsterRespawn : MonoBehaviour
     
     void Update()
     {
-        if (!monster.activeSelf && monster.GetComponent<Monster>().location == MobLocation.Field)   //게임오브젝트가 꺼져있고 장소가 필드일때만 리스폰
+        if (!monster.activeSelf)   //게임오브젝트가 꺼져있을 때
         {
             StartCoroutine(Respawn());
         }
@@ -23,5 +23,10 @@ public class MonsterRespawn : MonoBehaviour
     {
         yield return new WaitForSeconds(10f);
         monster.SetActive(true);
+        // 해당 몬스터가 던전 몬스터 일 때
+        if (monster.GetComponent<Monster>().location == MobLocation.Dungeon)
+        {
+            this.enabled = false;
+        }
     }
 }
