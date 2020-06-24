@@ -17,7 +17,7 @@ public class Bullet : MonoBehaviour
         {
             if(other.gameObject.layer == LayerMask.NameToLayer("Monster"))
             {
-                gun.photonView.RPC("Restore", RpcTarget.AllViaServer);
+                gun.photonView.RPC("Restore", RpcTarget.AllViaServer, index);
                 other.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.AllBuffered, 10);
             }
         }

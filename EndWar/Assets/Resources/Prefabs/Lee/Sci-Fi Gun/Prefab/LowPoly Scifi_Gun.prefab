@@ -105,6 +105,7 @@ MonoBehaviour:
   muzzleTr: {fileID: 3717073673158444749}
   muzzleEffect: {fileID: 4527709115670825175}
   bulletEffect: {fileID: 3109673196016297635}
+  bullet: {fileID: 4470593226650579027, guid: d3f2c73d91bdacd4b903987075dfdbcb, type: 3}
   audioSource: {fileID: 5879858279435571424}
   sfxArray:
   - {fileID: 8300000, guid: 9270ddc8630a1654bbce8a26e755b058, type: 3}

@@ -880,10 +880,11 @@ MonoBehaviour:
   ACT: 0
   actSpeed: 0
   location: 0
-  target: {fileID: 0}
+  type: 1
   monster_Staus: 0
   noneTarget: {fileID: 54735450858314879}
   coll: {fileID: 54735451609699751}
+  target: {fileID: 0}
   canAttack: 0
 --- !u!114 &54735451609699738
 MonoBehaviour:

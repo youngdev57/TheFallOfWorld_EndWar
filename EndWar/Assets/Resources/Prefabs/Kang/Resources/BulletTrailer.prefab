@@ -145,6 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gun: {fileID: 0}
+  index: 0
 --- !u!96 &4470593226650579026
 TrailRenderer:
   serializedVersion: 2
