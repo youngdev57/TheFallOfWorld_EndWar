@@ -32,10 +32,17 @@ public class FallingRock : MonoBehaviour
 
     private void OnCollisionEnter(Collision coll)
     {
-        if (coll.gameObject.tag == "Monster" || coll.gameObject.tag == "Finish")
+        if (coll.gameObject.tag == "Finish")
         {
             Debug.Log("돌 충돌 !!!!!!$$$$$$$$$$$$$$");
             pv.RPC("GravityOff", RpcTarget.All);
+        }
+
+        if (coll.gameObject.tag == "Monster")
+        {
+            Debug.Log("돌 충돌 !!!!!!$$$$$$$$$$$$$$");
+            pv.RPC("GravityOff", RpcTarget.All);
+            coll.gameObject.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.AllBuffered, 70);
         }
     }
 
