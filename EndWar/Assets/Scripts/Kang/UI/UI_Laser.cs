@@ -18,11 +18,14 @@ public class UI_Laser : MonoBehaviour
     private Vector3 hitPoint;
 
     bool isPull = false;
+    bool onItemInfo = false;
 
     float rayDist = 20;
 
     public PlayerInven pInven;
     public K_PlayerManager kPm;
+
+    UI_ItemInfo slotItemInfo;
 
     void Start()
     {
@@ -35,7 +38,27 @@ public class UI_Laser : MonoBehaviour
     
     void Update()
     {
-        if(action.GetState(handType))
+        RaycastHit stayHit;
+
+        if (Physics.Raycast(controllerPose.transform.position, transform.forward, out stayHit, rayDist, 1 << LayerMask.NameToLayer("UI")))
+        {
+            if (!onItemInfo && stayHit.transform.GetComponent<UI_ItemInfo>() != null)
+            {
+                onItemInfo = true;
+                slotItemInfo = stayHit.transform.GetComponent<UI_ItemInfo>();
+                slotItemInfo.ShowItemInfo();
+            }
+        }
+        else
+        {
+            if (onItemInfo)
+            {
+                onItemInfo = false;
+                slotItemInfo.HideItemInfo();
+            }
+        }
+
+        if (action.GetState(handType))
         {
             isPull = true;
 
@@ -43,8 +66,6 @@ public class UI_Laser : MonoBehaviour
 
             if(Physics.Raycast(controllerPose.transform.position, transform.forward, out hit, rayDist, 1 << LayerMask.NameToLayer("UI")))
             {
-                Debug.DrawRay(controllerPose.transform.position, transform.forward * rayDist, Color.green);
-
                 LaserColorChange(hit);
             }
         }

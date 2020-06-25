@@ -30,6 +30,8 @@ public class Inventory : MonoBehaviour
     public Equipment subWeapon = Equipment.None;
     public Equipment helmet, armor, shoulder, glove, pants, shoes, acc;
 
+    public UI_ItemInfo[] slotItemInfos;
+
     [Space(5)]
 
     internal int mainIdx = -1;
@@ -66,6 +68,18 @@ public class Inventory : MonoBehaviour
     public PlayerInven pInven;
 
     public GameObject removeDialog;
+
+    public TextMeshProUGUI powerValueText;
+
+    public GameObject itemInfo_UI;
+    public TextMeshProUGUI itemInfo_Name, itemInfo_power, itemInfo_atk, itemInfo_def, itemInfo_IngreTxt;
+    public Image itemInfo_Ingre;
+
+
+
+
+
+
 
     void Start()
     {
@@ -437,7 +451,10 @@ public class Inventory : MonoBehaviour
         }
         
         if(doSave == 0)
+        {
             pInven.SaveInven();
+
+        }
     }
 
     public void UI_ChangeWeapon(string name)    //슬롯 버튼 이름을 int로 파싱해서 무기 교체
@@ -524,50 +541,82 @@ public class Inventory : MonoBehaviour
     //장비 장착 상태 갱신
     public void RefreshEquip()
     {
-        if(mainWeapon == Equipment.None)
+        int powerSum = 0;
+
+        if (mainWeapon == Equipment.None)
             mainWeaponImage.sprite = null;
-        else
+        else {
             mainWeaponImage.sprite = spriteList[(int)mainWeapon - 1];
+            powerSum += GetNth(mainIdx).Value.GetPower();
+        }
 
         if (subWeapon == Equipment.None)
             subWeaponImage.sprite = null;
         else
+        {
             subWeaponImage.sprite = spriteList[(int)subWeapon - 1];
+            powerSum += GetNth(subIdx).Value.GetPower();
+        }
 
         if (helmet == Equipment.None)
             helmetImage.sprite = null;
         else
+        {
             helmetImage.sprite = spriteList[(int)helmet - 1];
+            powerSum += GetNth(helmetIdx).Value.GetPower();
+        }
 
         if (armor == Equipment.None)
             armorImage.sprite = null;
         else
+        {
             armorImage.sprite = spriteList[(int)armor - 1];
+            powerSum += GetNth(armorIdx).Value.GetPower();
+        }
 
         if (shoulder == Equipment.None)
             shoulderImage.sprite = null;
         else
+        {
             shoulderImage.sprite = spriteList[(int)shoulder - 1];
+            powerSum += GetNth(shoulderIdx).Value.GetPower();
+        }
 
         if (glove == Equipment.None)
             gloveImage.sprite = null;
         else
+        {
             gloveImage.sprite = spriteList[(int)glove - 1];
+            powerSum += GetNth(gloveIdx).Value.GetPower();
+        }
 
         if (pants == Equipment.None)
             pantsImage.sprite = null;
         else
+        {
             pantsImage.sprite = spriteList[(int)pants - 1];
+            powerSum += GetNth(pantsIdx).Value.GetPower();
+        }
 
         if (shoes == Equipment.None)
             shoesImage.sprite = null;
         else
+        {
             shoesImage.sprite = spriteList[(int)shoes - 1];
+            powerSum += GetNth(shoesIdx).Value.GetPower();
+        }
 
         if (acc == Equipment.None)
             accImage.sprite = null;
         else
+        {
             accImage.sprite = spriteList[(int)acc - 1];
+            powerSum += GetNth(accIdx).Value.GetPower();
+        }
+
+        pInven.KPM.power = powerSum;
+        powerValueText.text = pInven.KPM.power.ToString();
+        pInven.KPM.SaveStatus();
     }
 
     /** 플레이어 인벤 연동 **/
