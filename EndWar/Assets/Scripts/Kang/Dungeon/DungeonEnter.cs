@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Pun.UtilityScripts;
 using Photon.Realtime;
@@ -8,6 +9,10 @@ using Photon.Realtime;
 public class DungeonEnter : MonoBehaviour
 {
     GameObject playerObj;
+
+    public GameObject invalidStart;
+
+    public Button start_btn, ready_btn, cancel_btn, invalidStartOK_btn;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -22,8 +27,11 @@ public class DungeonEnter : MonoBehaviour
         if(PhotonNetwork.PlayerList.Length == 1)
         {
             //혼자는 출발 불가능 하다는걸 알려주자
+            ShowInvalidStart();
             return;
         }
+
+        int successCnt = 0;
 
         foreach(Player player in PhotonNetwork.PlayerList)
         {
@@ -31,17 +39,33 @@ public class DungeonEnter : MonoBehaviour
             {
                 if(ScoreExtensions.GetScore(player) == 1)
                 {
-                    //출발
-                    ScoreExtensions.SetScore(PhotonNetwork.LocalPlayer, 1);
-
-                    StartCoroutine(DoEnter());
-                }
-                else
-                {
-                    //아직 준비 안된 플레이어가 있다
+                    successCnt++;
                 }
             }
         }
+
+        if(successCnt == PhotonNetwork.PlayerList.Length - 1)
+        {
+            //출발
+            ScoreExtensions.SetScore(PhotonNetwork.LocalPlayer, 1);
+
+            StartCoroutine(DoEnter());
+        }
+        else
+        {
+            //아직 준비 안된 플레이어가 있다
+            ShowInvalidStart();
+        }
+    }
+
+    void ShowInvalidStart()
+    {
+        invalidStart.SetActive(true);
+    }
+
+    public void HideInvalidStart()
+    {
+        invalidStart.SetActive(false);
     }
 
     public void ReadyDungeon()

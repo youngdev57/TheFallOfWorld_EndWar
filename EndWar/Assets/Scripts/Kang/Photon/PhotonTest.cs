@@ -300,6 +300,11 @@ public class PhotonTest : MonoBehaviourPunCallbacks
                 LoadingManager.LoadScene("Dungeon_Underground");
                 StartCoroutine(SceneSettingWait());
                 break;
+
+            case 4: //아이스맵 - 던전 앞 위치 .. 씬 로드
+                LoadingManager.LoadScene("SnowMountains");
+                StartCoroutine(SceneSettingWait());
+                break;
             case 98:
                 LoadingManager.LoadScene("BattleTest");
                 StartCoroutine(SceneSettingWait());
@@ -364,6 +369,9 @@ public class PhotonTest : MonoBehaviourPunCallbacks
             case 3:  //지하 던전 룸 입장 시도
                 PhotonNetwork.JoinRoom("Dungeon_Underground");
                 break;
+            case 4:  //아이스맵 룸 입장 시도 (던전 앞)
+                PhotonNetwork.JoinRoom("Ice");
+                break;
             case 98:
                 PhotonNetwork.JoinRoom("BattleTest");
                 break;
@@ -374,55 +382,7 @@ public class PhotonTest : MonoBehaviourPunCallbacks
     }
 
     /** 씬 로드 부분 ------------------------------------------------------------------------------------------- **/
-
-    //아이스맵 씬 로드
-    public void LoadIceScene()
-    {
-        if (destination == 1)
-            StartCoroutine(IceSceneLoading());
-    }
-
-    IEnumerator IceSceneLoading()
-    {
-        PhotonNetwork.IsMessageQueueRunning = false;
-
-        AsyncOperation operation = SceneManager.LoadSceneAsync("SnowMountains");
-
-        operation.allowSceneActivation = true;
-
-        while (!operation.isDone)
-        {
-            //비동기 씬 로드 완료 시 까지 대기
-            yield return null;
-        }
-
-        //대기 후 위치에 플레이어 생성
-        pointsObj = PlayerPoints.GetInstance();
-        playerSpawnPoints = pointsObj.points;
-        CreatePlayer(destination);  //생성  1=아이스맵 생성용
-    }
-
-    //기지맵 씬 로드  
-    public void LoadBaseScene()
-    {
-        if (destination == 0)
-            StartCoroutine(BaseSceneLoading());
-    }
-
-    IEnumerator BaseSceneLoading()
-    {
-        PhotonNetwork.IsMessageQueueRunning = false;
-
-        AsyncOperation operation = SceneManager.LoadSceneAsync("Basement");
-
-        operation.allowSceneActivation = true;
-
-        while (!operation.isDone)
-        {
-            //비동기 씬 로드 완료 시 까지 대기
-            yield return null;
-        }
-    }
+    
 
     internal IEnumerator BaseSettingWait()
     {
@@ -466,89 +426,6 @@ public class PhotonTest : MonoBehaviourPunCallbacks
         CreatePlayer(destination);  //생성  0=기지에 플레이어 생성용
     }
 
-    //던전맵 씬 로드  
-    public void LoadDungeonScene()
-    {
-        if (destination == 3)
-            StartCoroutine(DungeonSceneLoading());
-    }
-
-    IEnumerator DungeonSceneLoading()
-    {
-        PhotonNetwork.IsMessageQueueRunning = false;
-
-        AsyncOperation operation = SceneManager.LoadSceneAsync("Dungeon_Underground");
-
-        operation.allowSceneActivation = true;
-
-        while (!operation.isDone)
-        {
-            //비동기 씬 로드 완료 시 까지 대기
-            yield return null;
-        }
-
-        //대기 후 위치에 플레이어 생성
-        pointsObj = PlayerPoints.GetInstance();
-        playerSpawnPoints = pointsObj.points;
-        CreatePlayer(destination);  //생성  0=기지에 플레이어 생성용
-    }
-
-
-    //사격연습장 씬 로드  
-    public void LoadAimScene()
-    {
-        if (destination == 99)
-            StartCoroutine(AimSceneLoading());
-    }
-
-    IEnumerator AimSceneLoading()
-    {
-        PhotonNetwork.IsMessageQueueRunning = false;
-
-        AsyncOperation operation = SceneManager.LoadSceneAsync("AimTest");
-
-        operation.allowSceneActivation = true;
-
-        while (!operation.isDone)
-        {
-            //비동기 씬 로드 완료 시 까지 대기
-            yield return null;
-        }
-
-        //대기 후 위치에 플레이어 생성
-        pointsObj = PlayerPoints.GetInstance();
-        playerSpawnPoints = pointsObj.points;
-        CreatePlayer(destination);  //플레이어 생성
-    }
-
-    //전투테스트 씬 로드  
-    public void LoadBattleTestScene()
-    {
-        if (destination == 98)
-            StartCoroutine(BattleTestSceneLoading());
-    }
-
-    IEnumerator BattleTestSceneLoading()
-    {
-        PhotonNetwork.IsMessageQueueRunning = false;
-
-        AsyncOperation operation = SceneManager.LoadSceneAsync("BattleTest");
-
-        operation.allowSceneActivation = true;
-
-        while (!operation.isDone)
-        {
-            //비동기 씬 로드 완료 시 까지 대기
-            yield return null;
-        }
-
-        //대기 후 위치에 플레이어 생성
-        pointsObj = PlayerPoints.GetInstance();
-        playerSpawnPoints = pointsObj.points;
-        CreatePlayer(destination);  //플레이어 생성
-    }
-
-
     /** 아래는 생성이나 설정 함수들 **/
 
 
@@ -578,11 +455,14 @@ public class PhotonTest : MonoBehaviourPunCallbacks
                 tempObj.GetComponentsInChildren<UI_Laser>()[1].kPm = GetComponent<K_PlayerManager>();
                 break;
 
-            case 1:     //스노우맵
+            case 1:     //스노우맵 (스노우맵 기본 위치)
                 SpawnPlayer();
                 break;
             case 3:     //던전
-                SpawnPlayer();
+                SpawnPlayer_InDungeon();
+                break;
+            case 4:     //스노우맵 (던전 앞)
+                SpawnPlayer_DungeonEnterance();
                 break;
             case 98:    //배틀테스트
                 SpawnPlayer();
@@ -597,6 +477,27 @@ public class PhotonTest : MonoBehaviourPunCallbacks
     {
         GameObject tempObj;
         tempObj = PhotonNetwork.Instantiate("Player", playerSpawnPoints[0].position, Quaternion.identity, 0);
+        tempObj.GetComponent<PlayerInfo>().photonManager = this;
+        tempObj.GetComponent<PlayerManager>().photonManager = this;
+        tempObj.GetComponent<PlayerItem>().pInven = GetComponent<PlayerInven>();
+        tempObj.GetComponent<PlayerItem>().LoadGemsLocal();     //PlayerInven의 재료 개수를 PlayerItem에 적용하는 함수
+    }
+
+    void SpawnPlayer_InDungeon()
+    {
+        GameObject tempObj;
+        tempObj = PhotonNetwork.Instantiate("Player", playerSpawnPoints[0].position, Quaternion.identity, 0);
+        tempObj.GetComponent<PlayerInfo>().photonManager = this;
+        tempObj.GetComponent<PlayerManager>().photonManager = this;
+        tempObj.GetComponent<PlayerItem>().pInven = GetComponent<PlayerInven>();
+        tempObj.GetComponent<PlayerItem>().LoadGemsLocal();     //PlayerInven의 재료 개수를 PlayerItem에 적용하는 함수
+        tempObj.GetComponentInChildren<DungeonExit>().photonManager = this;
+    }
+
+    void SpawnPlayer_DungeonEnterance()
+    {
+        GameObject tempObj;
+        tempObj = PhotonNetwork.Instantiate("Player", playerSpawnPoints[1].position, Quaternion.identity, 0);
         tempObj.GetComponent<PlayerInfo>().photonManager = this;
         tempObj.GetComponent<PlayerManager>().photonManager = this;
         tempObj.GetComponent<PlayerItem>().pInven = GetComponent<PlayerInven>();
