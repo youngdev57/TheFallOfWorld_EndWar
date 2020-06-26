@@ -31,6 +31,7 @@ MonoBehaviour:
   RunInBackground: 1
   StartInOfflineMode: 0
   RpcList:
+  - Blast
   - ChangeColour
   - ChangeGun
   - ClickRpc
@@ -41,6 +42,8 @@ MonoBehaviour:
   - GetAbility
   - GetDamage
   - GrabObj
+  - GravityOff
+  - GravityOn
   - Grip
   - IsDie
   - OnGrab
@@ -51,11 +54,8 @@ MonoBehaviour:
   - RespawnSpaceship
   - Restore
   - SetPick
-  - Test
-  - Blast
-  - GravityOff
-  - GravityOn
   - TargetPosition
+  - Test
   DisableAutoOpenWizard: 1
-  ShowSettings: 0
+  ShowSettings: 1
   DevRegionSetOnce: 1

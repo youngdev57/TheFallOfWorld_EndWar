@@ -12,7 +12,6 @@ public class GunTest : MonoBehaviourPunCallbacks
     public Transform muzzleTr;
     public GameObject muzzleEffect;
 
-    public GameObject bulletEffect;
     public GameObject bullet;
 
     private List<GameObject> bulletArray;
@@ -32,14 +31,6 @@ public class GunTest : MonoBehaviourPunCallbacks
 
     void Start()
     {
-        /* bulletArray = bulletEffect.GetComponentsInChildren<Bullet>(true);
-         for (int i = 0; i < bulletArray.Length; i++)
-         {
-             bulletArray[i].gameObject.SetActive(false);
-
-             bulletArray[i].gun = this;
-             bulletArray[i].index = this.index++;
-         }*/
         bulletArray = new List<GameObject>();
     }
 
@@ -51,9 +42,7 @@ public class GunTest : MonoBehaviourPunCallbacks
 
         RaycastHit hit;
 
-        //isRestore = false;
         photonView.RPC("FireEffect", RpcTarget.AllBuffered, index);
-        //StartCoroutine(FireEffect());
 
         if (Physics.Raycast(muzzleTr.position, muzzleTr.right, out hit, 5000f))
         {
@@ -69,8 +58,6 @@ public class GunTest : MonoBehaviourPunCallbacks
     [PunRPC]
     IEnumerator FireEffect(int _index)
     {
-        //bulletArray[_index].gameObject.SetActive(true);
-        //bulletArray[_index].GetComponent<Rigidbody>().AddForce(muzzleTr.right * 8000f);
         muzzleEffect.SetActive(true);
 
         BulletPulling();
