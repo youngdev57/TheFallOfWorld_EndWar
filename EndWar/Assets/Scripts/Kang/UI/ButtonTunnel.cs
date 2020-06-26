@@ -7,6 +7,8 @@ public class ButtonTunnel : MonoBehaviour
     Inventory inven;
     Craft craft;
 
+    public MailPost mailPost;
+
     private void Start()
     {
         if(GetComponentInParent<Inventory>() != null)

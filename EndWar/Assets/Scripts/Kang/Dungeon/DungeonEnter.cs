@@ -1,0 +1,87 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using Photon.Pun;
+using Photon.Pun.UtilityScripts;
+using Photon.Realtime;
+
+public class DungeonEnter : MonoBehaviour
+{
+    GameObject playerObj;
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(playerObj.GetComponent<PhotonView>().IsMine)
+        {
+            playerObj = other.gameObject;
+        }
+    }
+
+    public void EnterDungeon()
+    {
+        if(PhotonNetwork.PlayerList.Length == 1)
+        {
+            //혼자는 출발 불가능 하다는걸 알려주자
+            return;
+        }
+
+        foreach(Player player in PhotonNetwork.PlayerList)
+        {
+            if(player != PhotonNetwork.LocalPlayer)
+            {
+                if(ScoreExtensions.GetScore(player) == 1)
+                {
+                    //출발
+                    ScoreExtensions.SetScore(PhotonNetwork.LocalPlayer, 1);
+
+                    StartCoroutine(DoEnter());
+                }
+                else
+                {
+                    //아직 준비 안된 플레이어가 있다
+                }
+            }
+        }
+    }
+
+    public void ReadyDungeon()
+    {
+        Player myPlayer = PhotonNetwork.LocalPlayer;
+
+        if (ScoreExtensions.GetScore(myPlayer) == 0)
+        {
+            ScoreExtensions.SetScore(myPlayer, 1);      //준비 해주고
+            //버튼은 준비 상태로
+            StartCoroutine(TryEnter());
+        }
+        else
+        {
+            ScoreExtensions.SetScore(myPlayer, 0);      //준비 취소 하고
+            //버튼은 원래 상태로
+            StopCoroutine(TryEnter());
+        }
+        
+    }
+
+    IEnumerator TryEnter()
+    {
+        yield return new WaitForSeconds(0.1f);
+
+        Player master = PhotonNetwork.MasterClient;
+
+        if(ScoreExtensions.GetScore(master) == 1)
+        {
+            //출발
+            StartCoroutine(DoEnter());
+        }
+    }
+
+    IEnumerator DoEnter()
+    {
+        yield return new WaitForSeconds(1f);
+
+        PhotonTest myPhoton = playerObj.GetComponent<PlayerInfo>().photonManager;
+        myPhoton.destination = 3;
+        myPhoton.SendMessage("LeaveRoom");
+    }
+}

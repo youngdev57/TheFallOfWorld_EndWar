@@ -56,7 +56,7 @@ public class Craft : MonoBehaviour
     public List<CraftSet> craftList;
 
     //UI 상태 파라미터
-    int viewIndex = 1;
+    internal int viewIndex = 1;
 
     public PlayerInven pInven;
 
@@ -149,6 +149,8 @@ public class Craft : MonoBehaviour
         {
             for (int i = 0; i < 6; i++)
                 oreCnts[i] += 20;
+
+            RefreshOreTexts();
             inven.pInven.SaveInven();
         }
 

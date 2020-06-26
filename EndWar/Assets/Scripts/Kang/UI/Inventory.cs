@@ -79,8 +79,6 @@ public class Inventory : MonoBehaviour
 
 
 
-
-
     void Start()
     {
         itemList = new LinkedList<Item>();
@@ -219,7 +217,14 @@ public class Inventory : MonoBehaviour
         CheckEquipsAndClear(idx);   //우선 지울 아이템을 장비하고 있는지 확인 후 해당 장비 슬롯 비움
 
         if (GetNth(idx) != null)
+        {
+            Item item = GetNth(idx).Value;
+            int oreType = PlayerInven.baseCraft.craftList[(int)item.itemId - 1].requireOre[0];
+            int oreCnt = (PlayerInven.baseCraft.craftList[(int)item.itemId - 1].requireCnt[0]) / 2;
+            PlayerInven.baseCraft.oreCnts[oreType] += oreCnt;   //분해하면 재료 절반 받음
             itemList.Remove(GetNth(idx));
+        }
+            
 
         RefreshUI();    //삭제 후 UI 초기화~
         pInven.BringAllItem();
