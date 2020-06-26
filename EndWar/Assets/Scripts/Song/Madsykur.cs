@@ -1,10 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 using Photon.Pun;
+using UnityEngine.AI;
 
-public class Juggernaut : Monster
+public class Madsykur : Monster
 {
     // 피격
     [PunRPC]
@@ -19,7 +19,7 @@ public class Juggernaut : Monster
             Damage = 0;
         }
         HP -= Damage;
-        mNav.stoppingDistance = 3f;
+        mNav.stoppingDistance = 3.5f;
         mNav.speed = 5f * speed;
         canAttack = true;
         StopAllCoroutines();
@@ -41,7 +41,7 @@ public class Juggernaut : Monster
             if (target.gameObject.tag == "Player")
             {
                 float dir = Vector3.Distance(transform.position, target.position);
-                if (dir <= 3f)
+                if (dir <= 3.5f)
                 {
                     attackMode = true;
                     mNav.isStopped = true;
@@ -92,7 +92,7 @@ public class Juggernaut : Monster
         if (!canAttack && other.gameObject.tag == "Player")
         {
             target = other.gameObject.transform;
-            mNav.stoppingDistance = 3f;
+            mNav.stoppingDistance = 3.5f;
             mNav.speed = 5f * speed;
             canAttack = true;
             StopAllCoroutines();

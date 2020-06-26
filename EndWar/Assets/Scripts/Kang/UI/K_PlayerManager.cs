@@ -12,7 +12,7 @@ public enum Location    //플레이어가 기지에 있는지 야외에 있는�
 public class K_PlayerManager : MonoBehaviour
 {
     public PlayerInven inven;   //플레이어가 들고 다닐 인벤토리 정보
-    public int power;       //전투력
+    public int power = 0;       //전투력
     public int story;       //스토리 진행 상황
 
     public Location location;

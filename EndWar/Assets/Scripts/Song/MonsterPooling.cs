@@ -47,10 +47,5 @@ public class MonsterPooling : MonoBehaviourPun
         obj.transform.localPosition = Vector3.zero;
         obj.transform.GetChild(0).gameObject.SetActive(false);
         obj.transform.GetChild(0).GetComponent<Monster>().location = spawnLocation;
-
-        if(spawnLocation == MobLocation.Dungeon)
-        {
-            obj.GetComponent<MonsterRespawn>().enabled = false;
-        }
     }
 }

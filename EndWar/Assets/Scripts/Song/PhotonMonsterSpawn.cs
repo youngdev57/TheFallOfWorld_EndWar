@@ -41,14 +41,14 @@ public class PhotonMonsterSpawn : MonoBehaviourPun
 
         if(spawnLocation == MobLocation.Field)      //필드에 몬스터 소환할 때
         {
-            m_pool.InitMontsers(nomalMonster[0].name, 5, spawnLocation);
-            m_pool.InitMontsers(nomalMonster[1].name, 5, spawnLocation);
+            m_pool.InitMontsers(nomalMonster[0].name, 5, MobLocation.Field);
+            m_pool.InitMontsers(nomalMonster[1].name, 5, MobLocation.Field);
             MonsterPos(m_pool.montsers);
         }
         else          //던전에 몬스터 소환할 때
         {
-            m_pool.InitMontsers(dunMonster[0].name, 5, spawnLocation);
-            m_pool.InitMontsers(dunMonster[1].name, 5, spawnLocation);
+            m_pool.InitMontsers(dunMonster[0].name, 5, MobLocation.Dungeon);
+            m_pool.InitMontsers(dunMonster[1].name, 5, MobLocation.Dungeon);
             DungeonMonsterSpawn(m_pool.montsers);
         }
     }

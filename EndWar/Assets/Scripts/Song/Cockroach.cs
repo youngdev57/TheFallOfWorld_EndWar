@@ -19,7 +19,7 @@ public class Cockroach : Monster
             Damage = 0;
         }
         HP -= Damage;
-        mNav.stoppingDistance = 2f;
+        mNav.stoppingDistance = 3f;
         mNav.speed = 5f * speed;
         canAttack = true;
         StopAllCoroutines();
@@ -41,7 +41,7 @@ public class Cockroach : Monster
             if (target.gameObject.tag == "Player")
             {
                 float dir = Vector3.Distance(transform.position, target.position);
-                if (dir <= 2f)
+                if (dir <= 3f)
                 {
                     attackMode = true;
                     mNav.isStopped = true;
@@ -92,7 +92,7 @@ public class Cockroach : Monster
         if (!canAttack && other.gameObject.tag == "Player")
         {
             target = other.gameObject.transform;
-            mNav.stoppingDistance = 2f;
+            mNav.stoppingDistance = 3f;
             mNav.speed = 5f * speed;
             canAttack = true;
             StopAllCoroutines();

@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Photon.Pun;
 using System.Text;
+using TMPro;
 
 public class PlayerInven : MonoBehaviour
 {
@@ -24,6 +26,8 @@ public class PlayerInven : MonoBehaviour
     public Item[] items;
 
     public static List<Item> allItemLists;
+
+    public K_PlayerManager KPM;
 
     void Start()
     {
@@ -438,6 +442,11 @@ public class PlayerInven : MonoBehaviour
         {
             baseInven = Inventory.GetInstance();
             baseInven.pInven = this;
+            for(int i=0; i<28; i++)
+            {
+                baseInven.slotItemInfos[i].pInven = this;
+            }
+            
             StartCoroutine(WaitBaseCraft());
         }
     }
