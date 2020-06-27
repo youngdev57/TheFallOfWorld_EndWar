@@ -360,8 +360,6 @@ public class PhotonTest : MonoBehaviourPunCallbacks
     {
         this.destination = destination;
 
-        PhotonNetwork.IsMessageQueueRunning = true;
-
         switch (destination)
         {
             case 0:  //기지맵 룸 입장 시도

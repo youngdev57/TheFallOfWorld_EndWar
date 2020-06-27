@@ -31,6 +31,7 @@ public class PlayerInven : MonoBehaviour
 
     void Start()
     {
+        PhotonNetwork.IsMessageQueueRunning = true;
         allItemLists = new List<Item>();
         InitAllItemLists();
     }
