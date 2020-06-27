@@ -90,6 +90,7 @@ public class GunTest : MonoBehaviourPunCallbacks
         {
             temp = PhotonNetwork.Instantiate(bullet.name, muzzleTr.position, Quaternion.identity);
             bulletArray.Add(temp);
+            temp.GetComponent<Bullet>().gun = this;
             temp.GetComponent<Bullet>().index = bulletArray.Count - 1;
         }
 

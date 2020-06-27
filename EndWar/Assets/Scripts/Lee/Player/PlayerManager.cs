@@ -35,6 +35,12 @@ public class PlayerManager : MonoBehaviourPun
     //-------------------------------------Start
     void Start()
     {
+        if (!photonView.IsMine)
+        {
+            hP_Slider.transform.parent.gameObject.SetActive(false);
+            return;
+        }
+
         mpArray = MPBOX.GetComponentsInChildren<MPBar>();
         for (int i = 0; i < mpArray.Length; i++)
         {
