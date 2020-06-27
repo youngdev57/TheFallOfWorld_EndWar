@@ -285,7 +285,6 @@ public class PhotonTest : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()  //입장 성공 시 씬 로드
     {
         Debug.Log("Joined Room " + PhotonNetwork.CurrentRoom.Name);
-        PhotonNetwork.IsMessageQueueRunning = true;
 
         switch (destination)
         {
@@ -405,26 +404,11 @@ public class PhotonTest : MonoBehaviourPunCallbacks
     public void BaseSetting()
     {
         //대기 후 위치에 플레이어 생성
-        StartCoroutine(BasePoint());
-    }
+        pointsObj = PlayerPoints.GetInstance();
+        playerSpawnPoints = pointsObj.points;
+        CreatePlayer(destination);  //생성  0=기지에 플레이어 생성용
 
-    IEnumerator BasePoint()
-    {
-        yield return new WaitForSeconds(0.5f);
-
-        if (PlayerPoints.GetInstance() != null)
-        {
-            pointsObj = PlayerPoints.GetInstance();
-            playerSpawnPoints = pointsObj.points;
-            CreatePlayer(destination);  //생성  0=기지에 플레이어 생성용
-            PhotonNetwork.IsMessageQueueRunning = true;
-
-            KPM.inven.OnBaseCamp();
-        }
-        else
-        {
-            StartCoroutine(BasePoint());
-        }
+        KPM.inven.OnBaseCamp();
     }
 
     IEnumerator SceneSettingWait()
@@ -442,24 +426,9 @@ public class PhotonTest : MonoBehaviourPunCallbacks
     public void SceneSetting()
     {
         //대기 후 위치에 플레이어 생성
-        StartCoroutine(ScenePoint());
-    }
-
-    IEnumerator ScenePoint()
-    {
-        yield return new WaitForSeconds(0.5f);
-
-        if(PlayerPoints.GetInstance() != null)
-        {
-            pointsObj = PlayerPoints.GetInstance();
-            playerSpawnPoints = pointsObj.points;
-            CreatePlayer(destination);  //생성  0=기지에 플레이어 생성용
-            PhotonNetwork.IsMessageQueueRunning = true;
-        }
-        else
-        {
-            StartCoroutine(ScenePoint());
-        }
+        pointsObj = PlayerPoints.GetInstance();
+        playerSpawnPoints = pointsObj.points;
+        CreatePlayer(destination);  //생성  0=기지에 플레이어 생성용
     }
 
     /** 아래는 생성이나 설정 함수들 **/
@@ -501,10 +470,7 @@ public class PhotonTest : MonoBehaviourPunCallbacks
                 SpawnPlayer_DungeonEnterance();
                 break;
             case 98:    //배틀테스트
-                SpawnPlayer();
-                break;
-            case 99:    //사격연습장
-                SpawnPlayer();
+                SpawnPlayer_BattleTest();
                 break;
         }
     }
@@ -513,6 +479,16 @@ public class PhotonTest : MonoBehaviourPunCallbacks
     {
         GameObject tempObj;
         tempObj = PhotonNetwork.Instantiate("Player", playerSpawnPoints[0].position, Quaternion.identity, 0);
+        tempObj.GetComponent<PlayerInfo>().photonManager = this;
+        tempObj.GetComponent<PlayerManager>().photonManager = this;
+        tempObj.GetComponent<PlayerItem>().pInven = GetComponent<PlayerInven>();
+        tempObj.GetComponent<PlayerItem>().LoadGemsLocal();     //PlayerInven의 재료 개수를 PlayerItem에 적용하는 함수
+    }
+
+    void SpawnPlayer_BattleTest()
+    {
+        GameObject tempObj;
+        tempObj = PhotonNetwork.Instantiate("Player", new Vector3(0.7f, 0.5f, 0.2f), Quaternion.identity, 0);
         tempObj.GetComponent<PlayerInfo>().photonManager = this;
         tempObj.GetComponent<PlayerManager>().photonManager = this;
         tempObj.GetComponent<PlayerItem>().pInven = GetComponent<PlayerInven>();
