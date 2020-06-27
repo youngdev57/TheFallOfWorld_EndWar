@@ -272,6 +272,7 @@ public class PhotonTest : MonoBehaviourPunCallbacks
     {
         base.OnLeftRoom();
         Debug.Log("On Left Room");
+        PhotonNetwork.IsMessageQueueRunning = false;
     }
 
     public override void OnJoinedLobby()
@@ -284,6 +285,7 @@ public class PhotonTest : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()  //입장 성공 시 씬 로드
     {
         Debug.Log("Joined Room " + PhotonNetwork.CurrentRoom.Name);
+        PhotonNetwork.IsMessageQueueRunning = true;
 
         switch (destination)
         {
@@ -415,6 +417,7 @@ public class PhotonTest : MonoBehaviourPunCallbacks
             pointsObj = PlayerPoints.GetInstance();
             playerSpawnPoints = pointsObj.points;
             CreatePlayer(destination);  //생성  0=기지에 플레이어 생성용
+            PhotonNetwork.IsMessageQueueRunning = true;
 
             KPM.inven.OnBaseCamp();
         }
@@ -451,6 +454,7 @@ public class PhotonTest : MonoBehaviourPunCallbacks
             pointsObj = PlayerPoints.GetInstance();
             playerSpawnPoints = pointsObj.points;
             CreatePlayer(destination);  //생성  0=기지에 플레이어 생성용
+            PhotonNetwork.IsMessageQueueRunning = true;
         }
         else
         {
