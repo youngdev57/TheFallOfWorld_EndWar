@@ -7,7 +7,10 @@ using Photon.Pun;
 public class PhotonMonsterSpawn : MonoBehaviourPun
 {
     public List<GameObject> nomalMonster;   //일반 몬스터
-    public List<GameObject> dunMonster;     //던전 몬스터
+
+    //던전 몬스터
+    public List<GameObject> dunMonster;
+    public List<GameObject> bossMonster;
 
     // 몬스터 무리 위치
     public Vector3 m_fir, m_sec;
@@ -20,11 +23,6 @@ public class PhotonMonsterSpawn : MonoBehaviourPun
     private void Awake()
     {
         m_pool = GetComponent<MonsterPooling>();
-        // 실제 맵 위치
-        /*
-        m_fir = new Vector3(751,0,2050); 
-        m_sec = new Vector3(0,0,0);
-        */
         // 테스트 맵 위치
         //m_fir = new Vector3(40, 0, 40);
         //m_sec = new Vector3(-40, 0, 40);
