@@ -14,6 +14,18 @@ public class DungeonEnter : MonoBehaviour
 
     public Button start_btn, ready_btn, cancel_btn, invalidStartOK_btn;
 
+    private void Start()
+    {
+        if(PhotonNetwork.IsMasterClient)
+        {
+            start_btn.gameObject.SetActive(true);
+        }
+        else
+        {
+            ready_btn.gameObject.SetActive(true);
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if(playerObj.GetComponent<PhotonView>().IsMine)

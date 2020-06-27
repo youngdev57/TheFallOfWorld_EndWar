@@ -31,6 +31,7 @@ public class Inventory : MonoBehaviour
     public Equipment helmet, armor, shoulder, glove, pants, shoes, acc;
 
     public UI_ItemInfo[] slotItemInfos;
+    public UI_CraftInfo craftInfo;
 
     [Space(5)]
 
@@ -75,8 +76,9 @@ public class Inventory : MonoBehaviour
     public TextMeshProUGUI itemInfo_Name, itemInfo_power, itemInfo_atk, itemInfo_def, itemInfo_IngreTxt;
     public Image itemInfo_Ingre;
 
-
-
+    public TextMeshProUGUI dissolution_Txt;
+    bool isDissolFadeOut = false;
+    float dissol_Alpha;
 
 
     void Start()
@@ -145,6 +147,16 @@ public class Inventory : MonoBehaviour
         {
             ClearEquip(ChangeTarget.SubWeapon);
         }
+
+        if(isDissolFadeOut)
+        {
+            dissolution_Txt.alpha -= 0.01f;
+            if(dissolution_Txt.alpha <= 0)
+            {
+                isDissolFadeOut = false;
+                dissolution_Txt.gameObject.SetActive(false);
+            }
+        }
     }
 
     void OnEnable()
@@ -207,7 +219,6 @@ public class Inventory : MonoBehaviour
             {
                 str.Append(GetNth(i).Value.itemId);
             }
-            Debug.Log("제작 후 리스트 : " + str);
         }
 
         RefreshUI();    //추가 후 UI 초기화~
@@ -222,6 +233,37 @@ public class Inventory : MonoBehaviour
             int oreType = PlayerInven.baseCraft.craftList[(int)item.itemId - 1].requireOre[0];
             int oreCnt = (PlayerInven.baseCraft.craftList[(int)item.itemId - 1].requireCnt[0]) / 2;
             PlayerInven.baseCraft.oreCnts[oreType] += oreCnt;   //분해하면 재료 절반 받음
+
+            dissolution_Txt.gameObject.SetActive(true);
+            isDissolFadeOut = true;
+            dissolution_Txt.alpha = 1;
+
+            string dissol_str = "";
+
+            switch(oreType)
+            {
+                case 0:
+                    dissol_str = "크리스탈";
+                    break;
+                case 1:
+                    dissol_str = "아이언";
+                    break;
+                case 2:
+                    dissol_str = "미네랄";
+                    break;
+                case 3:
+                    dissol_str = "코어";
+                    break;
+                case 4:
+                    dissol_str = "소울젬";
+                    break;
+                case 5:
+                    dissol_str = "레드스톤";
+                    break;
+            }
+
+            dissolution_Txt.text = dissol_str + " + " + oreCnt;
+
             itemList.Remove(GetNth(idx));
         }
             

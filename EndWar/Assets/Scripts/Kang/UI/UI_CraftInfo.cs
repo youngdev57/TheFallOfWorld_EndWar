@@ -18,7 +18,7 @@ public class UI_CraftInfo : MonoBehaviour
 
         int idx = craft.viewIndex;
 
-        Item item = PlayerInven.baseInven.GetNth(idx).Value;
+        Item item = PlayerInven.allItemLists[idx];
 
         inven.itemInfo_Name.text = item.itemName;
         inven.itemInfo_power.text = "전투력 : " + item.GetPower();

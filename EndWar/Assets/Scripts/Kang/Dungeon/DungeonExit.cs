@@ -15,6 +15,8 @@ public class DungeonExit : MonoBehaviour
     public GameObject dungeonQuit_UI;
     public GameObject dungeonClear_UI;
 
+    public GameObject dungeonWelcome;
+
 
 
     public TextMeshProUGUI coreTxt;
@@ -30,6 +32,14 @@ public class DungeonExit : MonoBehaviour
     void Start()
     {
         StartCoroutine(CheckDungeonEnd());
+        StartCoroutine(WelcomePopUp());
+    }
+
+    IEnumerator WelcomePopUp()
+    {
+        dungeonWelcome.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        dungeonWelcome.SetActive(false);
     }
 
     public void ShowQuitUI()

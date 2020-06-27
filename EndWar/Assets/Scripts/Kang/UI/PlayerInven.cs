@@ -125,8 +125,6 @@ public class PlayerInven : MonoBehaviour
         for(int i=0; i<arrayCnt; i++)
         {
             items[i] = baseInven.GetNth(i).Value;
-
-            Debug.Log("BringAll-Item " + i + "번째 슬롯 : " + items[i].itemName + ", 아이템 코드 : " + items[i].itemId);
         }
     }
 
@@ -178,31 +176,25 @@ public class PlayerInven : MonoBehaviour
         if(loadBase)
         {
             BringAllItem();
-            Debug.Log("************************** 로드 베이스");
 
             StringBuilder str = new StringBuilder();
-
-            Debug.Log("items[0] 의 이름: " + items[0].itemId);
+            
             for (int i = 0; i < 28; i++)
             {
 
                 if (i >= items.Length)
                 {
                     str.Append("-1");
-                    Debug.Log(i + " : 아이템s 크기를 i가 넘어섬");
                 }
                 else
                 {
                     str.Append((int)items[i].itemId);
-                    Debug.Log(i + " : 정상적인 입장");
                 }
 
                 if (i != 27)
                 {
                     str.Append(",");
                 }
-
-                Debug.Log("메이크슬롯스트링 " + str);
             }
 
             slotString = str.ToString();
@@ -248,14 +240,10 @@ public class PlayerInven : MonoBehaviour
         WWWForm form = new WWWForm();
         
         form.AddField("gid", PhotonNetwork.NickName);
-       // PhotonNetwork.NickName = "TESTER";
-        Debug.Log(PhotonNetwork.NickName + " 누구야");
 
         WWW www = new WWW("http://ec2-15-165-174-206.ap-northeast-2.compute.amazonaws.com:8080/_EndWar/loadInventory.do", form);
 
         yield return www;
-
-        Debug.Log("불러온 내용 : " + www.text);
 
         string[] bytes = www.text.Split('^');
         gold = int.Parse(bytes[0]);
@@ -274,7 +262,6 @@ public class PlayerInven : MonoBehaviour
         } else
         {
             mainIdx = int.Parse(bytes[2]);
-            Debug.Log("로드 시 메인 인덱스 : " + mainIdx);
         }
 
         if(bytes[3] == "-1")
@@ -446,6 +433,7 @@ public class PlayerInven : MonoBehaviour
             {
                 baseInven.slotItemInfos[i].pInven = this;
             }
+            baseInven.craftInfo.pInven = this;
             
             StartCoroutine(WaitBaseCraft());
         }

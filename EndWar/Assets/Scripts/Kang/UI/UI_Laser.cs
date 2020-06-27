@@ -26,6 +26,7 @@ public class UI_Laser : MonoBehaviour
     public K_PlayerManager kPm;
 
     UI_ItemInfo slotItemInfo;
+    UI_CraftInfo craftInfo;
 
     void Start()
     {
@@ -48,13 +49,24 @@ public class UI_Laser : MonoBehaviour
                 slotItemInfo = stayHit.transform.GetComponent<UI_ItemInfo>();
                 slotItemInfo.ShowItemInfo();
             }
+
+            if (!onItemInfo && stayHit.transform.GetComponent<UI_CraftInfo>() != null)
+            {
+                onItemInfo = true;
+                craftInfo = stayHit.transform.GetComponent<UI_CraftInfo>();
+                craftInfo.ShowItemInfo();
+            }
         }
         else
         {
             if (onItemInfo)
             {
                 onItemInfo = false;
-                slotItemInfo.HideItemInfo();
+                if (slotItemInfo != null)
+                    slotItemInfo.HideItemInfo();
+
+                if(craftInfo != null)
+                    craftInfo.HideItemInfo();
             }
         }
 
