@@ -16,7 +16,7 @@ public class TrackObjectManager : MonoBehaviourPun
         if (GetComponent<Camera>())
         {
             GetComponent<Camera>().enabled = false;
-            transform.FindChild("Camera (ears)").gameObject.SetActive(false);
+            transform.Find("Camera (ears)").gameObject.SetActive(false);
         }
 
         if (GetComponent<SteamVR_TrackedObject>())

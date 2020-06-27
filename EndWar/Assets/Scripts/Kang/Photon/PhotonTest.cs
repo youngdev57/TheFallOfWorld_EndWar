@@ -360,7 +360,7 @@ public class PhotonTest : MonoBehaviourPunCallbacks
     {
         this.destination = destination;
 
-        PhotonNetwork.IsMessageQueueRunning = true;
+        PhotonNetwork.IsMessageQueueRunning = false;
 
         switch (destination)
         {

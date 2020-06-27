@@ -52,7 +52,7 @@ public class ControllerPosition : MonoBehaviourPun
         ViveManager[] vive = FindObjectsOfType<ViveManager>(); 
         for (int i = 0; i < vive.Length; i++)
         {
-            if (!vive[i].transform.FindChild(Head.name))
+            if (!vive[i].transform.Find(Head.name))
             {
                 viveManager = vive[i];
                 return;
