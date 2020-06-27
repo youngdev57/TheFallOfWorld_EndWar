@@ -403,11 +403,25 @@ public class PhotonTest : MonoBehaviourPunCallbacks
     public void BaseSetting()
     {
         //대기 후 위치에 플레이어 생성
-        pointsObj = PlayerPoints.GetInstance();
-        playerSpawnPoints = pointsObj.points;
-        CreatePlayer(destination);  //생성  0=기지에 플레이어 생성용
+        StartCoroutine(BasePoint());
+    }
 
-        KPM.inven.OnBaseCamp();
+    IEnumerator BasePoint()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        if (PlayerPoints.GetInstance() != null)
+        {
+            pointsObj = PlayerPoints.GetInstance();
+            playerSpawnPoints = pointsObj.points;
+            CreatePlayer(destination);  //생성  0=기지에 플레이어 생성용
+
+            KPM.inven.OnBaseCamp();
+        }
+        else
+        {
+            StartCoroutine(BasePoint());
+        }
     }
 
     IEnumerator SceneSettingWait()
@@ -425,9 +439,23 @@ public class PhotonTest : MonoBehaviourPunCallbacks
     public void SceneSetting()
     {
         //대기 후 위치에 플레이어 생성
-        pointsObj = PlayerPoints.GetInstance();
-        playerSpawnPoints = pointsObj.points;
-        CreatePlayer(destination);  //생성  0=기지에 플레이어 생성용
+        StartCoroutine(ScenePoint());
+    }
+
+    IEnumerator ScenePoint()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        if(PlayerPoints.GetInstance() != null)
+        {
+            pointsObj = PlayerPoints.GetInstance();
+            playerSpawnPoints = pointsObj.points;
+            CreatePlayer(destination);  //생성  0=기지에 플레이어 생성용
+        }
+        else
+        {
+            StartCoroutine(ScenePoint());
+        }
     }
 
     /** 아래는 생성이나 설정 함수들 **/
