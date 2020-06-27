@@ -47,10 +47,26 @@ public  class Monster : MonoBehaviour
     internal bool notDie;
 
     internal float delay;
+    internal float attackType;
 
     internal float speed = 1; //본인의 기본 속도를 저장     // 추가한 사람 : 이상재
 
     public virtual void GetDamage(int Damage)
+    {
+
+    }
+
+    [PunRPC]
+    public virtual void AttackType()
+    {
+        int type = Random.Range(0, 3);
+    }
+
+    public virtual void BossAttackTimer()
+    {
+
+    }
+    public virtual void BossPatten()
     {
 
     }
@@ -61,6 +77,11 @@ public  class Monster : MonoBehaviour
         OnMove();
         TargetPosition();
         Die();
+        if (type == MonsterType.Boss)
+        {
+            BossAttackTimer();
+            BossPatten();
+        }
     }
 
     // 애니메이션
@@ -84,8 +105,11 @@ public  class Monster : MonoBehaviour
                 notDie = false;
                 break;
             case Staus.attack:
-                int type = Random.Range(0, 3);
-                switch (type)
+                if (pv.IsMine)
+                {
+                    pv.RPC("AttackType", RpcTarget.All);
+                }
+                switch (attackType)
                 {
                     case 0:
                         mAnimator.SetTrigger("Attack_fir");
@@ -97,6 +121,7 @@ public  class Monster : MonoBehaviour
                         mAnimator.SetTrigger("Attack_thi");
                         break;
                 }
+                attackType = -1;
                 StartCoroutine(NavStop());
                 break;
         }

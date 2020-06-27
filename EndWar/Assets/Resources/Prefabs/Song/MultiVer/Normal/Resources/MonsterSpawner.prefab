@@ -47,7 +47,16 @@ MonoBehaviour:
   nomalMonster:
   - {fileID: 8547673497553996064, guid: 696f155f4627ace4589919608ab6924b, type: 3}
   - {fileID: 54735450547704691, guid: 02fd381c14d221f4b942495ccba5160f, type: 3}
+  - {fileID: 9051630201261232885, guid: 14327e4208ee3e64095e751faaac09a7, type: 3}
+  - {fileID: 282411340097625699, guid: b6c4260fd7751264aa5c7bdda04900f8, type: 3}
+  - {fileID: 2458349256248470890, guid: facb1c584ac4ea043b85e8bc72928109, type: 3}
+  dunMonster: []
+  bossMonster:
+  - {fileID: 6883571962770045161, guid: 1043cebbfccab274484dc989d0b29cd9, type: 3}
   m_fir: {x: 0, y: 0, z: 0}
+  m_sec: {x: 0, y: 0, z: 0}
+  spawnLocation: 0
+  spawnPos: []
 --- !u!114 &2190239661009156702
 MonoBehaviour:
   m_ObjectHideFlags: 0

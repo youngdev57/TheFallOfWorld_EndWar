@@ -43,8 +43,8 @@ public class Insect : Monster
                 notDie = false;
                 break;
             case Staus.attack:
-                int type = Random.Range(0, 2);
-                switch (type)
+                pv.RPC("AttackType", RpcTarget.All);
+                switch (attackType)
                 {
                     case 0:
                         mAnimator.SetTrigger("Attack_fir");
@@ -53,9 +53,16 @@ public class Insect : Monster
                         mAnimator.SetTrigger("Attack_sec");
                         break;
                 }
+                attackType = -1;
                 StartCoroutine(NavStop());
                 break;
         }
+    }
+
+    [PunRPC]
+    public override void AttackType()
+    {
+        attackType = Random.Range(0, 2);
     }
 
     // 판단

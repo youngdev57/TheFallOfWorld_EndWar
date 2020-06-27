@@ -29,4 +29,9 @@ public class MonsterRespawn : MonoBehaviour
             this.enabled = false;
         }
     }
+
+    private void OnEnable()
+    {
+        this.enabled = true;
+    }
 }

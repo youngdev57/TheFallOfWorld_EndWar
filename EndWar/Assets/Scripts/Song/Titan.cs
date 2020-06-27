@@ -7,11 +7,75 @@ using UnityEngine.AI;
 
 public class Titan : Monster
 {
-    private int AttackCount;
+    private int Page = 1;
+
+    private float LadeTimer = 0f;
+    private bool PattenUse = false;
+
+    // 보스 Try 시작 함수
+    public override void BossAttackTimer()
+    {
+        if (canAttack)
+        {
+            LadeTimer += Time.deltaTime;
+        }
+        else
+        {
+            LadeTimer = 0f;
+            HP = maxHp;
+            Page = 1;
+        }
+    }
+
+    // 보스 패턴
+    public override void BossPatten()
+    {
+        switch (Page)
+        {
+            case 1:
+                PageChange(70);
+                if (LadeTimer == 24f)
+                {
+                    mAnimator.SetTrigger("Attack_sec");
+                    target.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, ACT * 2);
+                    PattenUse = true;
+                    delay = 0f;
+                    StartCoroutine(NavStop());
+                }
+                else if(LadeTimer == 42f)
+                {
+                    mAnimator.SetTrigger("Attack_sec");
+                    target.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, ACT * 2);
+                    PattenUse = true;
+                    delay = 0f;
+                    StartCoroutine(NavStop());
+                }
+                else
+                {
+                    PattenUse = false;
+                }
+                break;
+        }
+    }
+
+    private void PageChange(int hp)
+    {
+        if (HP / maxHp * 100 <= hp)
+        {
+            Page++;
+            LadeTimer = 0f;
+        }
+    }
+
     // 피격
     [PunRPC]
     public override void GetDamage(int Damage)
     {
+        if ()
+        {
+
+        }
+
         if (VIT < Damage)
         {
             Damage -= VIT;
@@ -48,30 +112,7 @@ public class Titan : Monster
                 notDie = false;
                 break;
             case Staus.attack:
-                if (AttackCount <= 7)
-                {
-                    int type = Random.Range(0, 3);
-                    switch (type)
-                    {
-                        case 0:
-                            mAnimator.SetTrigger("Attack_fir");
-                            AttackCount++;
-                            break;
-                        case 1:
-                            mAnimator.SetTrigger("Attack_sec");
-                            AttackCount++;
-                            break;
-                        case 2:
-                            mAnimator.SetTrigger("Attack_thi");
-                            AttackCount++;
-                            break;
-                    }
-                }
-                else
-                {
-                    mAnimator.SetTrigger("Attack_fou");
-                    AttackCount = 0;
-                }
+                mAnimator.SetTrigger("Attack_fir");
                 StartCoroutine(NavStop());
                 break;
         }
@@ -99,7 +140,8 @@ public class Titan : Monster
                     mNav.isStopped = true;
                     mNav.velocity = Vector3.zero;
                     mNav.speed = 0f;
-                    if (canAttack)
+                    // 평타
+                    if (canAttack && !PattenUse)
                     {
                         delay += Time.deltaTime;
                         if (delay >= actSpeed)
@@ -174,7 +216,7 @@ public class Titan : Monster
 
     public void OnEnable()
     {
-        AttackCount = 0;
+        LadeTimer = 0f;
         maxHp = 200;
         HP = maxHp;
         VIT = 10;
