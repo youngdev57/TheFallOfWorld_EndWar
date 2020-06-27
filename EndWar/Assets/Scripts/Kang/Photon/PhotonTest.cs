@@ -255,6 +255,10 @@ public class PhotonTest : MonoBehaviourPunCallbacks
                 PhotonNetwork.CreateRoom("Dungeon_Underground", new RoomOptions { MaxPlayers = this.maxPlayer });
                 break;
 
+            case 4: //아이스맵 씬 전용 룸
+                PhotonNetwork.CreateRoom("Ice", new RoomOptions { MaxPlayers = this.maxPlayer });
+                break;
+
             case 98: //전투 테스트
                 PhotonNetwork.CreateRoom("BattleTest", new RoomOptions { MaxPlayers = this.maxPlayer });
                 break;
