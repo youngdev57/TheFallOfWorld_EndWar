@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using Photon.Pun;
 
 public class LoadingManager : MonoBehaviour
 {
@@ -32,7 +31,6 @@ public class LoadingManager : MonoBehaviour
     {
         yield return null;
 
-        PhotonNetwork.IsMessageQueueRunning = false;
         AsyncOperation op = SceneManager.LoadSceneAsync(nextScene);
         op.allowSceneActivation = false;
 
@@ -61,7 +59,6 @@ public class LoadingManager : MonoBehaviour
                 if (progressBar.fillAmount == 1.0f)
                 {
                     op.allowSceneActivation = true;
-                    PhotonNetwork.IsMessageQueueRunning = true;
                     loadEnd = true;
                     yield break;
                 }
