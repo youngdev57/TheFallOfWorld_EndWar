@@ -52,8 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba6c6943e1e72734b8cb46724f6773a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gun: {fileID: 0}
-  index: 0
+  damage: 0
 --- !u!96 &3650604311363727850
 TrailRenderer:
   serializedVersion: 2
@@ -192,7 +191,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &8192401723338698585
 MonoBehaviour:

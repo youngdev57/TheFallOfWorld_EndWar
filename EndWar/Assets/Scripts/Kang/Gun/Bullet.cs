@@ -3,23 +3,48 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class Bullet : MonoBehaviour
+public class Bullet : MonoBehaviourPun
 {
-    public GunTest gun;
+    public int damage = 0;
 
-    public int index;
+    Rigidbody rigid;
+    void Start()
+    {
+        OnEnable();
+        rigid = GetComponent<Rigidbody>();
+    }
+
+    void OnEnable()
+    {
+        StartCoroutine(OffObjectCoroutine());
+    }
+
+    void Update()
+    {
+        transform.forward = rigid.velocity;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (!gun.photonView.IsMine)
-            return;
-
         if(other.attachedRigidbody)
         {
             if(other.gameObject.layer == LayerMask.NameToLayer("Monster"))
             {
-                gun.photonView.RPC("Restore", RpcTarget.AllViaServer, index);
-                other.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.AllBuffered, 10);
+                OffObject();
+                other.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.AllBuffered, damage);
             }
         }
+    }
+
+    IEnumerator OffObjectCoroutine()
+    {
+        yield return new WaitForSeconds(1f);
+        OffObject();
+    }
+
+    void OffObject()
+    {
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
+        gameObject.SetActive(false);
     }
 }
