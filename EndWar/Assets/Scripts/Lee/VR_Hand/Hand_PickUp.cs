@@ -10,9 +10,12 @@ public class Hand_PickUp : MonoBehaviourPun
     public SteamVR_Input_Sources hand;
     public SteamVR_Action_Boolean closeUi;
     public SteamVR_Action_Boolean action;
+
+    [Space(10)]
     public LayerMask layer;
     public GameObject skillCanvasUi;
     public GameObject player;
+    public bool isCanvas;
 
     bool canPickup;
     PickedItem item;
@@ -35,7 +38,7 @@ public class Hand_PickUp : MonoBehaviourPun
             }
         }
 
-        if (closeUi.GetStateDown(hand))
+        if (isCanvas == true && closeUi.GetStateDown(hand))
         {
             if(!skillCanvasUi.activeSelf)
                 skillCanvasUi.SetActive(true);

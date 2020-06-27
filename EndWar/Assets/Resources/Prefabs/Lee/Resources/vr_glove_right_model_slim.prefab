@@ -879,6 +879,9 @@ MonoBehaviour:
   touchPress:
     actionPath: /actions/default/in/Selecet
     needsReinit: 0
+  pickUpPress:
+    actionPath: /actions/default/in/OpenUI
+    needsReinit: 0
   touchValue:
     actionPath: /actions/default/in/TouchPosition
     needsReinit: 0
