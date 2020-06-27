@@ -426,8 +426,8 @@ public class PhotonTest : MonoBehaviourPunCallbacks
     public void SceneSetting()
     {
         //대기 후 위치에 플레이어 생성
-        pointsObj = PlayerPoints.GetInstance();
-        playerSpawnPoints = pointsObj.points;
+        //pointsObj = PlayerPoints.GetInstance();
+        //playerSpawnPoints = pointsObj.points;
         CreatePlayer(destination);  //생성  0=기지에 플레이어 생성용
     }
 

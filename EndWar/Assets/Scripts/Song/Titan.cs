@@ -71,10 +71,10 @@ public class Titan : Monster
     [PunRPC]
     public override void GetDamage(int Damage)
     {
-        if ()
-        {
+        //if ()
+        //{
 
-        }
+        //}
 
         if (VIT < Damage)
         {
