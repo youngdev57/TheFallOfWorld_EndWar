@@ -272,7 +272,6 @@ public class PhotonTest : MonoBehaviourPunCallbacks
     {
         base.OnLeftRoom();
         Debug.Log("On Left Room");
-        PhotonNetwork.IsMessageQueueRunning = false;
     }
 
     public override void OnJoinedLobby()
@@ -360,6 +359,8 @@ public class PhotonTest : MonoBehaviourPunCallbacks
     void ChangeRoom(int destination)
     {
         this.destination = destination;
+
+        PhotonNetwork.IsMessageQueueRunning = true;
 
         switch (destination)
         {
