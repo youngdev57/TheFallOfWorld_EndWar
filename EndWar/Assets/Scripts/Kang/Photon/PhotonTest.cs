@@ -486,7 +486,9 @@ public class PhotonTest : MonoBehaviourPunCallbacks
     void SpawnPlayer_InDungeon()
     {
         GameObject tempObj;
-        tempObj = PhotonNetwork.Instantiate("Player", playerSpawnPoints[0].position, Quaternion.identity, 0);
+        float randomZ = UnityEngine.Random.Range(90f, 117f);
+        Vector3 spawnPos = new Vector3(playerSpawnPoints[0].position.x, playerSpawnPoints[0].position.y, randomZ);
+        tempObj = PhotonNetwork.Instantiate("Player", spawnPos, Quaternion.identity, 0);
         tempObj.GetComponent<PlayerInfo>().photonManager = this;
         tempObj.GetComponent<PlayerManager>().photonManager = this;
         tempObj.GetComponent<PlayerItem>().pInven = GetComponent<PlayerInven>();

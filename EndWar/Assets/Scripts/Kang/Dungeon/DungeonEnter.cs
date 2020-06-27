@@ -28,10 +28,48 @@ public class DungeonEnter : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(playerObj.GetComponent<PhotonView>().IsMine)
+        if(other.tag == "Player" && other.GetComponent<PhotonView>() != null)
         {
-            playerObj = other.gameObject;
+            if (other.GetComponent<PhotonView>().IsMine)
+            {
+                playerObj = other.gameObject;
+
+                playerObj.GetComponentsInChildren<UI_Laser>()[0].enabled = true;
+                playerObj.GetComponentsInChildren<UI_Laser>()[1].enabled = true;
+                playerObj.GetComponentsInChildren<UI_Laser>()[0].LaserOn();
+                playerObj.GetComponentsInChildren<UI_Laser>()[1].LaserOn();
+            }
         }
+        
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player" && other.GetComponent<PhotonView>() != null)
+        {
+            if (other.gameObject == playerObj)
+            {
+                playerObj.GetComponentsInChildren<UI_Laser>()[0].LaserOff();
+                playerObj.GetComponentsInChildren<UI_Laser>()[1].LaserOff();
+                playerObj.GetComponentsInChildren<UI_Laser>()[0].enabled = false;
+                playerObj.GetComponentsInChildren<UI_Laser>()[1].enabled = false;
+
+                ScoreExtensions.SetScore(PhotonNetwork.LocalPlayer, 0);
+
+                if(PhotonNetwork.IsMasterClient)
+                {
+                    //
+                }
+                else
+                {
+                    ready_btn.gameObject.SetActive(true);
+                    cancel_btn.gameObject.SetActive(false);
+                }
+
+                playerObj = null;
+            }
+        }
+            
     }
 
     public void EnterDungeon()
@@ -89,12 +127,16 @@ public class DungeonEnter : MonoBehaviour
             ScoreExtensions.SetScore(myPlayer, 1);      //준비 해주고
             //버튼은 준비 상태로
             StartCoroutine(TryEnter());
+            ready_btn.gameObject.SetActive(false);
+            cancel_btn.gameObject.SetActive(true);
         }
         else
         {
             ScoreExtensions.SetScore(myPlayer, 0);      //준비 취소 하고
             //버튼은 원래 상태로
             StopCoroutine(TryEnter());
+            ready_btn.gameObject.SetActive(true);
+            cancel_btn.gameObject.SetActive(false);
         }
         
     }

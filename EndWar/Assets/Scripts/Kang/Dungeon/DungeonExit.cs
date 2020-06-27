@@ -31,8 +31,11 @@ public class DungeonExit : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(CheckDungeonEnd());
-        StartCoroutine(WelcomePopUp());
+        if(ScoreExtensions.GetScore(PhotonNetwork.LocalPlayer) == 1)
+        {
+            StartCoroutine(CheckDungeonEnd());
+            StartCoroutine(WelcomePopUp());
+        }
     }
 
     IEnumerator WelcomePopUp()

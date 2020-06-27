@@ -13,7 +13,7 @@ public class UI_Laser : MonoBehaviour
     public GameObject laserPrefab;
     public GameObject effectPrefab;
     public GameObject effect;
-    private GameObject laser;
+    public GameObject laser;
     private Transform laserTr;
     private Vector3 hitPoint;
 
@@ -35,6 +35,18 @@ public class UI_Laser : MonoBehaviour
         laserTr = laser.transform;
         laser.transform.SetParent(this.transform);
         laser.transform.localPosition = Vector3.zero;
+    }
+
+    public void LaserOn()
+    {
+        if(laser != null)
+            laser.SetActive(true);
+    }
+
+    public void LaserOff()
+    {
+        if (laser != null)
+            laser.SetActive(false);
     }
     
     void Update()
