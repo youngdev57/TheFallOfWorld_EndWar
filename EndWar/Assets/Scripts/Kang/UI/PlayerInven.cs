@@ -31,7 +31,6 @@ public class PlayerInven : MonoBehaviour
 
     void Start()
     {
-        PhotonNetwork.IsMessageQueueRunning = true;
         allItemLists = new List<Item>();
         InitAllItemLists();
     }
@@ -245,6 +244,8 @@ public class PlayerInven : MonoBehaviour
         WWW www = new WWW("http://ec2-15-165-174-206.ap-northeast-2.compute.amazonaws.com:8080/_EndWar/loadInventory.do", form);
 
         yield return www;
+
+        Debug.Log("Load : " + www.text);
 
         string[] bytes = www.text.Split('^');
         gold = int.Parse(bytes[0]);

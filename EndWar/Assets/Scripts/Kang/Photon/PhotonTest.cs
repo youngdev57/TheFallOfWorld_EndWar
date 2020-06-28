@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 using Photon.Pun;
 using Photon.Realtime;
 using System.Text.RegularExpressions;
-using WebSocketSharp;
 using System.Text;
 using VRKeys;
 using System;
@@ -285,6 +284,7 @@ public class PhotonTest : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()  //입장 성공 시 씬 로드
     {
         Debug.Log("Joined Room " + PhotonNetwork.CurrentRoom.Name);
+        PhotonNetwork.IsMessageQueueRunning = false;
 
         switch (destination)
         {
@@ -427,6 +427,13 @@ public class PhotonTest : MonoBehaviourPunCallbacks
             //비동기 씬 로드 완료 시 까지 대기
             yield return null;
         }
+
+        //대기 후 위치에 플레이어 생성
+        pointsObj = PlayerPoints.GetInstance();
+        playerSpawnPoints = pointsObj.points;
+        CreatePlayer(destination);  //생성  0=기지에 플레이어 생성용
+
+        KPM.inven.OnBaseCamp();
     }
 
     internal IEnumerator BaseSettingWait()

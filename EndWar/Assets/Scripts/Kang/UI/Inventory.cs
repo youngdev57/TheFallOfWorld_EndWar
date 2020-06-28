@@ -425,10 +425,10 @@ public class Inventory : MonoBehaviour
             return;
 
         int tempNum = (int)selectedEquip == 0 || (int)selectedEquip == 1 ? 0 : (int)selectedEquip - 1;  //아이템과 해당 장비 자리가 맞는지 확인할 int (무기 자리에는 무기만, 갑옷 자리에는 갑옷만)
-        
+
         if (tempNum != (int)(GetNth(idx).Value.itemType))   //현재 선택된 장비 슬롯과 착용하려는 장비의 타입을 비교해 알맞는지 확인
         {
-            Debug.Log("장비 슬롯에 올바르지 않은 아이템 타입을 장비하려 시도했음");
+            Debug.Log(selectedEquip.ToString() + " 장비 슬롯에 올바르지 않은 아이템 타입을 장비하려 시도했음, 들어온 타입 : " + (int)GetNth(idx).Value.itemType);
             return;
         }
 
