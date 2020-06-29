@@ -115,17 +115,23 @@ namespace VRKeys {
                 StartCoroutine(CheckLoginStatus());
             }
 
-            if (Input.GetKeyDown(KeyCode.M))     //닉네임 테스트용 ㅡㅡ  (중복)
+            if (Input.GetKeyDown(KeyCode.T))     //로그인 테스트용 ㅡㅡ
             {
-                photonManager.OnClickGidButton("master");
-                StartCoroutine(CheckGidStatus());
+                photonManager.OnClickLogin("2", "2");
+                StartCoroutine(CheckLoginStatus());
             }
 
-            if (Input.GetKeyDown(KeyCode.Z))     //닉네임 테스트용 ㅡㅡ  (성공)
-            {
-                photonManager.OnClickGidButton("endwar1");
-                StartCoroutine(CheckGidStatus());
-            }
+            //if (Input.GetKeyDown(KeyCode.M))     //닉네임 테스트용 ㅡㅡ  (중복)
+            //{
+            //    photonManager.OnClickGidButton("master");
+            //    StartCoroutine(CheckGidStatus());
+            //}
+
+            //if (Input.GetKeyDown(KeyCode.Z))     //닉네임 테스트용 ㅡㅡ  (성공)
+            //{
+            //    photonManager.OnClickGidButton("endwar1");
+            //    StartCoroutine(CheckGidStatus());
+            //}
 
         }
 

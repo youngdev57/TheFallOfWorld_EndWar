@@ -251,8 +251,8 @@ public class PhotonTest : MonoBehaviourPunCallbacks
                 PhotonNetwork.CreateRoom("Ice", new RoomOptions { MaxPlayers = this.maxPlayer });
                 break;
 
-            case 2: //사막맵 씬 전용 룸
-                PhotonNetwork.CreateRoom("Desert", new RoomOptions { MaxPlayers = this.maxPlayer });
+            case 2: //아이스맵 씬 - 던전 앞
+                PhotonNetwork.CreateRoom("Ice", new RoomOptions { MaxPlayers = this.maxPlayer });
                 break;
 
             case 3: //지하 던전
@@ -298,7 +298,9 @@ public class PhotonTest : MonoBehaviourPunCallbacks
                 StartCoroutine(SceneSettingWait());
                 break;
 
-            case 2: //사막맵 씬 로드
+            case 2: //아이스맵 씬 로드 - 던전앞
+                LoadingManager.LoadScene("SnowMountains");
+                StartCoroutine(SceneSettingWait());
                 break;
 
             case 3: //지하 던전 씬 로드
@@ -364,7 +366,8 @@ public class PhotonTest : MonoBehaviourPunCallbacks
             case 1:  //아이스맵 룸 입장 시도
                 PhotonNetwork.JoinRoom("Ice");
                 break;
-            case 2:  //사막맵 룸 입장 시도
+            case 2:  //아이스맵 룸 입장 시도 - 던전 앞
+                PhotonNetwork.JoinRoom("Ice");
                 break;
             case 3:  //지하 던전 룸 입장 시도
                 PhotonNetwork.JoinRoom("Dungeon_Underground");
@@ -591,6 +594,9 @@ public class PhotonTest : MonoBehaviourPunCallbacks
                 break;
 
             case 1:     //스노우맵
+                SpawnPlayer();
+                break;
+            case 2:     //스노우맵
                 SpawnPlayer();
                 break;
             case 3:     //던전

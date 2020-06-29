@@ -122,6 +122,7 @@ MonoBehaviour:
     m_Bits: 2048
   skillCanvasUi: {fileID: 8184074930342768517}
   player: {fileID: 7651427349477550431}
+  isCanvas: 0
 --- !u!135 &2930142055920617160
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2169,6 +2170,7 @@ MonoBehaviour:
     type: 3}
   effectPrefab: {fileID: 166230, guid: cb6a42a93c76bfa4d8848dd597257b77, type: 3}
   effect: {fileID: 0}
+  laser: {fileID: 0}
   pInven: {fileID: 0}
   kPm: {fileID: 0}
 --- !u!1 &7651427349477550431
@@ -2576,6 +2578,7 @@ MonoBehaviour:
     type: 3}
   effectPrefab: {fileID: 166230, guid: cb6a42a93c76bfa4d8848dd597257b77, type: 3}
   effect: {fileID: 0}
+  laser: {fileID: 0}
   pInven: {fileID: 0}
   kPm: {fileID: 0}
 --- !u!1 &8233973645198978380
