@@ -26,8 +26,8 @@ public class PhotonMonsterSpawn : MonoBehaviourPun
         // 테스트 맵 위치
         //m_fir = new Vector3(40, 0, 40);
         //m_sec = new Vector3(-40, 0, 40);
-        m_fir = new Vector3(111f, 26f, 99f);
-        m_sec = new Vector3(108.5f, 26f, 99f);
+        m_fir = new Vector3(843f, 1f, 1906f);
+        m_sec = new Vector3(710f, 1f, 2282f);
     }
 
     private void Start()
