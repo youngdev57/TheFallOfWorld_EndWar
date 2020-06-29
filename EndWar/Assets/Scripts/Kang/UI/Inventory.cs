@@ -80,6 +80,10 @@ public class Inventory : MonoBehaviour
     bool isDissolFadeOut = false;
     float dissol_Alpha;
 
+    public TextMeshProUGUI gold_Txt;
+
+    internal int invenGold = 0;
+
 
     void Start()
     {
@@ -95,59 +99,40 @@ public class Inventory : MonoBehaviour
             ins.SetActive(false);
         }
 
-        Init();
+        int[] dummy = new int[1];
+        Init(dummy, true);
 
         instance = this;
     }
 
-    public void Init()
+    public void Init(int[] idxs, bool first = false)
     {
         RefreshUI();
+        if (first)
+            return;
+
+        selectedEquip = ChangeTarget.SubWeapon;
+        ChangeEquip(idxs[0], 1);
+        selectedEquip = ChangeTarget.MainWeapon;
+        ChangeEquip(idxs[1], 1);
+        selectedEquip = ChangeTarget.Helmet;
+        ChangeEquip(idxs[2], 1);
+        selectedEquip = ChangeTarget.Armor;
+        ChangeEquip(idxs[3], 1);
+        selectedEquip = ChangeTarget.Shoulder;
+        ChangeEquip(idxs[4], 1);
+        selectedEquip = ChangeTarget.Glove;
+        ChangeEquip(idxs[5], 1);
+        selectedEquip = ChangeTarget.Pants;
+        ChangeEquip(idxs[6], 1);
+        selectedEquip = ChangeTarget.Shoes;
+        ChangeEquip(idxs[7], 1);
+        selectedEquip = ChangeTarget.Acc;
+        ChangeEquip(idxs[8], 1);
     }
 
     private void Update()
     {
-
-        if (Input.GetKeyDown(KeyCode.Alpha0))
-        {
-            ChangeEquip(0);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            ChangeEquip(1);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            ChangeEquip(2);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            ChangeEquip(3);
-        }
-
-        if(Input.GetKeyDown(KeyCode.Comma))
-        {
-            SelectMain();
-        }
-
-        if(Input.GetKeyDown(KeyCode.Period))
-        {
-            SelectSub();
-        }
-
-        if(Input.GetKeyDown(KeyCode.K))
-        {
-            ClearEquip(ChangeTarget.MainWeapon);
-        }
-
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            ClearEquip(ChangeTarget.SubWeapon);
-        }
-
         if(isDissolFadeOut)
         {
             dissolution_Txt.alpha -= 0.01f;
@@ -266,7 +251,8 @@ public class Inventory : MonoBehaviour
 
             itemList.Remove(GetNth(idx));
         }
-            
+
+        PlayerInven.baseCraft.RefreshOreTexts();
 
         RefreshUI();    //삭제 후 UI 초기화~
         pInven.BringAllItem();
@@ -425,10 +411,10 @@ public class Inventory : MonoBehaviour
             return;
 
         int tempNum = (int)selectedEquip == 0 || (int)selectedEquip == 1 ? 0 : (int)selectedEquip - 1;  //아이템과 해당 장비 자리가 맞는지 확인할 int (무기 자리에는 무기만, 갑옷 자리에는 갑옷만)
-        
+
         if (tempNum != (int)(GetNth(idx).Value.itemType))   //현재 선택된 장비 슬롯과 착용하려는 장비의 타입을 비교해 알맞는지 확인
         {
-            Debug.Log("장비 슬롯에 올바르지 않은 아이템 타입을 장비하려 시도했음");
+            Debug.Log(selectedEquip.ToString() + " 장비 슬롯에 올바르지 않은 아이템 타입을 장비하려 시도했음, 들어온 타입 : " + (int)GetNth(idx).Value.itemType);
             return;
         }
 
@@ -668,12 +654,15 @@ public class Inventory : MonoBehaviour
 
     /** 플레이어 인벤 연동 **/
 
-    public void BringAllItems(int[] intSlot)
+    public void BringAllItems(int[] intSlot, int gold)
     {
         for(int i=0; i<intSlot.Length; i++)
         {
             AddItem(intSlot[i]);
         }
+
+        invenGold = gold;
+        gold_Txt.text = invenGold + " G";
     }
 
 

@@ -16,6 +16,7 @@ public class PlayerInfo : MonoBehaviourPunCallbacks
 
     void Start()
     {
+        PhotonNetwork.IsMessageQueueRunning = true;
         nickname.text = photonView.Owner.NickName;
     }
 

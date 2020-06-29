@@ -130,22 +130,20 @@ public class Craft : MonoBehaviour
     
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.E))
-        {
-            LoadNextCraft();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Q))
+        if(Input.GetKeyDown(KeyCode.Z))
         {
             LoadPrevCraft();
         }
-
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            LoadNextCraft();
+        }
+        if (Input.GetKeyDown(KeyCode.C))
         {
             CraftItem();
         }
 
-        if(Input.GetKeyDown(KeyCode.F7))    //치트입니다 ㅎㅎ 광물 20개씩 전부 증가
+        if (Input.GetKeyDown(KeyCode.F7))    //치트입니다 ㅎㅎ 광물 20개씩 전부 증가
         {
             for (int i = 0; i < 6; i++)
                 oreCnts[i] += 20;
@@ -171,7 +169,7 @@ public class Craft : MonoBehaviour
     }
 
     /** 제작대 UI 상단 재료 갯수 갱신 함수 **/
-    void RefreshOreTexts()  
+    public void RefreshOreTexts()  
     {
         crystalText.text = GetCrystal().ToString();
         ironText.text = GetIron().ToString();
@@ -265,9 +263,9 @@ public class Craft : MonoBehaviour
         RefreshOreTexts();      //UI 상단 보유 재료개수 텍스트 갱신
         RefreshCraftInfo();     //보고 있는 제작법 정보 갱신
 
-        inven.pInven.BringAllItem();
+        pInven.BringAllItem();
         pInven.BringAllGem();
-        inven.pInven.SaveInven();
+        pInven.SaveInven();
     }
 
     /** 보석 개수 리턴 함수들 **/
