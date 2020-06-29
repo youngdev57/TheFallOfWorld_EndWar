@@ -26,6 +26,19 @@ public class DungeonEnter : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.F9))
+        {
+            EnterDungeon();
+        }
+
+        if (Input.GetKeyDown(KeyCode.F10))
+        {
+            ReadyDungeon();
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Player" && other.GetComponent<PhotonView>() != null)

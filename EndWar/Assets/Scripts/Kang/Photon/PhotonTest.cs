@@ -454,8 +454,8 @@ public class PhotonTest : MonoBehaviourPunCallbacks
     public void BaseSetting()
     {
         //대기 후 위치에 플레이어 생성
-        pointsObj = PlayerPoints.GetInstance();
-        playerSpawnPoints = pointsObj.points;
+        //pointsObj = PlayerPoints.GetInstance();
+        //playerSpawnPoints = pointsObj.points;
         CreatePlayer(destination);  //생성  0=기지에 플레이어 생성용
 
         KPM.inven.OnBaseCamp();
@@ -476,8 +476,8 @@ public class PhotonTest : MonoBehaviourPunCallbacks
     public void SceneSetting()
     {
         //대기 후 위치에 플레이어 생성
-        pointsObj = PlayerPoints.GetInstance();
-        playerSpawnPoints = pointsObj.points;
+        //pointsObj = PlayerPoints.GetInstance();
+        //playerSpawnPoints = pointsObj.points;
         CreatePlayer(destination);  //생성  0=기지에 플레이어 생성용
     }
 
@@ -581,7 +581,7 @@ public class PhotonTest : MonoBehaviourPunCallbacks
         {
             case 0:     //기지
                 idx = 0; //기지 소환 위치 하나뿐이라서 그냥 0
-                tempObj = PhotonNetwork.Instantiate("PlayerOnBase", playerSpawnPoints[idx].position, Quaternion.identity, 0);
+                tempObj = PhotonNetwork.Instantiate("PlayerOnBase", new Vector3(107.37f, 1.21f, 174.25f), Quaternion.identity, 0);
                 tempObj.GetComponent<PlayerInfo>().photonManager = this;
                 tempObj.GetComponent<PlayerManager>().photonManager = this;
                 tempObj.GetComponentsInChildren<UI_Laser>()[0].enabled = true;
@@ -596,11 +596,11 @@ public class PhotonTest : MonoBehaviourPunCallbacks
             case 1:     //스노우맵
                 SpawnPlayer();
                 break;
-            case 2:     //스노우맵
-                SpawnPlayer();
+            case 2:     //스노우맵 - 던전앞
+                SpawnPlayer_FrontDungeon();
                 break;
             case 3:     //던전
-                SpawnPlayer();
+                SpawnPlayer_InDungeon();
                 break;
             case 98:    //배틀테스트
                 SpawnPlayer();
@@ -615,6 +615,28 @@ public class PhotonTest : MonoBehaviourPunCallbacks
     {
         GameObject tempObj;
         tempObj = PhotonNetwork.Instantiate("Player", playerSpawnPoints[0].position, Quaternion.identity, 0);
+        tempObj.GetComponent<PlayerInfo>().photonManager = this;
+        tempObj.GetComponent<PlayerManager>().photonManager = this;
+        tempObj.GetComponent<PlayerItem>().pInven = GetComponent<PlayerInven>();
+        tempObj.GetComponent<PlayerItem>().LoadGemsLocal();     //PlayerInven의 재료 개수를 PlayerItem에 적용하는 함수
+    }
+
+    void SpawnPlayer_InDungeon()
+    {
+        GameObject tempObj;
+        float randomZ = UnityEngine.Random.Range(-8f, 8f);
+        Vector3 spawnPos = new Vector3(124.9847f, 30.566f, 99.78168f + randomZ);
+        tempObj = PhotonNetwork.Instantiate("Player", spawnPos, Quaternion.identity, 0);
+        tempObj.GetComponent<PlayerInfo>().photonManager = this;
+        tempObj.GetComponent<PlayerManager>().photonManager = this;
+        tempObj.GetComponent<PlayerItem>().pInven = GetComponent<PlayerInven>();
+        tempObj.GetComponent<PlayerItem>().LoadGemsLocal();     //PlayerInven의 재료 개수를 PlayerItem에 적용하는 함수
+    }
+
+    void SpawnPlayer_FrontDungeon()
+    {
+        GameObject tempObj;
+        tempObj = PhotonNetwork.Instantiate("Player", new Vector3(3500f, 2f, 1726f), Quaternion.identity, 0);
         tempObj.GetComponent<PlayerInfo>().photonManager = this;
         tempObj.GetComponent<PlayerManager>().photonManager = this;
         tempObj.GetComponent<PlayerItem>().pInven = GetComponent<PlayerInven>();
