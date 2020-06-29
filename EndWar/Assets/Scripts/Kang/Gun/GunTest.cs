@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using Photon.Pun;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Valve.VR;
-using Photon.Pun;
 
 public class GunTest : MonoBehaviourPunCallbacks
 {
@@ -20,23 +21,38 @@ public class GunTest : MonoBehaviourPunCallbacks
     public AudioClip[] sfxArray;
 
     [Space(10)]
-    public Animator anim;
-
-    int index = 0;
+    public Slider reloadingSlider;
+    public Text bulletText;
 
     [Space(10)]
+    public Animator anim;
+
+    int bulletCount = 0;
+    
+    [Space(10)]
+    public int reloadCount;
+    public float reloadTime;
     public int damage = 0;
     public float delay = 0.75f;
     float timer = 0f;
 
     bool isFire = false;
     bool canFire = true;
+    bool isReloading = false;
     //bool isRestore = true;
     
 
     void Start()
     {
         bulletArray = new List<GameObject>();
+        reloadingSlider.maxValue = 1f;
+        reloadingSlider.value = 1f;
+    }
+
+    void OnEnable()
+    {
+        if (isReloading)
+            reloadingSlider.value = 0;
     }
 
     [PunRPC]
@@ -70,7 +86,14 @@ public class GunTest : MonoBehaviourPunCallbacks
 
         BulletPulling();
         audioSource.PlayOneShot(sfxArray[Random.Range(0, sfxArray.Length)]);
-        index++;
+        bulletCount++;
+
+        if (bulletCount >= reloadCount)
+        {
+            isReloading = true;
+            reloadingSlider.value = 0;
+            reloadingSlider.gameObject.SetActive(true);
+        }
 
         yield return new WaitForSeconds(0.15f);
         
@@ -100,6 +123,21 @@ public class GunTest : MonoBehaviourPunCallbacks
         temp.transform.position = muzzleTr.position;
         temp.GetComponent<Rigidbody>().AddForce(muzzleTr.right * 8000f);
     }
+
+    void Reloading()
+    {
+        if (isReloading)
+        {
+            reloadingSlider.value += Time.deltaTime / reloadTime;
+            if (reloadingSlider.value >= reloadingSlider.maxValue)
+            {
+                isReloading = false;
+                bulletCount = 0;
+                reloadingSlider.value = 1f;
+                reloadingSlider.gameObject.SetActive(false);
+            }
+        }
+    }
     
     void Update()
     {
@@ -114,13 +152,9 @@ public class GunTest : MonoBehaviourPunCallbacks
             timer -= delay;
         }
 
-        if (grapAction.GetState(handType) && canFire)
+        if (isReloading != true && canFire && grapAction.GetState(handType))
         {
-            if (index >= bulletArray.Count)
-                index = 0;
-
             isFire = true;
-            //Fire();
             photonView.RPC("Fire", RpcTarget.AllViaServer);
         }
 
@@ -128,5 +162,9 @@ public class GunTest : MonoBehaviourPunCallbacks
         {
             isFire = false;
         }
+
+        Reloading();
+
+        bulletText.text = string.Format("{0}", reloadCount - bulletCount);
     }
 }
