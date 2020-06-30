@@ -108,8 +108,8 @@ NavMeshSettings:
     agentTypeID: 0
     agentRadius: 0.1
     agentHeight: 2
-    agentSlope: 45
-    agentClimb: 0.4
+    agentSlope: 60
+    agentClimb: 0.8
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
     minRegionArea: 1
@@ -27423,6 +27423,7 @@ Transform:
   - {fileID: 1075539137}
   - {fileID: 716761336}
   - {fileID: 455698254}
+  - {fileID: 1450268153}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -40693,8 +40694,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 24.17881, y: 15.013945, z: 32.788284}
-  m_Center: {x: 3.3943443, y: -0.15050411, z: 9.90506}
+  m_Size: {x: 24.17881, y: 15.013945, z: 95.675476}
+  m_Center: {x: 3.3943443, y: -0.15050411, z: 9.753563}
 --- !u!1001 &1239445262
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -45099,6 +45100,50 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 32916318}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1450268152
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1450268153}
+  - component: {fileID: 1450268154}
+  m_Layer: 0
+  m_Name: Wall_Trigger (14)
+  m_TagString: Wall
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1450268153
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1450268152}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -25.5, y: -12.58, z: 16.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 719919126}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1450268154
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1450268152}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 63.57888, y: 17.642487, z: 82.26233}
+  m_Center: {x: 32.344196, y: -3.7950897, z: -31.573593}
 --- !u!4 &1458832579 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4793381777978566, guid: c9d6bd6a548ff2840ad1ae62eb544473,
@@ -54476,8 +54521,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 24.17881, y: 15.013945, z: 19.11515}
-  m_Center: {x: 3.3943443, y: -0.15050411, z: 3.068493}
+  m_Size: {x: 24.17881, y: 15.013945, z: 28.124596}
+  m_Center: {x: 3.3943443, y: -0.15050411, z: 7.5732155}
 --- !u!1001 &1833295975
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -66696,8 +66741,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 24.17881, y: 15.013945, z: 19.11515}
-  m_Center: {x: 3.3943443, y: -0.15050411, z: 3.068493}
+  m_Size: {x: 24.17881, y: 15.013945, z: 39.362495}
+  m_Center: {x: 3.3943443, y: -0.15050411, z: -7.0551796}
 --- !u!1001 &2130893844
 PrefabInstance:
   m_ObjectHideFlags: 0
