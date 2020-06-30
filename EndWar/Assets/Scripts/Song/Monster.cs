@@ -46,8 +46,8 @@ public  class Monster : MonoBehaviour
     internal bool attackMode;
     internal bool notDie;
 
-    internal float delay;
-    internal float attackType;
+    public float delay;
+    public float attackType;
 
     internal float speed = 1; //본인의 기본 속도를 저장     // 추가한 사람 : 이상재
 
@@ -59,7 +59,7 @@ public  class Monster : MonoBehaviour
     [PunRPC]
     public virtual void AttackType()
     {
-        int type = Random.Range(0, 3);
+        attackType = Random.Range(0, 3);
     }
 
     public virtual void BossAttackTimer()
