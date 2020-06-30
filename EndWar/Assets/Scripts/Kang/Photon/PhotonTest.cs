@@ -594,7 +594,7 @@ public class PhotonTest : MonoBehaviourPunCallbacks
                 break;
 
             case 1:     //스노우맵
-                SpawnPlayer();
+                SpawnPlayer_Snow();
                 break;
             case 2:     //스노우맵 - 던전앞
                 SpawnPlayer_FrontDungeon();
@@ -603,18 +603,27 @@ public class PhotonTest : MonoBehaviourPunCallbacks
                 SpawnPlayer_InDungeon();
                 break;
             case 98:    //배틀테스트
-                SpawnPlayer();
+                SpawnPlayer_BattleTest();
                 break;
             case 99:    //사격연습장
-                SpawnPlayer();
                 break;
         }
     }
 
-    void SpawnPlayer()
+    void SpawnPlayer_BattleTest()
     {
         GameObject tempObj;
-        tempObj = PhotonNetwork.Instantiate("Player", playerSpawnPoints[0].position, Quaternion.identity, 0);
+        tempObj = PhotonNetwork.Instantiate("Player", new Vector3(0.7f, 1f, 0.2f), Quaternion.identity, 0);
+        tempObj.GetComponent<PlayerInfo>().photonManager = this;
+        tempObj.GetComponent<PlayerManager>().photonManager = this;
+        tempObj.GetComponent<PlayerItem>().pInven = GetComponent<PlayerInven>();
+        tempObj.GetComponent<PlayerItem>().LoadGemsLocal();     //PlayerInven의 재료 개수를 PlayerItem에 적용하는 함수
+    }
+
+    void SpawnPlayer_Snow()
+    {
+        GameObject tempObj;
+        tempObj = PhotonNetwork.Instantiate("Player", new Vector3(298.8895f, 3f, 413.3289f), Quaternion.identity, 0);
         tempObj.GetComponent<PlayerInfo>().photonManager = this;
         tempObj.GetComponent<PlayerManager>().photonManager = this;
         tempObj.GetComponent<PlayerItem>().pInven = GetComponent<PlayerInven>();

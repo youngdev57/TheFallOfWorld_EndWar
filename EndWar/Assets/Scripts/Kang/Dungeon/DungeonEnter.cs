@@ -174,6 +174,5 @@ public class DungeonEnter : MonoBehaviour
         PhotonTest myPhoton = playerObj.GetComponent<PlayerInfo>().photonManager;
         myPhoton.destination = 3;
         myPhoton.SendMessage("LeaveRoom");
-        myPhoton.ChangeRoom(myPhoton.destination);
     }
 }
