@@ -48,7 +48,7 @@ public class Reptile : Monster
                     mNav.isStopped = true;
                     mNav.velocity = Vector3.zero;
                     mNav.speed = 0f;
-                    if (canAttack && notDie)
+                    if (canAttack)
                     {
                         delay += Time.deltaTime;
                         if (delay >= actSpeed)
@@ -90,7 +90,7 @@ public class Reptile : Monster
 
     public override void OnTriggerEnter(Collider other)
     {
-        if (!canAttack && other.gameObject.tag == "Player")
+        if (!canAttack && other.gameObject.tag == "Player" && !notDie)
         {
             target = other.gameObject.transform;
             mNav.stoppingDistance = 2f;
@@ -102,7 +102,7 @@ public class Reptile : Monster
 
     public override void OnTriggerExit(Collider other)
     {
-        if (!attackMode && canAttack && other.gameObject.tag == "Player")
+        if (!attackMode && canAttack && other.gameObject.tag == "Player" && !notDie)
         {
             mNav.stoppingDistance = 0;
             monster_Staus = Staus.walk;
@@ -140,7 +140,7 @@ public class Reptile : Monster
         attackMode = false;
         idleMode = true;
 
-        notDie = true;
+        notDie = false;
         delay = 0f;
 
         mNav.enabled = true;

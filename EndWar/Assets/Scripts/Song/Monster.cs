@@ -44,7 +44,7 @@ public  class Monster : MonoBehaviour
     public bool canAttack;
     internal bool idleMode;
     internal bool attackMode;
-    internal bool notDie;
+    public bool notDie;
 
     public float delay;
     public float attackType;
@@ -73,15 +73,18 @@ public  class Monster : MonoBehaviour
 
     void Update()
     {
-        PlayAnimation();
-        OnMove();
-        TargetPosition();
-        Die();
-        RespawnerOff();
-        if (type == MonsterType.Boss)
+        if (!notDie)
         {
-            BossAttackTimer();
-            BossPatten();
+            PlayAnimation();
+            OnMove();
+            TargetPosition();
+            Die();
+            RespawnerOff();
+            if (type == MonsterType.Boss)
+            {
+                BossAttackTimer();
+                BossPatten();
+            }
         }
     }
 
@@ -101,9 +104,9 @@ public  class Monster : MonoBehaviour
                 mAnimator.SetTrigger("Run");
                 break;
             case Staus.die:
-                if (notDie)
+                if (!notDie)
                     mAnimator.SetTrigger("Die");
-                notDie = false;
+                notDie = true;
                 break;
             case Staus.attack:
                 if (pv.IsMine)
@@ -130,7 +133,7 @@ public  class Monster : MonoBehaviour
 
     public virtual void Die()
     {
-        if (HP <= 0 && notDie)
+        if (HP <= 0)
         {
             monster_Staus = Staus.die;
             mRigidbody.velocity = Vector3.zero;
@@ -173,7 +176,7 @@ public  class Monster : MonoBehaviour
                     mNav.isStopped = true;
                     mNav.velocity = Vector3.zero;
                     mNav.speed = 0f;
-                    if (canAttack && notDie)
+                    if (canAttack)
                     {
                         delay += Time.deltaTime;
                         if (delay >= actSpeed)
@@ -216,7 +219,7 @@ public  class Monster : MonoBehaviour
     // 플레이어 인식
     public virtual void OnTriggerEnter(Collider other)
     {
-        if (!canAttack && other.gameObject.tag == "Player" && notDie)
+        if (!canAttack && other.gameObject.tag == "Player" && !notDie)
         {
             target = other.gameObject.transform;
             mNav.stoppingDistance = 2;
@@ -227,7 +230,7 @@ public  class Monster : MonoBehaviour
     }
     public virtual void OnTriggerExit(Collider other)
     {
-        if (!attackMode && canAttack && other.gameObject.tag == "Player" && notDie )
+        if (!attackMode && canAttack && other.gameObject.tag == "Player" && !notDie)
         {
             mNav.stoppingDistance = 0;
             monster_Staus = Staus.walk;
@@ -241,7 +244,7 @@ public  class Monster : MonoBehaviour
     // 피격시 플레이어 인식
     public virtual void PlayerTarget(Transform tr)
     {
-        if (target == null || target.gameObject.tag != "Player" && notDie )
+        if (target == null || target.gameObject.tag != "Player" && !notDie )
         {
             target = tr;
         }

@@ -89,7 +89,7 @@ public class Juggernaut : Monster
 
     public override void OnTriggerEnter(Collider other)
     {
-        if (!canAttack && other.gameObject.tag == "Player")
+        if (!canAttack && other.gameObject.tag == "Player" && !notDie)
         {
             target = other.gameObject.transform;
             mNav.stoppingDistance = 3f;
@@ -101,7 +101,7 @@ public class Juggernaut : Monster
 
     public override void OnTriggerExit(Collider other)
     {
-        if (!attackMode && canAttack && other.gameObject.tag == "Player")
+        if (!attackMode && canAttack && other.gameObject.tag == "Player" && !notDie)
         {
             mNav.stoppingDistance = 0;
             monster_Staus = Staus.walk;
@@ -139,7 +139,7 @@ public class Juggernaut : Monster
         attackMode = false;
         idleMode = true;
 
-        notDie = true;
+        notDie = false;
         delay = 0f;
 
         mNav.enabled = true;

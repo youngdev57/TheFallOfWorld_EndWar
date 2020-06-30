@@ -10,8 +10,7 @@ public class Titan : Monster
     public List<GameObject> PattenObj;
     // 0 : 불장판
     public List<GameObject> PattenMonster;
-    public List<GameObject> SpawnMonster;
-    // 0 : 슬러그 
+    // 0 : 슬러그 1 : 렙타일 2: 인섹트 3 : 정크 4 : 아라츠니드
 
     private int Page = 1;
 
@@ -19,6 +18,8 @@ public class Titan : Monster
     private bool PattenUse;
     public bool invincibility;
     public bool PatternUsingOnlyOne;
+
+    public GameObject b_Spwaner;
 
     // 보스 Try 시작 함수
     public override void BossAttackTimer()
@@ -282,9 +283,16 @@ public class Titan : Monster
                 mAnimator.SetTrigger("Run");
                 break;
             case Staus.die:
-                if (notDie)
+                if (!notDie)
+                {
+                    notDie = true;
                     mAnimator.SetTrigger("Die");
-                notDie = false;
+                    GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+                    foreach (GameObject player in players)
+                    {
+                        player.GetComponent<PhotonView>().RPC("ShowClearUI", RpcTarget.All);
+                    }
+                }
                 break;
             case Staus.attack:
                 mAnimator.SetTrigger("Attack_fir");
@@ -316,7 +324,7 @@ public class Titan : Monster
                     mNav.velocity = Vector3.zero;
                     mNav.speed = 0f;
                     // 평타
-                    if (canAttack && !PattenUse && notDie)
+                    if (canAttack && !PattenUse)
                     {
                         delay += Time.deltaTime;
                         if (delay >= actSpeed)
@@ -358,7 +366,7 @@ public class Titan : Monster
 
     public override void OnTriggerEnter(Collider other)
     {
-        if (!canAttack && other.gameObject.tag == "Player")
+        if (!canAttack && other.gameObject.tag == "Player" && !notDie)
         {
             target = other.gameObject.transform;
             mNav.stoppingDistance = 6.5f;
@@ -370,7 +378,7 @@ public class Titan : Monster
 
     public override void OnTriggerExit(Collider other)
     {
-        if (!attackMode && canAttack && other.gameObject.tag == "Player")
+        if (!attackMode && canAttack && other.gameObject.tag == "Player" && !notDie)
         {
             mNav.stoppingDistance = 0;
             monster_Staus = Staus.walk;
@@ -407,6 +415,12 @@ public class Titan : Monster
         mRigidbody = GetComponent<Rigidbody>();
         pv = GetComponent<PhotonView>();
 
+        b_Spwaner.GetComponent<BossMonsterSpwanPatten>().InitMontsers(PattenMonster[0].name, 1, MobLocation.Dungeon);
+        b_Spwaner.GetComponent<BossMonsterSpwanPatten>().InitMontsers(PattenMonster[1].name, 2, MobLocation.Dungeon);
+        b_Spwaner.GetComponent<BossMonsterSpwanPatten>().InitMontsers(PattenMonster[2].name, 4, MobLocation.Dungeon);
+        b_Spwaner.GetComponent<BossMonsterSpwanPatten>().InitMontsers(PattenMonster[3].name, 2, MobLocation.Dungeon);
+        b_Spwaner.GetComponent<BossMonsterSpwanPatten>().InitMontsers(PattenMonster[4].name, 3, MobLocation.Dungeon);
+
         canAttack = false;
         attackMode = false;
         idleMode = true;
@@ -414,7 +428,7 @@ public class Titan : Monster
         invincibility = false;
         PatternUsingOnlyOne = false;
 
-        notDie = true;
+        notDie = false;
         delay = 0f;
 
         mNav.enabled = true;
