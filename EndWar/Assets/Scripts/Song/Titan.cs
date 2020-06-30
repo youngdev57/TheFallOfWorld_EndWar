@@ -7,10 +7,14 @@ using UnityEngine.AI;
 
 public class Titan : Monster
 {
+    public List<GameObject> PattenObj;
+    // 0 : 불장판
+
     private int Page = 1;
 
     private float LadeTimer = 0f;
     private bool PattenUse = false;
+    public bool invincibility = false;
 
     // 보스 Try 시작 함수
     public override void BossAttackTimer()
@@ -34,31 +38,31 @@ public class Titan : Monster
         {
             case 1:
                 PageChange(70);
-                if (LadeTimer == 24f)
+                switch ((int)LadeTimer)
                 {
-                    mAnimator.SetTrigger("Attack_sec");
-                    target.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, ACT * 2);
-                    PattenUse = true;
-                    delay = 0f;
-                    StartCoroutine(NavStop());
+                    case 24:
+                        mAnimator.SetTrigger("Attack_sec");
+                        target.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, ACT * 2);
+                        PattenUse = true;
+                        delay = 0f;
+                        StartCoroutine(NavStop());
+                        break;
+                    case 42:
+                        mAnimator.SetTrigger("Shout");
+                        PattenObj[0].SetActive(true);
+                        PattenObj[0].transform.position = transform.position;
+                        PattenUse = true;
+                        delay = 0f;
+                        StartCoroutine(NavStop());
+                        break;
                 }
-                else if(LadeTimer == 42f)
-                {
-                    mAnimator.SetTrigger("Attack_sec");
-                    target.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, ACT * 2);
-                    PattenUse = true;
-                    delay = 0f;
-                    StartCoroutine(NavStop());
-                }
-                else
-                {
-                    PattenUse = false;
-                }
-                break;
-        }
+            PattenUse = false;
+            break;
+         }
     }
 
-    private void PageChange(int hp)
+
+private void PageChange(int hp)
     {
         if (HP / maxHp * 100 <= hp)
         {
@@ -71,11 +75,10 @@ public class Titan : Monster
     [PunRPC]
     public override void GetDamage(int Damage)
     {
-        //if ()
-        //{
-
-        //}
-
+        if (invincibility)
+        {
+            return;
+        }
         if (VIT < Damage)
         {
             Damage -= VIT;
@@ -251,5 +254,10 @@ public class Titan : Monster
         coll.isTrigger = false;
         transform.localPosition = Vector3.zero;
         transform.rotation = Quaternion.identity;
+
+        for (int x = 0; x < PattenObj.Count; x++)
+        {
+            PattenObj[0].SetActive(false);
+        }
     }
 }
