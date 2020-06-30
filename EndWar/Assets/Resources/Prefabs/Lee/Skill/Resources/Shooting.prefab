@@ -33717,6 +33717,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45db19b7db9b30c47904449cdc1ebff6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   skillName: 
   distance: 0
   n_damageCount: 0
@@ -33731,10 +33732,11 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 0
-  target: {x: -5.5783987, y: 1.4174074, z: -2.0060976}
+  target: {x: -3.562824, y: 1.4585865, z: -4.8940415}
   speed: 50
   seconds: 5
   nonTargetDamage: 25
-  rotation: {x: -0.13982882, y: -0.1457344, z: 0.02057726, w: 0.97917616}
+  rotation: {x: -0.19551626, y: -0.1946742, z: -0.08341774, w: 0.95755774}
   electricShock: 0
   freezing: 0
+  dotDamage: 0

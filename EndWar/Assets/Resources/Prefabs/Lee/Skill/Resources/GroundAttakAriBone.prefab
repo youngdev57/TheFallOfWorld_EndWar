@@ -14426,13 +14426,14 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 4096
-  target: {x: 0, y: 0, z: 0}
+  target: {x: -3.3931339, y: 0, z: -5.1388307}
   speed: 0
   seconds: 0
   nonTargetDamage: 0
-  rotation: {x: 0, y: 0.155105, z: 0, w: -0.987898}
+  rotation: {x: 0, y: 0.31887016, z: 0, w: -0.94779843}
   electricShock: 0
   freezing: 0
+  dotDamage: 0
 --- !u!1 &1628800754501523456
 GameObject:
   m_ObjectHideFlags: 0
