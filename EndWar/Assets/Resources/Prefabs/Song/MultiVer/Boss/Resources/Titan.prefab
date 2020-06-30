@@ -1,48 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1189026877677420604
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 144737747064460447}
-  - component: {fileID: 2922645936145679446}
-  m_Layer: 0
-  m_Name: BossMonsterSpwanPatten
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &144737747064460447
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1189026877677420604}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 6883571962770045206}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2922645936145679446
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1189026877677420604}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c1d65d59a0443448ac3589d358a274c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &6883571961847866171
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -229,7 +186,7 @@ MonoBehaviour:
   - {fileID: 9051630201261232885, guid: 14327e4208ee3e64095e751faaac09a7, type: 3}
   invincibility: 0
   PatternUsingOnlyOne: 0
-  b_Spwaner: {fileID: 1189026877677420604}
+  b_Spwaner: {fileID: 0}
 --- !u!1 &6883571962407424012
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,7 +293,6 @@ Transform:
   - {fileID: 6883571962407424013}
   - {fileID: 6999887992693152529}
   - {fileID: 1287813513056628373}
-  - {fileID: 144737747064460447}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

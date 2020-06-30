@@ -19,8 +19,6 @@ public class Titan : Monster
     public bool invincibility;
     public bool PatternUsingOnlyOne;
 
-    public GameObject b_Spwaner;
-
     // 보스 Try 시작 함수
     public override void BossAttackTimer()
     {
@@ -49,7 +47,7 @@ public class Titan : Monster
                 PageChange(70);
                 switch ((int)LadeTimer)
                 {
-                    case 24:
+                    case 26:
                         if (!PatternUsingOnlyOne)
                         {
                             PatternUsingOnlyOne = true;
@@ -67,6 +65,7 @@ public class Titan : Monster
                             mAnimator.SetTrigger("Shout");
                             PattenObj[0].SetActive(true);
                             PattenObj[0].transform.position = transform.position;
+                            PattenObj[0].GetComponent<Fog>().setDamage(9);
                             PattenUse = true;
                             delay = 0f;
                             StartCoroutine(NavStop());
@@ -92,6 +91,7 @@ public class Titan : Monster
                             PattenUse = true;
                             delay = 0f;
                             StartCoroutine(NavStop());
+                            StartCoroutine(Uninvincibility());
                         }
                         break;
                     case 114:
@@ -101,6 +101,7 @@ public class Titan : Monster
                             mAnimator.SetTrigger("Shout");
                             PattenObj[0].SetActive(true);
                             PattenObj[0].transform.position = transform.position;
+                            PattenObj[0].GetComponent<Fog>().setDamage(9);
                             PattenUse = true;
                             delay = 0f;
                             StartCoroutine(NavStop());
@@ -134,6 +135,7 @@ public class Titan : Monster
                             mAnimator.SetTrigger("Shout");
                             PattenObj[0].SetActive(true);
                             PattenObj[0].transform.position = transform.position;
+                            PattenObj[0].GetComponent<Fog>().setDamage(14);
                             PattenUse = true;
                             delay = 0f;
                             StartCoroutine(NavStop());
@@ -143,24 +145,48 @@ public class Titan : Monster
                         if (PatternUsingOnlyOne)
                         {
                             PatternUsingOnlyOne = false;
+                            mAnimator.SetTrigger("Attack_thi");
+                            target.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, ACT * 7);
+                            PattenUse = true;
+                            delay = 0f;
+                            StartCoroutine(NavStop());
                         }
                         break;
                     case 60:
                         if (!PatternUsingOnlyOne)
                         {
                             PatternUsingOnlyOne = true;
+                            mAnimator.SetTrigger("Attack_sec");
+                            target.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, ACT * 4);
+                            PattenUse = true;
+                            delay = 0f;
+                            StartCoroutine(NavStop());
                         }
                         break;
                     case 82:
                         if (PatternUsingOnlyOne)
                         {
                             PatternUsingOnlyOne = false;
+                            mAnimator.SetTrigger("Attack_thi");
+                            target.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, ACT * 7);
+                            PattenUse = true;
+                            invincibility = true;
+                            delay = 0f;
+                            StartCoroutine(NavStop());
+                            StartCoroutine(Uninvincibility());
                         }
                         break;
                     case 114:
                         if (!PatternUsingOnlyOne)
                         {
                             PatternUsingOnlyOne = true;
+                            mAnimator.SetTrigger("Shout");
+                            PattenObj[0].SetActive(true);
+                            PattenObj[0].transform.position = transform.position;
+                            PattenObj[0].GetComponent<Fog>().setDamage(14);
+                            PattenUse = true;
+                            delay = 0f;
+                            StartCoroutine(NavStop());
                         }
                         break;
                         // 전멸기
@@ -187,30 +213,65 @@ public class Titan : Monster
                         if (!PatternUsingOnlyOne)
                         {
                             PatternUsingOnlyOne = true;
+                            mAnimator.SetTrigger("Shout");
+                            PattenObj[0].SetActive(true);
+                            PattenObj[0].transform.position = transform.position;
+                            PattenObj[0].GetComponent<Fog>().setDamage(20);
+                            PattenUse = true;
+                            delay = 0f;
+                            StartCoroutine(NavStop());
                         }
                         break;
                     case 42:
                         if (PatternUsingOnlyOne)
                         {
                             PatternUsingOnlyOne = false;
+                            mAnimator.SetTrigger("Attack_thi");
+                            target.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, ACT * 11);
+                            PattenUse = true;
+                            invincibility = true;
+                            delay = 0f;
+                            StartCoroutine(NavStop());
+                            StartCoroutine(Uninvincibility());
                         }
                         break;
                     case 60:
                         if (!PatternUsingOnlyOne)
                         {
                             PatternUsingOnlyOne = true;
+                            mAnimator.SetTrigger("Shout");
+                            PattenObj[0].SetActive(true);
+                            PattenObj[0].transform.position = transform.position;
+                            PattenObj[0].GetComponent<Fog>().setDamage(20);
+                            PattenUse = true;
+                            delay = 0f;
+                            StartCoroutine(NavStop());
                         }
                         break;
                     case 82:
                         if (PatternUsingOnlyOne)
                         {
                             PatternUsingOnlyOne = false;
+                            mAnimator.SetTrigger("Attack_sec");
+                            target.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, ACT * 8);
+                            PattenUse = true;
+                            invincibility = true;
+                            delay = 0f;
+                            StartCoroutine(NavStop());
+                            StartCoroutine(Uninvincibility());
                         }
                         break;
                     case 114:
                         if (!PatternUsingOnlyOne)
                         {
                             PatternUsingOnlyOne = true;
+                            mAnimator.SetTrigger("Shout");
+                            PattenObj[0].SetActive(true);
+                            PattenObj[0].transform.position = transform.position;
+                            PattenObj[0].GetComponent<Fog>().setDamage(20);
+                            PattenUse = true;
+                            delay = 0f;
+                            StartCoroutine(NavStop());
                         }
                         break;
                         // 전멸기
@@ -396,6 +457,11 @@ public class Titan : Monster
         mNav.speed = 5f * speed;
         monster_Staus = Staus.idle;
     }
+    public  IEnumerator Uninvincibility()
+    {
+        yield return new WaitForSeconds(4f);
+        invincibility = false;
+    }
 
     public void OnEnable()
     {
@@ -414,12 +480,6 @@ public class Titan : Monster
         mAnimator = GetComponent<Animator>();
         mRigidbody = GetComponent<Rigidbody>();
         pv = GetComponent<PhotonView>();
-
-        b_Spwaner.GetComponent<BossMonsterSpwanPatten>().InitMontsers(PattenMonster[0].name, 1, MobLocation.Dungeon);
-        b_Spwaner.GetComponent<BossMonsterSpwanPatten>().InitMontsers(PattenMonster[1].name, 2, MobLocation.Dungeon);
-        b_Spwaner.GetComponent<BossMonsterSpwanPatten>().InitMontsers(PattenMonster[2].name, 4, MobLocation.Dungeon);
-        b_Spwaner.GetComponent<BossMonsterSpwanPatten>().InitMontsers(PattenMonster[3].name, 2, MobLocation.Dungeon);
-        b_Spwaner.GetComponent<BossMonsterSpwanPatten>().InitMontsers(PattenMonster[4].name, 3, MobLocation.Dungeon);
 
         canAttack = false;
         attackMode = false;
