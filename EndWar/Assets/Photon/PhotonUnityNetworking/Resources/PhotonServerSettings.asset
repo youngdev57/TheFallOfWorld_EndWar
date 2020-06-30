@@ -31,6 +31,7 @@ MonoBehaviour:
   RunInBackground: 1
   StartInOfflineMode: 0
   RpcList:
+  - AttackType
   - Blast
   - ChangeColour
   - ChangeGun
@@ -52,11 +53,9 @@ MonoBehaviour:
   - Release
   - ReleaseObj
   - RespawnSpaceship
-  - Restore
   - SetPick
   - TargetPosition
   - Test
-  - AttackType
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
