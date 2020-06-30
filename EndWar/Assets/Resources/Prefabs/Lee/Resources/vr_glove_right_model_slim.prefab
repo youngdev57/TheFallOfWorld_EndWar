@@ -1625,6 +1625,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7136455182116540153}
     m_Modifications:
+    - target: {fileID: 5642926489604534225, guid: bd46ff04a41817a41bc0af92f3660014,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8004227974468137538, guid: bd46ff04a41817a41bc0af92f3660014,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -107,17 +107,15 @@ MonoBehaviour:
   bullet: {fileID: 3650604311363727851, guid: a39569020fa748b40a937891c13be51d, type: 3}
   audioSource: {fileID: 9216353309149763428}
   sfxArray:
-  - {fileID: 8300000, guid: 9270ddc8630a1654bbce8a26e755b058, type: 3}
-  - {fileID: 8300000, guid: c5ab43eb861ef3c4db4600527c3ec29b, type: 3}
-  - {fileID: 8300000, guid: 8e5adb3004157f24385e3de1f02cc1ce, type: 3}
-  - {fileID: 8300000, guid: 0800b4854e84ad243a55e1f7a44844f2, type: 3}
+  - {fileID: 8300000, guid: 1df1429981f76644097c7fd47fc5f239, type: 3}
+  - {fileID: 8300000, guid: b527b67e65d45b741b1e55da12b8b297, type: 3}
   reloadingSlider: {fileID: 5392869005089431833}
   bulletText: {fileID: 2191168494482295276}
   anim: {fileID: 0}
   reloadCount: 8
   reloadTime: 3.5
   damage: 50
-  delay: 0.75
+  delay: 1.2
 --- !u!114 &7334809236679465563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,7 +194,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
