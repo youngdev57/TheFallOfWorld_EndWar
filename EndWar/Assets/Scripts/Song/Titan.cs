@@ -163,7 +163,7 @@ public class Titan : Monster
                         }
                         break;
                         // 전멸기
-                    case 150:
+                    case 250:
                         if (PatternUsingOnlyOne)
                         {
                             PatternUsingOnlyOne = false;
@@ -213,7 +213,7 @@ public class Titan : Monster
                         }
                         break;
                         // 전멸기
-                    case 150:
+                    case 200:
                         if (PatternUsingOnlyOne)
                         {
                             PatternUsingOnlyOne = false;
@@ -316,7 +316,7 @@ public class Titan : Monster
                     mNav.velocity = Vector3.zero;
                     mNav.speed = 0f;
                     // 평타
-                    if (canAttack && !PattenUse)
+                    if (canAttack && !PattenUse && notDie)
                     {
                         delay += Time.deltaTime;
                         if (delay >= actSpeed)

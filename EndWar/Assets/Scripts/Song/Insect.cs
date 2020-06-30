@@ -87,7 +87,7 @@ public class Insect : Monster
                     mNav.isStopped = true;
                     mNav.velocity = Vector3.zero;
                     mNav.speed = 0f;
-                    if (canAttack)
+                    if (canAttack && notDie)
                     {
                         delay += Time.deltaTime;
                         if (delay >= actSpeed)

@@ -130,7 +130,7 @@ public  class Monster : MonoBehaviour
 
     public virtual void Die()
     {
-        if (HP <= 0)
+        if (HP <= 0 && notDie)
         {
             monster_Staus = Staus.die;
             mRigidbody.velocity = Vector3.zero;
@@ -173,7 +173,7 @@ public  class Monster : MonoBehaviour
                     mNav.isStopped = true;
                     mNav.velocity = Vector3.zero;
                     mNav.speed = 0f;
-                    if (canAttack)
+                    if (canAttack && notDie)
                     {
                         delay += Time.deltaTime;
                         if (delay >= actSpeed)
@@ -216,7 +216,7 @@ public  class Monster : MonoBehaviour
     // 플레이어 인식
     public virtual void OnTriggerEnter(Collider other)
     {
-        if (!canAttack && other.gameObject.tag == "Player")
+        if (!canAttack && other.gameObject.tag == "Player" && notDie)
         {
             target = other.gameObject.transform;
             mNav.stoppingDistance = 2;
@@ -227,7 +227,7 @@ public  class Monster : MonoBehaviour
     }
     public virtual void OnTriggerExit(Collider other)
     {
-        if (!attackMode && canAttack && other.gameObject.tag == "Player")
+        if (!attackMode && canAttack && other.gameObject.tag == "Player" && notDie )
         {
             mNav.stoppingDistance = 0;
             monster_Staus = Staus.walk;
@@ -241,7 +241,7 @@ public  class Monster : MonoBehaviour
     // 피격시 플레이어 인식
     public virtual void PlayerTarget(Transform tr)
     {
-        if (target == null || target.gameObject.tag != "Player")
+        if (target == null || target.gameObject.tag != "Player" && notDie )
         {
             target = tr;
         }
@@ -286,7 +286,6 @@ public  class Monster : MonoBehaviour
     //도트 데미지
     public virtual IEnumerator SetStatusEffect(int damage, float se)
     {
-        Debug.Log("dot");
         float seconds = 0;
         while (seconds >= se)
         {
@@ -328,7 +327,6 @@ public  class Monster : MonoBehaviour
     }
     //이상재, 추가본----------------------
 
-    // 몬스터 목표 지점 설정
     public void RespawnerOff()
     {
         if (location == MobLocation.Dungeon)
@@ -337,10 +335,11 @@ public  class Monster : MonoBehaviour
         }
     }
 
+    // 몬스터 목표 지점 설정
     public void SetNoneTarget()
     {
-        float x = Random.Range(-50f, 50f);
-        float z = Random.Range(-50f, 50f);
+        float x = Random.Range(-25f, 25f);
+        float z = Random.Range(-25f, 25f);
 
         noneTarget.position = new Vector3(transform.parent.position.x + x, transform.parent.position.y, transform.parent.position.z + z);
         target = noneTarget;
