@@ -25,12 +25,28 @@ public class FlameThrower : MonoBehaviour
     {
         if(other.tag == "Bullet")
         {
+            Debug.Log("불 발사");
             pv.RPC("Blast", RpcTarget.All);
         }
     }
 
     [PunRPC]
     void Blast()
+    {
+        flameEffect.SetActive(true);
+
+
+    }
+
+    IEnumerator WaitFlame()
+    {
+        yield return new WaitForSeconds(2f);
+
+        pv.RPC("BlastOff", RpcTarget.All);
+    }
+
+    [PunRPC]
+    void BlastOff()
     {
         flameEffect.SetActive(true);
     }
