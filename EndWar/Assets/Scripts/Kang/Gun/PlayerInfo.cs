@@ -14,6 +14,8 @@ public class PlayerInfo : MonoBehaviourPunCallbacks
     [SerializeField]
     internal PhotonTest photonManager;
 
+    public GameObject dungeonAlert;
+
     void Start()
     {
         PhotonNetwork.IsMessageQueueRunning = true;
@@ -25,5 +27,25 @@ public class PlayerInfo : MonoBehaviourPunCallbacks
     void LeaveRoom()
     {
         photonManager.LeaveRoom();
+    }
+
+    [PunRPC]
+    public void DungeonEnterAlert()
+    {
+        dungeonAlert.SetActive(true);
+    }
+
+    [PunRPC]
+    public void DungeonEnterAction()
+    {
+        photonManager.destination = 3;
+        photonManager.SendMessage("LeaveRoom");
+    }
+
+    [PunRPC]
+    public void DungeonExitAction()
+    {
+        photonManager.destination = 2;
+        photonManager.SendMessage("LeaveRoom");
     }
 }

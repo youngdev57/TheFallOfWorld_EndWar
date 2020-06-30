@@ -575,12 +575,16 @@ public class Inventory : MonoBehaviour
     public void RefreshEquip()
     {
         int powerSum = 0;
+        int mainDmg = 0;
+        int subDmg = 0;
+        int defenseSum = 0;
 
         if (mainWeapon == Equipment.None)
             mainWeaponImage.sprite = null;
         else {
             mainWeaponImage.sprite = spriteList[(int)mainWeapon - 1];
             powerSum += GetNth(mainIdx).Value.GetPower();
+            mainDmg = GetNth(mainIdx).Value.GetAttackPower();
         }
 
         if (subWeapon == Equipment.None)
@@ -589,6 +593,7 @@ public class Inventory : MonoBehaviour
         {
             subWeaponImage.sprite = spriteList[(int)subWeapon - 1];
             powerSum += GetNth(subIdx).Value.GetPower();
+            subDmg = GetNth(mainIdx).Value.GetAttackPower();
         }
 
         if (helmet == Equipment.None)
@@ -597,6 +602,7 @@ public class Inventory : MonoBehaviour
         {
             helmetImage.sprite = spriteList[(int)helmet - 1];
             powerSum += GetNth(helmetIdx).Value.GetPower();
+            defenseSum += GetNth(helmetIdx).Value.GetDefensePower();
         }
 
         if (armor == Equipment.None)
@@ -605,6 +611,7 @@ public class Inventory : MonoBehaviour
         {
             armorImage.sprite = spriteList[(int)armor - 1];
             powerSum += GetNth(armorIdx).Value.GetPower();
+            defenseSum += GetNth(helmetIdx).Value.GetDefensePower();
         }
 
         if (shoulder == Equipment.None)
@@ -613,6 +620,7 @@ public class Inventory : MonoBehaviour
         {
             shoulderImage.sprite = spriteList[(int)shoulder - 1];
             powerSum += GetNth(shoulderIdx).Value.GetPower();
+            defenseSum += GetNth(helmetIdx).Value.GetDefensePower();
         }
 
         if (glove == Equipment.None)
@@ -621,6 +629,7 @@ public class Inventory : MonoBehaviour
         {
             gloveImage.sprite = spriteList[(int)glove - 1];
             powerSum += GetNth(gloveIdx).Value.GetPower();
+            defenseSum += GetNth(helmetIdx).Value.GetDefensePower();
         }
 
         if (pants == Equipment.None)
@@ -629,6 +638,7 @@ public class Inventory : MonoBehaviour
         {
             pantsImage.sprite = spriteList[(int)pants - 1];
             powerSum += GetNth(pantsIdx).Value.GetPower();
+            defenseSum += GetNth(helmetIdx).Value.GetDefensePower();
         }
 
         if (shoes == Equipment.None)
@@ -637,6 +647,7 @@ public class Inventory : MonoBehaviour
         {
             shoesImage.sprite = spriteList[(int)shoes - 1];
             powerSum += GetNth(shoesIdx).Value.GetPower();
+            defenseSum += GetNth(helmetIdx).Value.GetDefensePower();
         }
 
         if (acc == Equipment.None)
@@ -645,11 +656,18 @@ public class Inventory : MonoBehaviour
         {
             accImage.sprite = spriteList[(int)acc - 1];
             powerSum += GetNth(accIdx).Value.GetPower();
+            mainDmg += GetNth(mainIdx).Value.GetAttackPower();
+            subDmg += GetNth(mainIdx).Value.GetAttackPower();
+            defenseSum += GetNth(helmetIdx).Value.GetDefensePower();
         }
 
         pInven.KPM.power = powerSum;
         powerValueText.text = pInven.KPM.power.ToString();
         pInven.KPM.SaveStatus();
+
+        pInven.mainDamage = mainDmg;
+        pInven.subDamage = subDmg;
+        pInven.playerDEF = defenseSum;
     }
 
     /** 플레이어 인벤 연동 **/

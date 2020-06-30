@@ -30,6 +30,10 @@ public class PlayerInven : MonoBehaviour
 
     public K_PlayerManager KPM;
 
+    public int mainDamage;
+    public int subDamage;
+    public int playerDEF;
+
     void Start()
     {
         allItemLists = new List<Item>();

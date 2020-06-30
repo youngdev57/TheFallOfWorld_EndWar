@@ -16,6 +16,6 @@ public class Button_Ready : MonoBehaviour
 
     public void Action()
     {
-        dungeonEnter.ReadyDungeon();
+        //dungeonEnter.ReadyDungeon();
     }
 }

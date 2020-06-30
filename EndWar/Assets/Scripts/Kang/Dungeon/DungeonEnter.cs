@@ -16,16 +16,18 @@ public class DungeonEnter : MonoBehaviour
 
     public PhotonTest myPhoton;
 
+    GameObject[] players;
+
     private void Start()
     {
         if(PhotonNetwork.IsMasterClient)
         {
             start_btn.gameObject.SetActive(true);
         }
-        else
-        {
-            ready_btn.gameObject.SetActive(true);
-        }
+        //else
+        //{
+        //    ready_btn.gameObject.SetActive(true);
+        //}
     }
 
     private void Update()
@@ -124,11 +126,26 @@ public class DungeonEnter : MonoBehaviour
         //    ShowInvalidStart();
         //}
 
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        players = GameObject.FindGameObjectsWithTag("Player");
 
-        foreach(GameObject player in players)
+        DungeonAlert();
+    }
+
+    void DungeonAlert()
+    {
+        foreach (GameObject player in players)
         {
-            player.GetComponent<PhotonView>().RPC("DoEnter", RpcTarget.All);
+            player.GetComponent<PhotonView>().RPC("DungeonEnterAlert", RpcTarget.All);    //던전 입장 메소드를 PlayerInfo 에서 실행함
+        }
+
+        Invoke("EnterAction", 3f);
+    }
+
+    void EnterAction()
+    {
+        foreach (GameObject player in players)
+        {
+            player.GetComponent<PhotonView>().RPC("DungeonEnterAction", RpcTarget.All);    //던전 입장 메소드를 PlayerInfo 에서 실행함
         }
     }
 
@@ -182,10 +199,5 @@ public class DungeonEnter : MonoBehaviour
     //    }
     //}
 
-    [PunRPC]
-    public void DoEnter()
-    {
-        myPhoton.destination = 3;
-        myPhoton.SendMessage("LeaveRoom");
-    }
+    
 }

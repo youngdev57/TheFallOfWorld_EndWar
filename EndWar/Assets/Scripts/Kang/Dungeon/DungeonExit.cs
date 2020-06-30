@@ -71,7 +71,7 @@ public class DungeonExit : MonoBehaviour
     public void Exit_Quit()
     {
         ScoreExtensions.SetScore(PhotonNetwork.LocalPlayer, 0);
-        photonManager.destination = 4;
+        photonManager.destination = 2;
         photonManager.SendMessage("LeaveRoom");
 
         //클리어 못하고 도중 퇴장 (사망 아님)
@@ -86,7 +86,7 @@ public class DungeonExit : MonoBehaviour
         photonManager.KPM.inven.SaveInven(false);
 
         ScoreExtensions.SetScore(PhotonNetwork.LocalPlayer, 0);
-        photonManager.destination = 4;
+        photonManager.destination = 2;
         photonManager.SendMessage("LeaveRoom");
     }
 
