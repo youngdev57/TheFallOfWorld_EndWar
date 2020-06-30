@@ -12,9 +12,16 @@ public class BossDieTest : MonoBehaviour
     {
         if(other.tag == "Bullet")
         {
-            foreach(Player player in PhotonNetwork.PlayerList)
+            //foreach(Player player in PhotonNetwork.PlayerList)
+            //{
+            //    ScoreExtensions.SetScore(player, 2);
+            //}
+
+            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+
+            foreach(GameObject player in players)
             {
-                ScoreExtensions.SetScore(player, 2);
+                player.GetComponent<PhotonView>().RPC("ShowClearUI", RpcTarget.All);
             }
 
             gameObject.SetActive(false);

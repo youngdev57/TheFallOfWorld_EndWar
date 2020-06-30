@@ -34,6 +34,9 @@ public class PlayerInven : MonoBehaviour
     public int subDamage;
     public int playerDEF;
 
+    public int mainPistol;
+    public int subPistol;
+
     void Start()
     {
         allItemLists = new List<Item>();
