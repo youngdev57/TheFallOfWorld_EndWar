@@ -328,6 +328,14 @@ public  class Monster : MonoBehaviour
     //이상재, 추가본----------------------
 
     // 몬스터 목표 지점 설정
+    public void RespawnerOff()
+    {
+        if (location == MobLocation.Dungeon)
+        {
+            transform.parent.GetComponent<MonsterRespawn>().enabled = false;
+        }
+    }
+
     public void SetNoneTarget()
     {
         float x = Random.Range(-50f, 50f);

@@ -9,12 +9,16 @@ public class Titan : Monster
 {
     public List<GameObject> PattenObj;
     // 0 : 불장판
+    public List<GameObject> PattenMonster;
+    public List<GameObject> SpawnMonster;
+    // 0 : 슬러그 
 
     private int Page = 1;
 
-    private float LadeTimer = 0f;
-    private bool PattenUse = false;
-    public bool invincibility = false;
+    private float LadeTimer;
+    private bool PattenUse;
+    public bool invincibility;
+    public bool PatternUsingOnlyOne;
 
     // 보스 Try 시작 함수
     public override void BossAttackTimer()
@@ -25,6 +29,9 @@ public class Titan : Monster
         }
         else
         {
+            PattenUse = false;
+            invincibility = false;
+            PatternUsingOnlyOne = false;
             LadeTimer = 0f;
             HP = maxHp;
             Page = 1;
@@ -36,38 +43,203 @@ public class Titan : Monster
     {
         switch (Page)
         {
+            // 1 페이즈
             case 1:
                 PageChange(70);
                 switch ((int)LadeTimer)
                 {
                     case 24:
-                        mAnimator.SetTrigger("Attack_sec");
-                        target.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, ACT * 2);
-                        PattenUse = true;
-                        delay = 0f;
-                        StartCoroutine(NavStop());
+                        if (!PatternUsingOnlyOne)
+                        {
+                            PatternUsingOnlyOne = true;
+                            mAnimator.SetTrigger("Attack_sec");
+                            target.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, ACT * 2);
+                            PattenUse = true;
+                            delay = 0f;
+                            StartCoroutine(NavStop());
+                        }
                         break;
                     case 42:
-                        mAnimator.SetTrigger("Shout");
-                        PattenObj[0].SetActive(true);
-                        PattenObj[0].transform.position = transform.position;
-                        PattenUse = true;
-                        delay = 0f;
-                        StartCoroutine(NavStop());
+                        if (PatternUsingOnlyOne)
+                        {
+                            PatternUsingOnlyOne = false;
+                            mAnimator.SetTrigger("Shout");
+                            PattenObj[0].SetActive(true);
+                            PattenObj[0].transform.position = transform.position;
+                            PattenUse = true;
+                            delay = 0f;
+                            StartCoroutine(NavStop());
+                        }
+                        break;
+                    case 60:
+                        if (!PatternUsingOnlyOne)
+                        {
+                            PatternUsingOnlyOne = true;
+                            mAnimator.SetTrigger("Attack_thi");
+                            target.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, ACT * 4);
+                            PattenUse = true;
+                            delay = 0f;
+                            StartCoroutine(NavStop());
+                        }
+                        break;
+                    case 82:
+                        if (PatternUsingOnlyOne)
+                        {
+                            PatternUsingOnlyOne = false;
+                            mAnimator.SetTrigger("Shout");
+                            invincibility = true;
+                            PattenUse = true;
+                            delay = 0f;
+                            StartCoroutine(NavStop());
+                        }
+                        break;
+                    case 114:
+                        if (!PatternUsingOnlyOne)
+                        {
+                            PatternUsingOnlyOne = true;
+                            mAnimator.SetTrigger("Shout");
+                            PattenObj[0].SetActive(true);
+                            PattenObj[0].transform.position = transform.position;
+                            PattenUse = true;
+                            delay = 0f;
+                            StartCoroutine(NavStop());
+                        }
+                        break;
+                        // 전멸기
+                    case 150:
+                        if (PatternUsingOnlyOne)
+                        {
+                            PatternUsingOnlyOne = false;
+                            mAnimator.SetTrigger("Shout");
+                            PattenObj[1].SetActive(true);
+                            PattenObj[1].transform.position = transform.position;
+                            PattenUse = true;
+                            delay = 0f;
+                            StartCoroutine(NavStop());
+                        }
                         break;
                 }
             PattenUse = false;
             break;
-         }
+                // 2페이즈
+            case 2:
+                PageChange(30);
+                switch ((int)LadeTimer)
+                {
+                    case 24:
+                        if (!PatternUsingOnlyOne)
+                        {
+                            PatternUsingOnlyOne = true;
+                            mAnimator.SetTrigger("Shout");
+                            PattenObj[0].SetActive(true);
+                            PattenObj[0].transform.position = transform.position;
+                            PattenUse = true;
+                            delay = 0f;
+                            StartCoroutine(NavStop());
+                        }
+                        break;
+                    case 42:
+                        if (PatternUsingOnlyOne)
+                        {
+                            PatternUsingOnlyOne = false;
+                        }
+                        break;
+                    case 60:
+                        if (!PatternUsingOnlyOne)
+                        {
+                            PatternUsingOnlyOne = true;
+                        }
+                        break;
+                    case 82:
+                        if (PatternUsingOnlyOne)
+                        {
+                            PatternUsingOnlyOne = false;
+                        }
+                        break;
+                    case 114:
+                        if (!PatternUsingOnlyOne)
+                        {
+                            PatternUsingOnlyOne = true;
+                        }
+                        break;
+                        // 전멸기
+                    case 150:
+                        if (PatternUsingOnlyOne)
+                        {
+                            PatternUsingOnlyOne = false;
+                            mAnimator.SetTrigger("Shout");
+                            PattenObj[1].SetActive(true);
+                            PattenObj[1].transform.position = transform.position;
+                            PattenUse = true;
+                            delay = 0f;
+                            StartCoroutine(NavStop());
+                        }
+                        break;
+                }
+                PattenUse = false;
+                break;
+                // 3 페이즈
+            case 3:
+                switch ((int)LadeTimer)
+                {
+                    case 24:
+                        if (!PatternUsingOnlyOne)
+                        {
+                            PatternUsingOnlyOne = true;
+                        }
+                        break;
+                    case 42:
+                        if (PatternUsingOnlyOne)
+                        {
+                            PatternUsingOnlyOne = false;
+                        }
+                        break;
+                    case 60:
+                        if (!PatternUsingOnlyOne)
+                        {
+                            PatternUsingOnlyOne = true;
+                        }
+                        break;
+                    case 82:
+                        if (PatternUsingOnlyOne)
+                        {
+                            PatternUsingOnlyOne = false;
+                        }
+                        break;
+                    case 114:
+                        if (!PatternUsingOnlyOne)
+                        {
+                            PatternUsingOnlyOne = true;
+                        }
+                        break;
+                        // 전멸기
+                    case 150:
+                        if (PatternUsingOnlyOne)
+                        {
+                            PatternUsingOnlyOne = false;
+                            mAnimator.SetTrigger("Shout");
+                            PattenObj[1].SetActive(true);
+                            PattenObj[1].transform.position = transform.position;
+                            PattenUse = true;
+                            delay = 0f;
+                            StartCoroutine(NavStop());
+                        }
+                        break;
+                }
+                PattenUse = false;
+                break;
+        }
     }
 
-
-private void PageChange(int hp)
+    private void PageChange(int hp)
     {
         if (HP / maxHp * 100 <= hp)
         {
             Page++;
             LadeTimer = 0f;
+            PattenUse = false;
+            invincibility = false;
+            PatternUsingOnlyOne = false;
         }
     }
 
@@ -219,6 +391,7 @@ private void PageChange(int hp)
 
     public void OnEnable()
     {
+        Page = 1;
         LadeTimer = 0f;
         maxHp = 200;
         HP = maxHp;
@@ -237,6 +410,9 @@ private void PageChange(int hp)
         canAttack = false;
         attackMode = false;
         idleMode = true;
+        PattenUse = false;
+        invincibility = false;
+        PatternUsingOnlyOne = false;
 
         notDie = true;
         delay = 0f;
