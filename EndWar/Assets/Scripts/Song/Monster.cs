@@ -77,6 +77,7 @@ public  class Monster : MonoBehaviour
         OnMove();
         TargetPosition();
         Die();
+        RespawnerOff();
         if (type == MonsterType.Boss)
         {
             BossAttackTimer();
