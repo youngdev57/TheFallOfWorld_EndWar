@@ -156,8 +156,8 @@ public class PlayerManager : MonoBehaviourPun
 
         if(boolean == true)     //죽으면 기지보내기~ (기지에서 쓰지 마시오 ㅡㅡ)
         {
-            photonManager.StartCoroutine(photonManager.BaseSettingWait());
-            LoadingManager.LoadScene("Basement");
+            photonManager.destination = 0;
+            photonManager.SendMessage("LeaveRoom");
         }
     }
 

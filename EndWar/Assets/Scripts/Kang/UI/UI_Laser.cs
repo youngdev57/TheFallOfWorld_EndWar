@@ -34,6 +34,7 @@ public class UI_Laser : MonoBehaviour
         //  레이저 생성
         if (!transform.parent.GetComponent<PhotonView>().IsMine)
             return;
+
         laser = Instantiate(laserPrefab);
         laserTr = laser.transform;
         laser.transform.SetParent(this.transform);
