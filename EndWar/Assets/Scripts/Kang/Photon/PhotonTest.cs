@@ -488,11 +488,10 @@ public class PhotonTest : MonoBehaviourPunCallbacks
         int zeroDetect_main = player.GetComponentInChildren<ChangeGunManager>().mainWeapon = GetComponent<PlayerInven>().mainPistol;
         int zeroDetect_sub = player.GetComponentInChildren<ChangeGunManager>().secondaryWeapon = GetComponent<PlayerInven>().subPistol;
 
-        if(zeroDetect_main == zeroDetect_sub)
+        if(zeroDetect_main == 0 && zeroDetect_sub == 0)
         {
-
+            GetComponent<PlayerInven>().mainPistol = 3;
         }
-
 
         player.GetComponentInChildren<ChangeGunManager>().mainWeapon = GetComponent<PlayerInven>().mainPistol;
         player.GetComponentInChildren<ChangeGunManager>().secondaryWeapon = GetComponent<PlayerInven>().subPistol;

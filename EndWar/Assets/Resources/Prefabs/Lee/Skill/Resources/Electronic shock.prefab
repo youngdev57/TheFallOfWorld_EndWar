@@ -57503,13 +57503,14 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 1024
-  target: {x: 0, y: 0, z: 0}
+  target: {x: -3.3508606, y: 0.2, z: -3.1654358}
   speed: 0
   seconds: 0
   nonTargetDamage: 0
   rotation: {x: 0, y: 0, z: 0, w: 1}
   electricShock: 0
   freezing: 0
+  dotDamage: 0
 --- !u!95 &1436970818729605229
 Animator:
   serializedVersion: 3

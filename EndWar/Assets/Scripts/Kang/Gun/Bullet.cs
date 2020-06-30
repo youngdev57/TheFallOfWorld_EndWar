@@ -28,13 +28,15 @@ public class Bullet : MonoBehaviourPun
     {
         if(other.attachedRigidbody)
         {
-            if(other.gameObject.layer == LayerMask.NameToLayer("Monster"))
+            if(other.gameObject.layer == LayerMask.NameToLayer("Monster") && !other.isTrigger)
             {
                 OffObject();
                 other.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.AllBuffered, damage);
                 Debug.Log("몬스터 맞음");
             }
         }
+
+        Debug.Log("총알이 흐르는 궤적의 오브젝트 : " + other.name);
     }
 
     IEnumerator OffObjectCoroutine()
