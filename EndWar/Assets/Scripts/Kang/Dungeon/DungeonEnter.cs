@@ -137,6 +137,16 @@ public class DungeonEnter : MonoBehaviour
         {
             player.GetComponent<PhotonView>().RPC("DungeonEnterAlert", RpcTarget.All);    //던전 입장 메소드를 PlayerInfo 에서 실행함
         }
+
+        Invoke("EnterAction", 3f);
+    }
+
+    void EnterAction()
+    {
+        foreach (GameObject player in players)
+        {
+            player.GetComponent<PhotonView>().RPC("DungeonEnterAction", RpcTarget.All);    //던전 입장 메소드를 PlayerInfo 에서 실행함
+        }
     }
 
     void ShowInvalidStart()

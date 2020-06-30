@@ -40,9 +40,11 @@ public class Arachnid : Monster
             case Staus.run:
                 break;
             case Staus.die:
-                if (notDie)
+                if (!notDie)
+                {
                     mAnimator.SetTrigger("Die");
-                notDie = false;
+                    notDie = true;
+                }
                 break;
             case Staus.attack:
                 pv.RPC("AttackType", RpcTarget.All);
@@ -89,7 +91,7 @@ public class Arachnid : Monster
                     mNav.isStopped = true;
                     mNav.velocity = Vector3.zero;
                     mNav.speed = 0f;
-                    if (canAttack && notDie)
+                    if (canAttack)
                     {
                         delay += Time.deltaTime;
                         if (delay >= actSpeed)
@@ -131,7 +133,7 @@ public class Arachnid : Monster
 
     public override void OnTriggerEnter(Collider other)
     {
-        if (!canAttack && other.gameObject.tag == "Player")
+        if (!canAttack && other.gameObject.tag == "Player" && !notDie)
         {
             target = other.gameObject.transform;
             mNav.stoppingDistance = 2f;
@@ -143,7 +145,7 @@ public class Arachnid : Monster
 
     public override void OnTriggerExit(Collider other)
     {
-        if (!attackMode && canAttack && other.gameObject.tag == "Player")
+        if (!attackMode && canAttack && other.gameObject.tag == "Player" && !notDie)
         {
             mNav.stoppingDistance = 0;
             monster_Staus = Staus.walk;
@@ -181,7 +183,7 @@ public class Arachnid : Monster
         attackMode = false;
         idleMode = true;
 
-        notDie = true;
+        notDie = false;
         delay = 0f;
 
         mNav.enabled = true;

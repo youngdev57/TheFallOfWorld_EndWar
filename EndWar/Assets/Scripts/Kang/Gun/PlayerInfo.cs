@@ -33,13 +33,6 @@ public class PlayerInfo : MonoBehaviourPunCallbacks
     public void DungeonEnterAlert()
     {
         dungeonAlert.SetActive(true);
-
-        Invoke("EnterAction", 3f);
-    }
-
-    void EnterAction()
-    {
-        GetComponent<PhotonView>().RPC("DungeonEnterAction", RpcTarget.All);
     }
 
     [PunRPC]
