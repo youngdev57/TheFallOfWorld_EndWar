@@ -354,7 +354,7 @@ public class PhotonTest : MonoBehaviourPunCallbacks
         }
     }
 
-    void ChangeRoom(int destination)
+    public void ChangeRoom(int destination)
     {
         this.destination = destination;
 
