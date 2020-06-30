@@ -33,6 +33,12 @@ public class PlayerInfo : MonoBehaviourPunCallbacks
     public void DungeonEnterAlert()
     {
         dungeonAlert.SetActive(true);
+        Invoke("EnterAction", 3f);
+    }
+
+    void EnterAction()
+    {
+        GetComponent<PhotonView>().RPC("DungeonEnterAction", RpcTarget.All);
     }
 
     [PunRPC]
@@ -48,4 +54,20 @@ public class PlayerInfo : MonoBehaviourPunCallbacks
         photonManager.destination = 2;
         photonManager.SendMessage("LeaveRoom");
     }
+
+    [PunRPC]
+    public void AddGold(int gold)
+    {
+        if(GetComponent<PhotonView>().IsMine)
+        {
+            photonManager.KPM.inven.AddGold(gold, false);
+        }
+    }
+
+    //GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+
+    //foreach(GameObject p in players)
+    //{
+    //    p.GetComponent<PhotonView>().RPC("AddGold", RpcTarget.All, 100);
+    //}
 }

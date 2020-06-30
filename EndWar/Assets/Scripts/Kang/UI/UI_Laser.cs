@@ -38,6 +38,7 @@ public class UI_Laser : MonoBehaviour
         laserTr = laser.transform;
         laser.transform.SetParent(this.transform);
         laser.transform.localPosition = Vector3.zero;
+        laser.transform.localEulerAngles = new Vector3(0, 0, 0);
     }
 
     public void LaserOn()

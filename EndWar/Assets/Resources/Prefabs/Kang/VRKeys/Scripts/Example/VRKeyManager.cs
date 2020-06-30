@@ -121,6 +121,12 @@ namespace VRKeys {
                 StartCoroutine(CheckLoginStatus());
             }
 
+            if (Input.GetKeyDown(KeyCode.R))     //로그인 테스트용 ㅡㅡ
+            {
+                photonManager.OnClickLogin("hw01208@naver.com", "123");
+                StartCoroutine(CheckLoginStatus());
+            }
+
             //if (Input.GetKeyDown(KeyCode.M))     //닉네임 테스트용 ㅡㅡ  (중복)
             //{
             //    photonManager.OnClickGidButton("master");

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UI_ItemInfo : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class UI_ItemInfo : MonoBehaviour
 
     public void ShowItemInfo()
     {
+        if (transform.GetChild(0).GetChild(2).GetComponent<Image>().sprite == null)
+            return;
+
         inven = PlayerInven.baseInven;
 
         inven.itemInfo_UI.SetActive(true);     //일단 UI 켬

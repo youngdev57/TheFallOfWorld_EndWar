@@ -472,6 +472,10 @@ public class PhotonTest : MonoBehaviourPunCallbacks
         tempObj.GetComponentsInChildren<UI_Laser>()[0].kPm = GetComponent<K_PlayerManager>();
         tempObj.GetComponentsInChildren<UI_Laser>()[1].pInven = GetComponent<PlayerInven>();
         tempObj.GetComponentsInChildren<UI_Laser>()[1].kPm = GetComponent<K_PlayerManager>();
+
+        GameObject guns = tempObj.GetComponentInChildren<ChangeGunManager>().transform.GetChild(2).gameObject;
+        guns.SetActive(false);
+        tempObj.GetComponentInChildren<ChangeGunManager>().enabled = false;
     }
 
     void SpawnPlayer(Vector3 pos)

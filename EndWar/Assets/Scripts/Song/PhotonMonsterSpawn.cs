@@ -39,9 +39,13 @@ public class PhotonMonsterSpawn : MonoBehaviourPun
 
         if(spawnLocation == MobLocation.Field)      //필드에 몬스터 소환할 때
         {
-            m_pool.InitMontsers(nomalMonster[0].name, 5, MobLocation.Field);
-            m_pool.InitMontsers(nomalMonster[1].name, 5, MobLocation.Field);
-            MonsterPos(m_pool.montsers);
+            m_pool.InitMontsers(nomalMonster[2].name, 7, MobLocation.Field);
+            m_pool.InitMontsers(nomalMonster[3].name, 7, MobLocation.Field);
+            m_pool.InitMontsers(nomalMonster[4].name, 7, MobLocation.Field);
+            m_pool.InitMontsers(nomalMonster[0].name, 7, MobLocation.Field);
+            m_pool.InitMontsers(nomalMonster[0].name, 7, MobLocation.Field);
+            m_pool.InitMontsers(nomalMonster[1].name, 7, MobLocation.Field);
+            FieldMonsterSpawn(m_pool.montsers);
         }
         else          //던전에 몬스터 소환할 때
         {
@@ -114,6 +118,15 @@ public class PhotonMonsterSpawn : MonoBehaviourPun
                     }
                     break;
             }
+        }
+    }
+
+    public void FieldMonsterSpawn(List<GameObject> monsters)      //필드 고정위치 소환..
+    {
+        for (int i = 0; i < monsters.Count; i++)
+        {
+            //monsters[i].GetComponent<NavMeshAgent>().Warp(spawnPos[i].localPosition);
+            monsters[i].transform.position = spawnPos[i].position;
         }
     }
 
