@@ -33,7 +33,7 @@ public class DungeonExit : MonoBehaviour
     {
         if(ScoreExtensions.GetScore(PhotonNetwork.LocalPlayer) == 1)
         {
-            StartCoroutine(CheckDungeonEnd());
+            //StartCoroutine(CheckDungeonEnd());
             StartCoroutine(WelcomePopUp());
         }
     }
@@ -50,6 +50,7 @@ public class DungeonExit : MonoBehaviour
         dungeonQuit_UI.SetActive(true);
     }
     
+    [PunRPC]
     public void ShowClearUI()
     {
         dungeonClear_UI.SetActive(true);
@@ -90,18 +91,18 @@ public class DungeonExit : MonoBehaviour
         photonManager.SendMessage("LeaveRoom");
     }
 
-    IEnumerator CheckDungeonEnd()
-    {
-        yield return new WaitForSeconds(0.3f);
+    //IEnumerator CheckDungeonEnd()
+    //{
+    //    yield return new WaitForSeconds(0.3f);
 
-        if (ScoreExtensions.GetScore(PhotonNetwork.LocalPlayer) == 2 && !isClear)
-        {
-            //끝나는 UI 띄우기
-            ShowClearUI();
-            isClear = true;
-        } else if(!isClear)
-        {
-            StartCoroutine(CheckDungeonEnd());
-        }
-    }
+    //    if (ScoreExtensions.GetScore(PhotonNetwork.LocalPlayer) == 2 && !isClear)
+    //    {
+    //        //끝나는 UI 띄우기
+    //        ShowClearUI();
+    //        isClear = true;
+    //    } else if(!isClear)
+    //    {
+    //        StartCoroutine(CheckDungeonEnd());
+    //    }
+    //}
 }

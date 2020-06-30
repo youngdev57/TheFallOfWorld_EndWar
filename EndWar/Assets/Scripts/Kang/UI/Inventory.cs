@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.Diagnostics.Tracing;
 using System.Text;
+using Photon.Pun;
 
 public class Inventory : MonoBehaviour
 {
@@ -427,6 +428,7 @@ public class Inventory : MonoBehaviour
                     mainWeapon = (Equipment)GetNth(idx).Value.itemId; Debug.Log((Equipment)GetNth(idx).Value.itemId);
                     //mainWeaponName.text = GetNth(idx).Value.itemName;
                     mainIdx = idx;
+                    pInven.mainPistol = (int) mainWeapon - 1;
                     pInven.BringMainWeapon();
                     break;
 
@@ -434,6 +436,7 @@ public class Inventory : MonoBehaviour
                     subWeapon = (Equipment)GetNth(idx).Value.itemId; Debug.Log((Equipment)GetNth(idx).Value.itemId);
                     //subWeaponName.text = GetNth(idx).Value.itemName;
                     subIdx = idx;
+                    pInven.subPistol = (int)subWeapon - 1;
                     pInven.BringSubWeapon();
                     break;
 
@@ -481,6 +484,15 @@ public class Inventory : MonoBehaviour
             }
 
             RefreshEquip();
+            PhotonTest myPhoton = pInven.GetComponent<PhotonTest>();
+            GameObject player = myPhoton.player;
+
+            if(player.GetComponentInChildren<ChangeGunManager>() != null)
+            {
+                player.GetComponentInChildren<ChangeGunManager>().mainWeapon = pInven.mainPistol;
+                player.GetComponentInChildren<ChangeGunManager>().secondaryWeapon = pInven.subPistol;
+                player.GetComponent<PhotonView>().RPC("ChangeGun", RpcTarget.AllBuffered, 0);
+            }
         }
         
         if(doSave == 0)
@@ -593,7 +605,7 @@ public class Inventory : MonoBehaviour
         {
             subWeaponImage.sprite = spriteList[(int)subWeapon - 1];
             powerSum += GetNth(subIdx).Value.GetPower();
-            subDmg = GetNth(mainIdx).Value.GetAttackPower();
+            subDmg = GetNth(subIdx).Value.GetAttackPower();
         }
 
         if (helmet == Equipment.None)
@@ -611,7 +623,7 @@ public class Inventory : MonoBehaviour
         {
             armorImage.sprite = spriteList[(int)armor - 1];
             powerSum += GetNth(armorIdx).Value.GetPower();
-            defenseSum += GetNth(helmetIdx).Value.GetDefensePower();
+            defenseSum += GetNth(armorIdx).Value.GetDefensePower();
         }
 
         if (shoulder == Equipment.None)
@@ -620,7 +632,7 @@ public class Inventory : MonoBehaviour
         {
             shoulderImage.sprite = spriteList[(int)shoulder - 1];
             powerSum += GetNth(shoulderIdx).Value.GetPower();
-            defenseSum += GetNth(helmetIdx).Value.GetDefensePower();
+            defenseSum += GetNth(shoulderIdx).Value.GetDefensePower();
         }
 
         if (glove == Equipment.None)
@@ -629,7 +641,7 @@ public class Inventory : MonoBehaviour
         {
             gloveImage.sprite = spriteList[(int)glove - 1];
             powerSum += GetNth(gloveIdx).Value.GetPower();
-            defenseSum += GetNth(helmetIdx).Value.GetDefensePower();
+            defenseSum += GetNth(gloveIdx).Value.GetDefensePower();
         }
 
         if (pants == Equipment.None)
@@ -638,7 +650,7 @@ public class Inventory : MonoBehaviour
         {
             pantsImage.sprite = spriteList[(int)pants - 1];
             powerSum += GetNth(pantsIdx).Value.GetPower();
-            defenseSum += GetNth(helmetIdx).Value.GetDefensePower();
+            defenseSum += GetNth(pantsIdx).Value.GetDefensePower();
         }
 
         if (shoes == Equipment.None)
@@ -647,7 +659,7 @@ public class Inventory : MonoBehaviour
         {
             shoesImage.sprite = spriteList[(int)shoes - 1];
             powerSum += GetNth(shoesIdx).Value.GetPower();
-            defenseSum += GetNth(helmetIdx).Value.GetDefensePower();
+            defenseSum += GetNth(shoesIdx).Value.GetDefensePower();
         }
 
         if (acc == Equipment.None)
@@ -657,7 +669,7 @@ public class Inventory : MonoBehaviour
             accImage.sprite = spriteList[(int)acc - 1];
             powerSum += GetNth(accIdx).Value.GetPower();
             mainDmg += GetNth(mainIdx).Value.GetAttackPower();
-            subDmg += GetNth(mainIdx).Value.GetAttackPower();
+            subDmg += GetNth(subIdx).Value.GetAttackPower();
             defenseSum += GetNth(helmetIdx).Value.GetDefensePower();
         }
 
