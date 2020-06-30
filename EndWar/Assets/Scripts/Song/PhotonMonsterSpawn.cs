@@ -47,6 +47,7 @@ public class PhotonMonsterSpawn : MonoBehaviourPun
         {
             m_pool.InitMontsers(dunMonster[0].name, 5, MobLocation.Dungeon);
             m_pool.InitMontsers(dunMonster[1].name, 5, MobLocation.Dungeon);
+            m_pool.InitMontsers(bossMonster[0].name, 1, MobLocation.Dungeon);
             DungeonMonsterSpawn(m_pool.montsers);
         }
     }

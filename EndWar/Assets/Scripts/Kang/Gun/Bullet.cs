@@ -32,6 +32,7 @@ public class Bullet : MonoBehaviourPun
             {
                 OffObject();
                 other.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.AllBuffered, damage);
+                Debug.Log("몬스터 맞음");
             }
         }
     }

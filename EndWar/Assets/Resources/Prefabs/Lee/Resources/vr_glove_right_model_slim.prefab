@@ -871,7 +871,7 @@ MonoBehaviour:
     Name: Pistol
   - Type: 4
     SynchronizeType: 0
-    Name: BasicGun
+    Name: GunTest
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0
@@ -1612,6 +1612,11 @@ PrefabInstance:
       propertyPath: ObservedComponents.Array.data[1]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8652733579419121407, guid: b12227c752b72334b9c3d0f15986f1c2,
+        type: 3}
+      propertyPath: damage
+      value: 150
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b12227c752b72334b9c3d0f15986f1c2, type: 3}
 --- !u!1 &133777260467142803 stripped
@@ -1633,6 +1638,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7136455182116540153}
     m_Modifications:
+    - target: {fileID: 4413037006192900744, guid: bd46ff04a41817a41bc0af92f3660014,
+        type: 3}
+      propertyPath: damage
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 5642926489604534225, guid: bd46ff04a41817a41bc0af92f3660014,
         type: 3}
       propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
@@ -1803,6 +1813,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 14.370001
       objectReference: {fileID: 0}
+    - target: {fileID: 3541618047344016997, guid: 4d3954090301230418284fcfa57f5332,
+        type: 3}
+      propertyPath: damage
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d3954090301230418284fcfa57f5332, type: 3}
 --- !u!1 &861769913180441212 stripped
@@ -1838,6 +1853,11 @@ PrefabInstance:
         type: 3}
       propertyPath: handType
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 44687510233440265, guid: 34542551522a9d844813c94c39b3b312,
+        type: 3}
+      propertyPath: damage
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 3832703582600944448, guid: 34542551522a9d844813c94c39b3b312,
         type: 3}
@@ -1902,7 +1922,7 @@ PrefabInstance:
     - target: {fileID: 3832703582600944448, guid: 34542551522a9d844813c94c39b3b312,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.19804001
+      value: 0.19804
       objectReference: {fileID: 0}
     - target: {fileID: 3832703582600944448, guid: 34542551522a9d844813c94c39b3b312,
         type: 3}
@@ -1927,7 +1947,7 @@ PrefabInstance:
     - target: {fileID: 3832703582600972128, guid: 34542551522a9d844813c94c39b3b312,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4741778970287075164, guid: 34542551522a9d844813c94c39b3b312,
         type: 3}
@@ -2112,6 +2132,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.321283
       objectReference: {fileID: 0}
+    - target: {fileID: 5532557458005407994, guid: dfe8fefa5bc33d54c9e0a213c042b75d,
+        type: 3}
+      propertyPath: damage
+      value: 70
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dfe8fefa5bc33d54c9e0a213c042b75d, type: 3}
 --- !u!1 &8175705529883329009 stripped
@@ -2216,6 +2241,11 @@ PrefabInstance:
         type: 3}
       propertyPath: handType
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3720133104215824902, guid: aaad727b67e004b408be5595d3d8a829,
+        type: 3}
+      propertyPath: damage
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aaad727b67e004b408be5595d3d8a829, type: 3}
