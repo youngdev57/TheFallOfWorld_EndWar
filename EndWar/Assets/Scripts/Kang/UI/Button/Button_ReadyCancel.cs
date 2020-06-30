@@ -16,6 +16,6 @@ public class Button_ReadyCancel : MonoBehaviour
 
     public void Action()
     {
-        dungeonEnter.ReadyDungeon();
+        //dungeonEnter.ReadyDungeon();
     }
 }
