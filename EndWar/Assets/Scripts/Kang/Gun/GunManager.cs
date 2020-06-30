@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Valve.VR;
 
-public class GunTest : MonoBehaviourPunCallbacks
+public class GunManager : MonoBehaviourPunCallbacks
 {
     public SteamVR_Input_Sources handType;
     public SteamVR_Action_Boolean grapAction;

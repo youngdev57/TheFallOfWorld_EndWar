@@ -167,7 +167,7 @@ public class PlayerManager : MonoBehaviourPun
         int defense = p_DEF / 10;
 
         if(!(damage - defense == 0)) 
-            p_HP -= damage - defense;   //데미지 - 방어지수가 0이 아니면 데미지입음
+            currHP -= damage - defense;   //데미지 - 방어지수가 0이 아니면 데미지입음
 
         isbackHpHit = true;
         Debug.Log("아프다~~~~~ 행~복~~해~~~줘~~어~~~~" + this.gameObject.name + ", 원래 데미지: " + damage + ", 방어력 계산 후 데미지: " + (damage - defense));

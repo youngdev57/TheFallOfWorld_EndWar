@@ -853,9 +853,6 @@ MonoBehaviour:
     Name: TriggerBlend
   - Type: 4
     SynchronizeType: 2
-    Name: GunTest
-  - Type: 4
-    SynchronizeType: 2
     Name: LowPoly Scifi_Gun
   - Type: 4
     SynchronizeType: 0
@@ -872,6 +869,9 @@ MonoBehaviour:
   - Type: 4
     SynchronizeType: 0
     Name: Pistol
+  - Type: 4
+    SynchronizeType: 0
+    Name: BasicGun
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0
@@ -897,8 +897,16 @@ MonoBehaviour:
   touchValue:
     actionPath: /actions/default/in/TouchPosition
     needsReinit: 0
-  mainWeapon: {fileID: 133777260467142803}
-  secondaryWeapon: {fileID: 7314282976654309209}
+  mainWeapon: 0
+  secondaryWeapon: 3
+  Guns:
+  - {fileID: 8680177777294023414}
+  - {fileID: 9178397174004910574}
+  - {fileID: 861769913180441212}
+  - {fileID: 7314282976654309209}
+  - {fileID: 6642959016285223458}
+  - {fileID: 8175705529883329009}
+  - {fileID: 133777260467142803}
 --- !u!1 &4044835983557379920
 GameObject:
   m_ObjectHideFlags: 0
@@ -1797,6 +1805,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d3954090301230418284fcfa57f5332, type: 3}
+--- !u!1 &861769913180441212 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 178802, guid: 4d3954090301230418284fcfa57f5332,
+    type: 3}
+  m_PrefabInstance: {fileID: 861769913180614670}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &861769913180146834 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 474268, guid: 4d3954090301230418284fcfa57f5332,
@@ -1908,7 +1922,7 @@ PrefabInstance:
     - target: {fileID: 3832703582600972128, guid: 34542551522a9d844813c94c39b3b312,
         type: 3}
       propertyPath: m_Name
-      value: GunTest
+      value: BasicGun
       objectReference: {fileID: 0}
     - target: {fileID: 3832703582600972128, guid: 34542551522a9d844813c94c39b3b312,
         type: 3}
@@ -1925,6 +1939,12 @@ PrefabInstance:
 --- !u!4 &8680177777294313174 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3832703582600944448, guid: 34542551522a9d844813c94c39b3b312,
+    type: 3}
+  m_PrefabInstance: {fileID: 5568226126189682070}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8680177777294023414 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3832703582600972128, guid: 34542551522a9d844813c94c39b3b312,
     type: 3}
   m_PrefabInstance: {fileID: 5568226126189682070}
   m_PrefabAsset: {fileID: 0}
@@ -2001,6 +2021,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4687dbac65c37124e833c08251864ba7, type: 3}
+--- !u!1 &6642959016285223458 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 166328, guid: 4687dbac65c37124e833c08251864ba7,
+    type: 3}
+  m_PrefabInstance: {fileID: 6642959016285320090}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6642959016285497336 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 447586, guid: 4687dbac65c37124e833c08251864ba7,
@@ -2088,6 +2114,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dfe8fefa5bc33d54c9e0a213c042b75d, type: 3}
+--- !u!1 &8175705529883329009 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1810581554106536, guid: dfe8fefa5bc33d54c9e0a213c042b75d,
+    type: 3}
+  m_PrefabInstance: {fileID: 8175051926824161625}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8177575630288538079 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4235179229403270, guid: dfe8fefa5bc33d54c9e0a213c042b75d,
@@ -2187,6 +2219,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aaad727b67e004b408be5595d3d8a829, type: 3}
+--- !u!1 &9178397174004910574 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1420827811599730, guid: aaad727b67e004b408be5595d3d8a829,
+    type: 3}
+  m_PrefabInstance: {fileID: 9179808999564663964}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &9181583519114284604 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4136592400650912, guid: aaad727b67e004b408be5595d3d8a829,
