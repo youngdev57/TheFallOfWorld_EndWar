@@ -110,9 +110,10 @@ public class DungeonEnter : MonoBehaviour
         if(successCnt == PhotonNetwork.PlayerList.Length - 1)
         {
             //출발
-            ScoreExtensions.SetScore(PhotonNetwork.LocalPlayer, 1);
+            ScoreExtensions.SetScore(PhotonNetwork.MasterClient, 1);
 
             StartCoroutine(DoEnter());
+            Debug.Log("★★★★★ 출발 준비 됨");
         }
         else
         {
@@ -158,12 +159,15 @@ public class DungeonEnter : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
 
-        Player master = PhotonNetwork.MasterClient;
-
-        if(ScoreExtensions.GetScore(master) == 1)
+        if(ScoreExtensions.GetScore(PhotonNetwork.MasterClient) == 1)
         {
             //출발
             StartCoroutine(DoEnter());
+            Debug.Log("손님 대기중 : " + ScoreExtensions.GetScore(PhotonNetwork.MasterClient));
+        } else
+        {
+            StartCoroutine(TryEnter());
+            Debug.Log("손님 입장 성공");
         }
     }
 
@@ -171,7 +175,12 @@ public class DungeonEnter : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
 
+        PhotonNetwork.IsMessageQueueRunning = false;
+
         PhotonTest myPhoton = playerObj.GetComponent<PlayerInfo>().photonManager;
+
+        yield return new WaitForSeconds(0.5f);
+
         myPhoton.destination = 3;
         myPhoton.SendMessage("LeaveRoom");
     }
