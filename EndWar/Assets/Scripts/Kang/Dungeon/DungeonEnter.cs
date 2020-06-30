@@ -14,6 +14,8 @@ public class DungeonEnter : MonoBehaviour
 
     public Button start_btn, ready_btn, cancel_btn, invalidStartOK_btn;
 
+    PhotonTest myPhoton;
+
     private void Start()
     {
         if(PhotonNetwork.IsMasterClient)
@@ -46,6 +48,7 @@ public class DungeonEnter : MonoBehaviour
             if (other.GetComponent<PhotonView>().IsMine)
             {
                 playerObj = other.gameObject;
+                myPhoton = playerObj.GetComponent<PlayerInfo>().photonManager;
 
                 playerObj.GetComponentsInChildren<UI_Laser>()[0].enabled = true;
                 playerObj.GetComponentsInChildren<UI_Laser>()[1].enabled = true;
@@ -112,7 +115,7 @@ public class DungeonEnter : MonoBehaviour
             //출발
             ScoreExtensions.SetScore(PhotonNetwork.MasterClient, 1);
 
-            StartCoroutine(DoEnter());
+            DoEnter();
             Debug.Log("★★★★★ 출발 준비 됨");
         }
         else
@@ -162,25 +165,18 @@ public class DungeonEnter : MonoBehaviour
         if(ScoreExtensions.GetScore(PhotonNetwork.MasterClient) == 1)
         {
             //출발
-            StartCoroutine(DoEnter());
-            Debug.Log("손님 대기중 : " + ScoreExtensions.GetScore(PhotonNetwork.MasterClient));
+            DoEnter();
+            Debug.Log("손님 입장 성공");
+            
         } else
         {
             StartCoroutine(TryEnter());
-            Debug.Log("손님 입장 성공");
+            Debug.Log("손님 대기중 : " + ScoreExtensions.GetScore(PhotonNetwork.MasterClient));
         }
     }
 
-    IEnumerator DoEnter()
+    void DoEnter()
     {
-        yield return new WaitForSeconds(1f);
-
-        PhotonNetwork.IsMessageQueueRunning = false;
-
-        PhotonTest myPhoton = playerObj.GetComponent<PlayerInfo>().photonManager;
-
-        yield return new WaitForSeconds(0.5f);
-
         myPhoton.destination = 3;
         myPhoton.SendMessage("LeaveRoom");
     }
