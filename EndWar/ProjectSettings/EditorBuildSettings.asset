@@ -20,4 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Kang/Dungeon_Underground.unity
     guid: 7471bfb1dd7d3ec47b8fcdeb92957534
+  - enabled: 1
+    path: Assets/Scenes/Kang/BattleTest.unity
+    guid: 6f484b9c905f4a342ae03c05439a4e62
+  - enabled: 1
+    path: Assets/Scenes/Kang/Title_BattleTest.unity
+    guid: 5c2985f0861960249bb4464a11af3a28
   m_configObjects: {}

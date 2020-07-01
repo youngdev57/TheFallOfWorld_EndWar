@@ -14419,7 +14419,7 @@ MonoBehaviour:
   damage: 14000000
   type: 0
   ability: 1
-  abilityTime: 2
+  abilityTime: 10
   slowing: 0
   viewAngle: 50
   isCollision: 0
@@ -14431,7 +14431,7 @@ MonoBehaviour:
   speed: 0
   seconds: 0
   nonTargetDamage: 0
-  rotation: {x: 0, y: 0.25748733, z: 0, w: -0.96628165}
+  rotation: {x: 0, y: 0.059773706, z: 0, w: -0.998212}
   electricShock: 0
   freezing: 0
   dotDamage: 0

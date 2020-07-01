@@ -1429,6 +1429,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5626cf54e81390d4f93e82dbfb4bd7da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  photonManager: {fileID: 0}
   dungeonQuit_UI: {fileID: 4946412084743782364}
   dungeonClear_UI: {fileID: 3459395920630837283}
   dungeonWelcome: {fileID: 591025573558343568}
