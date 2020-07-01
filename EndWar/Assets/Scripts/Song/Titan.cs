@@ -380,7 +380,6 @@ public class Titan : Monster
                 float dir = Vector3.Distance(transform.position, target.position);
                 if (dir <= 6.5f)
                 {
-                    attackMode = true;
                     mNav.isStopped = true;
                     mNav.velocity = Vector3.zero;
                     mNav.speed = 0f;
@@ -402,7 +401,6 @@ public class Titan : Monster
                 }
                 else
                 {
-                    attackMode = false;
                     mNav.isStopped = false;
                     mNav.speed = 5f * speed;
                     monster_Staus = Staus.run;
@@ -439,7 +437,7 @@ public class Titan : Monster
 
     public override void OnTriggerExit(Collider other)
     {
-        if (!attackMode && canAttack && other.gameObject.tag == "Player" && !notDie)
+        if (canAttack && other.gameObject.tag == "Player" && !notDie)
         {
             mNav.stoppingDistance = 0;
             monster_Staus = Staus.walk;
@@ -481,8 +479,9 @@ public class Titan : Monster
         mRigidbody = GetComponent<Rigidbody>();
         pv = GetComponent<PhotonView>();
 
+        mRigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+
         canAttack = false;
-        attackMode = false;
         idleMode = true;
         PattenUse = false;
         invincibility = false;

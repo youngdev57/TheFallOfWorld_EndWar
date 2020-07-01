@@ -43,7 +43,6 @@ public  class Monster : MonoBehaviour
 
     public bool canAttack;
     internal bool idleMode;
-    internal bool attackMode;
     public bool notDie;
 
     public float delay;
@@ -142,6 +141,7 @@ public  class Monster : MonoBehaviour
             mNav.isStopped = true;
             coll.isTrigger = true;
             mRigidbody.useGravity = false;
+            mRigidbody.constraints = RigidbodyConstraints.FreezeAll;
             StartCoroutine(ActiveFalse());
         }
     }
@@ -172,7 +172,6 @@ public  class Monster : MonoBehaviour
                 float dir = Vector3.Distance(transform.position, target.position);
                 if (dir <= 2)
                 {
-                    attackMode = true;
                     mNav.isStopped = true;
                     mNav.velocity = Vector3.zero;
                     mNav.speed = 0f;
@@ -193,7 +192,6 @@ public  class Monster : MonoBehaviour
                 }
                 else
                 {
-                    attackMode = false;
                     mNav.isStopped = false;
                     mNav.speed = 5f * speed;
                     monster_Staus = Staus.run;
@@ -230,7 +228,7 @@ public  class Monster : MonoBehaviour
     }
     public virtual void OnTriggerExit(Collider other)
     {
-        if (!attackMode && canAttack && other.gameObject.tag == "Player" && !notDie)
+        if (canAttack && other.gameObject.tag == "Player" && !notDie)
         {
             mNav.stoppingDistance = 0;
             monster_Staus = Staus.walk;

@@ -44,7 +44,7 @@ public class Reptile : Monster
                 float dir = Vector3.Distance(transform.position, target.position);
                 if (dir <= 2.5f)
                 {
-                    attackMode = true;
+                   // attackMode = true;
                     mNav.isStopped = true;
                     mNav.velocity = Vector3.zero;
                     mNav.speed = 0f;
@@ -65,7 +65,7 @@ public class Reptile : Monster
                 }
                 else
                 {
-                    attackMode = false;
+               //     attackMode = false;
                     mNav.isStopped = false;
                     mNav.speed = 5f * speed;
                     monster_Staus = Staus.run;
@@ -102,7 +102,8 @@ public class Reptile : Monster
 
     public override void OnTriggerExit(Collider other)
     {
-        if (!attackMode && canAttack && other.gameObject.tag == "Player" && !notDie)
+        if ( canAttack && other.gameObject.tag == "Player" && !notDie)
+       //     if (!attackMode && canAttack && other.gameObject.tag == "Player" && !notDie)
         {
             mNav.stoppingDistance = 0;
             monster_Staus = Staus.walk;
@@ -135,9 +136,10 @@ public class Reptile : Monster
         mAnimator = GetComponent<Animator>();
         mRigidbody = GetComponent<Rigidbody>();
         pv = GetComponent<PhotonView>();
+        mRigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
 
         canAttack = false;
-        attackMode = false;
+      //  attackMode = false;
         idleMode = true;
 
         notDie = false;
