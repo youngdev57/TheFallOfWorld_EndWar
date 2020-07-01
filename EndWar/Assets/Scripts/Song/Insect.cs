@@ -165,10 +165,10 @@ public class Insect : Monster
 
     public void OnEnable()
     {
-        maxHp = 200;
+        maxHp = 315;
         HP = maxHp;
-        VIT = 10;
-        ACT = 5;
+        VIT = 15;
+        ACT = 31;
         actSpeed = 2.5f;
 
         monster_Staus = Staus.idle;

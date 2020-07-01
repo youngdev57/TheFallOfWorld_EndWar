@@ -122,10 +122,10 @@ public class Madsykur : Monster
 
     public void OnEnable()
     {
-        maxHp = 200;
+        maxHp = 180;
         HP = maxHp;
-        VIT = 10;
-        ACT = 5;
+        VIT = 7;
+        ACT = 9;
         actSpeed = 5f;
 
         monster_Staus = Staus.idle;

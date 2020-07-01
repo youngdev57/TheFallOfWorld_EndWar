@@ -123,10 +123,10 @@ public class Juggernaut : Monster
 
     public void OnEnable()
     {
-        maxHp = 200;
+        maxHp = 351;
         HP = maxHp;
-        VIT = 10;
-        ACT = 5;
+        VIT = 22;
+        ACT = 37;
         actSpeed = 5f;
 
         monster_Staus = Staus.idle;

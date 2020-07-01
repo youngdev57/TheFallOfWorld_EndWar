@@ -124,10 +124,10 @@ public class Reptile : Monster
 
     public void OnEnable()
     {
-        maxHp = 200;
+        maxHp = 220;
         HP = maxHp;
-        VIT = 10;
-        ACT = 5;
+        VIT = 11;
+        ACT = 23;
         actSpeed = 5f;
 
         monster_Staus = Staus.idle;
