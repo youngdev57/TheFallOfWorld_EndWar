@@ -339,28 +339,6 @@ public class PlayerInven : MonoBehaviour
             Debug.Log("슬롯 크기 : " + intSlot.Length + ", 슬롯 내용 : " + intSlot);
         }
 
-
-
-        //StringBuilder sb = new StringBuilder();
-        //slotString = "";
-
-        //for (int i = 0; i < 28; i++)
-        //{
-        //    if (i >= bytesSlot.Length)
-        //    {
-        //        sb.Append("-1");
-        //    }
-        //    else
-        //    {
-        //        sb.Append(intSlot[i]);
-        //    }
-
-        //    if (i != 27)
-        //        sb.Append(",");
-        //}
-
-        //slotString = sb.ToString();
-
         
 
         helmetIdx = int.Parse(bytes[5]);
@@ -388,24 +366,7 @@ public class PlayerInven : MonoBehaviour
         baseInven.Init(idxs);
         baseCraft.Init();
 
-        //baseInven.selectedEquip = Inventory.ChangeTarget.SubWeapon;
-        //baseInven.ChangeEquip(subIdx, 1);
-        //baseInven.selectedEquip = Inventory.ChangeTarget.MainWeapon;
-        //baseInven.ChangeEquip(mainIdx, 1);
-        //baseInven.selectedEquip = Inventory.ChangeTarget.Helmet;
-        //baseInven.ChangeEquip(helmetIdx, 1);
-        //baseInven.selectedEquip = Inventory.ChangeTarget.Armor;
-        //baseInven.ChangeEquip(armorIdx, 1);
-        //baseInven.selectedEquip = Inventory.ChangeTarget.Shoulder;
-        //baseInven.ChangeEquip(shoulderIdx, 1);
-        //baseInven.selectedEquip = Inventory.ChangeTarget.Glove;
-        //baseInven.ChangeEquip(gloveIdx, 1);
-        //baseInven.selectedEquip = Inventory.ChangeTarget.Pants;
-        //baseInven.ChangeEquip(pantsIdx, 1);
-        //baseInven.selectedEquip = Inventory.ChangeTarget.Shoes;
-        //baseInven.ChangeEquip(shoesIdx, 1);
-        //baseInven.selectedEquip = Inventory.ChangeTarget.Acc;
-        //baseInven.ChangeEquip(accIdx, 1);
+        MakeSlotsString(true);
     }
 
     int BlankFinder(int inp)        //거래로 인한 슬롯 부재를 찾아 그만큼 해당 장착 인덱스를 내림

@@ -35,8 +35,6 @@ public class Bullet : MonoBehaviourPun
                 Debug.Log("몬스터 맞음");
             }
         }
-
-        Debug.Log("총알이 흐르는 궤적의 오브젝트 : " + other.name);
     }
 
     IEnumerator OffObjectCoroutine()

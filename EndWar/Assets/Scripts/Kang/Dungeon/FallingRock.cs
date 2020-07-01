@@ -27,6 +27,7 @@ public class FallingRock : MonoBehaviour
         if(other.tag == "Bullet")
         {
             pv.RPC("GravityOn", RpcTarget.All);
+            Debug.Log("돌을 맞췄다");
         }
     }
 

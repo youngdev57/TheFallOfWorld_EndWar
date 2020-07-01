@@ -332,7 +332,7 @@ public class Titan : Monster
         }
         else
         {
-            Damage = 0;
+            Damage = 1;
         }
         HP -= Damage;
         mNav.stoppingDistance = 6.5f;
@@ -364,7 +364,7 @@ public class Titan : Monster
                     GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
                     foreach (GameObject player in players)
                     {
-                        player.GetComponentInChildren<PhotonView>().RPC("ShowClearUI", RpcTarget.All);
+                        player.GetComponentInChildren<PhotonView>().RPC("ShowClear", RpcTarget.All);
                     }
                 }
                 break;
@@ -478,7 +478,7 @@ public class Titan : Monster
     {
         Page = 1;
         LadeTimer = 0f;
-        maxHp = 1000;
+        maxHp = 300;
         HP = maxHp;
         VIT = 37;
         ACT = 49;

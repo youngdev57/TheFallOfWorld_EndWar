@@ -20,6 +20,11 @@ public class PlayerInfo : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.IsMessageQueueRunning = true;
         nickname.text = photonView.Owner.NickName;
+
+        if(GetComponent<PhotonView>().IsMine)
+        {
+            nickname.transform.parent.gameObject.SetActive(false);
+        }
     }
 
     /** ??? **/
@@ -62,6 +67,12 @@ public class PlayerInfo : MonoBehaviourPunCallbacks
         {
             photonManager.KPM.inven.AddGold(gold, false);
         }
+    }
+
+    [PunRPC]
+    public void ShowClear()
+    {
+        GetComponentInChildren<DungeonExit>().ShowClearUI();
     }
 
     //GameObject[] players = GameObject.FindGameObjectsWithTag("Player");

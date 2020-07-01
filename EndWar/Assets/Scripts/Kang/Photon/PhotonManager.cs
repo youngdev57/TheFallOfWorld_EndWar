@@ -488,6 +488,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         tempObj.GetComponent<PlayerManager>().photonManager = this;
         tempObj.GetComponent<PlayerItem>().pInven = GetComponent<PlayerInven>();
         tempObj.GetComponent<PlayerItem>().LoadGemsLocal();     //PlayerInven의 재료 개수를 PlayerItem에 적용하는 함수
+        tempObj.GetComponentInChildren<DungeonExit>().photonManager = this;
 
 
         int zeroDetect_main = player.GetComponentInChildren<ChangeGunManager>().mainWeapon = GetComponent<PlayerInven>().mainPistol;

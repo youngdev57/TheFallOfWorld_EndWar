@@ -202,6 +202,7 @@ public class PlayerManager : MonoBehaviourPun
         {
             photonManager.destination = 0;
             photonManager.SendMessage("LeaveRoom");
+            isDie = false;
             Debug.Log("죽었나요?");
         }
     }

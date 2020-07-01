@@ -35,7 +35,7 @@ public class FlameThrower : MonoBehaviour
     {
         flameEffect.SetActive(true);
 
-
+        StartCoroutine(WaitFlame());
     }
 
     IEnumerator WaitFlame()

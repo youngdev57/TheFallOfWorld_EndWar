@@ -112,6 +112,11 @@ public class Inventory : MonoBehaviour
         if (first)
             return;
 
+        RefreshEquip(idxs);
+    }
+
+    void RefreshEquip(int[] idxs)
+    {
         selectedEquip = ChangeTarget.SubWeapon;
         ChangeEquip(idxs[0], 1);
         selectedEquip = ChangeTarget.MainWeapon;
@@ -251,6 +256,26 @@ public class Inventory : MonoBehaviour
             dissolution_Txt.text = dissol_str + " + " + oreCnt;
 
             itemList.Remove(GetNth(idx));
+
+
+            int[] idxs = new int[9];
+            idxs[0] = subIdx;
+            idxs[1] = mainIdx;
+            idxs[2] = helmetIdx;
+            idxs[3] = armorIdx;
+            idxs[4] = shoulderIdx;
+            idxs[5] = gloveIdx;
+            idxs[6] = pantsIdx;
+            idxs[7] = shoesIdx;
+            idxs[8] = accIdx;
+
+            for(int i=0; i<idxs.Length; i++)
+            {
+                if (idxs[i] > idx)
+                    idxs[i]--;
+            }
+
+            RefreshEquip(idxs);
         }
 
         PlayerInven.baseCraft.RefreshOreTexts();

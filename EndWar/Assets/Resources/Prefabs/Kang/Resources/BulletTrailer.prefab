@@ -112,7 +112,7 @@ GameObject:
   - component: {fileID: 7939782272037387932}
   m_Layer: 0
   m_Name: BulletTrailer
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

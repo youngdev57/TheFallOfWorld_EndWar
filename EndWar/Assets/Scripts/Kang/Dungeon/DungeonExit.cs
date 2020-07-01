@@ -10,7 +10,7 @@ using TMPro;
 
 public class DungeonExit : MonoBehaviour
 {
-    internal PhotonManager photonManager;
+    public PhotonManager photonManager;
 
     public GameObject dungeonQuit_UI;
     public GameObject dungeonClear_UI;
@@ -50,10 +50,14 @@ public class DungeonExit : MonoBehaviour
         dungeonQuit_UI.SetActive(true);
     }
     
-    [PunRPC]
     public void ShowClearUI()
     {
         dungeonClear_UI.SetActive(true);
+
+        transform.parent.parent.GetComponentsInChildren<UI_Laser>()[0].enabled = true;
+        transform.parent.parent.GetComponentsInChildren<UI_Laser>()[1].enabled = true;
+        transform.parent.parent.GetComponentsInChildren<UI_Laser>()[0].LaserOn();
+        transform.parent.parent.GetComponentsInChildren<UI_Laser>()[1].LaserOn();
 
         reward_Core = Random.Range(8, 12);
         reward_SoulGem = Random.Range(5, 10);
@@ -62,6 +66,8 @@ public class DungeonExit : MonoBehaviour
         coreTxt.text = "코어\n" + reward_Core + "개";
         soulGemTxt.text = "소울젬\n" + reward_SoulGem + "개";
         redStoneTxt.text = "레드스톤\n" + reward_RedStone + "개";
+
+        Debug.Log("코어 : " + reward_Core + ", 소울젬 : " + reward_SoulGem + ", 레드스톤 : " + reward_RedStone);
     }
 
     public void HideQuitUI()
@@ -81,6 +87,10 @@ public class DungeonExit : MonoBehaviour
     public void Exit_Clear()
     {
         //보상 받고 밖으로
+        Debug.Log("매니저 널? : " + photonManager == null);
+        Debug.Log("매니저.KPM 널? : " + photonManager.KPM == null);
+        Debug.Log("매니저.KPM.inven 널? : " + photonManager.KPM.inven == null);
+        Debug.Log("매니저.KPM.inven.gems 널? : " + photonManager.KPM.inven.gems == null);
         photonManager.KPM.inven.gems[3] += reward_Core;
         photonManager.KPM.inven.gems[4] += reward_SoulGem;
         photonManager.KPM.inven.gems[5] += reward_RedStone;
