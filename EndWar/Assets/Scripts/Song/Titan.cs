@@ -274,11 +274,24 @@ public class Titan : Monster
                             StartCoroutine(NavStop());
                         }
                         break;
-                        // 전멸기
-                    case 200:
+                    case 153:
                         if (PatternUsingOnlyOne)
                         {
                             PatternUsingOnlyOne = false;
+                            mAnimator.SetTrigger("Attack_fou");
+                            target.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, ACT*2);
+                            PattenUse = true;
+                            invincibility = true;
+                            delay = 0f;
+                            StartCoroutine(NavStop());
+                            StartCoroutine(Uninvincibility());
+                        }
+                        break;
+                    // 전멸기
+                    case 200:
+                        if (!PatternUsingOnlyOne)
+                        {
+                            PatternUsingOnlyOne = true;
                             mAnimator.SetTrigger("Shout");
                             PattenObj[1].SetActive(true);
                             PattenObj[1].transform.position = transform.position;
@@ -351,7 +364,7 @@ public class Titan : Monster
                     GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
                     foreach (GameObject player in players)
                     {
-                        player.GetComponent<PhotonView>().RPC("ShowClearUI", RpcTarget.All);
+                        player.GetComponentInChildren<PhotonView>().RPC("ShowClearUI", RpcTarget.All);
                     }
                 }
                 break;
