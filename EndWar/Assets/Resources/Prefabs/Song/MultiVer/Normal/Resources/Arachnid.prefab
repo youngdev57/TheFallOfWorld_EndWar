@@ -160,7 +160,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.7293544
-  m_Center: {x: 0, y: 0.7006457, z: 0}
+  m_Center: {x: 0, y: 0.76, z: 0}
 --- !u!114 &9051630201657024624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -272,11 +272,15 @@ MonoBehaviour:
   ACT: 0
   actSpeed: 0
   location: 0
-  target: {fileID: 0}
+  type: 1
   monster_Staus: 0
   noneTarget: {fileID: 9051630200833100658}
   coll: {fileID: 9051630201657024631}
+  target: {fileID: 0}
   canAttack: 0
+  notDie: 0
+  delay: 0
+  attackType: 0
 --- !u!1001 &9051630200615129111
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -342,15 +346,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4449579519413058, guid: 93e67935d04204a46bd6f78173df0a09, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 4449579519413058, guid: 93e67935d04204a46bd6f78173df0a09, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 4449579519413058, guid: 93e67935d04204a46bd6f78173df0a09, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.5
+      value: 0.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93e67935d04204a46bd6f78173df0a09, type: 3}

@@ -166,10 +166,10 @@ public class Arachnid : Monster
 
     public void OnEnable()
     {
-        maxHp = 200;
+        maxHp = 80;
         HP = maxHp;
-        VIT = 10;
-        ACT = 5;
+        VIT = 2;
+        ACT = 3;
         actSpeed = 2.5f;
 
         monster_Staus = Staus.idle;

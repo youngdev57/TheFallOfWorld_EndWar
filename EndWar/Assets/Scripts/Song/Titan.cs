@@ -52,7 +52,7 @@ public class Titan : Monster
                         {
                             PatternUsingOnlyOne = true;
                             mAnimator.SetTrigger("Attack_sec");
-                            target.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, ACT * 2);
+                            target.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, ACT + ACT/10);
                             PattenUse = true;
                             delay = 0f;
                             StartCoroutine(NavStop());
@@ -65,7 +65,7 @@ public class Titan : Monster
                             mAnimator.SetTrigger("Shout");
                             PattenObj[0].SetActive(true);
                             PattenObj[0].transform.position = transform.position;
-                            PattenObj[0].GetComponent<Fog>().setDamage(9);
+                            PattenObj[0].GetComponent<Fog>().setDamage(27);
                             PattenUse = true;
                             delay = 0f;
                             StartCoroutine(NavStop());
@@ -76,7 +76,7 @@ public class Titan : Monster
                         {
                             PatternUsingOnlyOne = true;
                             mAnimator.SetTrigger("Attack_thi");
-                            target.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, ACT * 4);
+                            target.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, ACT+ ACT / 9);
                             PattenUse = true;
                             delay = 0f;
                             StartCoroutine(NavStop());
@@ -101,7 +101,7 @@ public class Titan : Monster
                             mAnimator.SetTrigger("Shout");
                             PattenObj[0].SetActive(true);
                             PattenObj[0].transform.position = transform.position;
-                            PattenObj[0].GetComponent<Fog>().setDamage(9);
+                            PattenObj[0].GetComponent<Fog>().setDamage(27);
                             PattenUse = true;
                             delay = 0f;
                             StartCoroutine(NavStop());
@@ -135,7 +135,7 @@ public class Titan : Monster
                             mAnimator.SetTrigger("Shout");
                             PattenObj[0].SetActive(true);
                             PattenObj[0].transform.position = transform.position;
-                            PattenObj[0].GetComponent<Fog>().setDamage(14);
+                            PattenObj[0].GetComponent<Fog>().setDamage(32);
                             PattenUse = true;
                             delay = 0f;
                             StartCoroutine(NavStop());
@@ -146,7 +146,7 @@ public class Titan : Monster
                         {
                             PatternUsingOnlyOne = false;
                             mAnimator.SetTrigger("Attack_thi");
-                            target.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, ACT * 7);
+                            target.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, ACT + ACT / 5);
                             PattenUse = true;
                             delay = 0f;
                             StartCoroutine(NavStop());
@@ -157,7 +157,7 @@ public class Titan : Monster
                         {
                             PatternUsingOnlyOne = true;
                             mAnimator.SetTrigger("Attack_sec");
-                            target.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, ACT * 4);
+                            target.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, ACT + ACT / 7);
                             PattenUse = true;
                             delay = 0f;
                             StartCoroutine(NavStop());
@@ -168,7 +168,7 @@ public class Titan : Monster
                         {
                             PatternUsingOnlyOne = false;
                             mAnimator.SetTrigger("Attack_thi");
-                            target.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, ACT * 7);
+                            target.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, ACT + ACT / 5);
                             PattenUse = true;
                             invincibility = true;
                             delay = 0f;
@@ -183,7 +183,7 @@ public class Titan : Monster
                             mAnimator.SetTrigger("Shout");
                             PattenObj[0].SetActive(true);
                             PattenObj[0].transform.position = transform.position;
-                            PattenObj[0].GetComponent<Fog>().setDamage(14);
+                            PattenObj[0].GetComponent<Fog>().setDamage(32);
                             PattenUse = true;
                             delay = 0f;
                             StartCoroutine(NavStop());
@@ -216,7 +216,7 @@ public class Titan : Monster
                             mAnimator.SetTrigger("Shout");
                             PattenObj[0].SetActive(true);
                             PattenObj[0].transform.position = transform.position;
-                            PattenObj[0].GetComponent<Fog>().setDamage(20);
+                            PattenObj[0].GetComponent<Fog>().setDamage(43);
                             PattenUse = true;
                             delay = 0f;
                             StartCoroutine(NavStop());
@@ -227,7 +227,7 @@ public class Titan : Monster
                         {
                             PatternUsingOnlyOne = false;
                             mAnimator.SetTrigger("Attack_thi");
-                            target.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, ACT * 11);
+                            target.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, ACT + ACT / 2);
                             PattenUse = true;
                             invincibility = true;
                             delay = 0f;
@@ -242,7 +242,7 @@ public class Titan : Monster
                             mAnimator.SetTrigger("Shout");
                             PattenObj[0].SetActive(true);
                             PattenObj[0].transform.position = transform.position;
-                            PattenObj[0].GetComponent<Fog>().setDamage(20);
+                            PattenObj[0].GetComponent<Fog>().setDamage(43);
                             PattenUse = true;
                             delay = 0f;
                             StartCoroutine(NavStop());
@@ -253,7 +253,7 @@ public class Titan : Monster
                         {
                             PatternUsingOnlyOne = false;
                             mAnimator.SetTrigger("Attack_sec");
-                            target.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, ACT * 8);
+                            target.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, ACT + ACT / 4);
                             PattenUse = true;
                             invincibility = true;
                             delay = 0f;
@@ -268,7 +268,7 @@ public class Titan : Monster
                             mAnimator.SetTrigger("Shout");
                             PattenObj[0].SetActive(true);
                             PattenObj[0].transform.position = transform.position;
-                            PattenObj[0].GetComponent<Fog>().setDamage(20);
+                            PattenObj[0].GetComponent<Fog>().setDamage(43);
                             PattenUse = true;
                             delay = 0f;
                             StartCoroutine(NavStop());
@@ -465,10 +465,10 @@ public class Titan : Monster
     {
         Page = 1;
         LadeTimer = 0f;
-        maxHp = 200;
+        maxHp = 1000;
         HP = maxHp;
-        VIT = 10;
-        ACT = 5;
+        VIT = 37;
+        ACT = 49;
         actSpeed = 5f;
 
         monster_Staus = Staus.idle;

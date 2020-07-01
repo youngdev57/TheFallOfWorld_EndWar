@@ -124,10 +124,10 @@ public class Slug : Monster
 
     public void OnEnable()
     {
-        maxHp = 200;
+        maxHp = 400;
         HP = maxHp;
-        VIT = 10;
-        ACT = 5;
+        VIT = 31;
+        ACT = 43;
         actSpeed = 5f;
 
         monster_Staus = Staus.idle;

@@ -124,9 +124,9 @@ public class Cockroach : Monster
 
     public void OnEnable()
     {
-        maxHp = 200;
+        maxHp = 130;
         HP = maxHp;
-        VIT = 10;
+        VIT = 4;
         ACT = 5;
         actSpeed = 5f;
 
