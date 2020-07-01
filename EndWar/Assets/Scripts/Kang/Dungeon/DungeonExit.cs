@@ -10,7 +10,7 @@ using TMPro;
 
 public class DungeonExit : MonoBehaviour
 {
-    internal PhotonTest photonManager;
+    internal PhotonManager photonManager;
 
     public GameObject dungeonQuit_UI;
     public GameObject dungeonClear_UI;

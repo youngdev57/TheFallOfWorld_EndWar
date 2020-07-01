@@ -10,7 +10,7 @@ using System.Text;
 using VRKeys;
 using System;
 
-public class PhotonTest : MonoBehaviourPunCallbacks
+public class PhotonManager : MonoBehaviourPunCallbacks
 {
     private string gameVersion = "0.01";
     public string userId = "";
@@ -411,6 +411,7 @@ public class PhotonTest : MonoBehaviourPunCallbacks
         yield return new WaitForSeconds(2f);
         if (LoadingManager.loadEnd)
         {
+            yield return new WaitForSeconds(2f);
             SceneSetting();
             LoadingManager.loadEnd = false;
         }

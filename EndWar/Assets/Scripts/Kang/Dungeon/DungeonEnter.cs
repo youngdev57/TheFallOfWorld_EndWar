@@ -14,7 +14,7 @@ public class DungeonEnter : MonoBehaviour
 
     public Button start_btn, ready_btn, cancel_btn, invalidStartOK_btn;
 
-    public PhotonTest myPhoton;
+    public PhotonManager myPhoton;
 
     GameObject[] players;
 

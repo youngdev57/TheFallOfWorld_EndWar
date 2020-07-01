@@ -30,7 +30,7 @@ public class PlayerManager : MonoBehaviourPun
 
     bool isbackHpHit = false;
 
-    internal PhotonTest photonManager;
+    internal PhotonManager photonManager;
 
     //-------------------------------------Start
     void Start()

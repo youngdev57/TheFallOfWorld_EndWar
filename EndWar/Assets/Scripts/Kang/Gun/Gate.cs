@@ -21,7 +21,7 @@ public class Gate : MonoBehaviour
         {
             if(other.gameObject.GetComponent<PhotonView>().IsMine)
             {
-                PhotonTest myPhoton = other.gameObject.GetComponent<PlayerInfo>().photonManager;
+                PhotonManager myPhoton = other.gameObject.GetComponent<PlayerInfo>().photonManager;
 
                 myPhoton.destination = destination;
                 Debug.Log("어디로 가는가 : " + myPhoton.destination);

@@ -484,7 +484,7 @@ public class Inventory : MonoBehaviour
             }
 
             RefreshEquip();
-            PhotonTest myPhoton = pInven.GetComponent<PhotonTest>();
+            PhotonManager myPhoton = pInven.GetComponent<PhotonManager>();
             GameObject player = myPhoton.player;
 
             if(player.GetComponentInChildren<ChangeGunManager>() != null)

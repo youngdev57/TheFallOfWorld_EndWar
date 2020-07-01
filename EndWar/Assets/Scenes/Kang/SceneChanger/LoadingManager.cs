@@ -12,7 +12,7 @@ public class LoadingManager : MonoBehaviour
     [SerializeField]
     Image progressBar;
 
-    PhotonTest ptt;
+    PhotonManager ptt;
 
     public static bool loadEnd;
     

@@ -27,7 +27,7 @@ namespace VRKeys {
 		/// </summary>
 		public Keyboard keyboard;
 
-        public PhotonTest photonManager;
+        public PhotonManager photonManager;
 
         public Camera cam;
 
@@ -223,13 +223,13 @@ namespace VRKeys {
         {
             yield return new WaitForSeconds(1f);
 
-            if(photonManager.status == PhotonTest.Status.SuccessLogin)
+            if(photonManager.status == PhotonManager.Status.SuccessLogin)
             {
                 keyboard.ShowSuccessMessage("로그인 성공, 접속 중...");
                 photonManager.WebLogin();
             }
 
-            if (photonManager.status == PhotonTest.Status.InvaildEmail)
+            if (photonManager.status == PhotonManager.Status.InvaildEmail)
             {
                 keyboard.ShowValidationMessage("로그인에 실패했습니다.");
                 yield return new WaitForSeconds(0.5f);
@@ -240,7 +240,7 @@ namespace VRKeys {
                 inputLabel.text = "이메일";
             }
 
-            if(photonManager.status == PhotonTest.Status.WaitGid)
+            if(photonManager.status == PhotonManager.Status.WaitGid)
             {
                 keyboard.ShowSuccessMessage("로그인 성공, 게임 아이디를 설정 해 주세요!");
                 yield return new WaitForSeconds(1f);
@@ -267,7 +267,7 @@ namespace VRKeys {
 
             switch (photonManager.status)
             {
-                case PhotonTest.Status.ExistGid:
+                case PhotonManager.Status.ExistGid:
                     keyboard.ShowValidationMessage("이미 존재하는 게임 아이디입니다.");
                     yield return new WaitForSeconds(1f);
                     keyboard.HideValidationMessage();
@@ -275,7 +275,7 @@ namespace VRKeys {
                     keyboard.EnableInput();
                     break;
 
-                case PhotonTest.Status.NoSpaceOrSpecialGid:
+                case PhotonManager.Status.NoSpaceOrSpecialGid:
                     keyboard.ShowValidationMessage("공백이나 특수 문자 사용은 불가능합니다.");
                     yield return new WaitForSeconds(1f);
                     keyboard.HideValidationMessage();
@@ -283,7 +283,7 @@ namespace VRKeys {
                     keyboard.EnableInput();
                     break;
 
-                case PhotonTest.Status.InvaildGid:
+                case PhotonManager.Status.InvaildGid:
                     keyboard.ShowValidationMessage("게임 아이디가 너무 짧거나 깁니다.");
                     yield return new WaitForSeconds(1f);
                     keyboard.HideValidationMessage();
@@ -291,12 +291,12 @@ namespace VRKeys {
                     keyboard.EnableInput();
                     break;
 
-                case PhotonTest.Status.SuccessGid:
+                case PhotonManager.Status.SuccessGid:
                     keyboard.ShowSuccessMessage("생성 완료, 접속 중...");
                     photonManager.WebLogin();
                     break;
 
-                case PhotonTest.Status.WaitGid:
+                case PhotonManager.Status.WaitGid:
                     StartCoroutine(CheckGidStatus());
                     break;
             }
