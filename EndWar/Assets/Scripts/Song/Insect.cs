@@ -15,7 +15,7 @@ public class Insect : Monster
         }
         else
         {
-            Damage = 0;
+            Damage = 1;
         }
         HP -= Damage;
         mNav.stoppingDistance = 2f;
@@ -149,7 +149,10 @@ public class Insect : Monster
           //  if (!attackMode && canAttack && other.gameObject.tag == "Player" && !notDie)
         {
             mNav.stoppingDistance = 0;
-            monster_Staus = Staus.walk;
+            if (!STUN)
+            {
+                monster_Staus = Staus.walk;
+            }
             target = noneTarget;
             mNav.speed = 3f * speed;
             canAttack = false;

@@ -16,7 +16,7 @@ public class Madsykur : Monster
         }
         else
         {
-            Damage = 0;
+            Damage = 1;
         }
         HP -= Damage;
         mNav.stoppingDistance = 3.5f;
@@ -104,7 +104,10 @@ public class Madsykur : Monster
         if (  canAttack && other.gameObject.tag == "Player" && !notDie)
         {
             mNav.stoppingDistance = 0;
-            monster_Staus = Staus.walk;
+            if (!STUN)
+            {
+                monster_Staus = Staus.walk;
+            }
             target = noneTarget;
             mNav.speed = 3f * speed;
             canAttack = false;
