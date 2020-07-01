@@ -60,7 +60,6 @@ public class Arachnid : Monster
                 StartCoroutine(NavStop());
                 break;
             case Staus.hit:
-                mAnimator.SetTrigger("Hit");
                 break;
         }
     }

@@ -133,7 +133,6 @@ public  class Monster : MonoBehaviour
                 StartCoroutine(NavStop());
                 break;
             case Staus.hit:
-                mAnimator.SetTrigger("Hit");
                 break;
         }
     }
@@ -322,6 +321,7 @@ public  class Monster : MonoBehaviour
     {
         Debug.Log("stun");
         monster_Staus = Staus.hit;
+        mAnimator.SetTrigger("Hit");
         SetNavStopped(false);
         canAttack = false;
         yield return new WaitForSeconds(se);

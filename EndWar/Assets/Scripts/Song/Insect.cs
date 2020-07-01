@@ -59,7 +59,6 @@ public class Insect : Monster
                 StartCoroutine(NavStop());
                 break;
             case Staus.hit:
-                mAnimator.SetTrigger("Hit");
                 break;
         }
     }
