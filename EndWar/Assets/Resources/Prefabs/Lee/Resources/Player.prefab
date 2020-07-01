@@ -4284,7 +4284,7 @@ MonoBehaviour:
     actionPath: /actions/default/in/OpenUI
     needsReinit: 0
   jumpHeight: 0.5
-  MovementSpeed: 25
+  MovementSpeed: 15
   Deadzone: 0.01
   Head: {fileID: 7650728612688044195}
   AxisHand: {fileID: 7651427349477634057}
@@ -4429,7 +4429,7 @@ MonoBehaviour:
   MPBOX: {fileID: 3307241350054067480}
   hP_Slider: {fileID: 3307241349759319232}
   backHpBar: {fileID: 3307241350495330738}
-  p_HP: 100
+  p_HP: 200
   p_MP: 3
   p_DEF: 0
   dieEffect: {fileID: 6163939854377382755}
@@ -6187,17 +6187,17 @@ PrefabInstance:
     - target: {fileID: 855395735350190143, guid: 8549519f646750f4b98c867e9aa63046,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.12718211
+      value: -0.12718208
       objectReference: {fileID: 0}
     - target: {fileID: 855395735350190143, guid: 8549519f646750f4b98c867e9aa63046,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.13463365
+      value: -0.13463373
       objectReference: {fileID: 0}
     - target: {fileID: 855395735350190143, guid: 8549519f646750f4b98c867e9aa63046,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.6289186
+      value: -0.62891865
       objectReference: {fileID: 0}
     - target: {fileID: 855395735350190143, guid: 8549519f646750f4b98c867e9aa63046,
         type: 3}
@@ -6382,17 +6382,17 @@ PrefabInstance:
     - target: {fileID: 2964283423943156230, guid: 8549519f646750f4b98c867e9aa63046,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.05900325
+      value: -0.05900333
       objectReference: {fileID: 0}
     - target: {fileID: 2964283423943156230, guid: 8549519f646750f4b98c867e9aa63046,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.016749028
+      value: -0.016749013
       objectReference: {fileID: 0}
     - target: {fileID: 2964283423943156230, guid: 8549519f646750f4b98c867e9aa63046,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.34225658
+      value: -0.34225655
       objectReference: {fileID: 0}
     - target: {fileID: 2964283423943156230, guid: 8549519f646750f4b98c867e9aa63046,
         type: 3}
