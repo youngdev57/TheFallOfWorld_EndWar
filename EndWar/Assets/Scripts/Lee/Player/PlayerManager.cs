@@ -111,7 +111,6 @@ public class PlayerManager : MonoBehaviourPun
     {
         if (currHP < p_HP)
         {
-            Debug.Log(currHP + " , " + healTime + " , " + isHeal);
             if (healTime <= 0)
             {
                 isHeal = true;
