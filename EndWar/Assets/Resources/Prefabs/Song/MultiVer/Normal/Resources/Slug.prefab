@@ -61,11 +61,15 @@ MonoBehaviour:
   ACT: 0
   actSpeed: 0
   location: 0
+  type: 1
   monster_Staus: 0
   noneTarget: {fileID: 2458349256165485108}
   coll: {fileID: 2458349257533249945}
   target: {fileID: 0}
   canAttack: 0
+  notDie: 0
+  delay: 0
+  attackType: 0
 --- !u!114 &2458349257533249940
 MonoBehaviour:
   m_ObjectHideFlags: 0

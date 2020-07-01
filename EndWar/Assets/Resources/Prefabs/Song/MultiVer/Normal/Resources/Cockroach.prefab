@@ -218,11 +218,16 @@ MonoBehaviour:
   VIT: 0
   ACT: 0
   actSpeed: 0
+  location: 0
+  type: 1
   monster_Staus: 0
-  target: {fileID: 0}
   noneTarget: {fileID: 282411341159666971}
   coll: {fileID: 282411341522831691}
+  target: {fileID: 0}
   canAttack: 0
+  notDie: 0
+  delay: 0
+  attackType: 0
 --- !u!195 &282411341522831693
 NavMeshAgent:
   m_ObjectHideFlags: 0

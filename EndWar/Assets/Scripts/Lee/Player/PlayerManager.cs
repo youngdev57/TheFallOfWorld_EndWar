@@ -30,6 +30,11 @@ public class PlayerManager : MonoBehaviourPun
 
     bool isbackHpHit = false;
 
+    float healTime = 0;
+    bool isHeal = false;
+
+    IEnumerator healCoroutine;
+
     internal PhotonManager photonManager;
 
     //-------------------------------------Start
@@ -41,6 +46,7 @@ public class PlayerManager : MonoBehaviourPun
             return;
         }
 
+        healCoroutine = HealCoroutine();
         mpArray = MPBOX.GetComponentsInChildren<MPBar>();
         for (int i = 0; i < mpArray.Length; i++)
         {
@@ -72,13 +78,52 @@ public class PlayerManager : MonoBehaviourPun
             return;
 
         SliderHPBar();
-        if(currHP <= 0)
+        AutoHeal();
+
+        if (currHP <= 0)
             photonView.RPC("IsDie", RpcTarget.All, true);
 
         if (Input.GetKeyDown(KeyCode.A))
         {
             currHP -= 10;
+            healTime = 5f;
             isbackHpHit = true;
+        }
+    }
+
+    IEnumerator HealCoroutine()
+    {
+        while (isHeal)
+        {
+            currHP += 10;
+
+            if(currHP >= p_HP)
+            {
+                currHP = p_HP;
+                isHeal = false;
+                StopCoroutine(healCoroutine);
+            }
+            yield return new WaitForSeconds(.1f);
+        }
+    }
+
+    void AutoHeal()
+    {
+        if (currHP < p_HP)
+        {
+            Debug.Log(currHP + " , " + healTime + " , " + isHeal);
+            if (healTime <= 0)
+            {
+                isHeal = true;
+                StartCoroutine(healCoroutine);
+            }
+            else
+            {
+                healTime -= Time.deltaTime;
+                isHeal = false;
+                StopCoroutine(healCoroutine);
+                healCoroutine = HealCoroutine();
+            }
         }
     }
 
@@ -166,8 +211,9 @@ public class PlayerManager : MonoBehaviourPun
     public void GetDamage(int damage)
     {
         int defense = p_DEF / 10;
+        healTime = 5f;
 
-        if(!(damage - defense == 0)) 
+        if (!(damage - defense == 0)) 
             currHP -= damage - defense;   //데미지 - 방어지수가 0이 아니면 데미지입음
 
         isbackHpHit = true;

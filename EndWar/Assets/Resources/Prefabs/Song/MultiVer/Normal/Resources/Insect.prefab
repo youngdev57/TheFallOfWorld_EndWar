@@ -886,6 +886,7 @@ MonoBehaviour:
   coll: {fileID: 54735451609699751}
   target: {fileID: 0}
   canAttack: 0
+  notDie: 0
   delay: 0
   attackType: 0
 --- !u!114 &54735451609699738

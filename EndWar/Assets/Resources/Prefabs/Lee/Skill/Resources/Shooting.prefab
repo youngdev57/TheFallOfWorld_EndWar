@@ -33737,7 +33737,7 @@ MonoBehaviour:
   speed: 50
   seconds: 5
   nonTargetDamage: 25
-  rotation: {x: -0.19551626, y: -0.1946742, z: -0.08341774, w: 0.95755774}
+  rotation: {x: -0.25590724, y: -0.2974859, z: -0.055052683, w: 0.918141}
   electricShock: 0
   freezing: 0
   dotDamage: 0
@@ -33797,7 +33797,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0.3
       inSlope: 0
       outSlope: 0
       tangentMode: 0
