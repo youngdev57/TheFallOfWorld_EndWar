@@ -164,6 +164,13 @@ namespace VRKeys {
                     //    return;
                     //}
 
+                    if(text == "")
+                    {
+                        keyboard.ShowValidationMessage("이메일을 입력해주세요");
+                        keyboard.EnableInput();
+                        return;
+                    }
+
                     StartCoroutine(SubmitEmail(text));
                     break;
 
@@ -240,7 +247,18 @@ namespace VRKeys {
                 inputLabel.text = "이메일";
             }
 
-            if(photonManager.status == PhotonManager.Status.WaitGid)
+            if (photonManager.status == PhotonManager.Status.InvaildPassword)
+            {
+                keyboard.ShowValidationMessage("비밀번호가 틀렸습니다.");
+                yield return new WaitForSeconds(0.5f);
+                keyboard.HideValidationMessage();
+
+                status = Status.password;
+
+                inputLabel.text = "비밀번호";
+            }
+
+            if (photonManager.status == PhotonManager.Status.WaitGid)
             {
                 keyboard.ShowSuccessMessage("로그인 성공, 게임 아이디를 설정 해 주세요!");
                 yield return new WaitForSeconds(1f);

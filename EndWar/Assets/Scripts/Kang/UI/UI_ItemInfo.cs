@@ -53,7 +53,7 @@ public class UI_ItemInfo : MonoBehaviour
                 break;
         }
 
-        inven.itemInfo_IngreTxt.text = "분해 시 얻을 수 있는 재료 :\n" + ingreName + " " + craft.craftList[(int)item.itemId - 1].requireCnt[0] + "개";
+        inven.itemInfo_IngreTxt.text = "분해 시 얻을 수 있는 재료 :\n" + ingreName + " " + (craft.craftList[(int)item.itemId - 1].requireCnt[0] / 2) + "개";
         inven.itemInfo_Ingre.sprite = craft.oreSprs[ingreIdx];
     }
 
