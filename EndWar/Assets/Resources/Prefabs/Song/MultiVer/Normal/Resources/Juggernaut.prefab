@@ -254,6 +254,7 @@ MonoBehaviour:
   target: {fileID: 0}
   canAttack: 0
   notDie: 0
+  STUN: 0
   delay: 0
   attackType: 0
 --- !u!195 &8547673497881125299

@@ -33615,8 +33615,8 @@ MonoBehaviour:
   fireRate: 0
   muzzlePrefab: {fileID: 0}
   hitPrefab: {fileID: 1265510136608502, guid: dae25641a286d5748a757c556d756971, type: 3}
-  shotSFX: {fileID: 0}
-  hitSFX: {fileID: 0}
+  shotSFX: {fileID: 8300000, guid: 1122d7cb1d89a2a4d8cddf93d8c96a54, type: 3}
+  hitSFX: {fileID: 8300000, guid: 555855d1f04ce834295ed5f48a4d2d15, type: 3}
   trails:
   - {fileID: 250697322274862976}
   - {fileID: 250789220261977656}
@@ -33737,7 +33737,7 @@ MonoBehaviour:
   speed: 50
   seconds: 5
   nonTargetDamage: 25
-  rotation: {x: -0.25590724, y: -0.2974859, z: -0.055052683, w: 0.918141}
+  rotation: {x: 0.20804213, y: -0.18521707, z: -0.7349917, w: 0.6182236}
   electricShock: 0
   freezing: 0
   dotDamage: 0
@@ -33751,7 +33751,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 1122d7cb1d89a2a4d8cddf93d8c96a54, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
