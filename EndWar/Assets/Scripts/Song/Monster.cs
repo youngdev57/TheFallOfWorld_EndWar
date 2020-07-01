@@ -19,7 +19,7 @@ public  class Monster : MonoBehaviour
 {
     public enum Staus
     {
-        idle, walk, run, die, attack
+        idle, walk, run, die, attack, hit
     }
 
     public int maxHp;               // 최대체력
@@ -44,6 +44,8 @@ public  class Monster : MonoBehaviour
     public bool canAttack;
     internal bool idleMode;
     public bool notDie;
+
+    public bool STUN;
 
     public float delay;
     public float attackType;
@@ -76,7 +78,10 @@ public  class Monster : MonoBehaviour
         {
             PlayAnimation();
             OnMove();
-            TargetPosition();
+            if (!STUN)
+            {
+                TargetPosition();
+            }
             Die();
             RespawnerOff();
             if (type == MonsterType.Boss)
@@ -126,6 +131,9 @@ public  class Monster : MonoBehaviour
                 }
                 attackType = -1;
                 StartCoroutine(NavStop());
+                break;
+            case Staus.hit:
+                mAnimator.SetTrigger("Hit");
                 break;
         }
     }
@@ -277,6 +285,7 @@ public  class Monster : MonoBehaviour
                         StartCoroutine(SetStatusEffect(index, seconde));
                         break;
                     case Skillability.STUN:
+                        STUN = true;
                         StartCoroutine(SetStatusEffect(seconde));
                         break;
                 }
@@ -312,10 +321,11 @@ public  class Monster : MonoBehaviour
     public virtual IEnumerator SetStatusEffect(float se)
     {
         Debug.Log("stun");
-        monster_Staus = Staus.idle;
+        monster_Staus = Staus.hit;
         SetNavStopped(false);
         canAttack = false;
         yield return new WaitForSeconds(se);
+        STUN = false;
         SetNavStopped(true);
         canAttack = true;
     }

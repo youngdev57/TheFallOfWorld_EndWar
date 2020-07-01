@@ -139,6 +139,7 @@ public class Madsykur : Monster
         canAttack = false;
         //attackMode = false;
         idleMode = true;
+        STUN = false;
 
         notDie = false;
         delay = 0f;

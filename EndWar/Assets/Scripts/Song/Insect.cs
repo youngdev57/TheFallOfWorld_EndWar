@@ -58,6 +58,9 @@ public class Insect : Monster
                 attackType = -1;
                 StartCoroutine(NavStop());
                 break;
+            case Staus.hit:
+                mAnimator.SetTrigger("Hit");
+                break;
         }
     }
 
@@ -182,6 +185,7 @@ public class Insect : Monster
         canAttack = false;
      //   attackMode = false;
         idleMode = true;
+        STUN = false;
 
         notDie = false;
         delay = 0f;
