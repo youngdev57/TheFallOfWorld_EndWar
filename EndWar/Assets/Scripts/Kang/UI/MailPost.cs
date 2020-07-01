@@ -167,10 +167,12 @@ public class MailPost : MonoBehaviour
 
         PostContent cont = postList[postIdx];
 
+        Debug.Log(postIdx + " : " + cont.item_code);
+
         openItemCode = cont.item_code;  //수령을 위해 아이템 코드 받아서 AddItem()함수에 사용할 예정
         openGold = cont.price;
 
-        if(cont.item_code != -1)
+        if(cont.item_code > -1)
         {
             item_image.sprite = inven.spriteList[cont.item_code];
             itemName_txt.text = PlayerInven.allItemLists[cont.item_code].itemName;
@@ -209,7 +211,7 @@ public class MailPost : MonoBehaviour
     {
         PlayerInven pInven = inven.pInven;
 
-        if (openItemCode == -1)
+        if (openItemCode <= -1)
         {
             pInven.AddGold(openGold, true);
             inven.invenGold = pInven.gold;
