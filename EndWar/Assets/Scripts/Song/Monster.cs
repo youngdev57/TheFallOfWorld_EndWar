@@ -329,6 +329,7 @@ public  class Monster : MonoBehaviour
         canAttack = false;
         yield return new WaitForSeconds(se);
         STUN = false;
+        mAnimator.SetTrigger("HitExit");
         SetNavStopped(true);
         canAttack = true;
     }
