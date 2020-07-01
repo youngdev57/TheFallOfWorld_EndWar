@@ -37,6 +37,8 @@ public class PlayerInfo : MonoBehaviourPunCallbacks
     [PunRPC]
     public void DungeonEnterAlert()
     {
+        if (!GetComponent<PhotonView>().IsMine)
+            return;
         dungeonAlert.SetActive(true);
         Invoke("EnterAction", 3f);
     }
@@ -49,6 +51,8 @@ public class PlayerInfo : MonoBehaviourPunCallbacks
     [PunRPC]
     public void DungeonEnterAction()
     {
+        if (!GetComponent<PhotonView>().IsMine)
+            return;
         photonManager.destination = 3;
         photonManager.SendMessage("LeaveRoom");
     }
@@ -56,6 +60,8 @@ public class PlayerInfo : MonoBehaviourPunCallbacks
     [PunRPC]
     public void DungeonExitAction()
     {
+        if (!GetComponent<PhotonView>().IsMine)
+            return;
         photonManager.destination = 2;
         photonManager.SendMessage("LeaveRoom");
     }
@@ -72,6 +78,8 @@ public class PlayerInfo : MonoBehaviourPunCallbacks
     [PunRPC]
     public void ShowClear()
     {
+        if (!GetComponent<PhotonView>().IsMine)
+            return;
         GetComponentInChildren<DungeonExit>().ShowClearUI();
     }
 

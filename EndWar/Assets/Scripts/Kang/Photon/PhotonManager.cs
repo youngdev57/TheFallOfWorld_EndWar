@@ -442,10 +442,10 @@ public class PhotonManager : MonoBehaviourPunCallbacks
                 break;
 
             case 1:     //스노우맵
-                SpawnPlayer(new Vector3(269.65f, 1.5f, 1166.47f));
+                SpawnPlayer(new Vector3(3372f, 1.5f, 1371f));
                 break;
             case 2:     //스노우맵 - 던전앞
-                SpawnPlayer(new Vector3(3500f, 2f, 1726f));
+                SpawnPlayer(new Vector3(3372f, 2f, 1371f));
                 break;
             case 3:     //던전
                 float randomZ = UnityEngine.Random.Range(-8f, 8f);
