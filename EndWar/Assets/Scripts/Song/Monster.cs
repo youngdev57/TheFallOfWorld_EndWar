@@ -27,6 +27,7 @@ public  class Monster : MonoBehaviour
     public int VIT;                      // 방어력
     public int ACT;                     // 공격력
     public float actSpeed;         // 공격속도
+    public int m_gold;          //몬스터 골드
 
     public MobLocation location = MobLocation.Field;    //몬스터 위치 기본값 : 필드
     public MonsterType type = MonsterType.Nomal;        //몬스터 타입 기본값 : 일반 
@@ -150,6 +151,12 @@ public  class Monster : MonoBehaviour
             mRigidbody.useGravity = false;
             mRigidbody.constraints = RigidbodyConstraints.FreezeAll;
             StartCoroutine(ActiveFalse());
+
+            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+            foreach (GameObject player in players)
+            {
+                player.GetComponentInChildren<PhotonView>().RPC("AddGold", RpcTarget.All, m_gold);
+            }
         }
     }
 

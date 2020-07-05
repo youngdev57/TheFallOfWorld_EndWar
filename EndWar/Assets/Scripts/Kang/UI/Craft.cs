@@ -149,6 +149,7 @@ public class Craft : MonoBehaviour
                 oreCnts[i] += 20;
 
             RefreshOreTexts();
+            RefreshCraftInfo();
             inven.pInven.SaveInven();
         }
 

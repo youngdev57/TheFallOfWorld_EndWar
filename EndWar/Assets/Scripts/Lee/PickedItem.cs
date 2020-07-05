@@ -31,7 +31,9 @@ public class PickedItem : MonoBehaviourPun
 
     void Update()
     {
-        canPickTimer += Time.deltaTime;
+        if(gameObject.layer == 0)
+            canPickTimer += Time.deltaTime;
+
         if(canPickTimer >= pickCooltime)
         {
             canPickTimer = 0;

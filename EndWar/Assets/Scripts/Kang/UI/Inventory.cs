@@ -117,6 +117,8 @@ public class Inventory : MonoBehaviour
 
     void RefreshEquip(int[] idxs)
     {
+        ChangeTarget tempEquip = selectedEquip;
+
         selectedEquip = ChangeTarget.SubWeapon;
         ChangeEquip(idxs[0], 1);
         selectedEquip = ChangeTarget.MainWeapon;
@@ -135,6 +137,8 @@ public class Inventory : MonoBehaviour
         ChangeEquip(idxs[7], 1);
         selectedEquip = ChangeTarget.Acc;
         ChangeEquip(idxs[8], 1);
+
+        selectedEquip = tempEquip;
     }
 
     private void Update()
@@ -536,6 +540,23 @@ public class Inventory : MonoBehaviour
     public void UI_RemoveItem(int idx)  //UI에서 접근할 함수
     {
         removeIdx = idx - 1;        //삭제 하려는 아이템의 슬롯 위치 갱신
+
+        int[] idxs = new int[9];
+        idxs[0] = subIdx;
+        idxs[1] = mainIdx;
+        idxs[2] = helmetIdx;
+        idxs[3] = armorIdx;
+        idxs[4] = shoulderIdx;
+        idxs[5] = gloveIdx;
+        idxs[6] = pantsIdx;
+        idxs[7] = shoesIdx;
+        idxs[8] = accIdx;
+
+        for (int i = 0; i < idxs.Length; i++)
+        {
+            if (idxs[i] == removeIdx)
+                return;
+        }
 
         ShowRemoveDialog();     //아이템 삭제 예,아니오 확인창 팝업
     }

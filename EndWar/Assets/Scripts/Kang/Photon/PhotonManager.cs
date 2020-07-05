@@ -442,7 +442,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
                 break;
 
             case 1:     //스노우맵
-                SpawnPlayer(new Vector3(3485.73f, 1.5f, 1730.22f));
+                SpawnPlayer(new Vector3(268.61f, 1.5f, 1161.78f));
                 break;
             case 2:     //스노우맵 - 던전앞
                 SpawnPlayer(new Vector3(3485.73f, 2f, 1730.22f));
