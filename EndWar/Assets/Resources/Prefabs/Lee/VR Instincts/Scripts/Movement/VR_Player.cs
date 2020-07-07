@@ -55,10 +55,6 @@ public class VR_Player : MonoBehaviourPun
                 RBody.AddForce(moveDirection.x*MovementSpeed/( Mathf.Sqrt(2 * jumpHeight * 9.81f)/(9.81f)) * Time.fixedDeltaTime, 0, moveDirection.z *MovementSpeed/ (Mathf.Sqrt(2 * jumpHeight * 9.81f) / (9.81f)) * Time.fixedDeltaTime, ForceMode.VelocityChange);
             }
         }
-        else
-        {
-            CapCollider.material = FrictionMaterial;
-        }
 
         if (openUI.GetStateDown(SteamVR_Input_Sources.LeftHand))
         {
