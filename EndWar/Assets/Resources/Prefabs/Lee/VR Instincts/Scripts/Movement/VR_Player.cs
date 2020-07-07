@@ -7,7 +7,6 @@ public class VR_Player : MonoBehaviourPun
 {
     private Vector2 trackpad;
     private Vector3 moveDirection;
-    private CapsuleCollider CapCollider;
     private Rigidbody RBody;
 
     public SteamVR_Input_Sources MovementHand;//Set Hand To Get Input From
@@ -28,7 +27,6 @@ public class VR_Player : MonoBehaviourPun
 
     private void Start()
     {
-        CapCollider = GetComponent<CapsuleCollider>();
         RBody = GetComponent<Rigidbody>();
     }
 
@@ -40,12 +38,9 @@ public class VR_Player : MonoBehaviourPun
         Rigidbody RBody = GetComponent<Rigidbody>();
         moveDirection = Quaternion.AngleAxis(Angle(trackpad) + AxisHand.transform.localRotation.eulerAngles.y, Vector3.up) * Vector3.forward* trackpad.magnitude;//get the angle of the touch and correct it for the rotation of the controller
         updateInput();
-        updateCollider();
         if (trackpad.magnitude > Deadzone)
         {//make sure the touch isn't in the deadzone and we aren't going to fast.
 
-
-            CapCollider.material = NoFrictionMaterial;
             if (TouchingGround) {
                 if (JumpAction.GetStateDown(MovementHand))
                 {
@@ -82,11 +77,6 @@ public class VR_Player : MonoBehaviourPun
         {
             return Mathf.Atan2(p_vector2.x, p_vector2.y) * Mathf.Rad2Deg;
         }
-    }
-    private void updateCollider()
-    {
-        CapCollider.height = Head.transform.localPosition.y;
-        CapCollider.center = new Vector3(Head.transform.localPosition.x, Head.transform.localPosition.y / 2, Head.transform.localPosition.z);
     }
     private void updateInput()
     {

@@ -5,7 +5,7 @@
       "app_key": "application.generated.unity.endwar.exe",
       "launch_type": "url",
       "url": "steam://launch/",
-      "action_manifest_path": "C:\\Users\\user\\Desktop\\UNITY\\Capstone\\EndWar\\Assets\\StreamingAssets\\SteamVR\\actions.json",
+      "action_manifest_path": "C:\\Users\\user\\Documents\\EndWar\\EndWar\\Assets\\StreamingAssets\\SteamVR\\actions.json",
       "strings": {
         "en_us": {
           "name": "EndWar [Testing]"
