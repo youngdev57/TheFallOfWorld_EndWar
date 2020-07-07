@@ -20,7 +20,8 @@ public class PlayerManager : MonoBehaviourPun
     [Space(10)]
     public GameObject dieEffect;
     public GameObject teleportEffect;
-    public GameObject DieText;
+    public GameObject dieText;
+    public GameObject damageEffect;
     public static bool isDie = false;
 
     MPBar[] mpArray;
@@ -193,7 +194,7 @@ public class PlayerManager : MonoBehaviourPun
         dieEffect.SetActive(boolean);
         teleportEffect.SetActive(boolean);
         if(photonView.IsMine)
-            DieText.SetActive(boolean);
+            dieText.SetActive(boolean);
 
         isDie = boolean;
         currHP = p_HP;
@@ -212,7 +213,7 @@ public class PlayerManager : MonoBehaviourPun
     {
         int defense = p_DEF / 10;
         healTime = 5f;
-
+        damageEffect.SetActive(true);
         if (!(damage - defense == 0)) 
             currHP -= damage - defense;   //데미지 - 방어지수가 0이 아니면 데미지입음
 

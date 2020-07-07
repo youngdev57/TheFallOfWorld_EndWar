@@ -57632,7 +57632,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 1024
-  target: {x: 0, y: 0, z: 0}
+  target: {x: 128.40685, y: 0.2, z: 152.32086}
   speed: 0
   seconds: 0
   nonTargetDamage: 0

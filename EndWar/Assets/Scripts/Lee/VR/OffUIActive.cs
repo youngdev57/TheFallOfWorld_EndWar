@@ -12,4 +12,9 @@ public class OffUIActive : MonoBehaviourPun
         if (!player.IsMine)
             gameObject.SetActive(false);
     }
+
+    void OffObject()
+    {
+        gameObject.SetActive(false);
+    }
 }
