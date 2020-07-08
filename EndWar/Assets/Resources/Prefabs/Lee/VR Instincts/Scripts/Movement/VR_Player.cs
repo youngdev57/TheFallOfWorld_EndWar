@@ -7,6 +7,7 @@ public class VR_Player : MonoBehaviourPun
 {
     private Vector2 trackpad;
     private Vector3 moveDirection;
+    private CapsuleCollider CapCollider;
     private Rigidbody RBody;
 
     public SteamVR_Input_Sources MovementHand;//Set Hand To Get Input From
@@ -27,6 +28,7 @@ public class VR_Player : MonoBehaviourPun
 
     private void Start()
     {
+        CapCollider = GetComponent<CapsuleCollider>();
         RBody = GetComponent<Rigidbody>();
     }
 
@@ -38,9 +40,11 @@ public class VR_Player : MonoBehaviourPun
         Rigidbody RBody = GetComponent<Rigidbody>();
         moveDirection = Quaternion.AngleAxis(Angle(trackpad) + AxisHand.transform.localRotation.eulerAngles.y, Vector3.up) * Vector3.forward* trackpad.magnitude;//get the angle of the touch and correct it for the rotation of the controller
         updateInput();
+        updateCollider();
         if (trackpad.magnitude > Deadzone)
         {//make sure the touch isn't in the deadzone and we aren't going to fast.
 
+            CapCollider.material = NoFrictionMaterial;
             if (TouchingGround) {
                 if (JumpAction.GetStateDown(MovementHand))
                 {
@@ -54,6 +58,10 @@ public class VR_Player : MonoBehaviourPun
             {
                 RBody.AddForce(moveDirection.x*MovementSpeed/( Mathf.Sqrt(2 * jumpHeight * 9.81f)/(9.81f)) * Time.fixedDeltaTime, 0, moveDirection.z *MovementSpeed/ (Mathf.Sqrt(2 * jumpHeight * 9.81f) / (9.81f)) * Time.fixedDeltaTime, ForceMode.VelocityChange);
             }
+        }
+        else
+        {
+            CapCollider.material = FrictionMaterial;
         }
 
         if (openUI.GetStateDown(SteamVR_Input_Sources.LeftHand))
@@ -80,6 +88,11 @@ public class VR_Player : MonoBehaviourPun
         if (TouchingGround && TrackpadAction.GetAxis(MovementHand) == Vector2.zero)
             RBody.velocity = Vector3.zero;
     }
+    private void updateCollider()
+    {
+        CapCollider.height = Head.transform.localPosition.y;
+        CapCollider.center = new Vector3(Head.transform.localPosition.x, Head.transform.localPosition.y / 2, Head.transform.localPosition.z);
+    }
 
     [PunRPC]
     void OpenUI()
@@ -88,7 +101,7 @@ public class VR_Player : MonoBehaviourPun
         this.enabled = false;
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnCollisionStay(Collision collision)
     {
         int layerMask = 10;
         if (collision.gameObject.layer == layerMask)

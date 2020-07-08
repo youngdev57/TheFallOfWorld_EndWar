@@ -4,8 +4,9 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: PS_Circle
   m_Shader: {fileID: 4800000, guid: c085ba0f96b74694bd22f580a543f644, type: 3}
   m_ShaderKeywords: 
@@ -101,5 +102,5 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _MainTexSpeed: {r: 0, g: 0, b: 0, a: 0}
     - _MaskTexSpeed: {r: -5, g: 0, b: 0, a: 0}
-    - _TintColor: {r: 0, g: 2.2758622, b: 6, a: 1}
+    - _TintColor: {r: 0, g: 6, b: 0.6088887, a: 1}
     - _Vector0: {r: -5, g: 0, b: 0, a: 0}

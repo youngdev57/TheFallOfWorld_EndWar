@@ -4793,7 +4793,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1425946488338070401
 Transform:
   m_ObjectHideFlags: 0
@@ -57632,7 +57632,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 1024
-  target: {x: 128.40685, y: 0.2, z: 152.32086}
+  target: {x: 0, y: 0, z: 0}
   speed: 0
   seconds: 0
   nonTargetDamage: 0
@@ -62452,7 +62452,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1749479167338777947
 Transform:
   m_ObjectHideFlags: 0

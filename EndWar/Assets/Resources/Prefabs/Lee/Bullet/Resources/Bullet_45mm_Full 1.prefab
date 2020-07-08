@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
+  hitEffect: {fileID: 100002, guid: 6890a03af913b874092fbb1e8337747d, type: 3}
 --- !u!136 &136436518488396882
 CapsuleCollider:
   m_ObjectHideFlags: 0

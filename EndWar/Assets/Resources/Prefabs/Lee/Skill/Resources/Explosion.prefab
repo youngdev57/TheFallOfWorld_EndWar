@@ -68,8 +68,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45db19b7db9b30c47904449cdc1ebff6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   skillName: 
-  prefab: {fileID: 0}
   distance: 50
   n_damageCount: 1
   damage: 32000000
@@ -83,13 +83,14 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 1024
-  target: {x: -17.788338, y: 0.2, z: 95.73808}
+  target: {x: 0, y: 0, z: 0}
   speed: 0
   seconds: 0
   nonTargetDamage: 0
   rotation: {x: 0, y: 0, z: 0, w: 1}
   electricShock: 0
   freezing: 0
+  dotDamage: 0
 --- !u!95 &653207598850676097
 Animator:
   serializedVersion: 3

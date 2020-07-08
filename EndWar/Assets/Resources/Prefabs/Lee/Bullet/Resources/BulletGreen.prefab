@@ -53,6 +53,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
+  hitEffect: {fileID: 1864792006492738, guid: b24720ec69b565b4882f1bf434c70fe2, type: 3}
 --- !u!96 &5802672389851950850
 TrailRenderer:
   serializedVersion: 2
