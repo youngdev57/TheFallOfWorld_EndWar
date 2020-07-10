@@ -61,6 +61,10 @@ public  class Monster : MonoBehaviour
     [PunRPC]
     public virtual void AttackType()
     {
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            return;
+        }
         attackType = Random.Range(0, 3);
     }
 
@@ -259,7 +263,7 @@ public  class Monster : MonoBehaviour
     // 피격시 플레이어 인식
     public virtual void PlayerTarget(Transform tr)
     {
-        if (target == null || target.gameObject.tag != "Player" && !notDie )
+        if ((target == null || target.gameObject.tag != "Player") && !notDie )
         {
             target = tr;
         }
@@ -384,8 +388,8 @@ public  class Monster : MonoBehaviour
     public IEnumerator ActiveFalse()
     {
         yield return new WaitForSeconds(6f);
-        this.gameObject.SetActive(false);
         mNav.enabled = false;
         StopAllCoroutines();
+        this.gameObject.SetActive(false);
     }
 }

@@ -9,8 +9,6 @@ public class Titan : Monster
 {
     public List<GameObject> PattenObj;
     // 0 : 불장판
-    public List<GameObject> PattenMonster;
-    // 0 : 슬러그 1 : 렙타일 2: 인섹트 3 : 정크 4 : 아라츠니드
 
     private int Page = 1;
 
@@ -88,6 +86,7 @@ public class Titan : Monster
                             PatternUsingOnlyOne = false;
                             mAnimator.SetTrigger("Shout");
                             invincibility = true;
+
                             PattenUse = true;
                             delay = 0f;
                             StartCoroutine(NavStop());

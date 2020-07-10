@@ -462,7 +462,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
 
     void SpawnPlayer_Base()
     {
-        GameObject tempObj = PhotonNetwork.Instantiate("PlayerOnBase", new Vector3(107.37f, 1.21f, 174.25f), Quaternion.identity, 0);
+        GameObject tempObj = PhotonNetwork.Instantiate("Player", new Vector3(107.37f, 1.21f, 174.25f), Quaternion.identity, 0);
         tempObj.GetComponent<PlayerInfo>().photonManager = this;
         player = tempObj;
         tempObj.GetComponent<PlayerManager>().photonManager = this;

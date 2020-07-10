@@ -10,7 +10,7 @@ public class MovePointRepos : MonoBehaviour
     {
         if (isWall)
         {
-            transform.position = new Vector3(transform.parent.position.x + Random.Range(-25f, 25f), 0, transform.parent.position.z + Random.Range(-25f, 25f));
+            transform.position = new Vector3(transform.parent.position.x + Random.Range(-25f, 25f), transform.parent.position.y, transform.parent.position.z + Random.Range(-25f, 25f));
         }
     }
 
