@@ -54,7 +54,7 @@ public class Juggernaut : Monster
                         {
                             monster_Staus = Staus.attack;
                             delay = 0f;
-                            target.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, ACT);
+                            StartCoroutine(DelayGetDamage(second));
                         }
                         else
                         {

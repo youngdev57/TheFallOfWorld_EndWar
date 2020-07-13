@@ -14427,11 +14427,11 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 4096
-  target: {x: 0, y: 0, z: 0}
+  target: {x: 0.5712943, y: 0, z: 2.1648293}
   speed: 0
   seconds: 0
   nonTargetDamage: 0
-  rotation: {x: 0, y: 0.059773706, z: 0, w: -0.998212}
+  rotation: {x: 0, y: 0.712991, z: 0, w: -0.7011732}
   electricShock: 0
   freezing: 0
   dotDamage: 0

@@ -29,6 +29,8 @@ public  class Monster : MonoBehaviour
     public float actSpeed;         // 공격속도
     public int m_gold;          //몬스터 골드
 
+    public float second;
+
     public MobLocation location = MobLocation.Field;    //몬스터 위치 기본값 : 필드
     public MonsterType type = MonsterType.Nomal;        //몬스터 타입 기본값 : 일반 
 
@@ -200,7 +202,7 @@ public  class Monster : MonoBehaviour
                         {
                             monster_Staus = Staus.attack;
                             delay = 0f;
-                            target.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, ACT);
+                            StartCoroutine(DelayGetDamage(second));
                         }
                         else
                         {
@@ -391,5 +393,11 @@ public  class Monster : MonoBehaviour
         mNav.enabled = false;
         StopAllCoroutines();
         this.gameObject.SetActive(false);
+    }
+
+    public virtual IEnumerator DelayGetDamage(float se)
+    {
+        yield return new WaitForSeconds(se);
+        target.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, ACT);
     }
 }

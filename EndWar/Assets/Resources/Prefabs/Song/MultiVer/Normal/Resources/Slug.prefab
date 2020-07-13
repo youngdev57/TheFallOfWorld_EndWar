@@ -692,6 +692,7 @@ MonoBehaviour:
   ACT: 0
   actSpeed: 0
   m_gold: 120
+  second: 0
   location: 0
   type: 1
   monster_Staus: 0
