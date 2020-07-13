@@ -1,11 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
 using Valve.VR;
 using System;
 
-public class Hand_PickUp : MonoBehaviourPun
+public class Hand_PickUp : MonoBehaviour
 {
     public SteamVR_Input_Sources hand;
     public SteamVR_Action_Boolean closeUi;
@@ -22,7 +21,7 @@ public class Hand_PickUp : MonoBehaviourPun
 
     void Update()
     {
-        if (!player.GetComponent<PhotonView>().IsMine && PlayerManager.isDie == true)
+        if (PlayerManager.isDie == true)
             return;
 
         if (action.GetStateDown(hand) && canPickup)

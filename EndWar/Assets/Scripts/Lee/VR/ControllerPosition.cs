@@ -1,13 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
 using Valve.VR;
 
-public class ControllerPosition : MonoBehaviourPun
+public class ControllerPosition : MonoBehaviour
 {
     public int index = 1;
-    public PhotonView myPv;
     public GameObject Head;
 
     ViveManager viveManager;
@@ -15,14 +13,10 @@ public class ControllerPosition : MonoBehaviourPun
     {
         FindVive();
         FindParent();
-        myPv = GetComponent<PhotonView>();
     }
 
     void Update()
     {
-        if (!myPv.IsMine)
-            return;
-
         switch (index)
         {
             case 0:
@@ -64,16 +58,15 @@ public class ControllerPosition : MonoBehaviourPun
     {
         Transform obj = viveManager.myBody.transform;
 
-        if (photonView.IsMine)
-            switch (index)
-            {
-                case 2:
-                    obj = viveManager.leftHand.transform;
-                    break;
-                case 3:
-                    obj = viveManager.rightHand.transform;
-                    break;
-            }
+        switch (index)
+        {
+            case 2:
+                obj = viveManager.leftHand.transform;
+                break;
+            case 3:
+                obj = viveManager.rightHand.transform;
+                break;
+        }
 
         if (obj != null && !obj.Find(gameObject.name) && index != 0)
             transform.parent = obj;

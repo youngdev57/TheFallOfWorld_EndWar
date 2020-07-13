@@ -1,9 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
 
-public class BodyTracking : MonoBehaviourPun
+public class BodyTracking : MonoBehaviour
 {
     public float DefaultHeight;// = 1.62 is the normal height of a human;
     public float rotationWhenCrouched;
@@ -32,8 +31,6 @@ public class BodyTracking : MonoBehaviourPun
 
     private Quaternion HipOffsetRotation;
     private Vector3 PastPos;
-
-    private PhotonView myPv;
     // Start is called before the first frame update
     void Awake()
     {

@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR;
-using Photon.Pun;
 
 public enum WHATHAND { HEAD, LEFT, RIGHT}
-public class IKSetting : MonoBehaviourPun
+public class IKSetting : MonoBehaviour
 {
     public WHATHAND hand;
     public Transform wrist;

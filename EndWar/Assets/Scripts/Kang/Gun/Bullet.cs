@@ -1,9 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
 
-public class Bullet : MonoBehaviourPun
+public class Bullet : MonoBehaviour
 {
     public int damage = 0;
     public GameObject hitEffect;
@@ -32,10 +31,8 @@ public class Bullet : MonoBehaviourPun
 
         if (other.gameObject.layer == LayerMask.NameToLayer("Monster"))
         {
-            other.gameObject.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.AllBuffered, damage);
-            Debug.Log("몬스터 맞음");
+            other.gameObject.GetComponent<Monster>().GetDamage(damage);
             OffObject();
-
         }
     }
 

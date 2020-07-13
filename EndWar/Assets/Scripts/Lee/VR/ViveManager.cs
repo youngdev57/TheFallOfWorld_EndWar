@@ -1,9 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
 
-public class ViveManager : MonoBehaviourPun
+public class ViveManager : MonoBehaviour
 {
     public GameObject origin;
     public GameObject head;

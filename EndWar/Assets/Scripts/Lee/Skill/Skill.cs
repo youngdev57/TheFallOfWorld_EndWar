@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
 
 //스킬 타입
 public enum SkillType {RADIAL, POINT, NONTARGET }
@@ -9,8 +8,7 @@ public enum SkillType {RADIAL, POINT, NONTARGET }
 //스킬의 효과
 public enum Skillability {NONE, STUN, DOT, SLOW, MEZ }
 
-[RequireComponent(typeof(PhotonView))]
-public class Skill : MonoBehaviourPun
+public class Skill : MonoBehaviour
 {
     public Transform player;
 
@@ -67,7 +65,7 @@ public class Skill : MonoBehaviourPun
         if (speed == null && type == SkillType.NONTARGET)
             return; 
 
-        PhotonNetwork.Instantiate(gameObject.name, target, rotation);
+        Instantiate(gameObject, target, rotation);
     }
 
     //에디터용 필요없음
@@ -93,7 +91,6 @@ public class Skill : MonoBehaviourPun
 
         for (int i = 0; i < monsters.Count; i++)
         {
-            Debug.Log("스킬사용" + monsters.Count + " , " + i);
             Monster mon = monsters[i].GetComponent<Monster>();
             int _damage = this.damage[n_count];
             mon.GetDamage(_damage);

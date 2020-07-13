@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR;
-using Photon.Pun;
-public class VR_Player : MonoBehaviourPun
+
+public class VR_Player : MonoBehaviour
 {
     private Vector2 trackpad;
     private Vector3 moveDirection;
@@ -34,7 +34,7 @@ public class VR_Player : MonoBehaviourPun
 
     void Update()
     {
-        if (!photonView.IsMine || PlayerManager.isDie == true)
+        if (PlayerManager.isDie == true)
             return;
 
         Rigidbody RBody = GetComponent<Rigidbody>();
@@ -66,7 +66,7 @@ public class VR_Player : MonoBehaviourPun
 
         if (openUI.GetStateDown(SteamVR_Input_Sources.LeftHand))
         {
-            photonView.RPC("OpenUI", RpcTarget.AllBuffered, null);
+            OpenUI();
         }
     }
 
@@ -94,7 +94,6 @@ public class VR_Player : MonoBehaviourPun
         CapCollider.center = new Vector3(Head.transform.localPosition.x, Head.transform.localPosition.y / 2, Head.transform.localPosition.z);
     }
 
-    [PunRPC]
     void OpenUI()
     {
         skillUICanvas.SetActive(true);

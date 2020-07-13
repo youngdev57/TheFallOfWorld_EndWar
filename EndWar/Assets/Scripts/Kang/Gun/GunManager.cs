@@ -1,11 +1,10 @@
-﻿using Photon.Pun;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Valve.VR;
 
-public class GunManager : MonoBehaviourPunCallbacks
+public class GunManager : MonoBehaviour
 {
     public SteamVR_Input_Sources handType;
     public SteamVR_Action_Boolean grapAction;
@@ -54,8 +53,7 @@ public class GunManager : MonoBehaviourPunCallbacks
         if (isReloading)
             reloadingSlider.value = 0;
     }
-
-    [PunRPC]
+    
     void Fire()
     {
         if (!isFire || !canFire)
@@ -63,7 +61,7 @@ public class GunManager : MonoBehaviourPunCallbacks
 
         RaycastHit hit;
 
-        photonView.RPC("FireEffect", RpcTarget.AllBuffered);
+        FireEffect();
 
         if (Physics.Raycast(muzzleTr.position, muzzleTr.right, out hit, 5000f))
         {
@@ -76,7 +74,6 @@ public class GunManager : MonoBehaviourPunCallbacks
         canFire = false;
     }
 
-    [PunRPC]
     IEnumerator FireEffect()
     {
         if (anim != null)
@@ -115,7 +112,7 @@ public class GunManager : MonoBehaviourPunCallbacks
         }
         if (temp == null)
         {
-            temp = PhotonNetwork.Instantiate(bullet.name, muzzleTr.position, Quaternion.identity);
+            temp = Instantiate(bullet, muzzleTr.position, Quaternion.identity);
             temp.GetComponent<Bullet>().damage = damage;
             bulletArray.Add(temp);
         }
@@ -141,7 +138,7 @@ public class GunManager : MonoBehaviourPunCallbacks
     
     void Update()
     {
-        if (!photonView.IsMine || PlayerManager.isDie == true)
+        if (PlayerManager.isDie == true)
             return;
 
         timer += Time.deltaTime;
@@ -155,7 +152,7 @@ public class GunManager : MonoBehaviourPunCallbacks
         if (isReloading != true && canFire && grapAction.GetState(handType))
         {
             isFire = true;
-            photonView.RPC("Fire", RpcTarget.AllViaServer);
+            Fire();
         }
 
         if(grapAction.GetStateUp(handType))

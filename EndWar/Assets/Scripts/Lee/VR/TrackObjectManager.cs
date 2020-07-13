@@ -2,17 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR;
-using Photon.Pun;
 
-public class TrackObjectManager : MonoBehaviourPun
+public class TrackObjectManager : MonoBehaviour
 {
-    public PhotonView myPv;
-
     void Awake()
     {
-        if (myPv.IsMine)
-            return;
-
         if (GetComponent<Camera>())
         {
             GetComponent<Camera>().enabled = false;

@@ -1,9 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
 
-public class PickedItem : MonoBehaviourPun
+public class PickedItem : MonoBehaviour
 {
     public GameObject pickUpLine;
     public Gem gemType;
@@ -20,7 +19,6 @@ public class PickedItem : MonoBehaviourPun
         coll = GetComponent<BoxCollider>();
     }
 
-    [PunRPC]
     public void SetPick(bool isPick)
     {
         if (isPick)

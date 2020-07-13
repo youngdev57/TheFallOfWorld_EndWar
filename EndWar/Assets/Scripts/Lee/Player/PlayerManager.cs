@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Photon.Pun;
 
-public class PlayerManager : MonoBehaviourPun
+public class PlayerManager : MonoBehaviour
 {
     public Transform MPBOX;     //MP통
 
@@ -41,12 +40,6 @@ public class PlayerManager : MonoBehaviourPun
     //-------------------------------------Start
     void Start()
     {
-        if (!photonView.IsMine)
-        {
-            hP_Slider.transform.parent.gameObject.SetActive(false);
-            return;
-        }
-
         healCoroutine = HealCoroutine();
         mpArray = MPBOX.GetComponentsInChildren<MPBar>();
         for (int i = 0; i < mpArray.Length; i++)
@@ -75,14 +68,14 @@ public class PlayerManager : MonoBehaviourPun
     //-------------------------------------Update
     void Update()
     {
-        if (!photonView.IsMine || isDie == true)
+        if (isDie == true)
             return;
 
         SliderHPBar();
         AutoHeal();
 
         if (currHP <= 0)
-            photonView.RPC("IsDie", RpcTarget.All, true);
+            IsDie(true);
 
         if (Input.GetKeyDown(KeyCode.A))
         {
@@ -188,13 +181,10 @@ public class PlayerManager : MonoBehaviourPun
         return false;
     }
 
-    [PunRPC]
     void IsDie(bool boolean)
     {
         dieEffect.SetActive(boolean);
         teleportEffect.SetActive(boolean);
-        if(photonView.IsMine)
-            dieText.SetActive(boolean);
 
         isDie = boolean;
         currHP = p_HP;
@@ -208,7 +198,6 @@ public class PlayerManager : MonoBehaviourPun
         }
     }
 
-    [PunRPC]
     public void GetDamage(int damage)
     {
         int defense = p_DEF / 10;
@@ -218,6 +207,5 @@ public class PlayerManager : MonoBehaviourPun
             currHP -= damage - defense;   //데미지 - 방어지수가 0이 아니면 데미지입음
 
         isbackHpHit = true;
-        Debug.Log("아프다~~~~~ 행~복~~해~~~줘~~어~~~~" + this.gameObject.name + ", 원래 데미지: " + damage + ", 방어력 계산 후 데미지: " + (damage - defense));
     }
 }

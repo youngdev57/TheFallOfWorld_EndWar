@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR;
-using Photon.Pun;
 
-public class ChangeGunManager : MonoBehaviourPun
+public class ChangeGunManager : MonoBehaviour
 {
     public SteamVR_Input_Sources hand;
     public SteamVR_Action_Boolean touchPress;
@@ -21,18 +20,16 @@ public class ChangeGunManager : MonoBehaviourPun
     GameObject pickUpObj;
     void Start()
     {
-        if (photonView.IsMine)
-        {
-            anim = GetComponent<Animator>();
-            pickUpObj = transform.parent.parent.GetComponentInChildren<Hand_PickUp>(true).gameObject;
-            photonView.RPC("ChangeGun", RpcTarget.AllBuffered, 0);
-        }
+        anim = GetComponent<Animator>();
+        pickUpObj = transform.parent.parent.GetComponentInChildren<Hand_PickUp>(true).gameObject;
+        ChangeGun(0);
+
     }
 
    
     void Update()
     {
-        if (photonView.IsMine && touchPress.GetStateDown(hand))
+        if (touchPress.GetStateDown(hand))
         {
             select += touchValue.axis.y > 0 ? -1 : 1;
             if (select < 0)
@@ -45,17 +42,16 @@ public class ChangeGunManager : MonoBehaviourPun
                 pickUpObj.SetActive(false);
             }
 
-            photonView.RPC("ChangeGun", RpcTarget.AllBuffered, select);
+            ChangeGun(select);
         }
 
         if (pickUpPress.GetStateDown(hand))
         {
-            photonView.RPC("ChangeGun", RpcTarget.AllBuffered, 2);
+            ChangeGun(2);
             pickUpObj.SetActive(true);
         }
     }
 
-    [PunRPC]
     void ChangeGun(int index)
     {
         switch (index)

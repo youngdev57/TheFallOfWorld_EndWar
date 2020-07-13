@@ -1,28 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
 using Valve.VR;
 
-public class CustomHandSeleton : MonoBehaviourPun
+public class CustomHandSeleton : MonoBehaviour
 {
     public SteamVR_Action_Single gripAction;
     public SteamVR_Action_Boolean goodAction;
     [Space(10)]
     public Animator anim;
-    public PhotonView myPv;
     public WHATHAND hand;
 
     SteamVR_Behaviour_Pose pose;
 
     void Awake()
     {
-        if (myPv == null)
-            myPv = GetComponent<PhotonView>();
-
-        if (!myPv.IsMine)
-            return;
-
         pose = GetComponentInParent<SteamVR_Behaviour_Pose>();
 
         gripAction[pose.inputSource].onChange += Grip;

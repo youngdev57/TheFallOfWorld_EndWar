@@ -1,10 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
 using Valve.VR;
 
-public class ControllerGrabObj : MonoBehaviourPun
+public class ControllerGrabObj : MonoBehaviour
 {
     public SteamVR_Input_Sources handType;
     public SteamVR_Behaviour_Pose controllerPose;   //컨트롤러 정보
@@ -12,25 +11,20 @@ public class ControllerGrabObj : MonoBehaviourPun
 
     GameObject collidingObj; //현재 충돌중인 객체
     GameObject objectInHand; //플레이어가 잡은 객체
-    PhotonView myPv;
 
     void Start()
     {
-        myPv = transform.parent.GetComponent<PhotonView>();
         controllerPose = SteamVR_Render.Top().origin.Find("Controller (right)").GetComponent<SteamVR_Behaviour_Pose>();
     }
 
     void Update()
     {
-        if (!myPv.IsMine)
-            return;
-
         //잡는 버튼을 누를떄
         if (grabAction.GetLastStateDown(handType))
         {
             if (collidingObj)
             {
-                photonView.RPC("GrabObj", RpcTarget.AllBuffered, null);
+                GrabObj();
             }
         }
         //잡는 버튼을 땔때
@@ -38,7 +32,7 @@ public class ControllerGrabObj : MonoBehaviourPun
         {
             if (objectInHand)
             {
-                photonView.RPC("ReleaseObj", RpcTarget.AllBuffered, null);
+                ReleaseObj();
             }
         }
     }
@@ -72,13 +66,12 @@ public class ControllerGrabObj : MonoBehaviourPun
     }
 
     //객체를 잡음
-    [PunRPC]
     void GrabObj()
     {
         objectInHand = collidingObj; //잡은 객체로 설정
         collidingObj = null; //충돌 객체 해제
 
-        objectInHand.GetComponent<ItemTrigger>().GetComponent<PhotonView>().RPC("OnGrab", RpcTarget.AllBuffered, true);
+        objectInHand.GetComponent<ItemTrigger>().OnGrab(true);
         var joint = AddFixedJoint();
         joint.connectedBody = objectInHand.GetComponent<Rigidbody>();
     }
@@ -94,7 +87,6 @@ public class ControllerGrabObj : MonoBehaviourPun
         return fx;
     }
 
-    [PunRPC]
     void ReleaseObj()
     {
         if (GetComponent<FixedJoint>())
@@ -107,7 +99,7 @@ public class ControllerGrabObj : MonoBehaviourPun
             objectInHand.GetComponent<Rigidbody>().angularVelocity = 
                 controllerPose.GetAngularVelocity();
 
-            objectInHand.GetComponent<ItemTrigger>().GetComponent<PhotonView>().RPC("OnGrab", RpcTarget.AllBuffered, false);
+            objectInHand.GetComponent<ItemTrigger>().OnGrab(false);
         }
         objectInHand = null;
     }

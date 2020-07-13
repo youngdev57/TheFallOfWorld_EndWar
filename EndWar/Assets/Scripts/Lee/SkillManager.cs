@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR;
-using Photon.Pun;
 
-public class SkillManager : MonoBehaviourPun
+public class SkillManager : MonoBehaviour
 {
     public SteamVR_Input_Sources handType;
     public SteamVR_Behaviour_Pose controllerPose;   //컨트롤러 정보
@@ -17,14 +16,9 @@ public class SkillManager : MonoBehaviourPun
     public Transform pivot;
 
     RaycastHit _hit;
-    public PhotonView myPv;
 
     bool isPoint;
-    void Start()
-    {
-        //skillProjector = transform.parent.Find("Range").GetComponent<Projector>();
-        //pointObj = transform.parent.Find("Fx_Point").gameObject;
-    }
+    void Start() {}
 
     public void RangeOn()
     {
@@ -47,7 +41,6 @@ public class SkillManager : MonoBehaviourPun
     {
         skillProjector.enabled = false;
         pointObj.SetActive(false);
-        //targetObj Off
     }
 
 
@@ -99,7 +92,7 @@ public class SkillManager : MonoBehaviourPun
 
     void Update()
     {
-        if (!myPv.IsMine || PlayerManager.isDie == true)
+        if (PlayerManager.isDie == true)
             return;
         if ( player.IsUseSkill() )
         {

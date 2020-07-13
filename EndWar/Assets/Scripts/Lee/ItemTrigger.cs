@@ -1,15 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
 
-public class ItemTrigger : MonoBehaviourPun
+public class ItemTrigger : MonoBehaviour
 {
     public Collider coll;
 
     int index = 0;
 
-    [PunRPC]
     public void OnGrab(bool isGrab)
     {
         if (isGrab)

@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Photon.Pun;
 using Valve.VR;
 using System;
 
-public class SkillContentManeger : MonoBehaviourPun
+public class SkillContentManeger : MonoBehaviour
 {
     public SteamVR_Action_Boolean choose;
     public SteamVR_Action_Boolean closeUi;

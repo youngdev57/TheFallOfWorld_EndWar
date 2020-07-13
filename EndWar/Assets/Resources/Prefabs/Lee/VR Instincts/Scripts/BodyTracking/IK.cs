@@ -1,10 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
 
 [ExecuteInEditMode]
-public class IK : MonoBehaviourPun
+public class IK : MonoBehaviour
 {
     public Transform Upper;
     public Transform Lower;
