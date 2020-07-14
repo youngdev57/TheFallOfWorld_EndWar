@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
 
 public class Fog : MonoBehaviour
 {
@@ -31,7 +30,8 @@ public class Fog : MonoBehaviour
         if (other.gameObject.tag == "Player" && attack)
         {
             attack = false;
-            other.transform.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, Damage);
+            //   other.transform.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, Damage);
+            other.GetComponent<PlayerManager>().GetDamage(Damage);
         }
     }
 

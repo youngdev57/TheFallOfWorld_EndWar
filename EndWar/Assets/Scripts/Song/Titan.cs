@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
 using UnityEngine.AI;
 
 
@@ -50,7 +49,8 @@ public class Titan : Monster
                         {
                             PatternUsingOnlyOne = true;
                             mAnimator.SetTrigger("Attack_sec");
-                            target.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, ACT + ACT/10);
+                            target.GetComponent<PlayerManager>().GetDamage(ACT + ACT / 10);
+                            //target.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, ACT + ACT/10);
                             PattenUse = true;
                             delay = 0f;
                             StartCoroutine(NavStop());
@@ -74,7 +74,8 @@ public class Titan : Monster
                         {
                             PatternUsingOnlyOne = true;
                             mAnimator.SetTrigger("Attack_thi");
-                            target.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, ACT+ ACT / 9);
+                            target.GetComponent<PlayerManager>().GetDamage(ACT + ACT / 9);
+                            // target.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, ACT+ ACT / 9);
                             PattenUse = true;
                             delay = 0f;
                             StartCoroutine(NavStop());
@@ -145,7 +146,8 @@ public class Titan : Monster
                         {
                             PatternUsingOnlyOne = false;
                             mAnimator.SetTrigger("Attack_thi");
-                            target.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, ACT + ACT / 5);
+                            target.GetComponent<PlayerManager>().GetDamage(ACT + ACT / 5);
+                            //  target.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, ACT + ACT / 5);
                             PattenUse = true;
                             delay = 0f;
                             StartCoroutine(NavStop());
@@ -156,7 +158,8 @@ public class Titan : Monster
                         {
                             PatternUsingOnlyOne = true;
                             mAnimator.SetTrigger("Attack_sec");
-                            target.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, ACT + ACT / 7);
+                            target.GetComponent<PlayerManager>().GetDamage(ACT + ACT / 7);
+                            //  target.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, ACT + ACT / 7);
                             PattenUse = true;
                             delay = 0f;
                             StartCoroutine(NavStop());
@@ -167,7 +170,8 @@ public class Titan : Monster
                         {
                             PatternUsingOnlyOne = false;
                             mAnimator.SetTrigger("Attack_thi");
-                            target.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, ACT + ACT / 5);
+                            target.GetComponent<PlayerManager>().GetDamage(ACT + ACT / 5);
+                            //    target.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, ACT + ACT / 5);
                             PattenUse = true;
                             invincibility = true;
                             delay = 0f;
@@ -226,7 +230,8 @@ public class Titan : Monster
                         {
                             PatternUsingOnlyOne = false;
                             mAnimator.SetTrigger("Attack_thi");
-                            target.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, ACT + ACT / 2);
+                            target.GetComponent<PlayerManager>().GetDamage(ACT + ACT / 2);
+                            //   target.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, ACT + ACT / 2);
                             PattenUse = true;
                             invincibility = true;
                             delay = 0f;
@@ -252,7 +257,8 @@ public class Titan : Monster
                         {
                             PatternUsingOnlyOne = false;
                             mAnimator.SetTrigger("Attack_sec");
-                            target.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, ACT + ACT / 4);
+                            target.GetComponent<PlayerManager>().GetDamage(ACT + ACT / 4);
+                            //    target.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, ACT + ACT / 4);
                             PattenUse = true;
                             invincibility = true;
                             delay = 0f;
@@ -278,7 +284,8 @@ public class Titan : Monster
                         {
                             PatternUsingOnlyOne = false;
                             mAnimator.SetTrigger("Attack_fou");
-                            target.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, ACT*2);
+                            target.GetComponent<PlayerManager>().GetDamage(ACT * 2);
+                            //    target.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, ACT*2);
                             PattenUse = true;
                             invincibility = true;
                             delay = 0f;
@@ -318,7 +325,6 @@ public class Titan : Monster
     }
 
     // 피격
-    [PunRPC]
     public override void GetDamage(int Damage)
     {
         if (invincibility)
@@ -341,7 +347,6 @@ public class Titan : Monster
     }
 
     // 애니메이션
-    [PunRPC]
     public override void PlayAnimation()
     {
         switch (monster_Staus)
@@ -361,10 +366,13 @@ public class Titan : Monster
                     notDie = true;
                     mAnimator.SetTrigger("Die");
                     GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+                    target.GetComponent<PlayerInfo>().ShowClear();
+                    /*
                     foreach (GameObject player in players)
                     {
                         player.GetComponentInChildren<PhotonView>().RPC("ShowClear", RpcTarget.All);
                     }
+                    */
                 }
                 break;
             case Staus.attack:
@@ -375,7 +383,6 @@ public class Titan : Monster
     }
 
     // 판단
-    [PunRPC]
     public override void TargetPosition()
     {
         if (target == null)
@@ -403,7 +410,8 @@ public class Titan : Monster
                         {
                             monster_Staus = Staus.attack;
                             delay = 0f;
-                            target.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, ACT);
+                            target.GetComponent<PlayerManager>().GetDamage(ACT);
+                         //   target.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, ACT);
                         }
                         else
                         {
@@ -489,7 +497,6 @@ public class Titan : Monster
         mNav = GetComponent<NavMeshAgent>();
         mAnimator = GetComponent<Animator>();
         mRigidbody = GetComponent<Rigidbody>();
-        pv = GetComponent<PhotonView>();
 
         mRigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
 

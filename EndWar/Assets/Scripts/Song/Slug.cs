@@ -1,13 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
 using UnityEngine.AI;
 
 public class Slug : Monster
 {
     // 피격
-    [PunRPC]
     public override void GetDamage(int Damage)
     {
         if (VIT < Damage)
@@ -26,7 +24,6 @@ public class Slug : Monster
     }
 
     // 판단
-    [PunRPC]
     public override void TargetPosition()
     {
         if (target == null)
@@ -138,7 +135,6 @@ public class Slug : Monster
         mNav = GetComponent<NavMeshAgent>();
         mAnimator = GetComponent<Animator>();
         mRigidbody = GetComponent<Rigidbody>();
-        pv = GetComponent<PhotonView>();
         mRigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
 
         canAttack = false;

@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
 
 public class AllDeath : MonoBehaviour
 {
@@ -11,7 +10,8 @@ public class AllDeath : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            other.transform.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, Damage);
+            //other.transform.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, Damage);
+            other.GetComponent<PlayerManager>().GetDamage(Damage);
         }
     }
 }

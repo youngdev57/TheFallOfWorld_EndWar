@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using Photon.Pun;
 
-public class PhotonMonsterSpawn : MonoBehaviourPun
+public class PhotonMonsterSpawn : MonoBehaviour
 {
     public List<GameObject> nomalMonster;   //일반 몬스터
 
@@ -32,26 +31,21 @@ public class PhotonMonsterSpawn : MonoBehaviourPun
 
     private void Start()
     {
-        if (!PhotonNetwork.IsMasterClient)
-        {
-            return;
-        }
-
         if(spawnLocation == MobLocation.Field)      //필드에 몬스터 소환할 때
         {
-            m_pool.InitMontsers(nomalMonster[2].name, 7, MobLocation.Field);
-            m_pool.InitMontsers(nomalMonster[3].name, 7, MobLocation.Field);
-            m_pool.InitMontsers(nomalMonster[4].name, 7, MobLocation.Field);
-            m_pool.InitMontsers(nomalMonster[0].name, 7, MobLocation.Field);
-            m_pool.InitMontsers(nomalMonster[0].name, 7, MobLocation.Field);
-            m_pool.InitMontsers(nomalMonster[1].name, 7, MobLocation.Field);
+            m_pool.InitMontsers(nomalMonster[2], 7, MobLocation.Field);
+            m_pool.InitMontsers(nomalMonster[3], 7, MobLocation.Field);
+            m_pool.InitMontsers(nomalMonster[4], 7, MobLocation.Field);
+            m_pool.InitMontsers(nomalMonster[0], 7, MobLocation.Field);
+            m_pool.InitMontsers(nomalMonster[0], 7, MobLocation.Field);
+            m_pool.InitMontsers(nomalMonster[1], 7, MobLocation.Field);
             FieldMonsterSpawn(m_pool.montsers);
         }
         else          //던전에 몬스터 소환할 때
         {
-            m_pool.InitMontsers(dunMonster[0].name, 5, MobLocation.Dungeon);
-            m_pool.InitMontsers(dunMonster[1].name, 5, MobLocation.Dungeon);
-            m_pool.InitMontsers(bossMonster[0].name, 1, MobLocation.Dungeon);
+            m_pool.InitMontsers(dunMonster[0], 5, MobLocation.Dungeon);
+            m_pool.InitMontsers(dunMonster[1], 5, MobLocation.Dungeon);
+            m_pool.InitMontsers(bossMonster[0], 1, MobLocation.Dungeon);
             DungeonMonsterSpawn(m_pool.montsers);
         }
     }

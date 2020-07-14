@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using Photon.Pun;
 
 public class Arachnid : Monster
 {
     // 피격
-    [PunRPC]
     public override void GetDamage(int Damage)
     {
         if (VIT < Damage)
@@ -25,7 +23,6 @@ public class Arachnid : Monster
         StopAllCoroutines();
     }
     
-    [PunRPC]
     public override void PlayAnimation()
     {
         switch (monster_Staus)
@@ -46,7 +43,7 @@ public class Arachnid : Monster
                 }
                 break;
             case Staus.attack:
-                pv.RPC("AttackType", RpcTarget.All);
+                AttackType();
                 switch (attackType)
                 {
                     case 0:
@@ -63,15 +60,13 @@ public class Arachnid : Monster
                 break;
         }
     }
-
-    [PunRPC]
+    
     public override void AttackType()
     {
         attackType = Random.Range(0, 2);
     }
 
     // 판단
-    [PunRPC]
     public override void TargetPosition()
     {
         if (target == null)
@@ -181,7 +176,6 @@ public class Arachnid : Monster
         mNav = GetComponent<NavMeshAgent>();
         mAnimator = GetComponent<Animator>();
         mRigidbody = GetComponent<Rigidbody>();
-        pv = GetComponent<PhotonView>();
         mRigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
 
         canAttack = false;
