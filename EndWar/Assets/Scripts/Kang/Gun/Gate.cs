@@ -19,14 +19,14 @@ public class Gate : MonoBehaviour
     {
         if(other.gameObject.layer.Equals(LayerMask.NameToLayer("Player")))
         {
-            if(other.gameObject.GetComponent<PhotonView>().IsMine)
-            {
-                PhotonManager myPhoton = other.gameObject.GetComponent<PlayerInfo>().photonManager;
+            //if(other.gameObject.GetComponent<PhotonView>().IsMine)
+            //{
+            //    PhotonManager myPhoton = other.gameObject.GetComponent<PlayerInfo>().photonManager;
 
-                myPhoton.destination = destination;
-                Debug.Log("어디로 가는가 : " + myPhoton.destination);
-                myPhoton.SendMessage("LeaveRoom");
-            }
+            //    myPhoton.destination = destination;
+            //    Debug.Log("어디로 가는가 : " + myPhoton.destination);
+            //    myPhoton.SendMessage("LeaveRoom");
+            //}
         }
     }
 }

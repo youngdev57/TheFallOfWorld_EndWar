@@ -45,19 +45,19 @@ public class DungeonEnter : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player" && other.GetComponent<PhotonView>() != null)
-        {
-            if (other.GetComponent<PhotonView>().IsMine)
-            {
-                playerObj = other.gameObject;
-                myPhoton = playerObj.GetComponent<PlayerInfo>().photonManager;
+        //if(other.tag == "Player" && other.GetComponent<PhotonView>() != null)
+        //{
+        //    if (other.GetComponent<PhotonView>().IsMine)
+        //    {
+        //        playerObj = other.gameObject;
+        //        myPhoton = playerObj.GetComponent<PlayerInfo>().photonManager;
 
-                playerObj.GetComponentsInChildren<UI_Laser>()[0].enabled = true;
-                playerObj.GetComponentsInChildren<UI_Laser>()[1].enabled = true;
-                playerObj.GetComponentsInChildren<UI_Laser>()[0].LaserOn();
-                playerObj.GetComponentsInChildren<UI_Laser>()[1].LaserOn();
-            }
-        }
+        //        playerObj.GetComponentsInChildren<UI_Laser>()[0].enabled = true;
+        //        playerObj.GetComponentsInChildren<UI_Laser>()[1].enabled = true;
+        //        playerObj.GetComponentsInChildren<UI_Laser>()[0].LaserOn();
+        //        playerObj.GetComponentsInChildren<UI_Laser>()[1].LaserOn();
+        //    }
+        //}
         
     }
 
