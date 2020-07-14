@@ -16,7 +16,7 @@ public class BossSpawn : MonoBehaviourPun
         {
             return;
         }
-        m_pool.InitMontsers(monster[0].name, 1, MobLocation.Dungeon);
-        m_pool.InitMontsers(monster[1].name, 2, MobLocation.Dungeon);
+        m_pool.InitMontsers(monster[0], 1, MobLocation.Dungeon);
+        m_pool.InitMontsers(monster[1], 2, MobLocation.Dungeon);
     }
 }

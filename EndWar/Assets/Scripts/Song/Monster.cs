@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using Photon.Pun;
 
 public enum MobLocation     //몬스터의 소환 위치 (필드인지 던전인지)
 {
@@ -42,7 +41,6 @@ public  class Monster : MonoBehaviour
     public Transform noneTarget;
     public Collider coll;
     public Transform target;
-    internal PhotonView pv;
 
     public bool canAttack;
     internal bool idleMode;
@@ -59,14 +57,9 @@ public  class Monster : MonoBehaviour
     {
 
     }
-
-    [PunRPC]
+    
     public virtual void AttackType()
     {
-        if (!PhotonNetwork.IsMasterClient)
-        {
-            return;
-        }
         attackType = Random.Range(0, 3);
     }
 
@@ -100,7 +93,6 @@ public  class Monster : MonoBehaviour
     }
 
     // 애니메이션
-    [PunRPC]
     public virtual void PlayAnimation()
     {
         switch (monster_Staus)
@@ -120,10 +112,7 @@ public  class Monster : MonoBehaviour
                 notDie = true;
                 break;
             case Staus.attack:
-                if (pv.IsMine)
-                {
-                    pv.RPC("AttackType", RpcTarget.All);
-                }
+                AttackType();
                 switch (attackType)
                 {
                     case 0:
@@ -159,10 +148,12 @@ public  class Monster : MonoBehaviour
             StartCoroutine(ActiveFalse());
 
             GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+            /*
             foreach (GameObject player in players)
             {
                 player.GetComponentInChildren<PhotonView>().RPC("AddGold", RpcTarget.All, m_gold);
             }
+            */
         }
     }
 
@@ -274,7 +265,6 @@ public  class Monster : MonoBehaviour
     //이상재, 추가본----------------------
 
     //상태이상 효과
-    [PunRPC]
     public virtual void GetAbility(Skillability abilityType, float seconde, float index = 0, int dotDamage = 0)
     {
         switch (type)
@@ -398,6 +388,6 @@ public  class Monster : MonoBehaviour
     public virtual IEnumerator DelayGetDamage(float se)
     {
         yield return new WaitForSeconds(se);
-        target.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, ACT);
+        target.GetComponent<PlayerManager>().GetDamage(ACT);
     }
 }

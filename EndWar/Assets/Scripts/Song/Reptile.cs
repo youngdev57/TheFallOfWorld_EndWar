@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using Photon.Pun;
 
 
 public class Reptile : Monster
 {
     // 피격
-    [PunRPC]
     public override void GetDamage(int Damage)
     {
         if (VIT < Damage)
@@ -27,7 +25,6 @@ public class Reptile : Monster
     }
 
     // 판단
-    [PunRPC]
     public override void TargetPosition()
     {
         if (target == null)
@@ -138,7 +135,6 @@ public class Reptile : Monster
         mNav = GetComponent<NavMeshAgent>();
         mAnimator = GetComponent<Animator>();
         mRigidbody = GetComponent<Rigidbody>();
-        pv = GetComponent<PhotonView>();
         mRigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
 
         canAttack = false;

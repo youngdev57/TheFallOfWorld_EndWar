@@ -9,36 +9,15 @@ using Photon.Realtime;
 
 public class PlayerInfo : MonoBehaviourPunCallbacks
 {
-    public Text nickname;   //머리위에 표시될 게임 아이디
-
-    [SerializeField]
-    internal PhotonManager photonManager;
-
     public GameObject dungeonAlert;
 
     void Start()
     {
-        PhotonNetwork.IsMessageQueueRunning = true;
-        nickname.text = photonView.Owner.NickName;
 
-        if(GetComponent<PhotonView>().IsMine)
-        {
-            nickname.transform.parent.gameObject.SetActive(false);
-        }
     }
 
-    /** ??? **/
-
-    void LeaveRoom()
-    {
-        photonManager.LeaveRoom();
-    }
-
-    [PunRPC]
     public void DungeonEnterAlert()
     {
-        if (!GetComponent<PhotonView>().IsMine)
-            return;
         dungeonAlert.SetActive(true);
         Invoke("EnterAction", 3f);
     }
@@ -48,45 +27,19 @@ public class PlayerInfo : MonoBehaviourPunCallbacks
         GetComponent<PhotonView>().RPC("DungeonEnterAction", RpcTarget.All);
     }
 
-    [PunRPC]
     public void DungeonEnterAction()
     {
-        if (!GetComponent<PhotonView>().IsMine)
-            return;
-        photonManager.destination = 3;
-        photonManager.SendMessage("LeaveRoom");
+        //던전 들어가기
     }
 
     [PunRPC]
     public void DungeonExitAction()
     {
-        if (!GetComponent<PhotonView>().IsMine)
-            return;
-        photonManager.destination = 2;
-        photonManager.SendMessage("LeaveRoom");
+        //던전 나가기
     }
 
-    [PunRPC]
-    public void AddGold(int gold)
-    {
-        if(GetComponent<PhotonView>().IsMine)
-        {
-            photonManager.KPM.inven.AddGold(gold, false);
-        }
-    }
-
-    [PunRPC]
     public void ShowClear()
     {
-        if (!GetComponent<PhotonView>().IsMine)
-            return;
         GetComponentInChildren<DungeonExit>().ShowClearUI();
     }
-
-    //GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-
-    //foreach(GameObject p in players)
-    //{
-    //    p.GetComponent<PhotonView>().RPC("AddGold", RpcTarget.All, 100);
-    //}
 }

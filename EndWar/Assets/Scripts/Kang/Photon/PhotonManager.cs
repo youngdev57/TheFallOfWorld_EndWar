@@ -296,12 +296,12 @@ public class PhotonManager : MonoBehaviourPunCallbacks
                 break;
 
             case 1: //아이스맵 씬 로드
-                LoadingManager.LoadScene("SnowMountains");
+                LoadingManager.LoadScene("SnowField");
                 StartCoroutine(SceneSettingWait());
                 break;
 
             case 2: //아이스맵 씬 로드 - 던전앞
-                LoadingManager.LoadScene("SnowMountains");
+                LoadingManager.LoadScene("SnowField");
                 StartCoroutine(SceneSettingWait());
                 break;
 
@@ -435,72 +435,5 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     {
         Debug.Log("플레이어 생성");
 
-        switch (destination)
-        {
-            case 0:     //기지
-                SpawnPlayer_Base();
-                break;
-
-            case 1:     //스노우맵
-                SpawnPlayer(new Vector3(268.61f, 1.5f, 1161.78f));
-                break;
-            case 2:     //스노우맵 - 던전앞
-                SpawnPlayer(new Vector3(3485.73f, 2f, 1730.22f));
-                break;
-            case 3:     //던전
-                float randomZ = UnityEngine.Random.Range(-8f, 8f);
-                Vector3 spawnPos = new Vector3(124.9847f, 30.566f, 99.78168f + randomZ);
-                SpawnPlayer(spawnPos);
-                break;
-            case 98:    //배틀테스트
-                SpawnPlayer(new Vector3(0.7f, 1f, 0.2f));
-                break;
-            case 99:    //사격연습장
-                break;
-        }
-    }
-
-    void SpawnPlayer_Base()
-    {
-        GameObject tempObj = PhotonNetwork.Instantiate("Player", new Vector3(107.37f, 1.21f, 174.25f), Quaternion.identity, 0);
-        tempObj.GetComponent<PlayerInfo>().photonManager = this;
-        player = tempObj;
-        tempObj.GetComponent<PlayerManager>().photonManager = this;
-        tempObj.GetComponentsInChildren<UI_Laser>()[0].enabled = true;
-        tempObj.GetComponentsInChildren<UI_Laser>()[1].enabled = true;
-
-        tempObj.GetComponentsInChildren<UI_Laser>()[0].pInven = GetComponent<PlayerInven>();
-        tempObj.GetComponentsInChildren<UI_Laser>()[0].kPm = GetComponent<K_PlayerManager>();
-        tempObj.GetComponentsInChildren<UI_Laser>()[1].pInven = GetComponent<PlayerInven>();
-        tempObj.GetComponentsInChildren<UI_Laser>()[1].kPm = GetComponent<K_PlayerManager>();
-
-        GameObject guns = tempObj.GetComponentInChildren<ChangeGunManager>().transform.GetChild(2).gameObject;
-        guns.SetActive(false);
-        tempObj.GetComponentInChildren<ChangeGunManager>().enabled = false;
-    }
-
-    void SpawnPlayer(Vector3 pos)
-    {
-        GameObject tempObj;
-        tempObj = PhotonNetwork.Instantiate("Player", pos, Quaternion.identity, 0);
-        player = tempObj;
-        tempObj.GetComponent<PlayerInfo>().photonManager = this;
-        tempObj.GetComponent<PlayerManager>().photonManager = this;
-        tempObj.GetComponent<PlayerItem>().pInven = GetComponent<PlayerInven>();
-        tempObj.GetComponent<PlayerItem>().LoadGemsLocal();     //PlayerInven의 재료 개수를 PlayerItem에 적용하는 함수
-        tempObj.GetComponentInChildren<DungeonExit>().photonManager = this;
-
-
-        int zeroDetect_main = player.GetComponentInChildren<ChangeGunManager>().mainWeapon = GetComponent<PlayerInven>().mainPistol;
-        int zeroDetect_sub = player.GetComponentInChildren<ChangeGunManager>().secondaryWeapon = GetComponent<PlayerInven>().subPistol;
-
-        if(zeroDetect_main == 0 && zeroDetect_sub == 0)
-        {
-            GetComponent<PlayerInven>().mainPistol = 3;
-        }
-
-        player.GetComponentInChildren<ChangeGunManager>().mainWeapon = GetComponent<PlayerInven>().mainPistol;
-        player.GetComponentInChildren<ChangeGunManager>().secondaryWeapon = GetComponent<PlayerInven>().subPistol;
-        player.GetComponent<PhotonView>().RPC("ChangeGun", RpcTarget.AllBuffered, 0);
     }
 }

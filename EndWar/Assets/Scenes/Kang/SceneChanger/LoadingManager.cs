@@ -12,8 +12,6 @@ public class LoadingManager : MonoBehaviour
     [SerializeField]
     Image progressBar;
 
-    PhotonManager ptt;
-
     public static bool loadEnd;
     
     private void Start()
@@ -31,7 +29,6 @@ public class LoadingManager : MonoBehaviour
     IEnumerator LoadScene()
     {
         yield return null;
-        PhotonNetwork.IsMessageQueueRunning = false;
         AsyncOperation op = SceneManager.LoadSceneAsync(nextScene);
         op.allowSceneActivation = false;
 
