@@ -5,6 +5,22 @@ using UnityEngine.AI;
 
 public class Slug : Monster
 {
+    private void Start()
+    {
+        mNav = GetComponent<NavMeshAgent>();
+        mAnimator = GetComponent<Animator>();
+        mRigidbody = GetComponent<Rigidbody>();
+        
+        monster_Staus = Staus.idle;
+
+        canAttack = false;
+        idleMode = true;
+        STUN = false;
+
+        notDie = false;
+        delay = 0f;
+    }
+
     // 피격
     public override void GetDamage(int Damage)
     {
@@ -122,7 +138,7 @@ public class Slug : Monster
         monster_Staus = Staus.idle;
     }
 
-    public void OnEnable()
+    public void MonsterSetting()
     {
         maxHp = 400;
         HP = maxHp;
@@ -132,13 +148,8 @@ public class Slug : Monster
 
         monster_Staus = Staus.idle;
 
-        mNav = GetComponent<NavMeshAgent>();
-        mAnimator = GetComponent<Animator>();
-        mRigidbody = GetComponent<Rigidbody>();
-        mRigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
-
         canAttack = false;
-       // attackMode = false;
+        // attackMode = false;
         idleMode = true;
         STUN = false;
 
@@ -158,5 +169,10 @@ public class Slug : Monster
         coll.isTrigger = false;
         transform.localPosition = Vector3.zero;
         transform.rotation = Quaternion.identity;
+    }
+
+    public void OnEnable()
+    {
+        MonsterSetting();
     }
 }

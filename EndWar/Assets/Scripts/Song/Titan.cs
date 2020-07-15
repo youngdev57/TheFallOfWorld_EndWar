@@ -16,6 +16,22 @@ public class Titan : Monster
     public bool invincibility;
     public bool PatternUsingOnlyOne;
 
+    private void Start()
+    {
+        mNav = GetComponent<NavMeshAgent>();
+        mAnimator = GetComponent<Animator>();
+        mRigidbody = GetComponent<Rigidbody>();
+
+        monster_Staus = Staus.idle;
+
+        canAttack = false;
+        idleMode = true;
+        STUN = false;
+
+        notDie = false;
+        delay = 0f;
+    }
+
     // 보스 Try 시작 함수
     public override void BossAttackTimer()
     {
@@ -481,7 +497,7 @@ public class Titan : Monster
         invincibility = false;
     }
 
-    public void OnEnable()
+    public void MonsterSetting()
     {
         Page = 1;
         LadeTimer = 0f;
@@ -493,12 +509,6 @@ public class Titan : Monster
 
         monster_Staus = Staus.idle;
         type = MonsterType.Boss;
-
-        mNav = GetComponent<NavMeshAgent>();
-        mAnimator = GetComponent<Animator>();
-        mRigidbody = GetComponent<Rigidbody>();
-
-        mRigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
 
         canAttack = false;
         idleMode = true;
@@ -527,5 +537,10 @@ public class Titan : Monster
         {
             PattenObj[0].SetActive(false);
         }
+    }
+
+    public void OnEnable()
+    {
+        MonsterSetting();
     }
 }
