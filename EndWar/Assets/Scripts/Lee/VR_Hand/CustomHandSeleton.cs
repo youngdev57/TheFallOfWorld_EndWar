@@ -16,7 +16,6 @@ public class CustomHandSeleton : MonoBehaviour
     void Awake()
     {
         pose = GetComponentInParent<SteamVR_Behaviour_Pose>();
-
         gripAction[pose.inputSource].onChange += Grip;
         goodAction[pose.inputSource].onChange += Good;
     }
