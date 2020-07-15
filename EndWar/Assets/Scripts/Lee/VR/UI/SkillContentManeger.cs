@@ -98,7 +98,8 @@ public class SkillContentManeger : MonoBehaviour
 
     void OnObjActive()
     {
-        skillmanager.gameObject.SetActive(true);
+        if(!pickUp.activeSelf)
+            skillmanager.gameObject.SetActive(true);
         movementObj.enabled = true;
         uiCanvas.SetActive(false);
     }

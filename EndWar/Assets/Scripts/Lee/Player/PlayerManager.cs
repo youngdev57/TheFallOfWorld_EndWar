@@ -210,8 +210,8 @@ public class PlayerManager : MonoBehaviour
         if (!(damage - defense == 0)) 
             currHP -= damage - defense;   //데미지 - 방어지수가 0이 아니면 데미지입음
 
-        hapticAction.Execute(0, 1, 150, 75, SteamVR_Input_Sources.LeftHand);
-        hapticAction.Execute(0, 1, 150, 75, SteamVR_Input_Sources.RightHand);
+        hapticAction.Execute(0, 1f, 150f, 75f, SteamVR_Input_Sources.LeftHand);
+        hapticAction.Execute(0, 1f, 150f, 75f, SteamVR_Input_Sources.RightHand);
         isbackHpHit = true;
     }
 }

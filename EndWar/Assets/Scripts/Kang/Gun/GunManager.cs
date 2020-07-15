@@ -13,6 +13,7 @@ public class GunManager : MonoBehaviour
     public GameObject muzzleEffect;
 
     public GameObject bullet;
+    public float speed;
 
     private List<GameObject> bulletArray;
 
@@ -61,9 +62,9 @@ public class GunManager : MonoBehaviour
 
         RaycastHit hit;
 
-        FireEffect();
+        StartCoroutine(FireEffect());
 
-        if (Physics.Raycast(muzzleTr.position, muzzleTr.right, out hit, 5000f))
+        if (Physics.Raycast(muzzleTr.position, muzzleTr.right, out hit))
         {
             if(hit.collider.attachedRigidbody)
             {
@@ -118,7 +119,7 @@ public class GunManager : MonoBehaviour
         }
 
         temp.transform.position = muzzleTr.position;
-        temp.GetComponent<Rigidbody>().AddForce(muzzleTr.right * 8000f);
+        temp.GetComponent<Rigidbody>().AddForce(muzzleTr.right * speed);
     }
 
     void Reloading()
