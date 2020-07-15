@@ -134,6 +134,7 @@ MonoBehaviour:
   muzzleTr: {fileID: 5390759903044944219}
   muzzleEffect: {fileID: 7398541762974731091}
   bullet: {fileID: 3650604311363727851, guid: b9f8581e927941443a10dcb058c6b522, type: 3}
+  speed: 6000
   audioSource: {fileID: 2999090369323753925}
   sfxArray:
   - {fileID: 8300000, guid: fc582df3572b64d279888946675505af, type: 3}

@@ -871,7 +871,7 @@ MonoBehaviour:
     Name: Pistol
   - Type: 4
     SynchronizeType: 0
-    Name: GunTest
+    Name: BasicGun
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0
@@ -988,7 +988,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   index: 3
-  myPv: {fileID: 4739809230717535197}
   Head: {fileID: 1074170897990178472, guid: 6dd0752998d961d498212c77a515f204, type: 3}
 --- !u!114 &8514670022395631751
 MonoBehaviour:
@@ -1009,7 +1008,6 @@ MonoBehaviour:
     actionPath: /actions/default/in/OpenUI
     needsReinit: 0
   anim: {fileID: 4138855771496503110}
-  myPv: {fileID: 4739809230717535197}
   hand: 2
 --- !u!114 &4739809230717535197
 MonoBehaviour:
@@ -2066,7 +2064,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1810581554106536, guid: dfe8fefa5bc33d54c9e0a213c042b75d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4235179229403270, guid: dfe8fefa5bc33d54c9e0a213c042b75d, type: 3}
       propertyPath: m_LocalPosition.x

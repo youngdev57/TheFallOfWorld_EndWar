@@ -7,6 +7,8 @@ TagManager:
   - Monster
   - HitPoint
   - Wall
+  - Bullet
+  - FxTemporaire
   layers:
   - Default
   - TransparentFX
@@ -21,7 +23,7 @@ TagManager:
   - Ground
   - Item_Material
   - Monster
-  - 
+  - GetDamage
   - 
   - 
   - 

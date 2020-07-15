@@ -25,37 +25,34 @@ public class Bullet : MonoBehaviour
         transform.forward = rigid.velocity;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
-        StartCoroutine(HitEffect());
+        StartCoroutine(HitEffect(other));
 
-        if (other.gameObject.layer == LayerMask.NameToLayer("Monster") && other.isTrigger == false)
+        if (other.gameObject.layer == LayerMask.NameToLayer("Monster"))
         {
             other.gameObject.GetComponent<Monster>().GetDamage(damage);
         }
-        OffObject();
     }
 
-    IEnumerator HitEffect()
+    IEnumerator HitEffect(Collision co)
     {
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit))
+        ContactPoint contactPoint = co.contacts[0];
+        Quaternion rot = Quaternion.FromToRotation(Vector3.up, contactPoint.normal);
+        Vector3 pos = contactPoint.point;
+
+        if (_hitEffect == null)
         {
-            Quaternion rot = Quaternion.FromToRotation(Vector3.up, hit.normal);
-            Vector3 pos = hit.point;
-
-            if (_hitEffect == null)
-            {
-                _hitEffect = Instantiate(hitEffect, pos, rot);
-            }
-            else
-            {
-                _hitEffect.transform.position = pos;
-                _hitEffect.transform.rotation = rot;
-                _hitEffect.SetActive(true);
-            }
-
+            _hitEffect = Instantiate(hitEffect, pos, rot);
         }
+        else
+        {
+            _hitEffect.transform.position = pos;
+            _hitEffect.transform.rotation = rot;
+            _hitEffect.SetActive(true);
+        }
+
+        OffObject();
 
         yield return new WaitForSeconds(1f);
         _hitEffect.SetActive(false);
