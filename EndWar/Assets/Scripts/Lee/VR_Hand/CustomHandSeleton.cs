@@ -20,6 +20,8 @@ public class CustomHandSeleton : MonoBehaviour
         goodAction[pose.inputSource].onChange += Good;
     }
 
+    void Start(){}
+
     void Grip(SteamVR_Action_Single action, SteamVR_Input_Sources source, float axis, float delta)
     {
         anim.SetFloat("GripBlend", axis);

@@ -1,16 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
 using Valve.VR;
 
-public class GripController : MonoBehaviourPun
+public class GripController : MonoBehaviour
 {
     public SteamVR_Input_Sources Hand;
     public SteamVR_Action_Boolean ToggleGripButton;
     public SteamVR_Action_Pose position;    
-    public CustomHandSeleton HandSkeleton;
+    public SteamVR_Behaviour_Skeleton HandSkeleton;
     public SteamVR_Behaviour_Skeleton PreviewSkeleton;
+    public CustomHandSeleton customHand;
     public Grabber grabber;
 
     private GameObject ConnectedObject;
@@ -18,20 +18,18 @@ public class GripController : MonoBehaviourPun
     private bool DomanantGrip;
     private void Update()
     {
-
         if (ConnectedObject != null )
         {
             if (DomanantGrip || !ConnectedObject.GetComponent<Interactable>().SecondGripped)
             {
                 if (ConnectedObject.GetComponent<Interactable>().touchCount == 0&& !ConnectedObject.GetComponent<Interactable>().SecondGripped)
                 {
-                    photonView.RPC("Test", RpcTarget.AllBuffered, null);
-                    /*grabber.FixedJoint.connectedBody = null;
+                    grabber.FixedJoint.connectedBody = null;
                     grabber.StrongGrip.connectedBody = null;
 
                     ConnectedObject.transform.position = Vector3.MoveTowards(ConnectedObject.transform.position, transform.position - ConnectedObject.transform.rotation * OffsetObject.GetComponent<GrabPoint>().Offset, .25f);
-                    ConnectedObject.transform.rotation = Quaternion.RotateTowards(ConnectedObject.transform.rotation, transform.rotation*Quaternion.Inverse( OffsetObject.GetComponent<GrabPoint>().RotationOffset), 10);
-                    grabber.FixedJoint.connectedBody = ConnectedObject.GetComponent<Rigidbody>();*/
+                    ConnectedObject.transform.rotation = Quaternion.RotateTowards(ConnectedObject.transform.rotation, transform.rotation * Quaternion.Inverse(OffsetObject.GetComponent<GrabPoint>().RotationOffset), 10);
+                    grabber.FixedJoint.connectedBody = ConnectedObject.GetComponent<Rigidbody>();
                 }
                 else if (ConnectedObject.GetComponent<Interactable>().touchCount > 0|| ConnectedObject.GetComponent<Interactable>().SecondGripped)
                 {
@@ -54,8 +52,7 @@ public class GripController : MonoBehaviourPun
             }
             if (ToggleGripButton.GetStateUp(Hand))
             {
-                photonView.RPC("Release", RpcTarget.AllBuffered, null);
-                //Release();
+                Release();
             }
             if(PreviewSkeleton)
                 PreviewSkeleton.transform.gameObject.SetActive(false);
@@ -81,26 +78,16 @@ public class GripController : MonoBehaviourPun
             }
             if (ToggleGripButton.GetStateDown(Hand))
             {
-                photonView.RPC("Grip", RpcTarget.AllBuffered, null);
-                //Grip();
+                Grip();
             }
         }
     }
-    [PunRPC]
-    void Test()
-    {
-        grabber.FixedJoint.connectedBody = null;
-        grabber.StrongGrip.connectedBody = null;
 
-        ConnectedObject.transform.position = Vector3.MoveTowards(ConnectedObject.transform.position, transform.position - ConnectedObject.transform.rotation * OffsetObject.GetComponent<GrabPoint>().Offset, .25f);
-        ConnectedObject.transform.rotation = Quaternion.RotateTowards(ConnectedObject.transform.rotation, transform.rotation * Quaternion.Inverse(OffsetObject.GetComponent<GrabPoint>().RotationOffset), 10);
-        grabber.FixedJoint.connectedBody = ConnectedObject.GetComponent<Rigidbody>();
-    }
-
-
-    [PunRPC]
     private void Grip()
     {
+        HandSkeleton.enabled = true;
+        customHand.enabled = false;
+
         GameObject NewObject = grabber.ClosestGrabbable();
         if (NewObject != null)
         {
@@ -134,15 +121,15 @@ public class GripController : MonoBehaviourPun
             if (OffsetObject.GetComponent<SteamVR_Skeleton_Poser>()&&HandSkeleton)
             {
                 HandSkeleton.transform.SetParent(OffsetObject, false);
-                //HandSkeleton.BlendToPoser(OffsetObject.GetComponent<SteamVR_Skeleton_Poser>(), 0f);
+                HandSkeleton.BlendToPoser(OffsetObject.GetComponent<SteamVR_Skeleton_Poser>(), 0f);
             }
-            ObjGrap(ConnectedObject, true);
         }
     }
-
-    [PunRPC]
     private void Release()
     {
+        HandSkeleton.enabled = false;
+        customHand.enabled = true;
+
         grabber.FixedJoint.connectedBody = null;
         grabber.StrongGrip.connectedBody = null;
         grabber.WeakGrip.connectedBody = null;
@@ -161,20 +148,13 @@ public class GripController : MonoBehaviourPun
         {
             ConnectedObject.GetComponent<Interactable>().SecondGripped = false;
         }
-        ObjGrap(ConnectedObject, false);
         ConnectedObject = null;
         if (OffsetObject.GetComponent<SteamVR_Skeleton_Poser>() && HandSkeleton)
         {
             HandSkeleton.transform.SetParent(transform, false);
-            //HandSkeleton.BlendToSkeleton();
+            HandSkeleton.BlendToSkeleton();
         }
         OffsetObject.GetComponent<GrabPoint>().Gripped = false;
         OffsetObject = null;
     }
-
-    void ObjGrap(GameObject obj, bool isthis)
-    {
-        obj.GetComponent<PhotonView>().RPC("OnGrab", RpcTarget.AllBuffered, isthis);
-    }
-
 }
