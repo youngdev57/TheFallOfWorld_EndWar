@@ -20,24 +20,7 @@ public class Arachnid : Monster
         notDie = false;
         delay = 0f;
     }
-    // 피격
-    public override void GetDamage(int Damage)
-    {
-        if (VIT < Damage)
-        {
-            Damage -= VIT;
-        }
-        else
-        {
-            Damage = 1;
-        }
-        HP -= Damage;
-        mNav.stoppingDistance = 2f;
-        mNav.speed = 3f * speed;
-        canAttack = true;
-        StopAllCoroutines();
-    }
-    
+
     public override void PlayAnimation()
     {
         switch (monster_Staus)
@@ -79,95 +62,6 @@ public class Arachnid : Monster
     public override void AttackType()
     {
         attackType = Random.Range(0, 2);
-    }
-
-    // 판단
-    public override void TargetPosition()
-    {
-        if (target == null)
-        {
-            if (idleMode)
-            {
-                StartCoroutine(SetTarget());
-            }
-        }
-        else
-        {
-            if (target.gameObject.tag == "Player")
-            {
-                float dir = Vector3.Distance(transform.position, target.position);
-                if (dir <= 2f)
-                {
-                  //  attackMode = true;
-                    mNav.isStopped = true;
-                    mNav.velocity = Vector3.zero;
-                    mNav.speed = 0f;
-                    if (canAttack)
-                    {
-                        delay += Time.deltaTime;
-                        if (delay >= actSpeed)
-                        {
-                            monster_Staus = Staus.attack;
-                            delay = 0f;
-                            StartCoroutine(DelayGetDamage(second));
-                        }
-                        else
-                        {
-                            monster_Staus = Staus.idle;
-                        }
-                    }
-                }
-                else
-                {
-                //    attackMode = false;
-                    mNav.isStopped = false;
-                    mNav.speed = 3f * speed;
-                    monster_Staus = Staus.run;
-                }
-            }
-            else
-            {
-                if (transform.position.x == target.position.x && transform.position.z == target.position.z)
-                {
-                    target = null;
-                    idleMode = true;
-                    monster_Staus = Staus.idle;
-                }
-                else
-                {
-                    mNav.speed = 2f * speed;
-                    monster_Staus = Staus.walk;
-                }
-            }
-        }
-    }
-
-    public override void OnTriggerEnter(Collider other)
-    {
-        if (!canAttack && other.gameObject.tag == "Player" && !notDie)
-        {
-            target = other.gameObject.transform;
-            mNav.stoppingDistance = 2f;
-            mNav.speed = 3f * speed;
-            canAttack = true;
-            StopAllCoroutines();
-        }
-    }
-
-    public override void OnTriggerExit(Collider other)
-    {
-        if ( canAttack && other.gameObject.tag == "Player" && !notDie)
-        {
-            mNav.stoppingDistance = 0;
-            if (!STUN)
-            {
-                monster_Staus = Staus.walk;
-            }
-            target = noneTarget;
-            mNav.speed = 2f * speed;
-            canAttack = false;
-            idleMode = true;
-        }
     }
 
     public override IEnumerator NavStop()
