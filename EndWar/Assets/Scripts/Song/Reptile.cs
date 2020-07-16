@@ -6,6 +6,22 @@ using UnityEngine.AI;
 
 public class Reptile : Monster
 {
+    private void Start()
+    {
+        Debug.Log("Start");
+        mNav = GetComponent<NavMeshAgent>();
+        mAnimator = GetComponent<Animator>();
+        mRigidbody = GetComponent<Rigidbody>();
+
+        monster_Staus = Staus.idle;
+
+        canAttack = false;
+        idleMode = true;
+        STUN = false;
+
+        notDie = false;
+        delay = 0f;
+    }
     // 피격
     public override void GetDamage(int Damage)
     {
@@ -122,8 +138,9 @@ public class Reptile : Monster
         monster_Staus = Staus.idle;
     }
 
-    public void OnEnable()
+    public void MonsterSetting()
     {
+        Debug.Log("Setting");
         maxHp = 220;
         HP = maxHp;
         VIT = 11;
@@ -132,13 +149,8 @@ public class Reptile : Monster
 
         monster_Staus = Staus.idle;
 
-        mNav = GetComponent<NavMeshAgent>();
-        mAnimator = GetComponent<Animator>();
-        mRigidbody = GetComponent<Rigidbody>();
-        mRigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
-
         canAttack = false;
-      //  attackMode = false;
+        //  attackMode = false;
         idleMode = true;
         STUN = false;
 
@@ -158,5 +170,11 @@ public class Reptile : Monster
         coll.isTrigger = false;
         transform.localPosition = Vector3.zero;
         transform.rotation = Quaternion.identity;
+    }
+
+    public void OnEnable()
+    {
+        Debug.Log("Enable");
+        MonsterSetting();
     }
 }

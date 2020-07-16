@@ -5,6 +5,21 @@ using UnityEngine.AI;
 
 public class Arachnid : Monster
 {
+    private void Start()
+    {
+        mNav = GetComponent<NavMeshAgent>();
+        mAnimator = GetComponent<Animator>();
+        mRigidbody = GetComponent<Rigidbody>();
+
+        monster_Staus = Staus.idle;
+
+        canAttack = false;
+        idleMode = true;
+        STUN = false;
+
+        notDie = false;
+        delay = 0f;
+    }
     // 피격
     public override void GetDamage(int Damage)
     {
@@ -163,7 +178,7 @@ public class Arachnid : Monster
         monster_Staus = Staus.idle;
     }
 
-    public void OnEnable()
+    public void MontserSetting()
     {
         maxHp = 80;
         HP = maxHp;
@@ -172,11 +187,6 @@ public class Arachnid : Monster
         actSpeed = 2.5f;
 
         monster_Staus = Staus.idle;
-
-        mNav = GetComponent<NavMeshAgent>();
-        mAnimator = GetComponent<Animator>();
-        mRigidbody = GetComponent<Rigidbody>();
-        mRigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
 
         canAttack = false;
         //attackMode = false;
@@ -199,5 +209,10 @@ public class Arachnid : Monster
         coll.isTrigger = false;
         transform.localPosition = Vector3.zero;
         transform.rotation = Quaternion.identity;
+    }
+
+    public void OnEnable()
+    {
+        MontserSetting();
     }
 }

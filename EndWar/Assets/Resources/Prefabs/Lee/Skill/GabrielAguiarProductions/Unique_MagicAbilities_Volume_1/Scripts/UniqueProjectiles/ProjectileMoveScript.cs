@@ -78,7 +78,13 @@ public class ProjectileMoveScript : MonoBehaviour {
 			rb.position += (transform.forward + offset) * (speed * Time.deltaTime);        
     }
 
-	void OnCollisionEnter (Collision co) {
+	void OnTriggerEnter (Collider co) {
+        RaycastHit hit;
+        Physics.Raycast(transform.position, transform.forward, out hit);
+
+        if (co.gameObject.layer == LayerMask.NameToLayer("Monster") && co.isTrigger)
+            return;
+
         if (!bounce)
         {
             if (co.gameObject.tag != "Bullet" && co.gameObject.tag != "Player" && !collided)
@@ -107,9 +113,10 @@ public class ProjectileMoveScript : MonoBehaviour {
                 speed = 0;
                 GetComponent<Rigidbody>().isKinematic = true;
 
-                ContactPoint contact = co.contacts[0];
-                Quaternion rot = Quaternion.FromToRotation(Vector3.up, contact.normal);
-                Vector3 pos = contact.point;
+                
+
+                Quaternion rot = Quaternion.FromToRotation(Vector3.up, hit.normal);
+                Vector3 pos = hit.point;
 
                 if (hitPrefab != null)
                 {
@@ -137,8 +144,7 @@ public class ProjectileMoveScript : MonoBehaviour {
         {
             rb.useGravity = true;
             rb.drag = 0.5f;
-            ContactPoint contact = co.contacts[0];
-            rb.AddForce (Vector3.Reflect((contact.point - startPos).normalized, contact.normal) * bounceForce, ForceMode.Impulse);
+            rb.AddForce (Vector3.Reflect((hit.point - startPos).normalized, hit.normal) * bounceForce, ForceMode.Impulse);
             Destroy ( this );
         }
 	}

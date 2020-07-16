@@ -392,7 +392,7 @@ GameObject:
   - component: {fileID: 268136658565884449}
   - component: {fileID: 3884383072496473990}
   - component: {fileID: 3506188386794949268}
-  m_Layer: 1
+  m_Layer: 13
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1468,7 +1468,7 @@ Camera:
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 2
+    m_Bits: 8192
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -2002,7 +2002,7 @@ GameObject:
   - component: {fileID: 2213666270671642018}
   - component: {fileID: 1239894767365241528}
   - component: {fileID: 7342078534386615317}
-  m_Layer: 1
+  m_Layer: 13
   m_Name: GetDamage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4134,7 +4134,7 @@ MonoBehaviour:
   volumeTrigger: {fileID: 7647500704657953981}
   volumeLayer:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 4294967295
   stopNaNPropagation: 1
   finalBlitToCameraTarget: 0
   antialiasingMode: 1

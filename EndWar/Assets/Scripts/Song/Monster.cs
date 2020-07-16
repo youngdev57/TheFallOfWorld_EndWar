@@ -144,7 +144,6 @@ public  class Monster : MonoBehaviour
             mNav.isStopped = true;
             coll.isTrigger = true;
             mRigidbody.useGravity = false;
-            mRigidbody.constraints = RigidbodyConstraints.FreezeAll;
             StartCoroutine(ActiveFalse());
 
             GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
