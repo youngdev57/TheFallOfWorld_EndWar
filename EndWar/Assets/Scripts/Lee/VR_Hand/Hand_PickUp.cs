@@ -17,6 +17,7 @@ public class Hand_PickUp : MonoBehaviour
     public bool isCanvas;
 
     bool canPickup;
+    bool isPickup;
     PickedItem item;
 
     void Update()
@@ -28,14 +29,15 @@ public class Hand_PickUp : MonoBehaviour
         {
             if(item != null)
             {
-                player.GetComponent<PlayerItem>().GetItme((int)item.gemType);
-                item.GetComponent<PickedItem>().PickOff();      //일정 시간 동안 주울 수 없게 함
-
                 item.SetPick(false);
                 item = null;
+                isPickup = true;
                 canPickup = false;
             }
         }
+
+        if(isPickup == true)
+            item.SetPick(false);
 
         if (isCanvas == true && closeUi.GetStateDown(hand))
         {
@@ -52,6 +54,12 @@ public class Hand_PickUp : MonoBehaviour
             item.SetPick(true);
             canPickup = true;
         }
+
+        if (isPickup == true && other.gameObject.layer == LayerMask.NameToLayer("ItemBox"))
+        {
+            player.GetComponent<PlayerItem>().GetItme((int)item.gemType);
+            item.GetComponent<PickedItem>().PickOff();      //일정 시간 동안 주울 수 없게 함
+        }
     }
 
     void OnTriggerExit(Collider other)
@@ -59,8 +67,8 @@ public class Hand_PickUp : MonoBehaviour
         if (other.gameObject.layer == 11)
         {
             item = other.GetComponent<PickedItem>();
-            item.SetPick(false);
             item = null;
+            isPickup = false;
             canPickup = false;
         }
     }

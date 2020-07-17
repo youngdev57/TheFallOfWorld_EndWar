@@ -10,7 +10,6 @@ public class GripController : MonoBehaviour
     public SteamVR_Action_Pose position;    
     public SteamVR_Behaviour_Skeleton HandSkeleton;
     public SteamVR_Behaviour_Skeleton PreviewSkeleton;
-    public CustomHandSeleton customHand;
     public Grabber grabber;
 
     private GameObject ConnectedObject;
@@ -85,9 +84,6 @@ public class GripController : MonoBehaviour
 
     private void Grip()
     {
-        HandSkeleton.enabled = true;
-        customHand.enabled = false;
-
         GameObject NewObject = grabber.ClosestGrabbable();
         if (NewObject != null)
         {
@@ -127,9 +123,6 @@ public class GripController : MonoBehaviour
     }
     private void Release()
     {
-        HandSkeleton.enabled = false;
-        customHand.enabled = true;
-
         grabber.FixedJoint.connectedBody = null;
         grabber.StrongGrip.connectedBody = null;
         grabber.WeakGrip.connectedBody = null;
@@ -138,11 +131,8 @@ public class GripController : MonoBehaviour
         ConnectedObject.GetComponent<Rigidbody>().useGravity = true;
         if (!ConnectedObject.GetComponent<Interactable>().SecondGripped)
         {
-            
             ConnectedObject.GetComponent<Interactable>().gripped = false;
-
             ConnectedObject.GetComponent<Interactable>().GrippedBy =null;
-
         }
         else
         {

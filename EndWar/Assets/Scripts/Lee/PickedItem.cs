@@ -9,7 +9,7 @@ public class PickedItem : MonoBehaviour
 
     int index;
 
-    float pickCooltime = 10f;
+    public float pickCooltime = 10f;
     float canPickTimer = 0f;
 
     BoxCollider coll;
