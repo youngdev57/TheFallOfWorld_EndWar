@@ -27,7 +27,9 @@ public  class Monster : MonoBehaviour
     public int ACT;                     // 공격력
     public float actSpeed;         // 공격속도
     public int m_gold;          //몬스터 골드
-
+    public float moveSpeedWalk;
+    public float moveSpeedRun;
+    public float moveStopDir;
     public float second;
 
     public MobLocation location = MobLocation.Field;    //몬스터 위치 기본값 : 필드
@@ -53,9 +55,21 @@ public  class Monster : MonoBehaviour
 
     internal float speed = 1; //본인의 기본 속도를 저장     // 추가한 사람 : 이상재
 
-    public virtual void GetDamage(int Damage)
+    public void GetDamage(int Damage)
     {
-
+        if (VIT < Damage)
+        {
+            Damage -= VIT;
+        }
+        else
+        {
+            Damage = 1;
+        }
+        HP -= Damage;
+        mNav.stoppingDistance = moveStopDir;
+        mNav.speed = moveSpeedRun * speed;
+        canAttack = true;
+        StopAllCoroutines();
     }
     
     public virtual void AttackType()
@@ -166,7 +180,7 @@ public  class Monster : MonoBehaviour
     }
 
     // 판단
-    public virtual void TargetPosition()
+    public void TargetPosition()
     {
         if (target == null)
         {
@@ -180,7 +194,7 @@ public  class Monster : MonoBehaviour
             if (target.gameObject.tag == "Player")
             {
                 float dir = Vector3.Distance(transform.position, target.position);
-                if (dir <= 2)
+                if (dir <= moveStopDir)
                 {
                     mNav.isStopped = true;
                     mNav.velocity = Vector3.zero;
@@ -203,7 +217,7 @@ public  class Monster : MonoBehaviour
                 else
                 {
                     mNav.isStopped = false;
-                    mNav.speed = 5f * speed;
+                    mNav.speed = moveSpeedRun * speed;
                     monster_Staus = Staus.run;
                 }
             }
@@ -217,38 +231,10 @@ public  class Monster : MonoBehaviour
                 }
                 else
                 {
-                    mNav.speed = 3f * speed;
+                    mNav.speed = moveSpeedWalk * speed;
                     monster_Staus = Staus.walk;
                 }
             }
-        }
-    }
-
-    // 플레이어 인식
-    public virtual void OnTriggerEnter(Collider other)
-    {
-        if (!canAttack && other.gameObject.tag == "Player" && !notDie)
-        {
-            target = other.gameObject.transform;
-            mNav.stoppingDistance = 2;
-            mNav.speed = 5f * speed;
-            canAttack = true;
-            StopAllCoroutines();
-        }
-    }
-    public virtual void OnTriggerExit(Collider other)
-    {
-        if (canAttack && other.gameObject.tag == "Player" && !notDie)
-        {
-            mNav.stoppingDistance = 0;
-            if (!STUN)
-            {
-                monster_Staus = Staus.walk;
-            }
-            target = noneTarget;
-            mNav.speed = 3f * speed;
-            canAttack = false;
-            idleMode = true;
         }
     }
 
@@ -372,7 +358,7 @@ public  class Monster : MonoBehaviour
     {
         mNav.speed = 0;
         yield return new WaitForSeconds(3f);
-        mNav.speed = 5f * speed;
+        mNav.speed = moveSpeedRun * speed;
         monster_Staus = Staus.idle;
     }
 

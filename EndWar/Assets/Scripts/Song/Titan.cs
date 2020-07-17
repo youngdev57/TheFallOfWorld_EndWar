@@ -339,29 +339,6 @@ public class Titan : Monster
             PatternUsingOnlyOne = false;
         }
     }
-
-    // 피격
-    public override void GetDamage(int Damage)
-    {
-        if (invincibility)
-        {
-            return;
-        }
-        if (VIT < Damage)
-        {
-            Damage -= VIT;
-        }
-        else
-        {
-            Damage = 1;
-        }
-        HP -= Damage;
-        mNav.stoppingDistance = 6.5f;
-        mNav.speed = 5f * speed;
-        canAttack = true;
-        StopAllCoroutines();
-    }
-
     // 애니메이션
     public override void PlayAnimation()
     {
@@ -397,93 +374,6 @@ public class Titan : Monster
                 break;
         }
     }
-
-    // 판단
-    public override void TargetPosition()
-    {
-        if (target == null)
-        {
-            if (idleMode)
-            {
-                StartCoroutine(SetTarget());
-            }
-        }
-        else
-        {
-            if (target.gameObject.tag == "Player")
-            {
-                float dir = Vector3.Distance(transform.position, target.position);
-                if (dir <= 6.5f)
-                {
-                    mNav.isStopped = true;
-                    mNav.velocity = Vector3.zero;
-                    mNav.speed = 0f;
-                    // 평타
-                    if (canAttack && !PattenUse)
-                    {
-                        delay += Time.deltaTime;
-                        if (delay >= actSpeed)
-                        {
-                            monster_Staus = Staus.attack;
-                            delay = 0f;
-                            target.GetComponent<PlayerManager>().GetDamage(ACT);
-                         //   target.GetComponent<PhotonView>().RPC("GetDamage", RpcTarget.All, ACT);
-                        }
-                        else
-                        {
-                            monster_Staus = Staus.idle;
-                        }
-                    }
-                }
-                else
-                {
-                    mNav.isStopped = false;
-                    mNav.speed = 5f * speed;
-                    monster_Staus = Staus.run;
-                }
-            }
-            else
-            {
-                if (transform.position.x == target.position.x && transform.position.z == target.position.z)
-                {
-                    target = null;
-                    idleMode = true;
-                    monster_Staus = Staus.idle;
-                }
-                else
-                {
-                    mNav.speed = 3f * speed;
-                    monster_Staus = Staus.walk;
-                }
-            }
-        }
-    }
-
-    public override void OnTriggerEnter(Collider other)
-    {
-        if (!canAttack && other.gameObject.tag == "Player" && !notDie)
-        {
-            target = other.gameObject.transform;
-            mNav.stoppingDistance = 6.5f;
-            mNav.speed = 5f * speed;
-            canAttack = true;
-            StopAllCoroutines();
-        }
-    }
-
-    public override void OnTriggerExit(Collider other)
-    {
-        if (canAttack && other.gameObject.tag == "Player" && !notDie)
-        {
-            mNav.stoppingDistance = 0;
-            monster_Staus = Staus.walk;
-            target = noneTarget;
-            mNav.speed = 3f * speed;
-            canAttack = false;
-            idleMode = true;
-        }
-    }
-
     public override IEnumerator NavStop()
     {
         mNav.speed = 0;
