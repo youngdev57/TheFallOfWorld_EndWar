@@ -121,7 +121,7 @@ public class GripController : MonoBehaviour
             }
         }
     }
-    private void Release()
+    public void Release()
     {
         grabber.FixedJoint.connectedBody = null;
         grabber.StrongGrip.connectedBody = null;

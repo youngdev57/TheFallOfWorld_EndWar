@@ -17,6 +17,7 @@ public class Hand_PickUp : MonoBehaviour
     public bool isCanvas;
 
     bool canPickup;
+    [SerializeField]
     bool isPickup;
     PickedItem item;
 
@@ -27,17 +28,10 @@ public class Hand_PickUp : MonoBehaviour
 
         if (action.GetStateDown(hand) && canPickup)
         {
-            if(item != null)
-            {
-                item.SetPick(false);
-                item = null;
-                isPickup = true;
-                canPickup = false;
-            }
+            Debug.Log("PickUp2");
+            isPickup = true;
+            canPickup = false;
         }
-
-        if(isPickup == true)
-            item.SetPick(false);
 
         if (isCanvas == true && closeUi.GetStateDown(hand))
         {
@@ -50,13 +44,14 @@ public class Hand_PickUp : MonoBehaviour
     {
         if (other.gameObject.layer == 11)
         {
+            Debug.Log("PickUp1");
             item = other.GetComponent<PickedItem>();
-            item.SetPick(true);
             canPickup = true;
         }
 
         if (isPickup == true && other.gameObject.layer == LayerMask.NameToLayer("ItemBox"))
         {
+            transform.parent.GetComponent<GripController>().Release();
             player.GetComponent<PlayerItem>().GetItme((int)item.gemType);
             item.GetComponent<PickedItem>().PickOff();      //일정 시간 동안 주울 수 없게 함
         }
@@ -66,7 +61,7 @@ public class Hand_PickUp : MonoBehaviour
     {
         if (other.gameObject.layer == 11)
         {
-            item = other.GetComponent<PickedItem>();
+            Debug.Log("PickUp Exit");
             item = null;
             isPickup = false;
             canPickup = false;

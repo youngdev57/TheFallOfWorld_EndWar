@@ -37,9 +37,6 @@ public class PlayerItem : MonoBehaviour
                 redStone++;
                 break;
         }
-
-        ModifyGemsLocal();
-        pInven.SaveInven(false);    //플레이어 인벤을 통해 재료 변동 정보를 저장.. 재료 개수만 변동이 생겼기 때문에 베이스(기지)의 인벤 정보를 불러오거나 하지 않음
     }
 
     public void ModifyGemsLocal()   //플레이어 인벤의 잼 개수를 PlayerItem의 값으로 변경시켜줌

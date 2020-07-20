@@ -64,14 +64,6 @@ public class GunManager : MonoBehaviour
 
         StartCoroutine(FireEffect());
 
-        if (Physics.Raycast(muzzleTr.position, muzzleTr.right, out hit))
-        {
-            if(hit.collider.attachedRigidbody)
-            {
-                Debug.Log("Hit : " + hit.collider.gameObject.name);
-            }
-        }
-
         canFire = false;
     }
 
@@ -154,6 +146,7 @@ public class GunManager : MonoBehaviour
         {
             isFire = true;
             Fire();
+            canFire = false;
         }
 
         if(grapAction.GetStateUp(handType))

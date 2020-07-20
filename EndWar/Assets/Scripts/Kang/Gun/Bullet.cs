@@ -7,7 +7,8 @@ public class Bullet : MonoBehaviour
     public int damage = 0;
     public GameObject hitEffect;
 
-    GameObject _hitEffect = null;
+    public GameObject _hitEffect = null;
+    IEnumerator effectCoroutine;
     Rigidbody rigid;
     void Start()
     {
@@ -27,7 +28,8 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        StartCoroutine(HitEffect(other));
+        effectCoroutine = HitEffect(other);
+        StartCoroutine(effectCoroutine);
 
         if (other.gameObject.layer == LayerMask.NameToLayer("Monster"))
         {
@@ -52,10 +54,9 @@ public class Bullet : MonoBehaviour
             _hitEffect.SetActive(true);
         }
 
+        Invoke("OffEffect", 1f);
         OffObject();
-
-        yield return new WaitForSeconds(1f);
-        _hitEffect.SetActive(false);
+        yield return null;
     }
 
     IEnumerator OffObjectCoroutine()
@@ -68,5 +69,10 @@ public class Bullet : MonoBehaviour
     {
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         gameObject.SetActive(false);
+    }
+    
+    void OffEffect()
+    {
+        _hitEffect.SetActive(false);
     }
 }

@@ -24,8 +24,8 @@ TagManager:
   - Item_Material
   - Monster
   - GetDamage
-  - 
-  - 
+  - Bullet
+  - ItemBox
   - 
   - 
   - 

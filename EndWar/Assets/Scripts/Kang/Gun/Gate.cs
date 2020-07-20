@@ -2,31 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using UnityEngine.SceneManagement;
+
+public enum SceneName
+{
+    Minigame_Target,
+    Dungeon,
+    Minigame_Grab,
+    SnowField
+}
 
 public class Gate : MonoBehaviour
 {
-    [SerializeField]
-    PlayerPoints pointManager;
-
-    public int destination;
-
-    private void Start()
-    {
-        pointManager = PlayerPoints.GetInstance();
-    }
-
+    public SceneName sceneName;
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.layer.Equals(LayerMask.NameToLayer("Player")))
         {
-            //if(other.gameObject.GetComponent<PhotonView>().IsMine)
-            //{
-            //    PhotonManager myPhoton = other.gameObject.GetComponent<PlayerInfo>().photonManager;
-
-            //    myPhoton.destination = destination;
-            //    Debug.Log("어디로 가는가 : " + myPhoton.destination);
-            //    myPhoton.SendMessage("LeaveRoom");
-            //}
+            switch(sceneName)
+            {
+                case SceneName.Minigame_Target:
+                    LoadingManager.LoadScene("Minigame_Target");
+                    break;
+            }
         }
     }
 }
