@@ -31,9 +31,9 @@ public class Target_Monster : MonoBehaviour
         {
             ScoreManager.GetInstance().AddScore(10);
             ScoreManager.GetInstance().TargetRestore();
-            ScoreText_Floating fText = FloatingTextPool.GetInstance().GetFloatingText();
+            GameObject fText = FloatingTextPool.GetInstance().GetFloatingText(transform.position);
             fText.transform.position = transform.position;
-            fText.gameObject.SetActive(true);
+            fText.SetActive(true);
         }
         //Fold Animation
         anim.SetTrigger("Fold");

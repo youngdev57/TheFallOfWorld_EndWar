@@ -57,9 +57,9 @@ public class TargetMove : MonoBehaviour
             //점수 상승
             ScoreManager.GetInstance().AddScore(10);
             ShowEffect();
-            ScoreText_Floating fText = FloatingTextPool.GetInstance().GetFloatingText();
+            GameObject fText = FloatingTextPool.GetInstance().GetFloatingText(transform.position);
             fText.transform.position = transform.position;
-            fText.gameObject.SetActive(true);
+            fText.SetActive(true);
             sender.Restore(gameObject);
         }
     }

@@ -10,32 +10,29 @@ public class FloatingTextPool : MonoBehaviour
         return instance;
     }
 
-    public Queue<ScoreText_Floating> pool;
+    public Queue<GameObject> pool;
 
     public GameObject fTextPrefab;
 
     private void Awake()
     {
         instance = this;
-        pool = new Queue<ScoreText_Floating>();
+        pool = new Queue<GameObject>();
     }
 
-    public ScoreText_Floating GetFloatingText()
+    public GameObject GetFloatingText(Vector3 showPos)
     {
-        ScoreText_Floating fText;
+        GameObject fText;
         if (pool.Count > 0)
-        {
             fText = pool.Dequeue();
-            return fText;
-        }
         else
-        {
-            fText = Instantiate(fTextPrefab, new Vector3(-100f, -200f, -100f), Quaternion.identity).GetComponent<ScoreText_Floating>();
-            return fText;
-        }
+            fText = Instantiate(fTextPrefab, showPos, Quaternion.identity);
+
+        fText.transform.position = showPos;
+        return fText;
     }
 
-    public void Restore(ScoreText_Floating fText)
+    public void Restore(GameObject fText)
     {
         pool.Enqueue(fText);
     }
