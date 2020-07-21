@@ -8290,8 +8290,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 43.849953, y: 15.013945, z: 19.11515}
-  m_Center: {x: -6.441227, y: -0.15050411, z: 3.068493}
+  m_Size: {x: 104.120224, y: 115.02203, z: 88.06387}
+  m_Center: {x: 11.174103, y: 13.870964, z: -31.405869}
 --- !u!1001 &121806566
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8742,8 +8742,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 36.41719, y: 10.052305, z: 23.851227}
-  m_Center: {x: -8.105606, y: -12.244472, z: 0.7004547}
+  m_Size: {x: 36.41719, y: 62.86482, z: 110.90324}
+  m_Center: {x: -8.105606, y: 14.161783, z: -42.82555}
 --- !u!1001 &144796282
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11055,8 +11055,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 23.361084, y: 19.975565, z: 19.11515}
-  m_Center: {x: 3.6941757, y: -7.2828417, z: 3.068493}
+  m_Size: {x: 23.361084, y: 87.26713, z: 147.52322}
+  m_Center: {x: 3.6941757, y: -7.894291, z: -61.135544}
 --- !u!4 &227826931 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4793381777978566, guid: 24eba46f504d1c2438aa2fe0a6bf3861,
@@ -22916,8 +22916,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 20.627392, y: 17.642487, z: 19.11515}
-  m_Center: {x: 6.1539707, y: -3.7950897, z: 0}
+  m_Size: {x: 134.90686, y: 134.78392, z: 91.882416}
+  m_Center: {x: 4.482086, y: -11.954079, z: 36.383636}
 --- !u!1001 &455957869
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30383,8 +30383,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 34.275734, y: 17.451927, z: 11.470242}
-  m_Center: {x: 3.8303833, y: -8.636391, z: 0}
+  m_Size: {x: 124.3852, y: 82.55448, z: 61.234264}
+  m_Center: {x: -1.8810387, y: -14.554802, z: -24.88201}
 --- !u!1001 &718206918
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33961,8 +33961,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 207.01733, y: 14.171936, z: 82.26233}
-  m_Center: {x: 104.06343, y: -12.087509, z: -31.573593}
+  m_Size: {x: 207.01733, y: 85.70004, z: 82.26233}
+  m_Center: {x: 104.06343, y: -47.851562, z: -31.573593}
 --- !u!1001 &810529182
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34141,8 +34141,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 11.729664, y: 12.988258, z: 12.031391}
-  m_Center: {x: -2.1607227, y: -11.361172, z: 0.41820335}
+  m_Size: {x: 11.729664, y: 178.20883, z: 91.62172}
+  m_Center: {x: -2.1607227, y: -39.048615, z: 40.21337}
 --- !u!1001 &813686574
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -41620,8 +41620,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 37.200752, y: 17.45193, z: 11.470242}
-  m_Center: {x: -4.5071754, y: -8.561082, z: -14.290365}
+  m_Size: {x: 153.77205, y: 266.31656, z: 136.18585}
+  m_Center: {x: -38.745895, y: -0.45933533, z: 48.067444}
 --- !u!1001 &1081498487
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -45651,8 +45651,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 16.05111, y: 7.4122257, z: 11.194984}
-  m_Center: {x: -26.397457, y: -13.564511, z: -0.8915901}
+  m_Size: {x: 72.5707, y: 86.27203, z: 115.376976}
+  m_Center: {x: -14.648685, y: -20.272713, z: 51.199406}
 --- !u!1 &1225070091
 GameObject:
   m_ObjectHideFlags: 0
@@ -46240,8 +46240,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 24.17881, y: 15.013945, z: 95.675476}
-  m_Center: {x: 3.3943443, y: -0.15050411, z: 9.753563}
+  m_Size: {x: 80.43548, y: 242.93073, z: 95.675476}
+  m_Center: {x: 31.522678, y: -23.215393, z: 9.753563}
 --- !u!1001 &1239445262
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -51281,8 +51281,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 63.57888, y: 17.642487, z: 82.26233}
-  m_Center: {x: 32.344196, y: -3.7950897, z: -31.573593}
+  m_Size: {x: 63.57888, y: 94.7274, z: 82.26233}
+  m_Center: {x: 32.344196, y: -42.337547, z: -31.573593}
 --- !u!1001 &1453097350
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -58477,8 +58477,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 8.31945, y: 10.052305, z: 19.11515}
-  m_Center: {x: -22.531628, y: -12.244472, z: 3.068493}
+  m_Size: {x: 27.818039, y: 161.41296, z: 91.11773}
+  m_Center: {x: -12.782333, y: -4.262741, z: 39.069782}
 --- !u!1001 &1674174837
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -62045,8 +62045,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 23.361084, y: 19.975565, z: 19.11515}
-  m_Center: {x: 3.6941757, y: -7.2828417, z: 3.068493}
+  m_Size: {x: 23.361084, y: 293.58484, z: 88.91725}
+  m_Center: {x: 3.6941757, y: -13.797218, z: 37.969543}
 --- !u!1001 &1819849078
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -62656,8 +62656,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 24.17881, y: 15.013945, z: 28.124596}
-  m_Center: {x: 3.3943443, y: -0.15050411, z: 7.5732155}
+  m_Size: {x: 65.90548, y: 91.258194, z: 63.980263}
+  m_Center: {x: 24.257679, y: -4.637903, z: 25.501049}
 --- !u!1001 &1833295975
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -67891,8 +67891,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 13.263074, y: 10.339642, z: 60.670776}
-  m_Center: {x: -2.9274278, y: -10.036863, z: -23.90149}
+  m_Size: {x: 130.50272, y: 151.29214, z: 144.51247}
+  m_Center: {x: -61.54725, y: -13.558739, z: -23.96634}
 --- !u!1001 &2017474274
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -75994,8 +75994,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 24.17881, y: 15.013945, z: 39.362495}
-  m_Center: {x: 3.3943443, y: -0.15050411, z: -7.0551796}
+  m_Size: {x: 84.040596, y: 186.29977, z: 91.23849}
+  m_Center: {x: 33.325237, y: -9.576439, z: -32.993176}
 --- !u!1001 &2130893844
 PrefabInstance:
   m_ObjectHideFlags: 0
