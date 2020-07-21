@@ -1110,8 +1110,8 @@ GameObject:
   m_Component:
   - component: {fileID: 514965749646700827}
   - component: {fileID: 4583320297026766785}
-  - component: {fileID: 7827262796333475202}
   - component: {fileID: 1099300214058775688}
+  - component: {fileID: 6329378571458039500}
   m_Layer: 11
   m_Name: GoldCrystal_Prefab 1
   m_TagString: Untagged
@@ -1156,19 +1156,6 @@ MonoBehaviour:
   pickUpLine: {fileID: 0}
   gemType: 0
   pickCooltime: 10
---- !u!65 &7827262796333475202
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 514965749646700824}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.05586022, y: 0.08230999, z: 0.3115958}
-  m_Center: {x: -0.0034397068, y: -0.0080403695, z: 0.14941339}
 --- !u!114 &1099300214058775688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1186,6 +1173,20 @@ MonoBehaviour:
   gripped: 0
   SecondGripped: 0
   GrippedBy: {fileID: 0}
+--- !u!136 &6329378571458039500
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 514965749646700824}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.028360823
+  m_Height: 0.46111628
+  m_Direction: 2
+  m_Center: {x: 0, y: -0.0059900195, z: 0.10982434}
 --- !u!1 &520959932644394500
 GameObject:
   m_ObjectHideFlags: 0
@@ -7990,7 +7991,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4475629323835276126}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.165, z: 0.0502}
+  m_LocalPosition: {x: 0, y: -0.165, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 9083219482997159496}
@@ -10269,7 +10270,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6067134401358082999}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.01, z: 0.05}
+  m_LocalPosition: {x: 0, y: 0.01, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1975031808411892167}
@@ -10779,7 +10780,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6459378787444920043}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.165, z: 0.0502}
+  m_LocalPosition: {x: 0, y: -0.165, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 71577741484711311}
@@ -10846,7 +10847,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6490920564929875311}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.01, z: 0.05}
+  m_LocalPosition: {x: 0, y: 0.01, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4072611488973047621}

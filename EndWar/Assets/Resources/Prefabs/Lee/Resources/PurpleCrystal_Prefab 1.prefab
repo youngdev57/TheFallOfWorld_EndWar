@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 9179914088401790794}
   - component: {fileID: 4445439502662952076}
-  - component: {fileID: 2928221552198699374}
   - component: {fileID: 6946479149882640611}
-  m_Layer: 0
+  - component: {fileID: 3983664752312480511}
+  m_Layer: 11
   m_Name: PurpleCrystal_Prefab 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,19 +52,6 @@ MonoBehaviour:
   pickUpLine: {fileID: 0}
   gemType: 4
   pickCooltime: 10
---- !u!65 &2928221552198699374
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9179914088401790789}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.32665196, y: 0.32665193, z: 0.4427386}
-  m_Center: {x: -0.019985104, y: -0.013835777, z: 0.09032696}
 --- !u!114 &6946479149882640611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82,6 +69,20 @@ MonoBehaviour:
   gripped: 0
   SecondGripped: 0
   GrippedBy: {fileID: 0}
+--- !u!136 &3983664752312480511
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9179914088401790789}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.11458659
+  m_Height: 0.352918
+  m_Direction: 2
+  m_Center: {x: 0, y: 4.3986336e-16, z: -0.09404734}
 --- !u!1001 &6465294074290722686
 PrefabInstance:
   m_ObjectHideFlags: 0
