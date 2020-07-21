@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Kang/SnowField.unity
     guid: 25dbff3e19dc7624fa99bef44fdfb9be
+  - enabled: 1
+    path: Assets/Scenes/Kang/#Single_Scene/Minigame_Target.unity
+    guid: 5cd980b02d96b3440b72800643a1e22b
   m_configObjects: {}

@@ -7,6 +7,7 @@ public class Target_Sender : MonoBehaviour
     [SerializeField]
     public Queue<GameObject> pool;
     public GameObject targetPrefab;
+    public TargetType prefabType;
 
     void Start() => Initialize();
 
@@ -18,16 +19,19 @@ public class Target_Sender : MonoBehaviour
         {
             pool.Enqueue(AddTarget());
         }
-
-        StartGame();
     }
 
-    void StartGame()
+    public void SendBall()
     {
         StartCoroutine(SendTarget());
     }
 
-    public GameObject GetTarget()
+    public void PauseGame()
+    {
+        StopCoroutine(SendTarget());
+    }
+
+    public GameObject ActivateTarget()
     {
         GameObject obj = null;
 
@@ -37,7 +41,7 @@ public class Target_Sender : MonoBehaviour
             obj = AddTarget();
 
         obj.SetActive(true);
-        int rnd = Random.Range(10, 20);
+        int rnd = Random.Range(5, 10);
         obj.GetComponent<TargetMove>().speed = rnd;
         return obj;
     }
@@ -47,8 +51,8 @@ public class Target_Sender : MonoBehaviour
         GameObject inst = Instantiate(targetPrefab, transform.position, Quaternion.identity);
         inst.SetActive(false);
         inst.GetComponent<TargetMove>().sender = this;
+        inst.GetComponent<TargetMove>().type = prefabType;
 
-        
         return inst;
     }
 
@@ -56,6 +60,7 @@ public class Target_Sender : MonoBehaviour
     {
         obj.transform.position = transform.position;
         obj.SetActive(false);
+        ScoreManager.GetInstance().TargetRestore();
         pool.Enqueue(obj);
     }
 
@@ -63,11 +68,9 @@ public class Target_Sender : MonoBehaviour
     
     IEnumerator SendTarget()
     {
-        int rnd = Random.Range(2, 4);
+        int rnd = Random.Range(4, 6);
         yield return new WaitForSeconds(rnd);
 
-        GetTarget();
-
-        StartCoroutine(SendTarget());
+        ActivateTarget();
     }
 }
