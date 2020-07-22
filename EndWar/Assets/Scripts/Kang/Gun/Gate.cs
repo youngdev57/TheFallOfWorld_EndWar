@@ -24,6 +24,10 @@ public class Gate : MonoBehaviour
                 case SceneName.Minigame_Target:
                     LoadingManager.LoadScene("Minigame_Target");
                     break;
+
+                case SceneName.Minigame_Grab:
+                    LoadingManager.LoadScene("Minigame_Repair");
+                    break;
             }
         }
     }
