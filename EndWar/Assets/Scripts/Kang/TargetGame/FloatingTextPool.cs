@@ -23,10 +23,18 @@ public class FloatingTextPool : MonoBehaviour
     public GameObject GetFloatingText(Vector3 showPos)
     {
         GameObject fText;
-        if (pool.Count > 0)
+        if (pool.Count > 0) {
             fText = pool.Dequeue();
+            fText.GetComponentInChildren<ScoreText_Floating>().startPos = showPos;
+            fText.SetActive(true);
+            fText.GetComponentInChildren<ScoreText_Floating>().SetInit();
+        }
         else
-            fText = Instantiate(fTextPrefab, showPos, Quaternion.identity);
+        {
+            fText = Instantiate(fTextPrefab, showPos, Quaternion.Euler(0, 90f, 0));
+            fText.GetComponentInChildren<ScoreText_Floating>().startPos = showPos;
+            fText.GetComponentInChildren<ScoreText_Floating>().SetInit();
+        }
 
         fText.transform.position = showPos;
         return fText;

@@ -57,7 +57,7 @@ public class GunManager : MonoBehaviour
     
     void Fire()
     {
-        if (!isFire || !canFire)
+        if (!isFire)
             return;
 
         RaycastHit hit;
@@ -69,9 +69,6 @@ public class GunManager : MonoBehaviour
 
     IEnumerator FireEffect()
     {
-        if (anim != null)
-            anim.SetTrigger("Fire");
-
         muzzleEffect.SetActive(true);
 
         BulletPulling();
@@ -134,19 +131,23 @@ public class GunManager : MonoBehaviour
         if (PlayerManager.isDie == true)
             return;
 
-        timer += Time.deltaTime;
+        if(!canFire)
+            timer += Time.deltaTime;
 
         if(timer >= delay)
         {
             canFire = true;
-            timer -= delay;
+            timer = 0;
         }
 
         if (isReloading != true && canFire && grapAction.GetState(handType))
         {
+            if (anim != null)
+                anim.SetTrigger("Fire");
+
             isFire = true;
-            Fire();
             canFire = false;
+            Fire();
         }
 
         if(grapAction.GetStateUp(handType))

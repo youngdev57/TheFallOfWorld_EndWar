@@ -8,18 +8,19 @@ public class ScoreText_Floating : MonoBehaviour
 {
     TextMeshProUGUI textComp;
 
-    Transform startPos;
+    internal Vector3 startPos;
 
     float alpha = 1f;
 
     void Start()
     {
-        textComp = GetComponent<TextMeshProUGUI>();
+        textComp = GetComponentInChildren<TextMeshProUGUI>();
     }
 
-    private void OnEnable()
+    public void SetInit()
     {
-        transform.position = startPos.position;
+        textComp = GetComponentInChildren<TextMeshProUGUI>();
+        transform.position = startPos;
         textComp.color = new Color(textComp.color.r, textComp.color.g, textComp.color.b, alpha = 1f);
     }
 

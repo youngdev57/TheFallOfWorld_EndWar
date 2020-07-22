@@ -29,6 +29,8 @@ public class ScoreManager : MonoBehaviour
     public TextMeshProUGUI score_text;
     public TextMeshProUGUI stage_text;
 
+    public bool gameStart = false;
+
     [SerializeField]
     int score = 0;
 
@@ -39,8 +41,11 @@ public class ScoreManager : MonoBehaviour
     public List<Target_Sender> senderList;
     public List<Target_Monster> mTargetList;
 
-    int[] targetLevel = { 0, 1, 2, 3, 4, 5, 6, 7 };
-    int[] stageEventCnt = { 5, 7, 9, 11, 12, 13, 14, 15 };
+    int[] targetLevel = { 3, 3, 3, 5, 5, 5, 7, 7 };
+    //int[] targetLevel = { 1, 1, 1, 1, 1, 1, 1, 1 };
+    int[] stageEventCnt = { 3, 4, 5, 6, 7, 8, 9, 10 };
+
+    int prevRnd = -1;
 
 
     void Awake()
@@ -52,12 +57,10 @@ public class ScoreManager : MonoBehaviour
 
     void Start()
     {
-        foreach (Target_Monster mTarget in mTargetList)
-        {
-            mTarget.StopAllCoroutines();
-            mTarget.isFold = true;
-            mTarget.anim.SetTrigger("Fold");
-        }
+        //foreach (Target_Monster mTarget in mTargetList)
+        //{
+        //    mTarget.anim.SetTrigger("Fold");
+        //}
     }
 
     public void AddScore(int n)
@@ -81,6 +84,19 @@ public class ScoreManager : MonoBehaviour
     {
         StopAllCoroutines();
 
+        gameStart = true;
+
+        foreach (Target_Monster mTarget in mTargetList)
+        {
+            mTarget.StopAllCoroutines();
+
+            if(!mTarget.isFold)
+            {
+                mTarget.anim.SetTrigger("Fold");
+                mTarget.isFold = true;
+            }
+        }
+
         remainTarget = stageEventCnt[stage];
         requireSendCnt = stageEventCnt[stage];
 
@@ -96,10 +112,22 @@ public class ScoreManager : MonoBehaviour
 
     IEnumerator GameStep()
     {
-        int rnd = UnityEngine.Random.Range(7, 10);
+        int rnd = UnityEngine.Random.Range(5, 7);
         yield return new WaitForSeconds(rnd);
 
-        rnd = UnityEngine.Random.Range(0, targetLevel[stage] + 1);
+        while(true)
+        {
+            rnd = UnityEngine.Random.Range(0, targetLevel[stage] + 1);
+            if (prevRnd == rnd)
+            {
+                rnd = UnityEngine.Random.Range(0, targetLevel[stage] + 1);
+            } else
+            {
+                prevRnd = rnd;
+                break;
+            }
+        }
+        
 
         switch((SenderType) rnd)
         {
@@ -140,10 +168,6 @@ public class ScoreManager : MonoBehaviour
 
         if(requireSendCnt > 0)
             StartCoroutine(GameStep());
-        else
-        {
-
-        }
             //다 내보냈으면 대기
     }
 
@@ -177,8 +201,12 @@ public class ScoreManager : MonoBehaviour
             foreach(Target_Monster mTarget in mTargetList)
             {
                 mTarget.StopAllCoroutines();
-                mTarget.isFold = true;
-                mTarget.anim.SetTrigger("Fold");
+
+                if (!mTarget.isFold)
+                {
+                    mTarget.anim.SetTrigger("Fold");
+                    mTarget.isFold = true;
+                }
             }
 
             if (stage == 7)

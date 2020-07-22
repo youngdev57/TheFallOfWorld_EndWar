@@ -4,27 +4,29 @@ using UnityEngine;
 
 public class Target_Monster : MonoBehaviour
 {
-    internal bool isFold = true;
+    internal bool isFold = false;
 
     internal Animator anim;
 
     IEnumerator overIE;
 
-    void Start()
+    void Awake()
     {
         anim = GetComponentInParent<Animator>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag.Contains("Bullet") && !isFold)
+        if(other.tag.Contains("Bullet") && !isFold && ScoreManager.GetInstance().gameStart)
         {
             Fold(true);
+            StopCoroutine(overIE);
         }
     }
 
     public void Fold(bool gainScore)
     {
+        Debug.Log("Fold 진입");
         isFold = true;
 
         if (gainScore)
@@ -37,17 +39,14 @@ public class Target_Monster : MonoBehaviour
         }
         //Fold Animation
         anim.SetTrigger("Fold");
-
-        StopAllCoroutines();
     }
 
     public void Stand()
     {
+        Debug.Log("Stand 진입");
         isFold = false;
         //Stand Animation
         anim.SetTrigger("Stand");
-
-        StopAllCoroutines();
 
         overIE = TimeOver();
         StartCoroutine(overIE);
@@ -55,11 +54,13 @@ public class Target_Monster : MonoBehaviour
 
     IEnumerator TimeOver()
     {
+        Debug.Log("타임 오버 진입");
         yield return new WaitForSeconds(6f);
 
         if (!isFold)
             Fold(false);
 
+        Debug.Log("타임 오버 6초 대기 완료");
         ScoreManager.GetInstance().AddScore(-5);
         ScoreManager.GetInstance().TargetRestore();
     }

@@ -48,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   hitEffect: {fileID: 100002, guid: 6890a03af913b874092fbb1e8337747d, type: 3}
+  _hitEffect: {fileID: 0}
 --- !u!136 &136436518488396882
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -58,10 +59,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.02
-  m_Height: 0.1
+  m_Radius: 0.05
+  m_Height: 0.20809406
   m_Direction: 2
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0, z: -0.0045208484}
 --- !u!54 &54238672335603214
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -267,7 +268,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 488daf92252b0d64c894ad75eba72c21, type: 2}
+  - {fileID: 2100000, guid: f3c43bc207f8d483d8539ca0cd66426c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
