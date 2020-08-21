@@ -9,19 +9,13 @@ public class GameManager : MonoBehaviour
 
     public GameObject player;
 
-    void Awake()
+    void Start()
     {
-        DontDestroyOnLoad(this);    //씬 이동해도 삭제하지 않음
-
-        player = Instantiate(playerPrefab, startPoint.position, Quaternion.identity);
+        RankManager.GetInstance().LoadFromJSON();
     }
 
     void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.F1))
-        {
-            //던전 강제 이동
-            LoadingManager.LoadScene("Dungeon_Underground");
-        }           
+    {  
+        
     }
 }

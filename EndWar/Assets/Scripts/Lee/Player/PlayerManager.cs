@@ -193,12 +193,10 @@ public class PlayerManager : MonoBehaviour
         isDie = boolean;
         currHP = p_HP;
 
-        if(boolean == true)     //죽으면 기지보내기~ (기지에서 쓰지 마시오 ㅡㅡ)
+        if(boolean == true)     //죽으면 기지보내기
         {
-            photonManager.destination = 0;
-            photonManager.SendMessage("LeaveRoom");
-            isDie = false;
-            Debug.Log("죽었나요?");
+            //다시 첫 씬으로
+            LoadingManager.LoadScene("SnowField");
         }
     }
 

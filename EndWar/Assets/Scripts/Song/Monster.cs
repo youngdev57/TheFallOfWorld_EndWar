@@ -69,7 +69,10 @@ public  class Monster : MonoBehaviour
         mNav.stoppingDistance = moveStopDir;
         mNav.speed = moveSpeedRun * speed;
         canAttack = true;
-        StopAllCoroutines();
+        if (!STUN)
+        {
+            StopAllCoroutines();
+        }
     }
     
     public virtual void AttackType()

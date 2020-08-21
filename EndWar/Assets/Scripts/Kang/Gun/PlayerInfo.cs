@@ -24,7 +24,7 @@ public class PlayerInfo : MonoBehaviourPunCallbacks
 
     void EnterAction()
     {
-        GetComponent<PhotonView>().RPC("DungeonEnterAction", RpcTarget.All);
+
     }
 
     public void DungeonEnterAction()

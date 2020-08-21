@@ -13,8 +13,6 @@ public enum TargetType
 public class TargetMove : MonoBehaviour
 {
     public float speed;
-    float h_spd;
-    float v_spd;
 
     public GameObject breakEffectPrefab;
     GameObject breakEffect;

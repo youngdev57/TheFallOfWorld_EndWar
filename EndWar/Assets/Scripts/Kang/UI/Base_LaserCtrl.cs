@@ -7,7 +7,7 @@ public class Base_LaserCtrl : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if(other.GetComponent<PhotonView>().IsMine && other.tag == "Player")
+        if(other.tag == "Player")
         {
             other.GetComponentsInChildren<UI_Laser>()[0].enabled = true;
             other.GetComponentsInChildren<UI_Laser>()[1].enabled = true;
@@ -18,7 +18,7 @@ public class Base_LaserCtrl : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.GetComponent<PhotonView>().IsMine && other.tag == "Player")
+        if (other.tag == "Player")
         {
             other.GetComponentsInChildren<UI_Laser>()[0].LaserOff();
             other.GetComponentsInChildren<UI_Laser>()[1].LaserOff();

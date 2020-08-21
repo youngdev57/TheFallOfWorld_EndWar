@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
-using System.Diagnostics;
-using System.Threading;
+using System.IO;
 
 public enum SenderType
 {
@@ -41,11 +40,17 @@ public class ScoreManager : MonoBehaviour
     public List<Target_Sender> senderList;
     public List<Target_Monster> mTargetList;
 
+    int maxStage = 1;
+
     int[] targetLevel = { 3, 3, 3, 5, 5, 5, 7, 7 };
     //int[] targetLevel = { 1, 1, 1, 1, 1, 1, 1, 1 };
     int[] stageEventCnt = { 3, 4, 5, 6, 7, 8, 9, 10 };
 
     int prevRnd = -1;
+
+
+    //JSON 저장 부분
+    JsonRank jsonRank;
 
 
     void Awake()
@@ -209,7 +214,7 @@ public class ScoreManager : MonoBehaviour
                 }
             }
 
-            if (stage == 7)
+            if (stage == maxStage)
                 GameEnd();
             else
                 NextStage();
@@ -240,6 +245,20 @@ public class ScoreManager : MonoBehaviour
             mTarget.isFold = true;
             mTarget.anim.SetTrigger("Fold");
         }
+
+
+        //점수 저장
+        Debug.Log("점수 : " + score);
+
+        RankManager.GetInstance().AddRank("Player", score);
+
+
+        //다시 첫 씬으로
+        Invoke("LoadSnowField", 3f);
     }
 
+    void LoadSnowField()
+    {
+        LoadingManager.LoadScene("SnowField");
+    }
 }

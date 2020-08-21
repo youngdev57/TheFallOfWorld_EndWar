@@ -33,7 +33,7 @@ public class Juggernaut : Monster
     {
         maxHp = 351;
         HP = maxHp;
-        VIT = 22;
+        VIT = 0;
         ACT = 37;
         actSpeed = 5f;
 

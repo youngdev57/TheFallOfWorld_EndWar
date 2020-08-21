@@ -9,27 +9,18 @@ EditorBuildSettings:
     path: Assets/Scenes/Kang/Title.unity
     guid: 9bff2de33744dc24bbaece25624a3400
   - enabled: 1
-    path: Assets/Scenes/Kang/Basement.unity
-    guid: 12365aead2ff4774383f5aa5d4ea4761
-  - enabled: 1
-    path: Assets/Scenes/Kang/SnowMountains.unity
-    guid: 80a7b5808b43ae245bc2c97ce3cfc017
-  - enabled: 1
     path: Assets/Scenes/Kang/SceneChanger/Loading.unity
     guid: 8e9b08681c5a1b94abac886c329f3f57
   - enabled: 1
     path: Assets/Scenes/Kang/Dungeon_Underground.unity
     guid: 7471bfb1dd7d3ec47b8fcdeb92957534
   - enabled: 1
-    path: Assets/Scenes/Kang/BattleTest.unity
-    guid: 6f484b9c905f4a342ae03c05439a4e62
-  - enabled: 1
-    path: Assets/Scenes/Kang/Title_BattleTest.unity
-    guid: 5c2985f0861960249bb4464a11af3a28
-  - enabled: 1
     path: Assets/Scenes/Kang/SnowField.unity
     guid: 25dbff3e19dc7624fa99bef44fdfb9be
   - enabled: 1
     path: Assets/Scenes/Kang/#Single_Scene/Minigame_Target.unity
     guid: 5cd980b02d96b3440b72800643a1e22b
+  - enabled: 1
+    path: Assets/Scenes/Kang/#Single_Scene/Minigame_Repair.unity
+    guid: 2b82f71be75bc2342ab4a3f4b6509dd3
   m_configObjects: {}

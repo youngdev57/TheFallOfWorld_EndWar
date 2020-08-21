@@ -393,7 +393,7 @@ public class Titan : Monster
         LadeTimer = 0f;
         maxHp = 300;
         HP = maxHp;
-        VIT = 37;
+        VIT = 10;
         ACT = 49;
         actSpeed = 5f;
 

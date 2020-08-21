@@ -84,21 +84,9 @@ public class DungeonExit : MonoBehaviour
         //클리어 못하고 도중 퇴장 (사망 아님)
     }
 
-    public void Exit_Clear()
+    public void Exit_Clear()    //클리어 후 다시 기지 씬으로
     {
-        //보상 받고 밖으로
-        Debug.Log("매니저 널? : " + photonManager == null);
-        Debug.Log("매니저.KPM 널? : " + photonManager.KPM == null);
-        Debug.Log("매니저.KPM.inven 널? : " + photonManager.KPM.inven == null);
-        Debug.Log("매니저.KPM.inven.gems 널? : " + photonManager.KPM.inven.gems == null);
-        photonManager.KPM.inven.gems[3] += reward_Core;
-        photonManager.KPM.inven.gems[4] += reward_SoulGem;
-        photonManager.KPM.inven.gems[5] += reward_RedStone;
-        photonManager.KPM.inven.SaveInven(false);
-
-        ScoreExtensions.SetScore(PhotonNetwork.LocalPlayer, 0);
-        photonManager.destination = 2;
-        photonManager.SendMessage("LeaveRoom");
+        LoadingManager.LoadScene("SnowField");
     }
 
     //IEnumerator CheckDungeonEnd()

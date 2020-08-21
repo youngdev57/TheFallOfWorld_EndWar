@@ -24,6 +24,15 @@ public class Target_Monster : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.tag.Contains("Bullet") && !isFold && ScoreManager.GetInstance().gameStart)
+        {
+            Fold(true);
+            StopCoroutine(overIE);
+        }
+    }
+
     public void Fold(bool gainScore)
     {
         Debug.Log("Fold 진입");

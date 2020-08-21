@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Valve.VR;
-using Photon.Pun;
 
 public class UI_Laser : MonoBehaviour
 {
@@ -32,8 +31,6 @@ public class UI_Laser : MonoBehaviour
     void Start()
     {
         //  레이저 생성
-        if (!transform.parent.GetComponent<PhotonView>().IsMine)
-            return;
         laser = Instantiate(laserPrefab);
         laserTr = laser.transform;
         laser.transform.SetParent(this.transform);
@@ -55,9 +52,6 @@ public class UI_Laser : MonoBehaviour
     
     void Update()
     {
-        if (!transform.parent.GetComponent<PhotonView>().IsMine)
-            return;
-
         RaycastHit stayHit;
 
         if (Physics.Raycast(controllerPose.transform.position, transform.forward, out stayHit, rayDist, 1 << LayerMask.NameToLayer("UI")))
